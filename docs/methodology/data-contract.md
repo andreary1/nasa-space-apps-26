@@ -1,20 +1,26 @@
-# Contrato de dados
+# Data contract - initial Earth catalog
 
-Status: a definir pela equipe.
+Source: `data/processed/sites.json`. Field names and descriptive values are English; proper names, IDs, image references and measurements are preserved from the supplied dataset.
 
-Este documento será usado para registrar o formato comum dos dados de dunas terrestres e marcianas e de crateras terrestres e lunares.
+## Structure
 
-## Definições pendentes
+The root contains `generated_at`, `method_version`, `sources`, `units`, `warnings` and `sites`. The list endpoint preserves this envelope so clients can show limitations with the results.
 
-- Identificadores e rastreabilidade dos registros.
-- Fontes, licenças e versões dos dados.
-- Corpo celeste e tipo de feição.
-- Coordenadas, sistema de referência e convenção de longitude.
-- Atributos morfológicos, unidades e resolução espacial.
-- Tratamento de valores ausentes, incertezas e qualidade.
-- Formatos dos arquivos brutos, processados e das comparações.
-- Critérios de validação e versionamento do contrato.
+Each site has a unique ID, name, state, category, coordinates, square analysis-window side length, coordinate provenance, detection status, nullable morphological measurements, climate information and diagnostics. Supported categories are `dune_field`, `outcrop` and `volcanic`. All current sites are on Earth; extending this to other bodies requires a body identifier and revised schemas.
 
-## Esquema
+## Conventions
 
-A preencher após a seleção das fontes e dos critérios de comparação. Nenhum esquema ou unidade foi fixado nesta estrutura inicial.
+- `lat` and `lon`: geographic degrees. The source datum remains to be documented.
+- Heights, wavelengths and spacing: meters; `side_length_km`: kilometers.
+- `crest_azimuth`: degrees from north along the crest, 0-180.
+- `probable_wind_direction`: degrees from north toward which wind blows, 0-360.
+- `dune_density`: crests per square kilometer as declared by the pipeline; effective area and counting method still need clarification.
+- `aridity_index`: dimensionless P/ET0 from the source pipeline.
+- Null means no value supplied, not zero. Missing, unmeasured and inapplicable values are not consistently distinguished in the source.
+- `dunes_detected: false` indicates non-detection by this method, not proven absence.
+
+## Validation and remaining limitations
+
+The backend validates required fields, categories, coordinate and measurement ranges, finite numeric measurements and unique IDs. Diagnostics are preserved as provided, without scientific validation.
+
+The estimates need independent validation; detection thresholds were calibrated on the same 12 sites. Diagnostic dune coverage is also reported at sites without detections, so its meaning requires clarification. Climatology period, source raster identifiers, coordinate datum and effective analyzed area remain undocumented. Figure paths do not imply that the images are included. No crater measurements or planetary similarity scores are available yet.
