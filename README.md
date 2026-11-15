@@ -1,29 +1,74 @@
-# planetary-analog-finder
+# Planetary Analog Finder
 
-Projeto para comparar dunas marcianas e crateras lunares com localidades terrestres.
+**NASA Space Apps Challenge 2026** · Finding places on Earth that look like Mars and the Moon.
 
-## Organização
+Planetary Analog Finder compares the terrain of Brazilian sites with **Martian dune fields**
+and **lunar impact craters**. Each site gets a similarity score against every planetary
+reference, a metric-by-metric breakdown, and an AI-written report suggesting how NASA could use
+it (astronaut training, rover testing, instrument calibration and more).
 
-- `docs/`: desafio, pesquisa, metodologia e arquitetura.
-- `data/earth/`: dados terrestres de dunas e crateras.
-- `data/mars/dunes/`: dados de dunas marcianas.
-- `data/moon/craters/`: dados de crateras lunares.
-- `data/processed/`: dados processados e comparações.
-- `src/ingestion/`: ingestão por corpo celeste.
-- `src/processing/`: processamento de dunas, crateras e rotinas compartilhadas.
-- `src/matching/`: comparação de feições e ordenação de resultados.
-- `src/application/`: exploração, comparação e visualização.
-- `src/shared/`: componentes compartilhados.
-- `tests/`: testes de processamento, comparação e integração.
-- `assets/`: imagens, mapas e identidade visual.
-- `deliverables/`: apresentação, demonstração e submissão.
+**Features:** interactive 3D globe with 24 Earth sites, 9 lunar and 7 Martian references ·
+crater and dune morphometrics with Bagnold scaling · charts and profiles · geographic context
+with NASA POWER climatology · on-demand AI reports · in-browser site registration.
 
-## Próximos passos
+## Quick start
 
-1. Documentar o desafio e as fontes de dados.
-2. Definir o contrato de dados em `docs/methodology/data-contract.md`.
-3. Implementar a ingestão, o processamento e os critérios de comparação.
-4. Realizar o tratamento de dados
-5. Aprimorar o frontend
+Requires [Node.js](https://nodejs.org) 18+.
 
-Estrutura inicial: ainda não há dados, dependências ou código executável. Os arquivos `.gitkeep` preservam as pastas vazias quando o projeto for adicionado ao Git.
+1. Copy `.env.example` to `.env` and add an AI API key (a free
+   [Gemini key](https://aistudio.google.com) works). Without it, only report generation is off.
+2. Double-click `iniciar-demo.bat` (Windows), or run `./iniciar-demo.sh` or `npm start`.
+
+The demo opens at <http://localhost:8000/>. Close the window to stop it.
+
+## How it works
+
+- **Metrics:** 11 for craters (diameter, depth, d/D, rim height, wall slope, circularity…) and
+  7 for dunes (height, wavelength, crest azimuth, density, spacing, aridity). See the
+  [data contract](docs/methodology/data-contract.md).
+- **Scaling:** Martian dune height, wavelength and spacing are multiplied by the Bagnold factor
+  β ≈ 2.82 (gravity and air density ratios).
+- **Score:** `0.6 × exp(−2.2 × WED) + 0.4 × cosine`, with per-pair max normalization. Missing
+  metrics make the score unavailable instead of counting as zero.
+- **AI reports:** the local server sends the site's metrics and matches to the model (Gemini by
+  default; Groq and OpenRouter also supported) and saves the result to `ai-reports.json`.
+  The key stays in `.env` and never reaches the browser. Every claim must cite the metrics behind
+  it. Details in [`scripts/ai_reports/README.md`](scripts/ai_reports/README.md).
+
+## Data
+
+- **Mars:** HiRISE DTMs of 8 dune fields (Nili Patera, Gale, Proctor, Kaiser, Rabe,
+  Hellespontus, Olympia Undae). Stored in `data/mars/dunes/`.
+- **Moon:** LOLA and SLDEM2015 DEMs of Cabeus, Tycho, Copernicus, Shackleton and de Gerlache.
+  Stored in `data/moon/craters/`.
+- **Earth:** SRTM, ASTER, EMIT and NASA POWER. Stored in `data/earth/`.
+
+Each `fontes.json` lists product IDs and download URLs.
+
+## Structure
+
+```
+deliverables/demo/   Web demo (globe, comparisons, charts, reports)
+scripts/ai_reports/  Local server and AI report generator
+src/                 Python pipeline: ingestion → processing → matching → ranking
+data/                Raw rasters and processed comparisons
+docs/                Methodology and research
+tests/               Pipeline and demo tests
+```
+
+## Development
+
+```bash
+npm run check-ai                     # test AI key, model and latency
+npm run reports -- --force           # regenerate all AI reports
+python scripts/verify_html.py        # static checks for the demo
+node tests/integration/demo-modules.mjs
+pip install -r requirements.txt && python -m src.application.pipeline
+```
+
+## Known limitations
+
+- The demo scores in the browser and does not yet use the Python pipeline report.
+- The pipeline currently gives every crater site the same score. This needs a fix.
+- Mars and Moon DTMs, ASTER and EMIT are downloaded but not processed yet.
+- Some catalog data is generic and will be replaced. Regenerate reports afterwards.
