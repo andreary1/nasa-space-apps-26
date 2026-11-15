@@ -1,9 +1,12 @@
 import { locations } from './data.js';
 import { Globe } from './globe.js';
 import { Panels } from './panels.js';
+import { WorldMap } from './world-map.js';
+import { ViewSelector } from './view-selector.js';
+import { explorerState } from './state.js';
 
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const panels = new Panels(reducedMotion);
+const panels = new Panels(reducedMotion, explorerState);
 const container = document.getElementById('globe');
 const stage = document.querySelector('.globe-stage');
 const section = document.querySelector('.planetary-section');
@@ -11,8 +14,7 @@ const loading = document.getElementById('globe-loading');
 const status = document.getElementById('exploration-status');
 const hint = document.getElementById('interaction-hint');
 const listeners = new AbortController();
-const state = {
-  selection: null,
+const state = Object.assign(explorerState, {
   transition: null,
   drag: null,
   speed: 0,
@@ -21,21 +23,103 @@ const state = {
   frame: null,
   previous: 0,
   disposed: false,
-};
+});
 let globe;
+let map;
+let mapLoad;
+let modeRequest = 0;
+let modeAnimation;
+const mapStage = document.getElementById('map-stage');
+const viewSelector = new ViewSelector(
+  changeMode,
+  () => Boolean(state.selection),
+  reducedMotion,
+);
 
-function select(location) {
-  state.selection = location;
+function centerGlobe(location) {
   state.transition = {
     from: globe.planet.quaternion.clone(),
     to: globe.targetFor(location),
     started: performance.now(),
     duration: reducedMotion.matches ? 0 : 1450,
   };
-  globe.select(location.id);
+}
+
+function updateHint() {
+  hint.textContent = state.selection
+    ? 'Esc para retomar a exploração'
+    : state.mode === '2d'
+      ? 'Arraste para deslocar · Roda ou pinça para ampliar'
+      : 'Arraste para girar · Selecione um pin';
+}
+
+async function changeMode(mode) {
+  const request = ++modeRequest;
+  modeAnimation?.cancel();
+  if (mode === state.mode) return;
+  if (mode === '3d' && !globe) return;
+  if (mode === '2d') {
+    if (!map) {
+      map = new WorldMap(
+        document.getElementById('world-map'),
+        locations,
+        select,
+        ensureFrame,
+        reducedMotion,
+      );
+      mapLoad = map.load();
+    }
+    try {
+      await mapLoad;
+    } catch (error) {
+      document.getElementById('selection-announcement').textContent =
+        'Não foi possível carregar o mapa. A visualização atual foi preservada.';
+      return;
+    }
+  }
+  if (request !== modeRequest || state.disposed) return;
+  const outgoing = state.mode === '3d' ? stage : mapStage;
+  modeAnimation = outgoing.animate([{ opacity: 1 }, { opacity: 0 }], {
+    duration: reducedMotion.matches ? 0 : 160,
+    fill: 'forwards',
+  });
+  await modeAnimation.finished.catch(() => {});
+  if (request !== modeRequest || state.disposed) return;
+  stopFrame();
+  state.drag = null;
+  container.classList.remove('dragging');
+  state.transition = null;
+  outgoing.hidden = true;
+  outgoing.inert = true;
+  modeAnimation.cancel();
+  state.mode = mode;
+  const incoming = mode === '3d' ? stage : mapStage;
+  incoming.hidden = false;
+  incoming.inert = false;
+  map?.setActive(mode === '2d');
+  if (mode === '3d') {
+    globe.resize();
+    if (state.selection) centerGlobe(state.selection);
+  } else if (state.selection) map.focus(state.selection);
+  if (state.selection && !panels.visible) panels.show();
+  viewSelector.setActive(mode);
+  updateHint();
+  ensureFrame();
+  modeAnimation = incoming.animate([{ opacity: 0 }, { opacity: 1 }], {
+    duration: reducedMotion.matches ? 0 : 180,
+    easing: 'ease-out',
+  });
+  await modeAnimation.finished.catch(() => {});
+}
+
+function select(location) {
+  state.selection = location;
+  if (state.mode === '3d') centerGlobe(location);
+  else map.focus(location);
+  globe?.select(location.id);
   panels.prepare(location);
   status.textContent = location.name;
-  hint.textContent = 'Esc para retomar a exploração';
+  updateHint();
   ensureFrame();
 }
 
@@ -44,18 +128,26 @@ function clearSelection() {
   const focusedInPanel = panels.elements.some((element) =>
     element.contains(document.activeElement),
   );
-  const pin = globe.pins.find(
+  const pin = (state.mode === '3d' ? globe : map).pins.find(
     (pin) => pin.location.id === state.selection.id,
   )?.button;
   state.selection = null;
   state.transition = null;
-  globe.select(null);
+  globe?.select(null);
+  map?.clearSelection();
+  if (state.mode === '2d') {
+    state.scale = 1;
+    globe?.planet.scale.setScalar(1);
+  }
   panels.hide();
   status.textContent = 'Explore o planeta';
-  hint.textContent = 'Arraste para girar · Selecione um pin';
+  updateHint();
   if (focusedInPanel) {
     if (pin && !pin.hidden) pin.focus({ preventScroll: true });
-    else container.focus({ preventScroll: true });
+    else
+      (state.mode === '3d' ? container : map.container).focus({
+        preventScroll: true,
+      });
   }
   ensureFrame();
 }
@@ -63,6 +155,16 @@ function clearSelection() {
 function frame(now) {
   state.frame = null;
   if (!state.visible || document.hidden || state.disposed) return;
+  if (state.mode === '2d') {
+    map.update(now);
+    if (state.selection && map.focusProgress > 0.55 && !panels.visible)
+      panels.show();
+    panels.update(now);
+    if (map.transition || map.dirty || panels.started !== null)
+      state.frame = requestAnimationFrame(frame);
+    return;
+  }
+  if (!globe) return;
   const dt = Math.min((now - (state.previous || now)) / 1000, 0.05);
   state.previous = now;
   const smoothing = reducedMotion.matches ? 1 : 1 - Math.exp(-dt * 5);
@@ -119,7 +221,13 @@ function bindInteractions() {
   stage.addEventListener(
     'pointerdown',
     (event) => {
-      if (!event.isPrimary || event.button !== 0 || state.drag) return;
+      if (
+        state.mode !== '3d' ||
+        !event.isPrimary ||
+        event.button !== 0 ||
+        state.drag
+      )
+        return;
       const pin = event.target.closest('.globe-pin');
       if (
         !pin &&
@@ -205,7 +313,10 @@ function bindInteractions() {
   document.addEventListener(
     'keydown',
     (event) => {
-      if (event.key === 'Escape') clearSelection();
+      if (event.key === 'Escape' && state.selection) {
+        event.preventDefault();
+        clearSelection();
+      }
     },
     options,
   );
@@ -258,6 +369,9 @@ window.addEventListener(
     observer?.disconnect();
     listeners.abort();
     panels.dispose();
+    viewSelector.dispose();
+    map?.dispose();
+    modeAnimation?.cancel();
     globe?.dispose();
   },
   { signal: listeners.signal },

@@ -27,6 +27,23 @@ O checkout original continha somente `.gitkeep` em `deliverables/demo/`. Não ha
 
 A seção ocupa toda a largura e `100dvh` no desktop, com sidebar na borda esquerda, sem moldura, largura máxima ou sombra externa. O globo fica centralizado na área restante. Abaixo de 1001 px, o conteúdo passa para o fluxo vertical da página e os painéis ficam abaixo do planeta. Não há bloqueio global do scroll nem contêiner de aplicação com rolagem interna. Em desktop com altura menor que 720 px, a seção pode crescer para manter os painéis legíveis, usando o scroll principal.
 
+## Visualizações 3D e 2D
+
+O **Globo 3D continua sendo o padrão**. O item de exploração da sidebar abre, por hover ou clique, um submenu com Globo 3D e Mapa 2D. É possível navegar com setas, Home/End e Enter/Espaço; Tab sai do submenu. Clique fora fecha o seletor. O primeiro Esc encerra uma seleção de localidade; sem seleção, Esc fecha o submenu.
+
+O mapa usa **Canvas 2D nativo**, sem nova biblioteca, tiles externos, build ou backend. A projeção é **equiretangular / Plate carrée**, com `x = (longitude + 180) / 360` e `y = (90 - latitude) / 180`. O mundo completo cabe no enquadramento inicial, com proporção 2:1 e ambas as regiões polares. No desktop, a área de desenho respeita o título e os indicadores; no mobile, usa o mesmo espaço vertical reservado ao globo. A projeção distorce áreas e formas perto dos polos; não é destinada a medições cartográficas.
+
+- Arraste para deslocar; roda do mouse ou pinça para ampliar. Zoom limitado a **1×–5×**, sem rotação automática. Os botões +/− e Enquadrar mundo ficam no canto inferior direito da visualização. Fora da área cartográfica, a roda continua disponível para o scroll principal.
+- Com foco na área do mapa, as setas deslocam, +/− ajustam o zoom e Home retorna ao mundo completo.
+- Os seis pins consomem a mesma exportação `locations` de `js/data.js`, com as coordenadas originais. O campo `country` foi acrescentado para as tooltips, que mostram nome, país e formação. Não existe outra lista de localidades nem cópia dos dados das tabelas.
+- Selecionar um pin chama a mesma função `select` usada pelo globo. O mapa centraliza a localidade com zoom discreto de 1,35×, destaca o pin e revela os painéis compartilhados. Lua é reiniciada apenas ao escolher uma nova localidade.
+- A troca de modo tem fade-out/fade-in de aproximadamente **340 ms**. A localidade, a comparação ativa, as tabelas e os scores são preservados; os indicadores não reiniciam. A mesma localidade é centralizada na nova visualização.
+- Esc fecha os painéis e retorna o mapa ao enquadramento global; no globo, mantém a retomada suave da rotação. O botão Enquadrar mundo altera somente a câmera do mapa e preserva uma seleção existente.
+- A textura 2D é estilizada uma única vez em memória, usando as imagens locais já existentes de superfície, máscara de água, normais e nuvens em 2K. Não são criados dados científicos ou algoritmos de similaridade.
+- O loop WebGL é suspenso no modo 2D. O mapa só solicita frames durante interações, transições ou animação dos scores; parado, não mantém um loop contínuo. O globo não é recriado e conserva sua orientação ao sair do modo 3D. Os listeners e observers são registrados uma vez e liberados ao sair da página.
+
+O estado de produto é único em `js/state.js`: modo, seleção, comparação ativa e visibilidade dos painéis. `js/view-selector.js` gerencia somente o submenu, e `js/world-map.js`, a câmera e os gestos 2D. A renderização original em `js/globe.js` permanece inalterada.
+
 ## Organização
 
 - `index.html`: estrutura semântica, ícones SVG locais, sidebar e painéis inicialmente ocultos e inertes.
@@ -48,7 +65,7 @@ O carregamento inicial desktop usa aproximadamente 17 MB em biblioteca/texturas;
 
 ## Limites
 
-É necessário um navegador moderno com **WebGL 2**, módulos ES e Pointer Events. Há uma mensagem de falha se a inicialização ou o carregamento das texturas não funcionar; não há globo alternativo em 2D. O desempenho depende da GPU.
+O modo 3D requer um navegador moderno com **WebGL 2**; o mapa requer Canvas 2D, módulos ES e Pointer Events. Há uma mensagem de falha se a inicialização ou o carregamento das texturas 3D não funcionar; não há troca automática para o mapa. O desempenho do globo depende da GPU. O mapa usa um raster local em 2K, podendo mostrar pixels em ampliações altas; não carrega mapas de ruas nem tiles adicionais. O deslocamento é limitado às proximidades do mundo, sem repetição horizontal infinita.
 
 Todos os índices, medidas e idades apresentados são demonstrativos, sem validação científica. Campos sem referência lunar exibem “Sem referência” e “—”, sem inventar uma comparação lunar de dunas. Os contadores 24/16/8 são mockados; há seis localidades interativas. A integração com o pipeline e as demais seções não fazem parte desta implementação.
 
@@ -62,8 +79,11 @@ npm install --prefix $qa playwright --no-package-lock --no-audit --no-fund
 $env:PLAYWRIGHT_MODULE = Join-Path $qa 'node_modules/playwright'
 $env:BROWSER_EXECUTABLE = 'C:\Program Files\Google\Chrome\Application\chrome.exe'
 node tests/integration/planetary-demo.cjs
+node tests/integration/planetary-map.cjs
 ```
 
 Também é possível instalar Playwright no ambiente de testes habitual e omitir `PLAYWRIGHT_MODULE`. Sem `BROWSER_EXECUTABLE`, o teste usa o Chromium instalado pelo Playwright. `DEMO_URL` permite apontar para outra porta/servidor.
 
 A suíte cobre painéis inicialmente ocultos, rotação automática, seleção e parada, scores de Barringer, troca de localidade, dunas sem referência lunar, Esc, botão de fechar, arraste, teclado, movimento reduzido e suspensão/retomada do loop fora da seção. Também verifica as três colunas, as cinco métricas de crateras, as oito métricas de dunas, valores ausentes, trocas rápidas Lua/Marte, reset para Lua, preservação dos scores e Esc durante uma troca. Verifica fullscreen, sidebar na borda, ausência de erros no console, sobreposição entre indicadores e tabela, cortes dos painéis e overflow horizontal em 1920×1080, 1600×900, 1366×768 e 390×844; no mobile também seleciona por toque. Capturas são gravadas na pasta temporária do sistema.
+
+A suíte `planetary-map.cjs` cobre submenu por teclado e hover, clique fora, identidade dos pins, zoom por roda e pinça, arraste sem seleção acidental, retorno global, seleção 2D, preservação da tabela e dos scores nas duas direções, prioridade do Esc, ausência de recarregamento e overflow horizontal nas mesmas quatro resoluções. Também conta chamadas WebGL para confirmar a suspensão do globo oculto e verifica que o mapa parado não mantém frames contínuos. As transições são verificadas com movimento normal e reduzido, inclusive ao cancelar uma troca de modo em andamento.

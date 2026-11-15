@@ -18,7 +18,8 @@ const coordinate = (value, positive, negative) =>
   `${Math.abs(value).toLocaleString('pt-BR', { maximumFractionDigits: 4 })}° ${value >= 0 ? positive : negative}`;
 
 export class Panels {
-  constructor(reducedMotion) {
+  constructor(reducedMotion, state) {
+    this.state = state;
     this.reducedMotion = reducedMotion;
     this.elements = [...document.querySelectorAll('.panel')];
     this.scoreElements = ['lunar', 'martian'].map((name) => ({
@@ -45,6 +46,19 @@ export class Panels {
         { signal: this.listeners.signal },
       ),
     );
+  }
+
+  get visible() {
+    return this.state.panelsVisible;
+  }
+  set visible(value) {
+    this.state.panelsVisible = value;
+  }
+  get target() {
+    return this.state.comparison;
+  }
+  set target(value) {
+    this.state.comparison = value;
   }
 
   prepare(location) {
