@@ -1,0 +1,11 @@
+{
+  "name": "planetary-analog-finder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/ai_reports/server.mjs --open",
+    "reports": "node scripts/ai_reports/generate_reports.mjs",
+    "check-ai": "node scripts/ai_reports/check.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

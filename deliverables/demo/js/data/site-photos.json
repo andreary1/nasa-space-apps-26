@@ -1,0 +1,238 @@
+{
+  "version": 1,
+  "source": "Wikimedia Commons, seleção de 2026-11-15. Ao exibir, cite autor e licença com link para a página de origem.",
+  "kinds": {
+    "foto": "Foto em solo",
+    "satelite": "Imagem de satélite",
+    "aerea": "Imagem aérea",
+    "relevo": "Relevo sombreado"
+  },
+  "missing": [
+    "ibiraba",
+    "vale_vulcanico",
+    "morro_chapeu",
+    "santa_marta"
+  ],
+  "sites": {
+    "jericoacoara": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Jericoacoara_-_Duna_do_Por_do_Sol_-_11.jpg/960px-Jericoacoara_-_Duna_do_Por_do_Sol_-_11.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Jericoacoara_-_Duna_do_Por_do_Sol_-_11.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Antônio Marcos Capobianco",
+      "kind": "foto",
+      "width": 960,
+      "height": 634,
+      "note": null
+    },
+    "lencois": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Len%C3%A7%C3%B3is_Maranhenses_2018.jpg/960px-Len%C3%A7%C3%B3is_Maranhenses_2018.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Len%C3%A7%C3%B3is_Maranhenses_2018.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Julius Dadalti",
+      "kind": "foto",
+      "width": 960,
+      "height": 1275,
+      "note": null
+    },
+    "rosado": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/DunasRosado3.jpg/960px-DunasRosado3.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DunasRosado3.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "GLandovsky",
+      "kind": "foto",
+      "width": 960,
+      "height": 614,
+      "note": null
+    },
+    "erg_chebbi": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Merzouga_Dunes_2011.jpg/960px-Merzouga_Dunes_2011.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Merzouga_Dunes_2011.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Bjørn Christian Tørrissen",
+      "kind": "foto",
+      "width": 960,
+      "height": 603,
+      "note": null
+    },
+    "sossusvlei": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Sossusvlei%2C_Namibia%2C_2018-08-06%2C_DD_040.jpg/960px-Sossusvlei%2C_Namibia%2C_2018-08-06%2C_DD_040.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Sossusvlei,_Namibia,_2018-08-06,_DD_040.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Diego Delso",
+      "kind": "foto",
+      "width": 960,
+      "height": 524,
+      "note": null
+    },
+    "rub_al_khali": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Rub_al_Khali_002.JPG/960px-Rub_al_Khali_002.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Rub_al_Khali_002.JPG",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Nepenthes",
+      "kind": "foto",
+      "width": 960,
+      "height": 537,
+      "note": null
+    },
+    "white_sands": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Gypsum_dunes_below_the_mountains%2C_White_Sands_National_Park%2C_New_Mexico.jpg/960px-Gypsum_dunes_below_the_mountains%2C_White_Sands_National_Park%2C_New_Mexico.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Gypsum_dunes_below_the_mountains,_White_Sands_National_Park,_New_Mexico.jpg",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "Z3lvs",
+      "kind": "foto",
+      "width": 960,
+      "height": 720,
+      "note": null
+    },
+    "canion_apertados": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/20150412_152922_Richtone%28HDR%29.jpg/960px-20150412_152922_Richtone%28HDR%29.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:20150412_152922_Richtone(HDR).jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Vaguinho86",
+      "kind": "foto",
+      "width": 960,
+      "height": 720,
+      "note": null
+    },
+    "pico_cabugi": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Pico_do_Cabugi_RN_03.jpg/960px-Pico_do_Cabugi_RN_03.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Pico_do_Cabugi_RN_03.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "GLandovsky",
+      "kind": "foto",
+      "width": 960,
+      "height": 623,
+      "note": null
+    },
+    "pedra_cariri": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Ponte_de_Pedra_-_Nova_Olinda%2C_Cariri_%2814338117611%29.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ponte_de_Pedra_-_Nova_Olinda,_Cariri_(14338117611).jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "author": "M H Mathias",
+      "kind": "foto",
+      "width": 640,
+      "height": 640,
+      "note": "Geossítio Ponte de Pedra (Nova Olinda), no Geopark Araripe; não é a pedreira em si."
+    },
+    "serra_cangalha": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Serra_da_Cangalha_Crater.jpg/960px-Serra_da_Cangalha_Crater.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Serra_da_Cangalha_Crater.jpg",
+      "license": "Public domain",
+      "license_url": null,
+      "author": "NASA / Jesse Allen",
+      "kind": "satelite",
+      "width": 960,
+      "height": 960,
+      "note": null
+    },
+    "riachao": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/34/Riach%C3%A3o_Ring_LC08_L1TP_221065_20170606_20170616_01_T1.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Riach%C3%A3o_Ring_LC08_L1TP_221065_20170606_20170616_01_T1.jpg",
+      "license": "Public domain",
+      "license_url": null,
+      "author": "James Stuby, a partir de imagem USGS/Landsat",
+      "kind": "satelite",
+      "width": 960,
+      "height": 960,
+      "note": null
+    },
+    "araguainha": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Araguainha_crater_LC08_L1TP_224072_20200518_20200820_02_T1.jpg/960px-Araguainha_crater_LC08_L1TP_224072_20200518_20200820_02_T1.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Araguainha_crater_LC08_L1TP_224072_20200518_20200820_02_T1.jpg",
+      "license": "Public domain",
+      "license_url": null,
+      "author": "NASA",
+      "kind": "satelite",
+      "width": 960,
+      "height": 960,
+      "note": null
+    },
+    "vargeao": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Vargeao_Dome_-_Landsat_OLI_222.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Vargeao_Dome_-_Landsat_OLI_222.jpg",
+      "license": "Public domain",
+      "license_url": null,
+      "author": "USGS/NASA Landsat; recorte de Szczureq",
+      "kind": "satelite",
+      "width": 960,
+      "height": 960,
+      "note": null
+    },
+    "vista_alegre": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/95/Vista_Alegre_crater_LC08_L1TP_223078_20170722_20170728_01_T1.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Vista_Alegre_crater_LC08_L1TP_223078_20170722_20170728_01_T1.jpg",
+      "license": "Public domain",
+      "license_url": null,
+      "author": "James Stuby, a partir de imagem USGS/Landsat",
+      "kind": "satelite",
+      "width": 960,
+      "height": 960,
+      "note": null
+    },
+    "barringer": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Meteor_Crater_-_Arizona.jpg/960px-Meteor_Crater_-_Arizona.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Meteor_Crater_-_Arizona.jpg",
+      "license": "Public domain",
+      "license_url": null,
+      "author": "USGS National Map",
+      "kind": "aerea",
+      "width": 960,
+      "height": 640,
+      "note": null
+    },
+    "vredefort": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Vredefort_Crater%2C_South_Africa%2C_OLI_satellite_image%2C_27_June_2018_cropped.png/960px-Vredefort_Crater%2C_South_Africa%2C_OLI_satellite_image%2C_27_June_2018_cropped.png",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Vredefort_Crater,_South_Africa,_OLI_satellite_image,_27_June_2018_cropped.png",
+      "license": "Public domain",
+      "license_url": null,
+      "author": "NASA Earth Observatory / Lauren Dauphin",
+      "kind": "satelite",
+      "width": 960,
+      "height": 1153,
+      "note": null
+    },
+    "chicxulub": {
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/24/Yucatan_chix_crater.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Yucatan_chix_crater.jpg",
+      "license": "Public domain",
+      "license_url": null,
+      "author": "NASA/JPL-Caltech",
+      "kind": "relevo",
+      "width": 960,
+      "height": 1073,
+      "note": "Relevo sombreado: a cratera está soterrada e não aparece em foto comum."
+    },
+    "pingualuit": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Pingualuit_Crater_-_panoramio.jpg/960px-Pingualuit_Crater_-_panoramio.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Pingualuit_Crater_-_panoramio.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Martin Tuchscherer",
+      "kind": "foto",
+      "width": 960,
+      "height": 720,
+      "note": null
+    },
+    "lonar": {
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Lonar_Crater%2C_Panorama.jpg/960px-Lonar_Crater%2C_Panorama.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Lonar_Crater,_Panorama.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Aditya Laghate",
+      "kind": "foto",
+      "width": 960,
+      "height": 420,
+      "note": null
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "outputDirectory": "deliverables/demo",
+  "functions": {
+    "api/*.mjs": {
+      "maxDuration": 120,
+      "includeFiles": "deliverables/demo/js/data/**"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+/* Foto da localidade: ao selecionar um pin do globo, o ícone se expande
+   num cartão com a foto (dados em js/data/site-photos.json). */
+.pin-photo {
+  position: absolute;
+  top: 39px;
+  left: 50%;
+  translate: -50% -100%;
+  width: 39px;
+  height: 39px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 12px;
+  background: #dfccff;
+  box-shadow: 0 4px 12px #1b2f5d35;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s,
+    opacity 0.2s;
+}
+.globe-pin[data-category='dune'] .pin-photo {
+  background: #c9edff;
+}
+.pin-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  scale: 1.12;
+  transition:
+    opacity 0.4s 0.15s,
+    scale 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pin-photo-credit {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 16px 8px 5px;
+  overflow: hidden;
+  background: linear-gradient(transparent, #0b1530b8);
+  color: #fff;
+  font-size: 9.5px;
+  line-height: 1.2;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s 0.35s;
+}
+
+/* Aberto: pin selecionado que tem foto. */
+.globe-pin[aria-pressed='true'][data-has-photo='true'] .pin-photo {
+  width: 188px;
+  height: 126px;
+  border-radius: 16px;
+  opacity: 1;
+  box-shadow:
+    0 0 0 5px #ffffff70,
+    0 12px 30px #1b2f5d45;
+}
+.globe-pin[aria-pressed='true'][data-has-photo='true'] .pin-badge {
+  opacity: 0;
+  scale: 0.6;
+}
+.globe-pin[aria-pressed='true'][data-has-photo='true'] .pin-tooltip {
+  display: none;
+}
+.globe-pin[aria-pressed='true'] .pin-photo.is-loaded img {
+  opacity: 1;
+  scale: 1;
+}
+.globe-pin[aria-pressed='true'] .pin-photo.is-loaded .pin-photo-credit {
+  opacity: 1;
+}
+.globe-pin .pin-badge {
+  transition:
+    scale 0.2s,
+    opacity 0.2s,
+    box-shadow 0.2s;
+}
+
+@media (max-width: 760px) {
+  .pin-photo {
+    top: 34px;
+  }
+  .globe-pin[aria-pressed='true'][data-has-photo='true'] .pin-photo {
+    width: 150px;
+    height: 100px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pin-photo,
+  .pin-photo img,
+  .pin-photo-credit {
+    transition: none;
+  }
+}

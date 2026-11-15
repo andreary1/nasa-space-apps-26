@@ -1,39 +1,65 @@
-# -*- coding: utf-8 -*-
+"""Check demo assets, ES module syntax, imports and DOM references."""
+from collections import Counter
+from html.parser import HTMLParser
+from pathlib import Path
 import re
+import subprocess
 
-with open('deliverables/demo/index.html', 'r', encoding='utf-8') as f:
-    content = f.read()
+root = Path(__file__).resolve().parents[1] / 'deliverables/demo'
+errors = []
 
-# 1. Check for undefined pr.y
-lines = content.split('\n')
-for idx, line in enumerate(lines):
-    if 'pr.y' in line:
-        print(f'Line {idx+1}: pr.y found: {line.strip()}')
 
-# 2. Extract script content
-scripts = re.findall(r'<script>(.*?)</script>', content, re.DOTALL)
-print(f'Found {len(scripts)} inline scripts.')
+class Page(HTMLParser):
+    ids = []
 
-js_code = scripts[-1]
-get_elem_ids = set(re.findall(r'document\.getElementById\([\"\']([^\"\']+)[\"\']\)', js_code))
-html_ids = set(re.findall(r'id=[\"\']([^\"\']+)[\"\']', content))
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if 'id' in attrs:
+            self.ids.append(attrs['id'])
+        for name, value in attrs.items():
+            if name.startswith('on'):
+                errors.append(f'Inline handler: {name}')
+            if name in ('src', 'href') and value and not value.startswith(('http', '#', 'data:')):
+                if not (root / value).exists():
+                    errors.append(f'Missing HTML asset: {value}')
 
-missing = get_elem_ids - html_ids
-if missing:
-    print('Missing IDs in HTML:', missing)
-else:
-    print(f'PASS: All {len(get_elem_ids)} getElementById IDs match HTML elements!')
 
-onclick_funcs = set(re.findall(r'onclick=[\"\']([a-zA-Z0-9_]+)', content))
-print('Onclick functions used in HTML:', onclick_funcs)
+page = Page()
+page.feed((root / 'index.html').read_text(encoding='utf-8'))
+errors.extend(f'Duplicate ID: {key}' for key, count in Counter(page.ids).items() if count > 1)
+graph = {}
+for path in root.rglob('*'):
+    if path.suffix not in ('.html', '.js', '.css'):
+        continue
+    text = path.read_text(encoding='utf-8')
+    if re.search(r'^(?:<{7}|={7}|>{7})(?:\s|$)', text, re.M):
+        errors.append(f'Conflict marker: {path}')
+    if path.suffix == '.css':
+        for value in re.findall(r"@import url\(['\"]([^'\"]+)", text):
+            if not (path.parent / value).exists():
+                errors.append(f'Missing CSS: {value}')
+    if path.suffix != '.js' or 'vendor' in path.parts:
+        continue
+    result = subprocess.run(['node', '--check', str(path)], capture_output=True, text=True)
+    if result.returncode:
+        errors.append(result.stderr)
+    deps = [(path.parent / value).resolve() for value in re.findall(r"\bfrom\s+['\"]([^'\"]+)['\"]", text)]
+    graph[path.resolve()] = deps
+    errors.extend(f'Missing import: {dep}' for dep in deps if not dep.exists())
+    missing = set(re.findall(r'''getElementById\(["']([^"']+)["']\)''', text)) - set(page.ids)
+    errors.extend(f'Missing DOM ID: {key} in {path.name}' for key in missing)
 
-defined_funcs = set(re.findall(r'function\s+([a-zA-Z0-9_]+)\s*\(', js_code))
-print('Defined functions in JS:', defined_funcs)
 
-missing_funcs = onclick_funcs - defined_funcs
-if missing_funcs:
-    print('WARNING: Missing functions:', missing_funcs)
-else:
-    print('PASS: All onclick functions are defined!')
+def visit(path, stack):
+    if path in stack:
+        errors.append(f'Circular dependency: {path}')
+        return
+    for dep in graph.get(path, []):
+        visit(dep, stack | {path})
 
-print('Total HTML length:', len(content))
+
+for path in graph:
+    visit(path, set())
+if errors:
+    raise SystemExit('\n'.join(errors))
+print(f'PASS: {len(page.ids)} unique IDs; {len(graph)} scripts; assets, syntax, imports, DOM references and acyclic module graph.')
