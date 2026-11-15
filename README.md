@@ -1,0 +1,27 @@
+# planetary-analog-finder
+
+Projeto para comparar dunas marcianas e crateras lunares com localidades terrestres.
+
+## Organização
+
+- `docs/`: desafio, pesquisa, metodologia e arquitetura.
+- `data/earth/`: dados terrestres de dunas e crateras.
+- `data/mars/dunes/`: dados de dunas marcianas.
+- `data/moon/craters/`: dados de crateras lunares.
+- `data/processed/`: dados processados e comparações.
+- `src/ingestion/`: ingestão por corpo celeste.
+- `src/processing/`: processamento de dunas, crateras e rotinas compartilhadas.
+- `src/matching/`: comparação de feições e ordenação de resultados.
+- `src/application/`: exploração, comparação e visualização.
+- `src/shared/`: componentes compartilhados.
+- `tests/`: testes de processamento, comparação e integração.
+- `assets/`: imagens, mapas e identidade visual.
+- `deliverables/`: apresentação, demonstração e submissão.
+
+## Próximos passos
+
+1. Documentar o desafio e as fontes de dados.
+2. Definir o contrato de dados em `docs/methodology/data-contract.md`.
+3. Implementar a ingestão, o processamento e os critérios de comparação.
+
+Estrutura inicial: ainda não há dados, dependências ou código executável. Os arquivos `.gitkeep` preservam as pastas vazias quando o projeto for adicionado ao Git.
