@@ -1,0 +1,162 @@
+{
+ "nili_patera": {
+  "descricao": "Nili Patera (Syrtis Major), barcanas",
+  "produto": "DTEEC_043779_1890_043423_1890_A01",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_043779_1890_ESP_043423_1890/DTEEC_043779_1890_043423_1890_A01.tif",
+  "resolucao_nativa_m": 1.01,
+  "pixel_saida_m": 4.0,
+  "caixa_lonlat": [
+   67.3024,
+   8.6237,
+   67.4024,
+   8.7891
+  ],
+  "arquivos": [
+   "nili_patera_dtm4m.tif",
+   "nili_patera_dtm_nativo_1500m.tif"
+  ],
+  "valido": 0.781,
+  "z_min": 65.91993713378906,
+  "z_max": 218.6781768798828
+ },
+ "bagnold_gale": {
+  "descricao": "Bagnold Dunes, cratera Gale (borda NW do Mt Sharp)",
+  "produto": "DTEEC_023957_1755_024023_1755_U01",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_023957_1755_ESP_024023_1755/DTEEC_023957_1755_024023_1755_U01.tif",
+  "resolucao_nativa_m": 1.01,
+  "pixel_saida_m": 4.0,
+  "caixa_lonlat": [
+   137.4629,
+   -4.6572,
+   137.5446,
+   -4.5897
+  ],
+  "arquivos": [
+   "bagnold_gale_dtm4m.tif",
+   "bagnold_gale_dtm_nativo_1500m.tif"
+  ],
+  "valido": 0.916,
+  "z_min": -4521.7841796875,
+  "z_max": -4110.44921875
+ },
+ "proctor": {
+  "descricao": "Campo de dunas da cratera Proctor",
+  "produto": "DTEEC_003800_1325_004077_1325_U01",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/PSP_003800_1325_PSP_004077_1325/DTEEC_003800_1325_004077_1325_U01.tif",
+  "resolucao_nativa_m": 1.06,
+  "pixel_saida_m": 4.0,
+  "caixa_lonlat": [
+   30.6258,
+   -47.2147,
+   30.7607,
+   -47.0191
+  ],
+  "arquivos": [
+   "proctor_dtm4m.tif",
+   "proctor_dtm_nativo_1500m.tif"
+  ],
+  "valido": 0.856,
+  "z_min": 498.3455505371094,
+  "z_max": 699.6569213867188
+ },
+ "kaiser_a": {
+  "descricao": "Cratera Kaiser, duna grande com ravinas",
+  "produto": "DTEEC_006899_1330_006965_1330_U01",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/PSP_006899_1330_PSP_006965_1330/DTEEC_006899_1330_006965_1330_U01.tif",
+  "resolucao_nativa_m": 1.08,
+  "pixel_saida_m": 4.0,
+  "caixa_lonlat": [
+   20.0706,
+   -46.8314,
+   20.214,
+   -46.6543
+  ],
+  "arquivos": [
+   "kaiser_a_dtm4m.tif",
+   "kaiser_a_dtm_nativo_1500m.tif"
+  ],
+  "valido": 0.878,
+  "z_min": 1031.0660400390625,
+  "z_max": 1320.8836669921875
+ },
+ "kaiser_b": {
+  "descricao": "Cratera Kaiser, dunas transversais grandes",
+  "produto": "DTEEC_013017_1325_013083_1325_U01",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_013017_1325_ESP_013083_1325/DTEEC_013017_1325_013083_1325_U01.tif",
+  "resolucao_nativa_m": 1.11,
+  "pixel_saida_m": 4.0,
+  "caixa_lonlat": [
+   19.403,
+   -47.3271,
+   19.5588,
+   -47.1296
+  ],
+  "arquivos": [
+   "kaiser_b_dtm4m.tif",
+   "kaiser_b_dtm_nativo_1500m.tif"
+  ],
+  "valido": 0.773,
+  "z_min": 858.7291870117188,
+  "z_max": 1240.0225830078125
+ },
+ "rabe": {
+  "descricao": "Campo de dunas da cratera Rabe (DTM 2 m; artefatos triangulares visíveis)",
+  "produto": "DTEED_076617_1360_076261_1360_A01",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_076617_1360_ESP_076261_1360/DTEED_076617_1360_076261_1360_A01.tif",
+  "resolucao_nativa_m": 2.1,
+  "pixel_saida_m": 4.0,
+  "caixa_lonlat": [
+   34.9223,
+   -43.5724,
+   35.0337,
+   -43.4577
+  ],
+  "arquivos": [
+   "rabe_dtm4m.tif",
+   "rabe_dtm_nativo_1500m.tif"
+  ],
+  "valido": 0.871,
+  "z_min": -1098.757568359375,
+  "z_max": -402.82379150390625
+ },
+ "hellespontus": {
+  "descricao": "Hellespontus Montes, dunas barcanoides",
+  "produto": "DTEEC_023420_1345_023130_1345_A01",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_023420_1345_ESP_023130_1345/DTEEC_023420_1345_023130_1345_A01.tif",
+  "resolucao_nativa_m": 1.12,
+  "pixel_saida_m": 4.0,
+  "caixa_lonlat": [
+   41.954,
+   -45.0644,
+   42.0299,
+   -44.9294
+  ],
+  "arquivos": [
+   "hellespontus_dtm4m.tif",
+   "hellespontus_dtm_nativo_1500m.tif"
+  ],
+  "valido": 0.95,
+  "z_min": -1673.283447265625,
+  "z_max": -1215.77783203125
+ },
+ "olympia_undae": {
+  "descricao": "Olympia Undae (mar de dunas polar norte)",
+  "produto": "DTEPC_027739_2615_027713_2615_A01",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_027739_2615_ESP_027713_2615/DTEPC_027739_2615_027713_2615_A01.tif",
+  "resolucao_nativa_m": 1.01,
+  "pixel_saida_m": 4.0,
+  "caixa_lonlat": [
+   178.3226,
+   81.4891,
+   179.4687,
+   81.7919
+  ],
+  "arquivos": [
+   "olympia_undae_dtm4m.tif",
+   "olympia_undae_dtm_nativo_1500m.tif"
+  ],
+  "valido": 0.521,
+  "z_min": -4289.53662109375,
+  "z_max": -4193.4443359375
+ }
+}
