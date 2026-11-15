@@ -13,6 +13,7 @@ import { createNavigation } from './navigation.js';
 import { initSidebar } from './components/sidebar.js';
 import { buildComparison } from './services/comparisonModel.js';
 import { panelLocation } from './utils/formatters.js';
+import { createAiReport } from './components/aiReport.js';
 
 const state = {
   activePage: 'globe', currentSiteIndex: 0, hasSelection: false,
@@ -22,6 +23,7 @@ const state = {
 const panels = new Panels(matchMedia('(prefers-reduced-motion: reduce)'));
 const charts = createCharts(state);
 const renderSelectors = createSiteSelector(state);
+const aiReport = createAiReport();
 const map = createWorldMap(state, selectSite);
 let globe;
 const navigation = createNavigation(state, () => {
@@ -39,6 +41,7 @@ function updateSelectionViews() {
   document.getElementById('overview-selection').textContent = `${site.name} · ${site.category} · ${site.uf}`;
   document.getElementById('report-site-name').textContent = site.name;
   document.getElementById('report-json').textContent = JSON.stringify(site, null, 2);
+  aiReport.render(buildComparison(site));
   const compatible = site.type === state.analysisType;
   document.getElementById('analysis-empty').hidden = compatible;
   document.getElementById('analysis-empty').textContent = `Selecione ${state.analysisType === 'dune' ? 'uma duna' : 'uma cratera'} no catálogo para iniciar a análise. A seleção atual foi preservada.`;

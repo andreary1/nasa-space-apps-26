@@ -1,0 +1,388 @@
+{
+  "version": 1,
+  "reports": {
+    "lencois": {
+      "generated_at": "2026-11-15T17:34:15.172Z",
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "prompt_version": "0.1.0",
+      "mock": false,
+      "input": {
+        "metrics": {
+          "mean_height": 6.3,
+          "height_p90": 11,
+          "wavelength": 312,
+          "crest_azimuth": 161,
+          "dune_density": 6.58,
+          "mean_spacing": 367,
+          "aridity_index": 0.764
+        },
+        "best_reference_id": "namib_dune_gale"
+      },
+      "report": {
+        "resumo": "Lençóis Maranhenses é um campo de dunas barcanoides com padrão morfológico relevante para comparações eólicas com Marte. O local obteve um score de similaridade moderado de 58,85% em relação à duna Namib na Cratera Gale. Apesar de semelhanças geométricas na orientação das cristas, o ambiente possui alta umidade e chuvas contrastantes com o regime marciano.",
+        "analogo_principal": {
+          "interpretacao": "O score de 58,85% indica similaridade morfológica moderada com a duna Namib. O azimute de crista é altamente concordante com a feição marciana, porém ocorrem divergências acentuadas na altura média escalada e no nível de aridez."
+        },
+        "semelhancas": [
+          {
+            "titulo": "Orientação preferencial das cristas",
+            "explicacao": "O azimute da crista nas dunas terrestres é de 161°, muito próximo ao valor de 170° registrado na referência marciana, demonstrando alinhamento similar sob vento unidirecional.",
+            "metricas": [
+              "crest_azimuth"
+            ]
+          },
+          {
+            "titulo": "Densidade espacial de cristas",
+            "explicacao": "A densidade em Lençóis Maranhenses é de 6,58 cristas/km², aproximando-se dos 8,5 cristas/km² observados no análogo marciano.",
+            "metricas": [
+              "dune_density"
+            ]
+          },
+          {
+            "titulo": "Comprimento de onda escalonado",
+            "explicacao": "O comprimento de onda terrestre medido em 312 m mantém ordem de grandeza compatível com os 239,7 m da referência após a aplicação do fator de escala de Bagnold.",
+            "metricas": [
+              "wavelength"
+            ]
+          }
+        ],
+        "diferencas": [
+          {
+            "titulo": "Índice de aridez e hidrologia",
+            "explicacao": "O índice de aridez terrestre registrado é de 0,764, enquanto na duna de Marte o valor é 0, refletindo a ausência total de água líquida no análogo planetário.",
+            "metricas": [
+              "aridity_index"
+            ],
+            "impacto": "alto"
+          },
+          {
+            "titulo": "Altura média sob escala de Bagnold",
+            "explicacao": "A altura média em Lençóis Maranhenses é de 6,3 m, ficando 55,32% abaixo da referência marciana escalada de 14,1 m.",
+            "metricas": [
+              "mean_height"
+            ],
+            "impacto": "medio"
+          },
+          {
+            "titulo": "Espaçamento médio entre dunas",
+            "explicacao": "O espaçamento médio na localidade é de 367 m, superando em 44,6% o valor escalado da referência marciana (253,8 m).",
+            "metricas": [
+              "mean_spacing"
+            ],
+            "impacto": "medio"
+          }
+        ],
+        "sugestoes_nasa": [
+          {
+            "tipo": "validacao_algoritmos",
+            "titulo": "Validação de algoritmos de extração de cristas",
+            "descricao": "Testar ferramentas de detecção remota de azimute e densidade de cristas eólicas a partir de imagens orbitais.",
+            "justificativa": "O campo apresenta azimute bem delineado de 161° e densidade de 6,58/km², adequados para calibrar métricas de reconhecimento automatizado de padrões barcanoides."
+          },
+          {
+            "tipo": "estudo_processos",
+            "titulo": "Estudo de transporte sedimentar em cristas periódicas",
+            "descricao": "Monitorar a dinâmica de propagação euleriana e espaçamento sob vento médio local de 2,42 m/s.",
+            "justificativa": "A localidade possui comprimento de onda (312 m) e espaçamento (367 m) regulares, permitindo estudar a física de auto-organização de dunas com controle de campo."
+          }
+        ],
+        "limitacoes": [
+          "Clima tropical úmido com precipitação diária de 3,83 mm/dia e umidade relativa de 78,89%, inexistentes em Marte.",
+          "Presença de cobertura vegetal (restinga e manguezais no mosaico local) que afeta a dinâmica eólica sedimentar.",
+          "Grande discrepância na altura média escalada (-55,32%) em relação à referência de Gale.",
+          "As notas de catálogo contêm hipóteses não verificadas pela equipe, com status de revisão pendente."
+        ],
+        "confianca": {
+          "nivel": "media",
+          "motivo": "As métricas de azimute e densidade fornecem base geométrica sólida, mas as diferenças climáticas profundas e os dados não verificados reduzem o nível de confiança geral."
+        }
+      }
+    },
+    "jericoacoara": {
+      "generated_at": "2026-11-15T17:59:06.099Z",
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "prompt_version": "0.1.0",
+      "mock": false,
+      "seconds": 7.715,
+      "input": {
+        "metrics": {
+          "mean_height": 6,
+          "height_p90": 10.7,
+          "wavelength": 297,
+          "crest_azimuth": 173,
+          "dune_density": 3.99,
+          "mean_spacing": 392,
+          "aridity_index": 0.468
+        },
+        "best_reference_id": "namib_dune_gale"
+      },
+      "report": {
+        "resumo": "Jericoacoara apresenta um campo de dunas barcanas ativas que serve como análogo morfométrico para dunas marcianas. O local permite o estudo de processos eólicos em regime de ventos constantes, apesar das diferenças climáticas e gravitacionais.",
+        "analogo_principal": {
+          "interpretacao": "O score de 55,6% indica uma semelhança moderada com a Namib Dune em Gale Crater, com convergência significativa nas métricas de comprimento de onda e azimute após a aplicação do fator de escala de Bagnold."
+        },
+        "semelhancas": [
+          {
+            "titulo": "Alinhamento das Cristas",
+            "explicacao": "O azimute das cristas em Jericoacoara é muito próximo ao observado na referência marciana, sugerindo um regime de ventos unidirecional consistente.",
+            "metricas": [
+              "crest_azimuth"
+            ]
+          },
+          {
+            "titulo": "Escala de Comprimento de Onda",
+            "explicacao": "O comprimento de onda das dunas, após a aplicação do fator de Bagnold, apresenta uma proximidade relevante com as feições de Gale Crater.",
+            "metricas": [
+              "wavelength"
+            ]
+          }
+        ],
+        "diferencas": [
+          {
+            "titulo": "Altura Média das Dunas",
+            "explicacao": "As dunas terrestres apresentam altura média significativamente menor que a referência escalada, devido à diferença na gravidade e dinâmica de deposição.",
+            "metricas": [
+              "mean_height"
+            ],
+            "impacto": "alto"
+          },
+          {
+            "titulo": "Densidade de Cristas",
+            "explicacao": "A densidade de cristas por km² é menor em Jericoacoara, indicando um espaçamento maior entre as feições comparado ao campo de dunas marciano.",
+            "metricas": [
+              "dune_density",
+              "mean_spacing"
+            ],
+            "impacto": "medio"
+          },
+          {
+            "titulo": "Índice de Aridez",
+            "explicacao": "O ambiente terrestre é significativamente mais úmido, o que altera a coesão dos sedimentos em relação ao ambiente hiperárido de Marte.",
+            "metricas": [
+              "aridity_index"
+            ],
+            "impacto": "alto"
+          }
+        ],
+        "sugestoes_nasa": [
+          {
+            "tipo": "estudo_processos",
+            "titulo": "Dinâmica de migração eólica",
+            "descricao": "Monitorar a migração das dunas barcanas para entender a taxa de transporte de sedimentos sob ventos constantes.",
+            "justificativa": "A semelhança no azimute e no comprimento de onda torna o local ideal para validar modelos de transporte eólico."
+          },
+          {
+            "tipo": "validacao_algoritmos",
+            "titulo": "Mapeamento automatizado de dunas",
+            "descricao": "Utilizar imagens de alta resolução de Jericoacoara para treinar algoritmos de detecção de cristas e medição de espaçamento.",
+            "justificativa": "A clareza morfológica das barcanas locais fornece um dataset de treinamento robusto para identificar feições similares em Marte."
+          }
+        ],
+        "limitacoes": [
+          "Presença de umidade elevada e vegetação de restinga, ausentes em Marte.",
+          "Composição mineralógica distinta (quartzo vs. basaltos).",
+          "Influência da gravidade terrestre (1g) na altura das dunas."
+        ],
+        "confianca": {
+          "nivel": "media",
+          "motivo": "Embora os dados morfométricos sejam precisos, as condições ambientais (umidade, biologia) divergem drasticamente do ambiente marciano."
+        }
+      }
+    },
+    "chicxulub": {
+      "generated_at": "2026-11-15T18:00:03.377Z",
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "prompt_version": "0.1.0",
+      "mock": false,
+      "seconds": 3.52,
+      "input": {
+        "metrics": {
+          "diameter_m": 180000,
+          "depth_m": 350,
+          "depth_diameter_ratio": 0.0019,
+          "rim_height_m": 80,
+          "rim_height_diameter_ratio": 0.0004,
+          "rim_variation_m": 410,
+          "rim_radius_cv": 0.085,
+          "mean_wall_slope": 4,
+          "wall_slope_p90": 8.5,
+          "circularity": 0.82,
+          "rim_coherence": 0.72
+        },
+        "best_reference_id": "cabeus"
+      },
+      "report": {
+        "resumo": "A cratera de Chicxulub é um análogo geológico de alto impacto para o estudo de crateras complexas na Lua, apesar de sua expressão superficial ser quase nula. O local oferece uma oportunidade única para investigar processos de colapso gravitacional em crateras de grande escala.",
+        "analogo_principal": {
+          "interpretacao": "O baixo score de similaridade (33,76%) reflete a disparidade entre a morfologia preservada de Cabeus e o estado de soterramento e erosão de Chicxulub, indicando que a comparação é limitada pela preservação topográfica."
+        },
+        "semelhancas": [
+          {
+            "titulo": "Circularidade da feição",
+            "explicacao": "A forma geral da cratera mantém uma circularidade próxima à da referência lunar, sugerindo uma geometria de impacto inicial comparável.",
+            "metricas": [
+              "circularity"
+            ]
+          },
+          {
+            "titulo": "Coerência da borda",
+            "explicacao": "A estrutura da borda apresenta um nível de coerência que, embora inferior, ainda permite o reconhecimento da feição como uma cratera complexa.",
+            "metricas": [
+              "rim_coherence"
+            ]
+          }
+        ],
+        "diferencas": [
+          {
+            "titulo": "Razão profundidade-diâmetro",
+            "explicacao": "Chicxulub apresenta uma profundidade muito menor em relação ao seu diâmetro quando comparada a Cabeus, devido ao preenchimento sedimentar pós-impacto.",
+            "metricas": [
+              "depth_diameter_ratio"
+            ],
+            "impacto": "alto"
+          },
+          {
+            "titulo": "Declividade das paredes",
+            "explicacao": "As paredes de Chicxulub são significativamente mais suaves do que as da cratera lunar, resultado de processos erosivos e soterramento terrestre.",
+            "metricas": [
+              "mean_wall_slope",
+              "wall_slope_p90"
+            ],
+            "impacto": "alto"
+          },
+          {
+            "titulo": "Altura da borda",
+            "explicacao": "A altura da borda em relação ao diâmetro é drasticamente menor na Terra, indicando perda de relevo original.",
+            "metricas": [
+              "rim_height_diameter_ratio"
+            ],
+            "impacto": "alto"
+          }
+        ],
+        "sugestoes_nasa": [
+          {
+            "tipo": "estudo_processos",
+            "titulo": "Análise de soterramento de crateras",
+            "descricao": "Utilizar dados geofísicos de Chicxulub para modelar como crateras lunares antigas podem ser modificadas por processos de preenchimento.",
+            "justificativa": "A diferença nas métricas de profundidade e declividade permite entender a evolução de crateras sob soterramento."
+          },
+          {
+            "tipo": "validacao_algoritmos",
+            "titulo": "Algoritmos de detecção remota",
+            "descricao": "Testar algoritmos de detecção de crateras em dados gravimétricos para identificar feições soterradas.",
+            "justificativa": "A baixa visibilidade superficial de Chicxulub é um desafio ideal para validar algoritmos de detecção em terrenos lunares complexos."
+          }
+        ],
+        "limitacoes": [
+          "A cratera está soterrada por quase 1 km de sedimentos, tornando a comparação topográfica direta com a Lua pouco representativa.",
+          "A presença de um ambiente marinho e processos cársticos (cenotes) altera a morfologia original de forma distinta dos processos lunares.",
+          "O clima tropical e a umidade elevada não possuem análogos nas condições de vácuo e aridez lunar."
+        ],
+        "confianca": {
+          "nivel": "baixa",
+          "motivo": "A disparidade nas métricas de profundidade e declividade, somada ao soterramento geológico, reduz a precisão da comparação direta com crateras lunares expostas."
+        }
+      }
+    },
+    "pedra_cariri": {
+      "generated_at": "2026-11-15T18:00:48.736Z",
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "prompt_version": "0.1.0",
+      "mock": false,
+      "seconds": 2.957,
+      "input": {
+        "metrics": {
+          "diameter_m": 3120,
+          "depth_m": 140,
+          "depth_diameter_ratio": 0.0448,
+          "rim_height_m": 55,
+          "rim_height_diameter_ratio": 0.0176,
+          "rim_variation_m": 70,
+          "rim_radius_cv": 0.048,
+          "mean_wall_slope": 14.1,
+          "wall_slope_p90": 23.5,
+          "circularity": 0.875,
+          "rim_coherence": 0.84
+        },
+        "best_reference_id": "copernicus"
+      },
+      "report": {
+        "resumo": "A Pedra Cariri apresenta morfologia de depressão com declividade interna comparável a crateras lunares complexas. Embora o tamanho absoluto seja muito menor que a cratera Copernicus, a geometria interna oferece um análogo útil para estudos de processos de encosta.",
+        "analogo_principal": {
+          "interpretacao": "O score de 47,4% indica uma semelhança moderada, sustentada principalmente pela similaridade na declividade média das paredes, apesar da discrepância significativa nas dimensões lineares."
+        },
+        "semelhancas": [
+          {
+            "titulo": "Declividade das paredes",
+            "explicacao": "A inclinação média das paredes é muito próxima à observada em crateras lunares complexas.",
+            "metricas": [
+              "mean_wall_slope"
+            ]
+          },
+          {
+            "titulo": "Geometria de borda",
+            "explicacao": "A coerência da borda e a circularidade da feição apresentam valores próximos aos padrões lunares.",
+            "metricas": [
+              "circularity",
+              "rim_coherence"
+            ]
+          },
+          {
+            "titulo": "Razão de aspecto",
+            "explicacao": "A relação entre profundidade e diâmetro é compatível com a morfologia de crateras lunares.",
+            "metricas": [
+              "depth_diameter_ratio"
+            ]
+          }
+        ],
+        "diferencas": [
+          {
+            "titulo": "Escala dimensional",
+            "explicacao": "O diâmetro e a profundidade da Pedra Cariri são drasticamente menores que os da cratera Copernicus.",
+            "metricas": [
+              "diameter_m",
+              "depth_m"
+            ],
+            "impacto": "alto"
+          },
+          {
+            "titulo": "Altura da borda",
+            "explicacao": "A altura da borda em relação ao diâmetro é desproporcionalmente maior na Pedra Cariri.",
+            "metricas": [
+              "rim_height_diameter_ratio"
+            ],
+            "impacto": "medio"
+          }
+        ],
+        "sugestoes_nasa": [
+          {
+            "tipo": "estudo_processos",
+            "titulo": "Análise de erosão em encostas",
+            "descricao": "Estudar a degradação das paredes da depressão para modelar processos de erosão em encostas lunares.",
+            "justificativa": "A semelhança na declividade média permite observar processos de degradação em escala terrestre."
+          },
+          {
+            "tipo": "validacao_algoritmos",
+            "titulo": "Teste de algoritmos de detecção de feições",
+            "descricao": "Utilizar a topografia local para treinar algoritmos de reconhecimento de crateras em dados de sensoriamento remoto.",
+            "justificativa": "A circularidade e a coerência da borda são métricas que permitem o ajuste fino de modelos de detecção."
+          }
+        ],
+        "limitacoes": [
+          "A origem geológica da Pedra Cariri é sedimentar, enquanto a de Copernicus é de impacto, o que altera a natureza do material e a estratigrafia.",
+          "O clima tropical com precipitação ativa causa erosão hídrica inexistente na Lua.",
+          "A diferença de escala absoluta limita a extrapolação direta de processos de grande impacto."
+        ],
+        "confianca": {
+          "nivel": "media",
+          "motivo": "As métricas de declividade são consistentes, mas a disparidade de escala e a origem geológica distinta exigem cautela na extrapolação."
+        }
+      }
+    }
+  },
+  "updated_at": "2026-11-15T18:00:48.739Z"
+}
