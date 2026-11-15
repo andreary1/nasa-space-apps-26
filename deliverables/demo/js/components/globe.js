@@ -1,6 +1,8 @@
 import * as THREE from '../../vendor/three.module.js';
 
 // Equirectangular texture: Greenwich is +X; east longitudes point toward -Z.
+const photosUrl = new URL('../data/site-photos.json', import.meta.url);
+
 export function geographicVector(latitude, longitude) {
   const lat = THREE.MathUtils.degToRad(latitude),
     lon = THREE.MathUtils.degToRad(longitude);
@@ -82,7 +84,7 @@ export class Globe {
       button.dataset.location = location.id;
       button.setAttribute('aria-label', `Selecionar ${location.name}`);
       button.setAttribute('aria-pressed', 'false');
-      button.innerHTML = `<span class="pin-badge"><svg aria-hidden="true"><use href="#i-${location.category === 'crater' ? 'crater' : 'dune'}"/></svg></span><span class="pin-stem"></span><span class="pin-dot"></span><span class="pin-tooltip"></span>`;
+      button.innerHTML = `<span class="pin-badge"><svg aria-hidden="true"><use href="#i-${location.category === 'crater' ? 'crater' : 'dune'}"/></svg></span><span class="pin-photo" aria-hidden="true"></span><span class="pin-stem"></span><span class="pin-dot"></span><span class="pin-tooltip"></span>`;
       button.querySelector('.pin-tooltip').textContent = location.name;
       button.addEventListener('click', () => {
         if (!this.suppressClick) this.onSelect(location);
@@ -176,9 +178,37 @@ export class Globe {
   }
 
   select(id) {
-    this.pins.forEach(({ button, location }) =>
-      button.setAttribute('aria-pressed', String(location.id === id)),
-    );
+    this.pins.forEach((pin) => {
+      const pressed = pin.location.id === id;
+      pin.button.setAttribute('aria-pressed', String(pressed));
+      if (pressed) this.showPhoto(pin);
+    });
+  }
+
+  // Fotos das localidades (js/data/site-photos.json), carregadas sob demanda.
+  photoData() {
+    this.photos ||= fetch(photosUrl)
+      .then((response) => (response.ok ? response.json() : null))
+      .catch(() => null);
+    return this.photos;
+  }
+
+  async showPhoto({ button, location }) {
+    const photo = (await this.photoData())?.sites?.[location.id];
+    const holder = button.querySelector('.pin-photo');
+    if (!photo?.image || !holder || holder.childElementCount) return;
+    const image = new Image();
+    image.alt = '';
+    image.decoding = 'async';
+    image.addEventListener('load', () => holder.classList.add('is-loaded'), { once: true });
+    image.addEventListener('error', () => { delete button.dataset.hasPhoto; holder.replaceChildren(); }, { once: true });
+    const credit = document.createElement('span');
+    credit.className = 'pin-photo-credit';
+    credit.textContent = [photo.author, photo.license].filter(Boolean).join(' · ');
+    holder.append(image, credit);
+    button.dataset.hasPhoto = 'true';
+    button.setAttribute('aria-label', `Selecionar ${location.name}. Foto: ${credit.textContent}`);
+    image.src = photo.image;
   }
 
   render() {
@@ -194,7 +224,9 @@ export class Globe {
       const x = ((this.projected.x + 1) * this.width) / 2,
         y = ((1 - this.projected.y) * this.height) / 2;
       button.style.transform = `translate(${x - 21}px, ${y - 55}px)`;
-      button.style.zIndex = String(Math.round((this.projected.z + 1) * 100));
+      // O pin selecionado (com a foto aberta) fica sempre por cima dos outros.
+      const front = button.getAttribute('aria-pressed') === 'true' ? 1000 : 0;
+      button.style.zIndex = String(front + Math.round((this.projected.z + 1) * 100));
     }
     this.renderer.render(this.scene, this.camera);
   }
