@@ -3,7 +3,7 @@
 export const PIPELINE = {
  "meta": {
   "source_file": "matching_report_v2.json",
-  "generated_at": "2026-11-15 16:12:04 UTC",
+  "generated_at": "2026-11-15 22:20:12 UTC",
   "pipeline_version": "1.0.0",
   "beta": 4.82,
   "min_coverage": 0.6,
@@ -780,37 +780,41 @@ export const PIPELINE = {
    "lat": -10.71,
    "lon": -42.8,
    "metrics": {
-    "mean_height": 6.7,
-    "height_p90": 13.1,
-    "wavelength": 345.0,
-    "crest_azimuth": 115.0,
-    "dune_density": 4.56,
-    "mean_spacing": 488.0,
+    "mean_height": 9.225227601599416,
+    "height_p90": 17.031122580057556,
+    "wavelength": 858.8158140778953,
+    "crest_azimuth": 102.34414045276935,
+    "dune_density": 0.34607090260248496,
+    "mean_spacing": 762.2911055045724,
     "aridity_index": 0.237
    },
    "dq": {
-    "source": "catalogo",
+    "source": "hybrid",
     "provenance": {
-     "mean_height": "catalogo:altura_media (calculado fora deste repositório)",
-     "height_p90": "catalogo:altura_p90 (calculado fora deste repositório)",
-     "wavelength": "catalogo:comprimento_onda (calculado fora deste repositório)",
-     "crest_azimuth": "catalogo:orientacao_azimute (calculado fora deste repositório)",
-     "dune_density": "catalogo:densidade_dunas (calculado fora deste repositório)",
-     "mean_spacing": "catalogo:espacamento_medio (calculado fora deste repositório)",
+     "mean_height": "raster:dune_morphometrics",
+     "height_p90": "raster:dune_morphometrics",
+     "wavelength": "raster:dune_morphometrics",
+     "crest_azimuth": "raster:dune_morphometrics",
+     "dune_density": "raster:dune_morphometrics",
+     "mean_spacing": "raster:dune_morphometrics",
      "aridity_index": "catalogo:indice_aridez (calculado fora deste repositório)"
     },
-    "issues": [],
+    "issues": [
+     "wavelength: raster (858.8) difere do catálogo (345) em mais de 50%; usando o raster",
+     "dune_density: raster (0.3461) difere do catálogo (4.56) em mais de 50%; usando o raster",
+     "mean_spacing: raster (762.3) difere do catálogo (488) em mais de 50%; usando o raster"
+    ],
     "features_missing": []
    },
    "crater_class": null,
    "confidence": null,
    "matches": [
     {
-     "ref_id": "proctor_crater",
+     "ref_id": "kaiser_crater",
      "rank": 1,
-     "score": 0.533152,
-     "wed": 0.206347,
-     "cosine": 0.145808,
+     "score": 0.471712,
+     "wed": 0.305066,
+     "cosine": 0.11792,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -819,61 +823,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.7,
-       "target": 15.0,
-       "target_scaled": 3.1115,
+       "earth": 9.2252,
+       "target": 25.0,
+       "target_scaled": 5.1859,
        "scale": 0.20743651432414,
-       "contribution": 0.000726
+       "contribution": 0.00092
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 13.1,
-       "target": 26.0,
-       "target_scaled": 5.3933,
+       "earth": 17.0311,
+       "target": 38.0,
+       "target_scaled": 7.8826,
        "scale": 0.20743651432414,
-       "contribution": 0.001106
+       "contribution": 0.001558
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 345.0,
+       "earth": 858.8158,
        "target": 180.0,
        "target_scaled": 37.3386,
        "scale": 0.20743651432414,
-       "contribution": 0.00348
+       "contribution": 0.024811
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 115.0,
-       "target": 140.0,
-       "target_scaled": 140.0,
+       "earth": 102.3441,
+       "target": 135.0,
+       "target_scaled": 135.0,
        "scale": 1.0,
-       "contribution": 0.007716
+       "contribution": 0.013165
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.56,
-       "target": 4.5,
-       "target_scaled": 104.5784,
+       "earth": 0.3461,
+       "target": 6.0,
+       "target_scaled": 139.4379,
        "scale": 23.23965024982155,
-       "contribution": 0.013218
+       "contribution": 0.025562
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 488.0,
+       "earth": 762.2911,
        "target": 190.0,
        "target_scaled": 39.4129,
        "scale": 0.20743651432414,
-       "contribution": 0.00671
+       "contribution": 0.017425
       },
       {
        "key": "aridity_index",
@@ -888,11 +892,11 @@ export const PIPELINE = {
      ]
     },
     {
-     "ref_id": "kaiser_crater",
+     "ref_id": "proctor_crater",
      "rank": 2,
-     "score": 0.531606,
-     "wed": 0.222317,
-     "cosine": 0.163244,
+     "score": 0.47098,
+     "wed": 0.297236,
+     "cosine": 0.106622,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -901,61 +905,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.7,
-       "target": 25.0,
-       "target_scaled": 5.1859,
+       "earth": 9.2252,
+       "target": 15.0,
+       "target_scaled": 3.1115,
        "scale": 0.20743651432414,
-       "contribution": 0.000129
+       "contribution": 0.002107
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 13.1,
-       "target": 38.0,
-       "target_scaled": 7.8826,
+       "earth": 17.0311,
+       "target": 26.0,
+       "target_scaled": 5.3933,
        "scale": 0.20743651432414,
-       "contribution": 0.000507
+       "contribution": 0.002521
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 345.0,
+       "earth": 858.8158,
        "target": 180.0,
        "target_scaled": 37.3386,
        "scale": 0.20743651432414,
-       "contribution": 0.00348
+       "contribution": 0.024811
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 115.0,
-       "target": 135.0,
-       "target_scaled": 135.0,
+       "earth": 102.3441,
+       "target": 140.0,
+       "target_scaled": 140.0,
        "scale": 1.0,
-       "contribution": 0.004938
+       "contribution": 0.017506
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.56,
-       "target": 6.0,
-       "target_scaled": 139.4379,
+       "earth": 0.3461,
+       "target": 4.5,
+       "target_scaled": 104.5784,
        "scale": 23.23965024982155,
-       "contribution": 0.024037
+       "contribution": 0.014355
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 488.0,
+       "earth": 762.2911,
        "target": 190.0,
        "target_scaled": 39.4129,
        "scale": 0.20743651432414,
-       "contribution": 0.00671
+       "contribution": 0.017425
       },
       {
        "key": "aridity_index",
@@ -972,9 +976,9 @@ export const PIPELINE = {
     {
      "ref_id": "nili_patera",
      "rank": 3,
-     "score": 0.487155,
-     "wed": 0.272637,
-     "cosine": 0.116772,
+     "score": 0.430622,
+     "wed": 0.354322,
+     "cosine": 0.072847,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -983,61 +987,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.7,
+       "earth": 9.2252,
        "target": 22.4,
        "target_scaled": 4.6466,
        "scale": 0.20743651432414,
-       "contribution": 0.000238
+       "contribution": 0.001182
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 13.1,
+       "earth": 17.0311,
        "target": 31.0,
        "target_scaled": 6.4305,
        "scale": 0.20743651432414,
-       "contribution": 0.000828
+       "contribution": 0.002092
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 345.0,
+       "earth": 858.8158,
        "target": 120.0,
        "target_scaled": 24.8924,
        "scale": 0.20743651432414,
-       "contribution": 0.003767
+       "contribution": 0.025569
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 115.0,
+       "earth": 102.3441,
        "target": 155.0,
        "target_scaled": 155.0,
        "scale": 1.0,
-       "contribution": 0.019753
+       "contribution": 0.03423
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.56,
+       "earth": 0.3461,
        "target": 7.0,
        "target_scaled": 162.6776,
        "scale": 23.23965024982155,
-       "contribution": 0.033034
+       "contribution": 0.034818
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 488.0,
+       "earth": 762.2911,
        "target": 130.0,
        "target_scaled": 26.9667,
        "scale": 0.20743651432414,
-       "contribution": 0.007088
+       "contribution": 0.018031
       },
       {
        "key": "aridity_index",
@@ -1054,9 +1058,9 @@ export const PIPELINE = {
     {
      "ref_id": "meroe_patera",
      "rank": 4,
-     "score": 0.478064,
-     "wed": 0.275208,
-     "cosine": 0.09725,
+     "score": 0.421636,
+     "wed": 0.359198,
+     "cosine": 0.055914,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1065,61 +1069,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.7,
+       "earth": 9.2252,
        "target": 17.5,
        "target_scaled": 3.6301,
        "scale": 0.20743651432414,
-       "contribution": 0.000531
+       "contribution": 0.001765
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 13.1,
+       "earth": 17.0311,
        "target": 24.0,
        "target_scaled": 4.9785,
        "scale": 0.20743651432414,
-       "contribution": 0.001228
+       "contribution": 0.002704
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 345.0,
+       "earth": 858.8158,
        "target": 110.0,
        "target_scaled": 22.818,
        "scale": 0.20743651432414,
-       "contribution": 0.003816
+       "contribution": 0.025696
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 115.0,
+       "earth": 102.3441,
        "target": 160.0,
        "target_scaled": 160.0,
        "scale": 1.0,
-       "contribution": 0.025
+       "contribution": 0.041039
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.56,
+       "earth": 0.3461,
        "target": 6.5,
        "target_scaled": 151.0577,
        "scale": 23.23965024982155,
-       "contribution": 0.028357
+       "contribution": 0.030012
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 488.0,
+       "earth": 762.2911,
        "target": 115.0,
        "target_scaled": 23.8552,
        "scale": 0.20743651432414,
-       "contribution": 0.007184
+       "contribution": 0.018183
       },
       {
        "key": "aridity_index",
@@ -1136,9 +1140,9 @@ export const PIPELINE = {
     {
      "ref_id": "hellespontus",
      "rank": 5,
-     "score": 0.470204,
-     "wed": 0.284148,
-     "cosine": 0.088671,
+     "score": 0.418273,
+     "wed": 0.361976,
+     "cosine": 0.050647,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1147,61 +1151,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.7,
+       "earth": 9.2252,
        "target": 16.0,
        "target_scaled": 3.319,
        "scale": 0.20743651432414,
-       "contribution": 0.000645
+       "contribution": 0.001967
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 13.1,
+       "earth": 17.0311,
        "target": 24.0,
        "target_scaled": 4.9785,
        "scale": 0.20743651432414,
-       "contribution": 0.001228
+       "contribution": 0.002704
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 345.0,
+       "earth": 858.8158,
        "target": 140.0,
        "target_scaled": 29.0411,
        "scale": 0.20743651432414,
-       "contribution": 0.00367
+       "contribution": 0.025315
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 115.0,
+       "earth": 102.3441,
        "target": 150.0,
        "target_scaled": 150.0,
        "scale": 1.0,
-       "contribution": 0.015123
+       "contribution": 0.028038
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.56,
+       "earth": 0.3461,
        "target": 8.0,
        "target_scaled": 185.9172,
        "scale": 23.23965024982155,
-       "contribution": 0.043458
+       "contribution": 0.045501
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 488.0,
+       "earth": 762.2911,
        "target": 145.0,
        "target_scaled": 30.0783,
        "scale": 0.20743651432414,
-       "contribution": 0.006993
+       "contribution": 0.017878
       },
       {
        "key": "aridity_index",
@@ -1226,26 +1230,30 @@ export const PIPELINE = {
    "lat": -2.825,
    "lon": -40.49,
    "metrics": {
-    "mean_height": 6.0,
-    "height_p90": 10.7,
-    "wavelength": 297.0,
-    "crest_azimuth": 173.0,
-    "dune_density": 3.99,
-    "mean_spacing": 392.0,
+    "mean_height": 6.8334156536944155,
+    "height_p90": 13.676453594738145,
+    "wavelength": 882.039944152474,
+    "crest_azimuth": 135.0,
+    "dune_density": 0.28117166687003253,
+    "mean_spacing": 829.313765976403,
     "aridity_index": 0.468
    },
    "dq": {
-    "source": "catalogo",
+    "source": "hybrid",
     "provenance": {
-     "mean_height": "catalogo:altura_media (calculado fora deste repositório)",
-     "height_p90": "catalogo:altura_p90 (calculado fora deste repositório)",
-     "wavelength": "catalogo:comprimento_onda (calculado fora deste repositório)",
-     "crest_azimuth": "catalogo:orientacao_azimute (calculado fora deste repositório)",
-     "dune_density": "catalogo:densidade_dunas (calculado fora deste repositório)",
-     "mean_spacing": "catalogo:espacamento_medio (calculado fora deste repositório)",
+     "mean_height": "raster:dune_morphometrics",
+     "height_p90": "raster:dune_morphometrics",
+     "wavelength": "raster:dune_morphometrics",
+     "crest_azimuth": "raster:dune_morphometrics",
+     "dune_density": "raster:dune_morphometrics",
+     "mean_spacing": "raster:dune_morphometrics",
      "aridity_index": "catalogo:indice_aridez (calculado fora deste repositório)"
     },
-    "issues": [],
+    "issues": [
+     "wavelength: raster (882) difere do catálogo (297) em mais de 50%; usando o raster",
+     "dune_density: raster (0.2812) difere do catálogo (3.99) em mais de 50%; usando o raster",
+     "mean_spacing: raster (829.3) difere do catálogo (392) em mais de 50%; usando o raster"
+    ],
     "features_missing": []
    },
    "crater_class": null,
@@ -1254,9 +1262,9 @@ export const PIPELINE = {
     {
      "ref_id": "proctor_crater",
      "rank": 1,
-     "score": 0.48174,
-     "wed": 0.268247,
-     "cosine": 0.097739,
+     "score": 0.450625,
+     "wed": 0.318282,
+     "cosine": 0.080988,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1265,61 +1273,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.0,
+       "earth": 6.8334,
        "target": 15.0,
        "target_scaled": 3.1115,
        "scale": 0.20743651432414,
-       "contribution": 0.00047
+       "contribution": 0.000781
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 10.7,
+       "earth": 13.6765,
        "target": 26.0,
        "target_scaled": 5.3933,
        "scale": 0.20743651432414,
-       "contribution": 0.000524
+       "contribution": 0.001277
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 297.0,
+       "earth": 882.0399,
        "target": 180.0,
        "target_scaled": 37.3386,
        "scale": 0.20743651432414,
-       "contribution": 0.002479
+       "contribution": 0.026234
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 173.0,
+       "earth": 135.0,
        "target": 140.0,
        "target_scaled": 140.0,
        "scale": 1.0,
-       "contribution": 0.013444
+       "contribution": 0.000309
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 3.99,
+       "earth": 0.2812,
        "target": 4.5,
        "target_scaled": 104.5784,
        "scale": 23.23965024982155,
-       "contribution": 0.013369
+       "contribution": 0.014373
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 392.0,
+       "earth": 829.3138,
        "target": 190.0,
        "target_scaled": 39.4129,
        "scale": 0.20743651432414,
-       "contribution": 0.004146
+       "contribution": 0.020806
       },
       {
        "key": "aridity_index",
@@ -1336,9 +1344,9 @@ export const PIPELINE = {
     {
      "ref_id": "kaiser_crater",
      "rank": 2,
-     "score": 0.473795,
-     "wed": 0.293941,
-     "cosine": 0.109652,
+     "score": 0.445371,
+     "wed": 0.333059,
+     "cosine": 0.085225,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1347,143 +1355,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.0,
+       "earth": 6.8334,
        "target": 25.0,
        "target_scaled": 5.1859,
        "scale": 0.20743651432414,
-       "contribution": 3.7e-05
+       "contribution": 0.000153
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 10.7,
+       "earth": 13.6765,
        "target": 38.0,
        "target_scaled": 7.8826,
        "scale": 0.20743651432414,
-       "contribution": 0.000148
+       "contribution": 0.000625
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 297.0,
+       "earth": 882.0399,
        "target": 180.0,
        "target_scaled": 37.3386,
        "scale": 0.20743651432414,
-       "contribution": 0.002479
+       "contribution": 0.026234
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 173.0,
+       "earth": 135.0,
        "target": 135.0,
        "target_scaled": 135.0,
        "scale": 1.0,
-       "contribution": 0.017827
+       "contribution": 0.0
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 3.99,
+       "earth": 0.2812,
        "target": 6.0,
        "target_scaled": 139.4379,
        "scale": 23.23965024982155,
-       "contribution": 0.024241
+       "contribution": 0.025586
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 392.0,
+       "earth": 829.3138,
        "target": 190.0,
        "target_scaled": 39.4129,
        "scale": 0.20743651432414,
-       "contribution": 0.004146
-      },
-      {
-       "key": "aridity_index",
-       "weight": 0.1,
-       "used": true,
-       "earth": 0.468,
-       "target": 0.0,
-       "target_scaled": 0.0,
-       "scale": 1.0,
-       "contribution": 0.037524
-      }
-     ]
-    },
-    {
-     "ref_id": "meroe_patera",
-     "rank": 3,
-     "score": 0.464973,
-     "wed": 0.276401,
-     "cosine": 0.066007,
-     "coverage": 1.0,
-     "missing_earth": [],
-     "missing_reference": [],
-     "features": [
-      {
-       "key": "mean_height",
-       "weight": 0.15,
-       "used": true,
-       "earth": 6.0,
-       "target": 17.5,
-       "target_scaled": 3.6301,
-       "scale": 0.20743651432414,
-       "contribution": 0.000317
-      },
-      {
-       "key": "height_p90",
-       "weight": 0.15,
-       "used": true,
-       "earth": 10.7,
-       "target": 24.0,
-       "target_scaled": 4.9785,
-       "scale": 0.20743651432414,
-       "contribution": 0.000609
-      },
-      {
-       "key": "wavelength",
-       "weight": 0.2,
-       "used": true,
-       "earth": 297.0,
-       "target": 110.0,
-       "target_scaled": 22.818,
-       "scale": 0.20743651432414,
-       "contribution": 0.002764
-      },
-      {
-       "key": "crest_azimuth",
-       "weight": 0.1,
-       "used": true,
-       "earth": 173.0,
-       "target": 160.0,
-       "target_scaled": 160.0,
-       "scale": 1.0,
-       "contribution": 0.002086
-      },
-      {
-       "key": "dune_density",
-       "weight": 0.15,
-       "used": true,
-       "earth": 3.99,
-       "target": 6.5,
-       "target_scaled": 151.0577,
-       "scale": 23.23965024982155,
-       "contribution": 0.028578
-      },
-      {
-       "key": "mean_spacing",
-       "weight": 0.15,
-       "used": true,
-       "earth": 392.0,
-       "target": 115.0,
-       "target_scaled": 23.8552,
-       "scale": 0.20743651432414,
-       "contribution": 0.004519
+       "contribution": 0.020806
       },
       {
        "key": "aridity_index",
@@ -1499,10 +1425,10 @@ export const PIPELINE = {
     },
     {
      "ref_id": "nili_patera",
-     "rank": 4,
-     "score": 0.464895,
-     "wed": 0.287062,
-     "cosine": 0.078985,
+     "rank": 3,
+     "score": 0.420599,
+     "wed": 0.356419,
+     "cosine": 0.050173,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1511,61 +1437,143 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.0,
+       "earth": 6.8334,
        "target": 22.4,
        "target_scaled": 4.6466,
        "scale": 0.20743651432414,
-       "contribution": 0.000103
+       "contribution": 0.00027
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 10.7,
+       "earth": 13.6765,
        "target": 31.0,
        "target_scaled": 6.4305,
        "scale": 0.20743651432414,
-       "contribution": 0.000339
+       "contribution": 0.000977
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 297.0,
+       "earth": 882.0399,
        "target": 120.0,
        "target_scaled": 24.8924,
        "scale": 0.20743651432414,
-       "contribution": 0.002722
+       "contribution": 0.027013
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 173.0,
+       "earth": 135.0,
        "target": 155.0,
        "target_scaled": 155.0,
        "scale": 1.0,
-       "contribution": 0.004
+       "contribution": 0.004938
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 3.99,
+       "earth": 0.2812,
        "target": 7.0,
        "target_scaled": 162.6776,
        "scale": 23.23965024982155,
-       "contribution": 0.033273
+       "contribution": 0.034846
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 392.0,
+       "earth": 829.3138,
        "target": 130.0,
        "target_scaled": 26.9667,
        "scale": 0.20743651432414,
-       "contribution": 0.004443
+       "contribution": 0.021467
+      },
+      {
+       "key": "aridity_index",
+       "weight": 0.1,
+       "used": true,
+       "earth": 0.468,
+       "target": 0.0,
+       "target_scaled": 0.0,
+       "scale": 1.0,
+       "contribution": 0.037524
+      }
+     ]
+    },
+    {
+     "ref_id": "meroe_patera",
+     "rank": 4,
+     "score": 0.416522,
+     "wed": 0.355024,
+     "cosine": 0.038395,
+     "coverage": 1.0,
+     "missing_earth": [],
+     "missing_reference": [],
+     "features": [
+      {
+       "key": "mean_height",
+       "weight": 0.15,
+       "used": true,
+       "earth": 6.8334,
+       "target": 17.5,
+       "target_scaled": 3.6301,
+       "scale": 0.20743651432414,
+       "contribution": 0.000579
+      },
+      {
+       "key": "height_p90",
+       "weight": 0.15,
+       "used": true,
+       "earth": 13.6765,
+       "target": 24.0,
+       "target_scaled": 4.9785,
+       "scale": 0.20743651432414,
+       "contribution": 0.001408
+      },
+      {
+       "key": "wavelength",
+       "weight": 0.2,
+       "used": true,
+       "earth": 882.0399,
+       "target": 110.0,
+       "target_scaled": 22.818,
+       "scale": 0.20743651432414,
+       "contribution": 0.027144
+      },
+      {
+       "key": "crest_azimuth",
+       "weight": 0.1,
+       "used": true,
+       "earth": 135.0,
+       "target": 160.0,
+       "target_scaled": 160.0,
+       "scale": 1.0,
+       "contribution": 0.007716
+      },
+      {
+       "key": "dune_density",
+       "weight": 0.15,
+       "used": true,
+       "earth": 0.2812,
+       "target": 6.5,
+       "target_scaled": 151.0577,
+       "scale": 23.23965024982155,
+       "contribution": 0.030038
+      },
+      {
+       "key": "mean_spacing",
+       "weight": 0.15,
+       "used": true,
+       "earth": 829.3138,
+       "target": 115.0,
+       "target_scaled": 23.8552,
+       "scale": 0.20743651432414,
+       "contribution": 0.021634
       },
       {
        "key": "aridity_index",
@@ -1582,9 +1590,9 @@ export const PIPELINE = {
     {
      "ref_id": "hellespontus",
      "rank": 5,
-     "score": 0.446453,
-     "wed": 0.30953,
-     "cosine": 0.060129,
+     "score": 0.409629,
+     "wed": 0.368771,
+     "cosine": 0.036674,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1593,61 +1601,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.0,
+       "earth": 6.8334,
        "target": 16.0,
        "target_scaled": 3.319,
        "scale": 0.20743651432414,
-       "contribution": 0.000405
+       "contribution": 0.000696
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 10.7,
+       "earth": 13.6765,
        "target": 24.0,
        "target_scaled": 4.9785,
        "scale": 0.20743651432414,
-       "contribution": 0.000609
+       "contribution": 0.001408
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 297.0,
+       "earth": 882.0399,
        "target": 140.0,
        "target_scaled": 29.0411,
        "scale": 0.20743651432414,
-       "contribution": 0.00264
+       "contribution": 0.026752
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 173.0,
+       "earth": 135.0,
        "target": 150.0,
        "target_scaled": 150.0,
        "scale": 1.0,
-       "contribution": 0.006531
+       "contribution": 0.002778
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 3.99,
+       "earth": 0.2812,
        "target": 8.0,
        "target_scaled": 185.9172,
        "scale": 23.23965024982155,
-       "contribution": 0.043732
+       "contribution": 0.045533
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 392.0,
+       "earth": 829.3138,
        "target": 145.0,
        "target_scaled": 30.0783,
        "scale": 0.20743651432414,
-       "contribution": 0.004368
+       "contribution": 0.021301
       },
       {
        "key": "aridity_index",
@@ -1672,26 +1680,29 @@ export const PIPELINE = {
    "lat": -2.6,
    "lon": -43.0,
    "metrics": {
-    "mean_height": 6.3,
-    "height_p90": 11.0,
-    "wavelength": 312.0,
-    "crest_azimuth": 161.0,
-    "dune_density": 6.58,
-    "mean_spacing": 367.0,
+    "mean_height": 8.379888557880822,
+    "height_p90": 14.387898282228402,
+    "wavelength": 617.4870512281287,
+    "crest_azimuth": 158.1374489516328,
+    "dune_density": 0.7452580241789389,
+    "mean_spacing": 544.5417569751571,
     "aridity_index": 0.764
    },
    "dq": {
-    "source": "catalogo",
+    "source": "hybrid",
     "provenance": {
-     "mean_height": "catalogo:altura_media (calculado fora deste repositório)",
-     "height_p90": "catalogo:altura_p90 (calculado fora deste repositório)",
-     "wavelength": "catalogo:comprimento_onda (calculado fora deste repositório)",
-     "crest_azimuth": "catalogo:orientacao_azimute (calculado fora deste repositório)",
-     "dune_density": "catalogo:densidade_dunas (calculado fora deste repositório)",
-     "mean_spacing": "catalogo:espacamento_medio (calculado fora deste repositório)",
+     "mean_height": "raster:dune_morphometrics",
+     "height_p90": "raster:dune_morphometrics",
+     "wavelength": "raster:dune_morphometrics",
+     "crest_azimuth": "raster:dune_morphometrics",
+     "dune_density": "raster:dune_morphometrics",
+     "mean_spacing": "raster:dune_morphometrics",
      "aridity_index": "catalogo:indice_aridez (calculado fora deste repositório)"
     },
-    "issues": [],
+    "issues": [
+     "wavelength: raster (617.5) difere do catálogo (312) em mais de 50%; usando o raster",
+     "dune_density: raster (0.7453) difere do catálogo (6.58) em mais de 50%; usando o raster"
+    ],
     "features_missing": []
    },
    "crater_class": null,
@@ -1700,9 +1711,9 @@ export const PIPELINE = {
     {
      "ref_id": "proctor_crater",
      "rank": 1,
-     "score": 0.432902,
-     "wed": 0.354463,
-     "cosine": 0.078707,
+     "score": 0.420053,
+     "wed": 0.377175,
+     "cosine": 0.072098,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1711,61 +1722,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
+       "earth": 8.3799,
        "target": 15.0,
        "target_scaled": 3.1115,
        "scale": 0.20743651432414,
-       "contribution": 0.000573
+       "contribution": 0.001565
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.0,
+       "earth": 14.3879,
        "target": 26.0,
        "target_scaled": 5.3933,
        "scale": 0.20743651432414,
-       "contribution": 0.000585
+       "contribution": 0.001506
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 312.0,
+       "earth": 617.4871,
        "target": 180.0,
        "target_scaled": 37.3386,
        "scale": 0.20743651432414,
-       "contribution": 0.002774
+       "contribution": 0.012375
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 161.0,
+       "earth": 158.1374,
        "target": 140.0,
        "target_scaled": 140.0,
        "scale": 1.0,
-       "contribution": 0.005444
+       "contribution": 0.004061
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 6.58,
+       "earth": 0.7453,
        "target": 4.5,
        "target_scaled": 104.5784,
        "scale": 23.23965024982155,
-       "contribution": 0.012689
+       "contribution": 0.014245
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 367.0,
+       "earth": 544.5418,
        "target": 190.0,
        "target_scaled": 39.4129,
        "scale": 0.20743651432414,
-       "contribution": 0.003579
+       "contribution": 0.008509
       },
       {
        "key": "aridity_index",
@@ -1782,9 +1793,9 @@ export const PIPELINE = {
     {
      "ref_id": "kaiser_crater",
      "rank": 2,
-     "score": 0.42852,
-     "wed": 0.371848,
-     "cosine": 0.087342,
+     "score": 0.417017,
+     "wed": 0.392774,
+     "cosine": 0.081655,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1793,61 +1804,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
+       "earth": 8.3799,
        "target": 25.0,
        "target_scaled": 5.1859,
        "scale": 0.20743651432414,
-       "contribution": 7e-05
+       "contribution": 0.000575
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.0,
+       "earth": 14.3879,
        "target": 38.0,
        "target_scaled": 7.8826,
        "scale": 0.20743651432414,
-       "contribution": 0.000181
+       "contribution": 0.000788
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 312.0,
+       "earth": 617.4871,
        "target": 180.0,
        "target_scaled": 37.3386,
        "scale": 0.20743651432414,
-       "contribution": 0.002774
+       "contribution": 0.012375
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 161.0,
+       "earth": 158.1374,
        "target": 135.0,
        "target_scaled": 135.0,
        "scale": 1.0,
-       "contribution": 0.008346
+       "contribution": 0.006609
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 6.58,
+       "earth": 0.7453,
        "target": 6.0,
        "target_scaled": 139.4379,
        "scale": 23.23965024982155,
-       "contribution": 0.023322
+       "contribution": 0.025416
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 367.0,
+       "earth": 544.5418,
        "target": 190.0,
        "target_scaled": 39.4129,
        "scale": 0.20743651432414,
-       "contribution": 0.003579
+       "contribution": 0.008509
       },
       {
        "key": "aridity_index",
@@ -1864,9 +1875,9 @@ export const PIPELINE = {
     {
      "ref_id": "nili_patera",
      "rank": 3,
-     "score": 0.418908,
-     "wed": 0.374258,
-     "cosine": 0.065996,
+     "score": 0.402903,
+     "wed": 0.398218,
+     "cosine": 0.052283,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1875,61 +1886,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
+       "earth": 8.3799,
        "target": 22.4,
        "target_scaled": 4.6466,
        "scale": 0.20743651432414,
-       "contribution": 0.000154
+       "contribution": 0.000786
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.0,
+       "earth": 14.3879,
        "target": 31.0,
        "target_scaled": 6.4305,
        "scale": 0.20743651432414,
-       "contribution": 0.000389
+       "contribution": 0.001179
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 312.0,
+       "earth": 617.4871,
        "target": 120.0,
        "target_scaled": 24.8924,
        "scale": 0.20743651432414,
-       "contribution": 0.003031
+       "contribution": 0.012911
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 161.0,
+       "earth": 158.1374,
        "target": 155.0,
        "target_scaled": 155.0,
        "scale": 1.0,
-       "contribution": 0.000444
+       "contribution": 0.000122
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 6.58,
+       "earth": 0.7453,
        "target": 7.0,
        "target_scaled": 162.6776,
        "scale": 23.23965024982155,
-       "contribution": 0.032195
+       "contribution": 0.034647
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 367.0,
+       "earth": 544.5418,
        "target": 130.0,
        "target_scaled": 26.9667,
        "scale": 0.20743651432414,
-       "contribution": 0.003856
+       "contribution": 0.008933
       },
       {
        "key": "aridity_index",
@@ -1946,9 +1957,9 @@ export const PIPELINE = {
     {
      "ref_id": "meroe_patera",
      "rank": 4,
-     "score": 0.417895,
-     "wed": 0.368335,
-     "cosine": 0.056852,
+     "score": 0.400258,
+     "wed": 0.393521,
+     "cosine": 0.040573,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -1957,61 +1968,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
+       "earth": 8.3799,
        "target": 17.5,
        "target_scaled": 3.6301,
        "scale": 0.20743651432414,
-       "contribution": 0.000402
+       "contribution": 0.001272
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.0,
+       "earth": 14.3879,
        "target": 24.0,
        "target_scaled": 4.9785,
        "scale": 0.20743651432414,
-       "contribution": 0.000675
+       "contribution": 0.001648
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 312.0,
+       "earth": 617.4871,
        "target": 110.0,
        "target_scaled": 22.818,
        "scale": 0.20743651432414,
-       "contribution": 0.003075
+       "contribution": 0.013002
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 161.0,
+       "earth": 158.1374,
        "target": 160.0,
        "target_scaled": 160.0,
        "scale": 1.0,
-       "contribution": 1.2e-05
+       "contribution": 4.3e-05
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 6.58,
+       "earth": 0.7453,
        "target": 6.5,
        "target_scaled": 151.0577,
        "scale": 23.23965024982155,
-       "contribution": 0.02758
+       "contribution": 0.029853
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 367.0,
+       "earth": 544.5418,
        "target": 115.0,
        "target_scaled": 23.8552,
        "scale": 0.20743651432414,
-       "contribution": 0.003927
+       "contribution": 0.009041
       },
       {
        "key": "aridity_index",
@@ -2028,9 +2039,9 @@ export const PIPELINE = {
     {
      "ref_id": "hellespontus",
      "rank": 5,
-     "score": 0.406702,
-     "wed": 0.389736,
-     "cosine": 0.052554,
+     "score": 0.38993,
+     "wed": 0.413246,
+     "cosine": 0.035986,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -2039,61 +2050,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
+       "earth": 8.3799,
        "target": 16.0,
        "target_scaled": 3.319,
        "scale": 0.20743651432414,
-       "contribution": 0.000501
+       "contribution": 0.001444
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.0,
+       "earth": 14.3879,
        "target": 24.0,
        "target_scaled": 4.9785,
        "scale": 0.20743651432414,
-       "contribution": 0.000675
+       "contribution": 0.001648
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 312.0,
+       "earth": 617.4871,
        "target": 140.0,
        "target_scaled": 29.0411,
        "scale": 0.20743651432414,
-       "contribution": 0.002944
+       "contribution": 0.012731
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 161.0,
+       "earth": 158.1374,
        "target": 150.0,
        "target_scaled": 150.0,
        "scale": 1.0,
-       "contribution": 0.001494
+       "contribution": 0.000818
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 6.58,
+       "earth": 0.7453,
        "target": 8.0,
        "target_scaled": 185.9172,
        "scale": 23.23965024982155,
-       "contribution": 0.042495
+       "contribution": 0.045305
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 367.0,
+       "earth": 544.5418,
        "target": 145.0,
        "target_scaled": 30.0783,
        "scale": 0.20743651432414,
-       "contribution": 0.003785
+       "contribution": 0.008826
       },
       {
        "key": "aridity_index",
@@ -2118,37 +2129,43 @@ export const PIPELINE = {
    "lat": -5.03,
    "lon": -36.845,
    "metrics": {
-    "mean_height": 6.3,
-    "height_p90": 11.7,
-    "wavelength": 335.0,
-    "crest_azimuth": 167.0,
-    "dune_density": 4.79,
-    "mean_spacing": 377.0,
+    "mean_height": 11.741077843677424,
+    "height_p90": 20.258364016942007,
+    "wavelength": 1575.7533920372111,
+    "crest_azimuth": 108.43494882292202,
+    "dune_density": 0.08054776499475855,
+    "mean_spacing": 1053.7830403191092,
     "aridity_index": 0.322
    },
    "dq": {
-    "source": "catalogo",
+    "source": "hybrid",
     "provenance": {
-     "mean_height": "catalogo:altura_media (calculado fora deste repositório)",
-     "height_p90": "catalogo:altura_p90 (calculado fora deste repositório)",
-     "wavelength": "catalogo:comprimento_onda (calculado fora deste repositório)",
-     "crest_azimuth": "catalogo:orientacao_azimute (calculado fora deste repositório)",
-     "dune_density": "catalogo:densidade_dunas (calculado fora deste repositório)",
-     "mean_spacing": "catalogo:espacamento_medio (calculado fora deste repositório)",
+     "mean_height": "raster:dune_morphometrics",
+     "height_p90": "raster:dune_morphometrics",
+     "wavelength": "raster:dune_morphometrics",
+     "crest_azimuth": "raster:dune_morphometrics",
+     "dune_density": "raster:dune_morphometrics",
+     "mean_spacing": "raster:dune_morphometrics",
      "aridity_index": "catalogo:indice_aridez (calculado fora deste repositório)"
     },
-    "issues": [],
+    "issues": [
+     "mean_height: raster (11.74) difere do catálogo (6.3) em mais de 50%; usando o raster",
+     "height_p90: raster (20.26) difere do catálogo (11.7) em mais de 50%; usando o raster",
+     "wavelength: raster (1576) difere do catálogo (335) em mais de 50%; usando o raster",
+     "dune_density: raster (0.08055) difere do catálogo (4.79) em mais de 50%; usando o raster",
+     "mean_spacing: raster (1054) difere do catálogo (377) em mais de 50%; usando o raster"
+    ],
     "features_missing": []
    },
    "crater_class": null,
    "confidence": null,
    "matches": [
     {
-     "ref_id": "proctor_crater",
+     "ref_id": "kaiser_crater",
      "rank": 1,
-     "score": 0.520341,
-     "wed": 0.219755,
-     "cosine": 0.131692,
+     "score": 0.410784,
+     "wed": 0.422775,
+     "cosine": 0.098211,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -2157,61 +2174,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
-       "target": 15.0,
-       "target_scaled": 3.1115,
+       "earth": 11.7411,
+       "target": 25.0,
+       "target_scaled": 5.1859,
        "scale": 0.20743651432414,
-       "contribution": 0.000573
+       "contribution": 0.002423
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.7,
-       "target": 26.0,
-       "target_scaled": 5.3933,
+       "earth": 20.2584,
+       "target": 38.0,
+       "target_scaled": 7.8826,
        "scale": 0.20743651432414,
-       "contribution": 0.00074
+       "contribution": 0.002851
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 335.0,
+       "earth": 1575.7534,
        "target": 180.0,
        "target_scaled": 37.3386,
        "scale": 0.20743651432414,
-       "contribution": 0.003258
+       "contribution": 0.087017
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 167.0,
-       "target": 140.0,
-       "target_scaled": 140.0,
+       "earth": 108.4349,
+       "target": 135.0,
+       "target_scaled": 135.0,
        "scale": 1.0,
-       "contribution": 0.009
+       "contribution": 0.008712
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.79,
-       "target": 4.5,
-       "target_scaled": 104.5784,
+       "earth": 0.0805,
+       "target": 6.0,
+       "target_scaled": 139.4379,
        "scale": 23.23965024982155,
-       "contribution": 0.013157
+       "contribution": 0.02566
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 377.0,
+       "earth": 1053.783,
        "target": 190.0,
        "target_scaled": 39.4129,
        "scale": 0.20743651432414,
-       "contribution": 0.0038
+       "contribution": 0.034312
       },
       {
        "key": "aridity_index",
@@ -2226,11 +2243,11 @@ export const PIPELINE = {
      ]
     },
     {
-     "ref_id": "kaiser_crater",
+     "ref_id": "proctor_crater",
      "rank": 2,
-     "score": 0.511654,
-     "wed": 0.248515,
-     "cosine": 0.147486,
+     "score": 0.410631,
+     "wed": 0.417293,
+     "cosine": 0.092038,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -2239,61 +2256,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
-       "target": 25.0,
-       "target_scaled": 5.1859,
+       "earth": 11.7411,
+       "target": 15.0,
+       "target_scaled": 3.1115,
        "scale": 0.20743651432414,
-       "contribution": 7e-05
+       "contribution": 0.004199
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.7,
-       "target": 38.0,
-       "target_scaled": 7.8826,
+       "earth": 20.2584,
+       "target": 26.0,
+       "target_scaled": 5.3933,
        "scale": 0.20743651432414,
-       "contribution": 0.000271
+       "contribution": 0.004114
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 335.0,
+       "earth": 1575.7534,
        "target": 180.0,
        "target_scaled": 37.3386,
        "scale": 0.20743651432414,
-       "contribution": 0.003258
+       "contribution": 0.087017
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 167.0,
-       "target": 135.0,
-       "target_scaled": 135.0,
+       "earth": 108.4349,
+       "target": 140.0,
+       "target_scaled": 140.0,
        "scale": 1.0,
-       "contribution": 0.012642
+       "contribution": 0.012301
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.79,
-       "target": 6.0,
-       "target_scaled": 139.4379,
+       "earth": 0.0805,
+       "target": 4.5,
+       "target_scaled": 104.5784,
        "scale": 23.23965024982155,
-       "contribution": 0.023955
+       "contribution": 0.014428
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 377.0,
+       "earth": 1053.783,
        "target": 190.0,
        "target_scaled": 39.4129,
        "scale": 0.20743651432414,
-       "contribution": 0.0038
+       "contribution": 0.034312
       },
       {
        "key": "aridity_index",
@@ -2310,9 +2327,9 @@ export const PIPELINE = {
     {
      "ref_id": "nili_patera",
      "rank": 3,
-     "score": 0.496633,
-     "wed": 0.246519,
-     "cosine": 0.107369,
+     "score": 0.380344,
+     "wed": 0.457659,
+     "cosine": 0.05813,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -2321,61 +2338,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
+       "earth": 11.7411,
        "target": 22.4,
        "target_scaled": 4.6466,
        "scale": 0.20743651432414,
-       "contribution": 0.000154
+       "contribution": 0.002838
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.7,
+       "earth": 20.2584,
        "target": 31.0,
        "target_scaled": 6.4305,
        "scale": 0.20743651432414,
-       "contribution": 0.000517
+       "contribution": 0.00356
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 335.0,
+       "earth": 1575.7534,
        "target": 120.0,
        "target_scaled": 24.8924,
        "scale": 0.20743651432414,
-       "contribution": 0.003536
+       "contribution": 0.08843
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 167.0,
+       "earth": 108.4349,
        "target": 155.0,
        "target_scaled": 155.0,
        "scale": 1.0,
-       "contribution": 0.001778
+       "contribution": 0.026769
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.79,
+       "earth": 0.0805,
        "target": 7.0,
        "target_scaled": 162.6776,
        "scale": 23.23965024982155,
-       "contribution": 0.032938
+       "contribution": 0.034932
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 377.0,
+       "earth": 1053.783,
        "target": 130.0,
        "target_scaled": 26.9667,
        "scale": 0.20743651432414,
-       "contribution": 0.004086
+       "contribution": 0.035159
       },
       {
        "key": "aridity_index",
@@ -2392,9 +2409,9 @@ export const PIPELINE = {
     {
      "ref_id": "meroe_patera",
      "rank": 4,
-     "score": 0.495352,
-     "wed": 0.235842,
-     "cosine": 0.090351,
+     "score": 0.37338,
+     "wed": 0.461306,
+     "cosine": 0.044405,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -2403,61 +2420,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
+       "earth": 11.7411,
        "target": 17.5,
        "target_scaled": 3.6301,
        "scale": 0.20743651432414,
-       "contribution": 0.000402
+       "contribution": 0.003709
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.7,
+       "earth": 20.2584,
        "target": 24.0,
        "target_scaled": 4.9785,
        "scale": 0.20743651432414,
-       "contribution": 0.000841
+       "contribution": 0.004346
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 335.0,
+       "earth": 1575.7534,
        "target": 110.0,
        "target_scaled": 22.818,
        "scale": 0.20743651432414,
-       "contribution": 0.003583
+       "contribution": 0.088667
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 167.0,
+       "earth": 108.4349,
        "target": 160.0,
        "target_scaled": 160.0,
        "scale": 1.0,
-       "contribution": 0.000605
+       "contribution": 0.032827
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.79,
+       "earth": 0.0805,
        "target": 6.5,
        "target_scaled": 151.0577,
        "scale": 23.23965024982155,
-       "contribution": 0.028268
+       "contribution": 0.030118
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 377.0,
+       "earth": 1053.783,
        "target": 115.0,
        "target_scaled": 23.8552,
        "scale": 0.20743651432414,
-       "contribution": 0.004159
+       "contribution": 0.035372
       },
       {
        "key": "aridity_index",
@@ -2474,9 +2491,9 @@ export const PIPELINE = {
     {
      "ref_id": "hellespontus",
      "rank": 5,
-     "score": 0.474252,
-     "wed": 0.271065,
-     "cosine": 0.082552,
+     "score": 0.370946,
+     "wed": 0.46473,
+     "cosine": 0.041764,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -2485,61 +2502,61 @@ export const PIPELINE = {
        "key": "mean_height",
        "weight": 0.15,
        "used": true,
-       "earth": 6.3,
+       "earth": 11.7411,
        "target": 16.0,
        "target_scaled": 3.319,
        "scale": 0.20743651432414,
-       "contribution": 0.000501
+       "contribution": 0.003999
       },
       {
        "key": "height_p90",
        "weight": 0.15,
        "used": true,
-       "earth": 11.7,
+       "earth": 20.2584,
        "target": 24.0,
        "target_scaled": 4.9785,
        "scale": 0.20743651432414,
-       "contribution": 0.000841
+       "contribution": 0.004346
       },
       {
        "key": "wavelength",
        "weight": 0.2,
        "used": true,
-       "earth": 335.0,
+       "earth": 1575.7534,
        "target": 140.0,
        "target_scaled": 29.0411,
        "scale": 0.20743651432414,
-       "contribution": 0.003442
+       "contribution": 0.087958
       },
       {
        "key": "crest_azimuth",
        "weight": 0.1,
        "used": true,
-       "earth": 167.0,
+       "earth": 108.4349,
        "target": 150.0,
        "target_scaled": 150.0,
        "scale": 1.0,
-       "contribution": 0.003568
+       "contribution": 0.021329
       },
       {
        "key": "dune_density",
        "weight": 0.15,
        "used": true,
-       "earth": 4.79,
+       "earth": 0.0805,
        "target": 8.0,
        "target_scaled": 185.9172,
        "scale": 23.23965024982155,
-       "contribution": 0.043348
+       "contribution": 0.045631
       },
       {
        "key": "mean_spacing",
        "weight": 0.15,
        "used": true,
-       "earth": 377.0,
+       "earth": 1053.783,
        "target": 145.0,
        "target_scaled": 30.0783,
        "scale": 0.20743651432414,
-       "contribution": 0.004013
+       "contribution": 0.034946
       },
       {
        "key": "aridity_index",
@@ -3980,9 +3997,9 @@ export const PIPELINE = {
     {
      "ref_id": "bessel",
      "rank": 1,
-     "score": 0.871089,
-     "wed": 0.202469,
-     "cosine": 0.928744,
+     "score": 0.886312,
+     "wed": 0.17959,
+     "cosine": 0.940685,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -3995,7 +4012,7 @@ export const PIPELINE = {
        "target": 15311.0,
        "target_scaled": 15311.0,
        "scale": 1.0,
-       "contribution": 0.002008
+       "contribution": 0.001986
       },
       {
        "key": "depth_m",
@@ -4005,7 +4022,7 @@ export const PIPELINE = {
        "target": 1747.6,
        "target_scaled": 1747.6,
        "scale": 1.0,
-       "contribution": 0.016282
+       "contribution": 0.016056
       },
       {
        "key": "depth_diameter_ratio",
@@ -4025,7 +4042,7 @@ export const PIPELINE = {
        "target": 427.3,
        "target_scaled": 427.3,
        "scale": 1.0,
-       "contribution": 0.007426
+       "contribution": 0.007207
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -4055,7 +4072,7 @@ export const PIPELINE = {
        "target": 0.009,
        "target_scaled": 0.009,
        "scale": 1.0,
-       "contribution": 0.0083
+       "contribution": 0.000333
       },
       {
        "key": "mean_wall_slope",
@@ -4085,7 +4102,7 @@ export const PIPELINE = {
        "target": 0.997,
        "target_scaled": 0.997,
        "scale": 1.0,
-       "contribution": 0.003073
+       "contribution": 0.002765
       },
       {
        "key": "rim_coherence",
@@ -4102,9 +4119,9 @@ export const PIPELINE = {
     {
      "ref_id": "censorinus",
      "rank": 2,
-     "score": 0.833668,
-     "wed": 0.305078,
-     "cosine": 0.945896,
+     "score": 0.842799,
+     "wed": 0.29281,
+     "cosine": 0.956023,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -4117,7 +4134,7 @@ export const PIPELINE = {
        "target": 4139.0,
        "target_scaled": 4139.0,
        "scale": 1.0,
-       "contribution": 8.6e-05
+       "contribution": 8.5e-05
       },
       {
        "key": "depth_m",
@@ -4127,7 +4144,7 @@ export const PIPELINE = {
        "target": 984.0,
        "target_scaled": 984.0,
        "scale": 1.0,
-       "contribution": 0.004386
+       "contribution": 0.004325
       },
       {
        "key": "depth_diameter_ratio",
@@ -4147,7 +4164,7 @@ export const PIPELINE = {
        "target": 298.2,
        "target_scaled": 298.2,
        "scale": 1.0,
-       "contribution": 0.003347
+       "contribution": 0.003248
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -4177,7 +4194,7 @@ export const PIPELINE = {
        "target": 0.012,
        "target_scaled": 0.012,
        "scale": 1.0,
-       "contribution": 0.007145
+       "contribution": 0.000286
       },
       {
        "key": "mean_wall_slope",
@@ -4207,7 +4224,7 @@ export const PIPELINE = {
        "target": 0.998,
        "target_scaled": 0.998,
        "scale": 1.0,
-       "contribution": 0.003158
+       "contribution": 0.002842
       },
       {
        "key": "rim_coherence",
@@ -4224,9 +4241,9 @@ export const PIPELINE = {
     {
      "ref_id": "alfraganus",
      "rank": 3,
-     "score": 0.761447,
-     "wed": 0.380389,
-     "cosine": 0.840303,
+     "score": 0.77069,
+     "wed": 0.368369,
+     "cosine": 0.851788,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -4239,7 +4256,7 @@ export const PIPELINE = {
        "target": 20591.0,
        "target_scaled": 20591.0,
        "scale": 1.0,
-       "contribution": 0.003796
+       "contribution": 0.003756
       },
       {
        "key": "depth_m",
@@ -4249,7 +4266,7 @@ export const PIPELINE = {
        "target": 3500.6,
        "target_scaled": 3500.6,
        "scale": 1.0,
-       "contribution": 0.072086
+       "contribution": 0.071086
       },
       {
        "key": "depth_diameter_ratio",
@@ -4269,7 +4286,7 @@ export const PIPELINE = {
        "target": 935.2,
        "target_scaled": 935.2,
        "scale": 1.0,
-       "contribution": 0.039045
+       "contribution": 0.037891
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -4299,7 +4316,7 @@ export const PIPELINE = {
        "target": 0.013,
        "target_scaled": 0.013,
        "scale": 1.0,
-       "contribution": 0.006779
+       "contribution": 0.000272
       },
       {
        "key": "mean_wall_slope",
@@ -4329,7 +4346,7 @@ export const PIPELINE = {
        "target": 0.996,
        "target_scaled": 0.996,
        "scale": 1.0,
-       "contribution": 0.002988
+       "contribution": 0.002689
       },
       {
        "key": "rim_coherence",
@@ -4346,9 +4363,9 @@ export const PIPELINE = {
     {
      "ref_id": "de_gerlache",
      "rank": 4,
-     "score": 0.746482,
-     "wed": 0.344979,
-     "cosine": 0.768283,
+     "score": 0.754052,
+     "wed": 0.334512,
+     "cosine": 0.776764,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -4361,7 +4378,7 @@ export const PIPELINE = {
        "target": 32612.0,
        "target_scaled": 32612.0,
        "scale": 1.0,
-       "contribution": 0.009973
+       "contribution": 0.009868
       },
       {
        "key": "depth_m",
@@ -4371,7 +4388,7 @@ export const PIPELINE = {
        "target": 2797.3,
        "target_scaled": 2797.3,
        "scale": 1.0,
-       "contribution": 0.044929
+       "contribution": 0.044305
       },
       {
        "key": "depth_diameter_ratio",
@@ -4391,7 +4408,7 @@ export const PIPELINE = {
        "target": 688.5,
        "target_scaled": 688.5,
        "scale": 1.0,
-       "contribution": 0.020586
+       "contribution": 0.019977
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -4421,7 +4438,7 @@ export const PIPELINE = {
        "target": 0.016,
        "target_scaled": 0.016,
        "scale": 1.0,
-       "contribution": 0.005739
+       "contribution": 0.00023
       },
       {
        "key": "mean_wall_slope",
@@ -4451,7 +4468,7 @@ export const PIPELINE = {
        "target": 0.992,
        "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.002662
+       "contribution": 0.002396
       },
       {
        "key": "rim_coherence",
@@ -4468,9 +4485,9 @@ export const PIPELINE = {
     {
      "ref_id": "aristarchus",
      "rank": 5,
-     "score": 0.707938,
-     "wed": 0.387567,
-     "cosine": 0.713412,
+     "score": 0.717293,
+     "wed": 0.375293,
+     "cosine": 0.725006,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -4483,7 +4500,7 @@ export const PIPELINE = {
        "target": 40481.0,
        "target_scaled": 40481.0,
        "scale": 1.0,
-       "contribution": 0.015602
+       "contribution": 0.015437
       },
       {
        "key": "depth_m",
@@ -4493,7 +4510,7 @@ export const PIPELINE = {
        "target": 3109.0,
        "target_scaled": 3109.0,
        "scale": 1.0,
-       "contribution": 0.056176
+       "contribution": 0.055397
       },
       {
        "key": "depth_diameter_ratio",
@@ -4513,7 +4530,7 @@ export const PIPELINE = {
        "target": 837.6,
        "target_scaled": 837.6,
        "scale": 1.0,
-       "contribution": 0.031042
+       "contribution": 0.030124
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -4543,7 +4560,7 @@ export const PIPELINE = {
        "target": 0.011,
        "target_scaled": 0.011,
        "scale": 1.0,
-       "contribution": 0.00752
+       "contribution": 0.000301
       },
       {
        "key": "mean_wall_slope",
@@ -4573,7 +4590,7 @@ export const PIPELINE = {
        "target": 0.994,
        "target_scaled": 0.994,
        "scale": 1.0,
-       "contribution": 0.002823
+       "contribution": 0.00254
       },
       {
        "key": "rim_coherence",
@@ -4634,9 +4651,9 @@ export const PIPELINE = {
     {
      "ref_id": "bessel",
      "rank": 1,
-     "score": 0.713204,
-     "wed": 0.390814,
-     "cosine": 0.729675,
+     "score": 0.807904,
+     "wed": 0.307877,
+     "cosine": 0.884365,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -4649,7 +4666,7 @@ export const PIPELINE = {
        "target": 15311.0,
        "target_scaled": 15311.0,
        "scale": 1.0,
-       "contribution": 0.001783
+       "contribution": 0.001764
       },
       {
        "key": "depth_m",
@@ -4659,7 +4676,7 @@ export const PIPELINE = {
        "target": 1747.6,
        "target_scaled": 1747.6,
        "scale": 1.0,
-       "contribution": 0.017197
+       "contribution": 0.016958
       },
       {
        "key": "depth_diameter_ratio",
@@ -4679,7 +4696,7 @@ export const PIPELINE = {
        "target": 427.3,
        "target_scaled": 427.3,
        "scale": 1.0,
-       "contribution": 0.007843
+       "contribution": 0.007611
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -4709,7 +4726,7 @@ export const PIPELINE = {
        "target": 0.009,
        "target_scaled": 0.009,
        "scale": 1.0,
-       "contribution": 0.055563
+       "contribution": 0.002227
       },
       {
        "key": "mean_wall_slope",
@@ -4739,7 +4756,7 @@ export const PIPELINE = {
        "target": 0.997,
        "target_scaled": 0.997,
        "scale": 1.0,
-       "contribution": 0.04121
+       "contribution": 0.037088
       },
       {
        "key": "rim_coherence",
@@ -4756,9 +4773,9 @@ export const PIPELINE = {
     {
      "ref_id": "de_gerlache",
      "rank": 2,
-     "score": 0.649778,
-     "wed": 0.426395,
-     "cosine": 0.604471,
+     "score": 0.721233,
+     "wed": 0.360354,
+     "cosine": 0.720323,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -4771,7 +4788,7 @@ export const PIPELINE = {
        "target": 32612.0,
        "target_scaled": 32612.0,
        "scale": 1.0,
-       "contribution": 0.009464
+       "contribution": 0.009364
       },
       {
        "key": "depth_m",
@@ -4781,7 +4798,7 @@ export const PIPELINE = {
        "target": 2797.3,
        "target_scaled": 2797.3,
        "scale": 1.0,
-       "contribution": 0.04644
+       "contribution": 0.045796
       },
       {
        "key": "depth_diameter_ratio",
@@ -4801,7 +4818,7 @@ export const PIPELINE = {
        "target": 688.5,
        "target_scaled": 688.5,
        "scale": 1.0,
-       "contribution": 0.021276
+       "contribution": 0.020647
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -4831,7 +4848,7 @@ export const PIPELINE = {
        "target": 0.016,
        "target_scaled": 0.016,
        "scale": 1.0,
-       "contribution": 0.048562
+       "contribution": 0.001946
       },
       {
        "key": "mean_wall_slope",
@@ -4861,7 +4878,7 @@ export const PIPELINE = {
        "target": 0.992,
        "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.039667
+       "contribution": 0.035699
       },
       {
        "key": "rim_coherence",
@@ -4878,9 +4895,9 @@ export const PIPELINE = {
     {
      "ref_id": "censorinus",
      "rank": 3,
-     "score": 0.642945,
-     "wed": 0.562512,
-     "cosine": 0.705548,
+     "score": 0.716341,
+     "wed": 0.511557,
+     "cosine": 0.846499,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -4893,7 +4910,7 @@ export const PIPELINE = {
        "target": 4139.0,
        "target_scaled": 4139.0,
        "scale": 1.0,
-       "contribution": 4.5e-05
+       "contribution": 4.4e-05
       },
       {
        "key": "depth_m",
@@ -4903,7 +4920,7 @@ export const PIPELINE = {
        "target": 984.0,
        "target_scaled": 984.0,
        "scale": 1.0,
-       "contribution": 0.004867
+       "contribution": 0.0048
       },
       {
        "key": "depth_diameter_ratio",
@@ -4923,7 +4940,7 @@ export const PIPELINE = {
        "target": 298.2,
        "target_scaled": 298.2,
        "scale": 1.0,
-       "contribution": 0.003629
+       "contribution": 0.003522
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -4953,7 +4970,7 @@ export const PIPELINE = {
        "target": 0.012,
        "target_scaled": 0.012,
        "scale": 1.0,
-       "contribution": 0.052505
+       "contribution": 0.002104
       },
       {
        "key": "mean_wall_slope",
@@ -4983,7 +5000,7 @@ export const PIPELINE = {
        "target": 0.998,
        "target_scaled": 0.998,
        "scale": 1.0,
-       "contribution": 0.041522
+       "contribution": 0.037369
       },
       {
        "key": "rim_coherence",
@@ -5000,9 +5017,9 @@ export const PIPELINE = {
     {
      "ref_id": "aristarchus",
      "rank": 4,
-     "score": 0.624633,
-     "wed": 0.458363,
-     "cosine": 0.57068,
+     "score": 0.698877,
+     "wed": 0.390889,
+     "cosine": 0.69393,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -5015,7 +5032,7 @@ export const PIPELINE = {
        "target": 40481.0,
        "target_scaled": 40481.0,
        "scale": 1.0,
-       "contribution": 0.014963
+       "contribution": 0.014805
       },
       {
        "key": "depth_m",
@@ -5025,7 +5042,7 @@ export const PIPELINE = {
        "target": 3109.0,
        "target_scaled": 3109.0,
        "scale": 1.0,
-       "contribution": 0.057865
+       "contribution": 0.057062
       },
       {
        "key": "depth_diameter_ratio",
@@ -5045,7 +5062,7 @@ export const PIPELINE = {
        "target": 837.6,
        "target_scaled": 837.6,
        "scale": 1.0,
-       "contribution": 0.031888
+       "contribution": 0.030946
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -5075,7 +5092,7 @@ export const PIPELINE = {
        "target": 0.011,
        "target_scaled": 0.011,
        "scale": 1.0,
-       "contribution": 0.053514
+       "contribution": 0.002145
       },
       {
        "key": "mean_wall_slope",
@@ -5105,7 +5122,7 @@ export const PIPELINE = {
        "target": 0.994,
        "target_scaled": 0.994,
        "scale": 1.0,
-       "contribution": 0.040281
+       "contribution": 0.036251
       },
       {
        "key": "rim_coherence",
@@ -5122,9 +5139,9 @@ export const PIPELINE = {
     {
      "ref_id": "alfraganus",
      "rank": 5,
-     "score": 0.62077,
-     "wed": 0.550561,
-     "cosine": 0.640309,
+     "score": 0.691271,
+     "wed": 0.497333,
+     "cosine": 0.771598,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -5137,7 +5154,7 @@ export const PIPELINE = {
        "target": 20591.0,
        "target_scaled": 20591.0,
        "scale": 1.0,
-       "contribution": 0.003484
+       "contribution": 0.003447
       },
       {
        "key": "depth_m",
@@ -5147,7 +5164,7 @@ export const PIPELINE = {
        "target": 3500.6,
        "target_scaled": 3500.6,
        "scale": 1.0,
-       "contribution": 0.073997
+       "contribution": 0.072971
       },
       {
        "key": "depth_diameter_ratio",
@@ -5167,7 +5184,7 @@ export const PIPELINE = {
        "target": 935.2,
        "target_scaled": 935.2,
        "scale": 1.0,
-       "contribution": 0.039994
+       "contribution": 0.038811
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -5197,7 +5214,7 @@ export const PIPELINE = {
        "target": 0.013,
        "target_scaled": 0.013,
        "scale": 1.0,
-       "contribution": 0.051505
+       "contribution": 0.002064
       },
       {
        "key": "mean_wall_slope",
@@ -5227,7 +5244,7 @@ export const PIPELINE = {
        "target": 0.996,
        "target_scaled": 0.996,
        "scale": 1.0,
-       "contribution": 0.040899
+       "contribution": 0.036808
       },
       {
        "key": "rim_coherence",
@@ -5288,9 +5305,9 @@ export const PIPELINE = {
     {
      "ref_id": "bessel",
      "rank": 1,
-     "score": 0.681245,
-     "wed": 0.409993,
-     "cosine": 0.667893,
+     "score": 0.759396,
+     "wed": 0.345818,
+     "cosine": 0.801402,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -5303,7 +5320,7 @@ export const PIPELINE = {
        "target": 15311.0,
        "target_scaled": 15311.0,
        "scale": 1.0,
-       "contribution": 0.001416
+       "contribution": 0.001401
       },
       {
        "key": "depth_m",
@@ -5313,7 +5330,7 @@ export const PIPELINE = {
        "target": 1747.6,
        "target_scaled": 1747.6,
        "scale": 1.0,
-       "contribution": 0.017324
+       "contribution": 0.017084
       },
       {
        "key": "depth_diameter_ratio",
@@ -5333,7 +5350,7 @@ export const PIPELINE = {
        "target": 427.3,
        "target_scaled": 427.3,
        "scale": 1.0,
-       "contribution": 0.006111
+       "contribution": 0.00593
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -5363,7 +5380,7 @@ export const PIPELINE = {
        "target": 0.009,
        "target_scaled": 0.009,
        "scale": 1.0,
-       "contribution": 0.0449
+       "contribution": 0.0018
       },
       {
        "key": "mean_wall_slope",
@@ -5393,7 +5410,7 @@ export const PIPELINE = {
        "target": 0.997,
        "target_scaled": 0.997,
        "scale": 1.0,
-       "contribution": 0.049657
+       "contribution": 0.04469
       },
       {
        "key": "rim_coherence",
@@ -5410,9 +5427,9 @@ export const PIPELINE = {
     {
      "ref_id": "de_gerlache",
      "rank": 2,
-     "score": 0.625444,
-     "wed": 0.438263,
-     "cosine": 0.554527,
+     "score": 0.68496,
+     "wed": 0.385893,
+     "cosine": 0.654366,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -5425,7 +5442,7 @@ export const PIPELINE = {
        "target": 32612.0,
        "target_scaled": 32612.0,
        "scale": 1.0,
-       "contribution": 0.008591
+       "contribution": 0.0085
       },
       {
        "key": "depth_m",
@@ -5435,7 +5452,7 @@ export const PIPELINE = {
        "target": 2797.3,
        "target_scaled": 2797.3,
        "scale": 1.0,
-       "contribution": 0.046649
+       "contribution": 0.046002
       },
       {
        "key": "depth_diameter_ratio",
@@ -5455,7 +5472,7 @@ export const PIPELINE = {
        "target": 688.5,
        "target_scaled": 688.5,
        "scale": 1.0,
-       "contribution": 0.018353
+       "contribution": 0.017811
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -5485,7 +5502,7 @@ export const PIPELINE = {
        "target": 0.016,
        "target_scaled": 0.016,
        "scale": 1.0,
-       "contribution": 0.038631
+       "contribution": 0.001548
       },
       {
        "key": "mean_wall_slope",
@@ -5515,7 +5532,7 @@ export const PIPELINE = {
        "target": 0.992,
        "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.047962
+       "contribution": 0.043164
       },
       {
        "key": "rim_coherence",
@@ -5532,9 +5549,9 @@ export const PIPELINE = {
     {
      "ref_id": "aristarchus",
      "rank": 3,
-     "score": 0.615009,
-     "wed": 0.460471,
-     "cosine": 0.548509,
+     "score": 0.680194,
+     "wed": 0.405024,
+     "cosine": 0.660604,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -5547,7 +5564,7 @@ export const PIPELINE = {
        "target": 40481.0,
        "target_scaled": 40481.0,
        "scale": 1.0,
-       "contribution": 0.01386
+       "contribution": 0.013714
       },
       {
        "key": "depth_m",
@@ -5557,7 +5574,7 @@ export const PIPELINE = {
        "target": 3109.0,
        "target_scaled": 3109.0,
        "scale": 1.0,
-       "contribution": 0.058098
+       "contribution": 0.057292
       },
       {
        "key": "depth_diameter_ratio",
@@ -5577,7 +5594,7 @@ export const PIPELINE = {
        "target": 837.6,
        "target_scaled": 837.6,
        "scale": 1.0,
-       "contribution": 0.028285
+       "contribution": 0.027449
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -5607,7 +5624,7 @@ export const PIPELINE = {
        "target": 0.011,
        "target_scaled": 0.011,
        "scale": 1.0,
-       "contribution": 0.043061
+       "contribution": 0.001726
       },
       {
        "key": "mean_wall_slope",
@@ -5637,7 +5654,7 @@ export const PIPELINE = {
        "target": 0.994,
        "target_scaled": 0.994,
        "scale": 1.0,
-       "contribution": 0.048636
+       "contribution": 0.043771
       },
       {
        "key": "rim_coherence",
@@ -5654,9 +5671,9 @@ export const PIPELINE = {
     {
      "ref_id": "censorinus",
      "rank": 4,
-     "score": 0.599133,
-     "wed": 0.591599,
-     "cosine": 0.619435,
+     "score": 0.658167,
+     "wed": 0.551707,
+     "cosine": 0.734744,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -5679,7 +5696,7 @@ export const PIPELINE = {
        "target": 984.0,
        "target_scaled": 984.0,
        "scale": 1.0,
-       "contribution": 0.004935
+       "contribution": 0.004867
       },
       {
        "key": "depth_diameter_ratio",
@@ -5699,7 +5716,7 @@ export const PIPELINE = {
        "target": 298.2,
        "target_scaled": 298.2,
        "scale": 1.0,
-       "contribution": 0.002485
+       "contribution": 0.002412
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -5729,7 +5746,7 @@ export const PIPELINE = {
        "target": 0.012,
        "target_scaled": 0.012,
        "scale": 1.0,
-       "contribution": 0.042155
+       "contribution": 0.00169
       },
       {
        "key": "mean_wall_slope",
@@ -5759,7 +5776,7 @@ export const PIPELINE = {
        "target": 0.998,
        "target_scaled": 0.998,
        "scale": 1.0,
-       "contribution": 0.05
+       "contribution": 0.044998
       },
       {
        "key": "rim_coherence",
@@ -5776,9 +5793,9 @@ export const PIPELINE = {
     {
      "ref_id": "alfraganus",
      "rank": 5,
-     "score": 0.586781,
-     "wed": 0.570873,
-     "cosine": 0.571931,
+     "score": 0.644902,
+     "wed": 0.528425,
+     "cosine": 0.682202,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -5791,7 +5808,7 @@ export const PIPELINE = {
        "target": 20591.0,
        "target_scaled": 20591.0,
        "scale": 1.0,
-       "contribution": 0.002963
+       "contribution": 0.002932
       },
       {
        "key": "depth_m",
@@ -5801,7 +5818,7 @@ export const PIPELINE = {
        "target": 3500.6,
        "target_scaled": 3500.6,
        "scale": 1.0,
-       "contribution": 0.074261
+       "contribution": 0.073231
       },
       {
        "key": "depth_diameter_ratio",
@@ -5821,7 +5838,7 @@ export const PIPELINE = {
        "target": 935.2,
        "target_scaled": 935.2,
        "scale": 1.0,
-       "contribution": 0.035946
+       "contribution": 0.034883
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -5851,7 +5868,7 @@ export const PIPELINE = {
        "target": 0.013,
        "target_scaled": 0.013,
        "scale": 1.0,
-       "contribution": 0.04126
+       "contribution": 0.001654
       },
       {
        "key": "mean_wall_slope",
@@ -5881,7 +5898,7 @@ export const PIPELINE = {
        "target": 0.996,
        "target_scaled": 0.996,
        "scale": 1.0,
-       "contribution": 0.049316
+       "contribution": 0.044382
       },
       {
        "key": "rim_coherence",
@@ -5945,9 +5962,9 @@ export const PIPELINE = {
     {
      "ref_id": "faustini",
      "rank": 1,
-     "score": 0.530745,
-     "wed": 0.448363,
-     "cosine": 0.326958,
+     "score": 0.581966,
+     "wed": 0.435982,
+     "cosine": 0.443749,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -5960,7 +5977,7 @@ export const PIPELINE = {
        "target": 45982.0,
        "target_scaled": 45982.0,
        "scale": 1.0,
-       "contribution": 0.018191
+       "contribution": 0.017999
       },
       {
        "key": "depth_m",
@@ -5970,7 +5987,7 @@ export const PIPELINE = {
        "target": 3048.0,
        "target_scaled": 3048.0,
        "scale": 1.0,
-       "contribution": 0.05853
+       "contribution": 0.057718
       },
       {
        "key": "depth_diameter_ratio",
@@ -5990,7 +6007,7 @@ export const PIPELINE = {
        "target": 792.8,
        "target_scaled": 792.8,
        "scale": 1.0,
-       "contribution": 0.028239
+       "contribution": 0.027404
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -6020,7 +6037,7 @@ export const PIPELINE = {
        "target": 0.015,
        "target_scaled": 0.015,
        "scale": 1.0,
-       "contribution": 0.008889
+       "contribution": 0.000356
       },
       {
        "key": "mean_wall_slope",
@@ -6050,7 +6067,7 @@ export const PIPELINE = {
        "target": 0.992,
        "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.005774
+       "contribution": 0.005196
       },
       {
        "key": "rim_coherence",
@@ -6067,9 +6084,9 @@ export const PIPELINE = {
     {
      "ref_id": "de_gerlache",
      "rank": 2,
-     "score": 0.520802,
-     "wed": 0.461083,
-     "cosine": 0.313537,
+     "score": 0.566703,
+     "wed": 0.449982,
+     "cosine": 0.418316,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -6082,7 +6099,7 @@ export const PIPELINE = {
        "target": 32612.0,
        "target_scaled": 32612.0,
        "scale": 1.0,
-       "contribution": 0.008524
+       "contribution": 0.008434
       },
       {
        "key": "depth_m",
@@ -6092,7 +6109,7 @@ export const PIPELINE = {
        "target": 2797.3,
        "target_scaled": 2797.3,
        "scale": 1.0,
-       "contribution": 0.049187
+       "contribution": 0.048504
       },
       {
        "key": "depth_diameter_ratio",
@@ -6112,7 +6129,7 @@ export const PIPELINE = {
        "target": 688.5,
        "target_scaled": 688.5,
        "scale": 1.0,
-       "contribution": 0.021072
+       "contribution": 0.020449
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -6142,7 +6159,7 @@ export const PIPELINE = {
        "target": 0.016,
        "target_scaled": 0.016,
        "scale": 1.0,
-       "contribution": 0.00848
+       "contribution": 0.00034
       },
       {
        "key": "mean_wall_slope",
@@ -6172,7 +6189,7 @@ export const PIPELINE = {
        "target": 0.992,
        "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.005774
+       "contribution": 0.005196
       },
       {
        "key": "rim_coherence",
@@ -6187,133 +6204,11 @@ export const PIPELINE = {
      ]
     },
     {
-     "ref_id": "shoemaker",
-     "rank": 3,
-     "score": 0.502357,
-     "wed": 0.497638,
-     "cosine": 0.299575,
-     "coverage": 1.0,
-     "missing_earth": [],
-     "missing_reference": [],
-     "features": [
-      {
-       "key": "diameter_m",
-       "weight": 0.1,
-       "used": true,
-       "earth": 3600.0,
-       "target": 61200.0,
-       "target_scaled": 61200.0,
-       "scale": 1.0,
-       "contribution": 0.0336
-      },
-      {
-       "key": "depth_m",
-       "weight": 0.12,
-       "used": true,
-       "earth": 37.8,
-       "target": 3737.5,
-       "target_scaled": 3737.5,
-       "scale": 1.0,
-       "contribution": 0.088414
-      },
-      {
-       "key": "depth_diameter_ratio",
-       "weight": 0.15,
-       "used": true,
-       "earth": 0.0105,
-       "target": 0.0611,
-       "target_scaled": 0.0611,
-       "scale": 1.0,
-       "contribution": 0.007292
-      },
-      {
-       "key": "rim_height_m",
-       "weight": 0.08,
-       "used": true,
-       "earth": 26.8,
-       "target": 883.7,
-       "target_scaled": 883.7,
-       "scale": 1.0,
-       "contribution": 0.035338
-      },
-      {
-       "key": "rim_height_diameter_ratio",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.0074,
-       "target": 0.0144,
-       "target_scaled": 0.0144,
-       "scale": 1.0,
-       "contribution": 0.000868
-      },
-      {
-       "key": "rim_variation_m",
-       "weight": 0.07,
-       "used": true,
-       "earth": 48.9,
-       "target": 605.3,
-       "target_scaled": 605.3,
-       "scale": 1.0,
-       "contribution": 0.008173
-      },
-      {
-       "key": "rim_radius_cv",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.058,
-       "target": 0.016,
-       "target_scaled": 0.016,
-       "scale": 1.0,
-       "contribution": 0.00848
-      },
-      {
-       "key": "mean_wall_slope",
-       "weight": 0.12,
-       "used": true,
-       "earth": 2.4,
-       "target": 14.2,
-       "target_scaled": 14.2,
-       "scale": 1.0,
-       "contribution": 0.01412
-      },
-      {
-       "key": "wall_slope_p90",
-       "weight": 0.1,
-       "used": true,
-       "earth": 4.0,
-       "target": 18.5,
-       "target_scaled": 18.5,
-       "scale": 1.0,
-       "contribution": 0.014637
-      },
-      {
-       "key": "circularity",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.893,
-       "target": 0.991,
-       "target_scaled": 0.991,
-       "scale": 1.0,
-       "contribution": 0.005658
-      },
-      {
-       "key": "rim_coherence",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.583,
-       "target": 0.944,
-       "target_scaled": 0.944,
-       "scale": 1.0,
-       "contribution": 0.031064
-      }
-     ]
-    },
-    {
      "ref_id": "aristarchus",
-     "rank": 4,
-     "score": 0.499585,
-     "wed": 0.494717,
-     "cosine": 0.290114,
+     "rank": 3,
+     "score": 0.551158,
+     "wed": 0.481688,
+     "cosine": 0.40768,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -6326,7 +6221,7 @@ export const PIPELINE = {
        "target": 40481.0,
        "target_scaled": 40481.0,
        "scale": 1.0,
-       "contribution": 0.013775
+       "contribution": 0.01363
       },
       {
        "key": "depth_m",
@@ -6336,7 +6231,7 @@ export const PIPELINE = {
        "target": 3109.0,
        "target_scaled": 3109.0,
        "scale": 1.0,
-       "contribution": 0.060926
+       "contribution": 0.060081
       },
       {
        "key": "depth_diameter_ratio",
@@ -6356,7 +6251,7 @@ export const PIPELINE = {
        "target": 837.6,
        "target_scaled": 837.6,
        "scale": 1.0,
-       "contribution": 0.031638
+       "contribution": 0.030703
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -6386,7 +6281,7 @@ export const PIPELINE = {
        "target": 0.011,
        "target_scaled": 0.011,
        "scale": 1.0,
-       "contribution": 0.01062
+       "contribution": 0.000426
       },
       {
        "key": "mean_wall_slope",
@@ -6416,7 +6311,129 @@ export const PIPELINE = {
        "target": 0.994,
        "target_scaled": 0.994,
        "scale": 1.0,
-       "contribution": 0.00601
+       "contribution": 0.005408
+      },
+      {
+       "key": "rim_coherence",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.583,
+       "target": 0.944,
+       "target_scaled": 0.944,
+       "scale": 1.0,
+       "contribution": 0.031064
+      }
+     ]
+    },
+    {
+     "ref_id": "shoemaker",
+     "rank": 4,
+     "score": 0.550085,
+     "wed": 0.486118,
+     "cosine": 0.408877,
+     "coverage": 1.0,
+     "missing_earth": [],
+     "missing_reference": [],
+     "features": [
+      {
+       "key": "diameter_m",
+       "weight": 0.1,
+       "used": true,
+       "earth": 3600.0,
+       "target": 61200.0,
+       "target_scaled": 61200.0,
+       "scale": 1.0,
+       "contribution": 0.033245
+      },
+      {
+       "key": "depth_m",
+       "weight": 0.12,
+       "used": true,
+       "earth": 37.8,
+       "target": 3737.5,
+       "target_scaled": 3737.5,
+       "scale": 1.0,
+       "contribution": 0.087187
+      },
+      {
+       "key": "depth_diameter_ratio",
+       "weight": 0.15,
+       "used": true,
+       "earth": 0.0105,
+       "target": 0.0611,
+       "target_scaled": 0.0611,
+       "scale": 1.0,
+       "contribution": 0.007292
+      },
+      {
+       "key": "rim_height_m",
+       "weight": 0.08,
+       "used": true,
+       "earth": 26.8,
+       "target": 883.7,
+       "target_scaled": 883.7,
+       "scale": 1.0,
+       "contribution": 0.034294
+      },
+      {
+       "key": "rim_height_diameter_ratio",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.0074,
+       "target": 0.0144,
+       "target_scaled": 0.0144,
+       "scale": 1.0,
+       "contribution": 0.000868
+      },
+      {
+       "key": "rim_variation_m",
+       "weight": 0.07,
+       "used": true,
+       "earth": 48.9,
+       "target": 605.3,
+       "target_scaled": 605.3,
+       "scale": 1.0,
+       "contribution": 0.008173
+      },
+      {
+       "key": "rim_radius_cv",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.058,
+       "target": 0.016,
+       "target_scaled": 0.016,
+       "scale": 1.0,
+       "contribution": 0.00034
+      },
+      {
+       "key": "mean_wall_slope",
+       "weight": 0.12,
+       "used": true,
+       "earth": 2.4,
+       "target": 14.2,
+       "target_scaled": 14.2,
+       "scale": 1.0,
+       "contribution": 0.01412
+      },
+      {
+       "key": "wall_slope_p90",
+       "weight": 0.1,
+       "used": true,
+       "earth": 4.0,
+       "target": 18.5,
+       "target_scaled": 18.5,
+       "scale": 1.0,
+       "contribution": 0.014637
+      },
+      {
+       "key": "circularity",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.893,
+       "target": 0.991,
+       "target_scaled": 0.991,
+       "scale": 1.0,
+       "contribution": 0.005092
       },
       {
        "key": "rim_coherence",
@@ -6433,9 +6450,9 @@ export const PIPELINE = {
     {
      "ref_id": "bessel",
      "rank": 5,
-     "score": 0.493927,
-     "wed": 0.499828,
-     "cosine": 0.280392,
+     "score": 0.541148,
+     "wed": 0.487448,
+     "cosine": 0.387698,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -6448,7 +6465,7 @@ export const PIPELINE = {
        "target": 15311.0,
        "target_scaled": 15311.0,
        "scale": 1.0,
-       "contribution": 0.001389
+       "contribution": 0.001374
       },
       {
        "key": "depth_m",
@@ -6458,7 +6475,7 @@ export const PIPELINE = {
        "target": 1747.6,
        "target_scaled": 1747.6,
        "scale": 1.0,
-       "contribution": 0.018883
+       "contribution": 0.018621
       },
       {
        "key": "depth_diameter_ratio",
@@ -6478,7 +6495,7 @@ export const PIPELINE = {
        "target": 427.3,
        "target_scaled": 427.3,
        "scale": 1.0,
-       "contribution": 0.00772
+       "contribution": 0.007491
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -6508,7 +6525,7 @@ export const PIPELINE = {
        "target": 0.009,
        "target_scaled": 0.009,
        "scale": 1.0,
-       "contribution": 0.011543
+       "contribution": 0.000463
       },
       {
        "key": "mean_wall_slope",
@@ -6538,7 +6555,7 @@ export const PIPELINE = {
        "target": 0.997,
        "target_scaled": 0.997,
        "scale": 1.0,
-       "contribution": 0.006372
+       "contribution": 0.005734
       },
       {
        "key": "rim_coherence",
@@ -6602,9 +6619,9 @@ export const PIPELINE = {
     {
      "ref_id": "faustini",
      "rank": 1,
-     "score": 0.605015,
-     "wed": 0.422736,
-     "cosine": 0.489182,
+     "score": 0.65539,
+     "wed": 0.409223,
+     "cosine": 0.602536,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -6617,7 +6634,7 @@ export const PIPELINE = {
        "target": 45982.0,
        "target_scaled": 45982.0,
        "scale": 1.0,
-       "contribution": 0.010142
+       "contribution": 0.010034
       },
       {
        "key": "depth_m",
@@ -6627,7 +6644,7 @@ export const PIPELINE = {
        "target": 3048.0,
        "target_scaled": 3048.0,
        "scale": 1.0,
-       "contribution": 0.055411
+       "contribution": 0.054642
       },
       {
        "key": "depth_diameter_ratio",
@@ -6647,7 +6664,7 @@ export const PIPELINE = {
        "target": 792.8,
        "target_scaled": 792.8,
        "scale": 1.0,
-       "contribution": 0.024226
+       "contribution": 0.02351
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -6677,7 +6694,7 @@ export const PIPELINE = {
        "target": 0.015,
        "target_scaled": 0.015,
        "scale": 1.0,
-       "contribution": 0.009735
+       "contribution": 0.00039
       },
       {
        "key": "mean_wall_slope",
@@ -6707,7 +6724,7 @@ export const PIPELINE = {
        "target": 0.992,
        "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.003054
+       "contribution": 0.002748
       },
       {
        "key": "rim_coherence",
@@ -6724,9 +6741,9 @@ export const PIPELINE = {
     {
      "ref_id": "de_gerlache",
      "rank": 2,
-     "score": 0.599447,
-     "wed": 0.433221,
-     "cosine": 0.484923,
+     "score": 0.646616,
+     "wed": 0.421001,
+     "cosine": 0.591578,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -6739,7 +6756,7 @@ export const PIPELINE = {
        "target": 32612.0,
        "target_scaled": 32612.0,
        "scale": 1.0,
-       "contribution": 0.003382
+       "contribution": 0.003347
       },
       {
        "key": "depth_m",
@@ -6749,7 +6766,7 @@ export const PIPELINE = {
        "target": 2797.3,
        "target_scaled": 2797.3,
        "scale": 1.0,
-       "contribution": 0.046331
+       "contribution": 0.045688
       },
       {
        "key": "depth_diameter_ratio",
@@ -6769,7 +6786,7 @@ export const PIPELINE = {
        "target": 688.5,
        "target_scaled": 688.5,
        "scale": 1.0,
-       "contribution": 0.017627
+       "contribution": 0.017106
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -6799,7 +6816,7 @@ export const PIPELINE = {
        "target": 0.016,
        "target_scaled": 0.016,
        "scale": 1.0,
-       "contribution": 0.009307
+       "contribution": 0.000373
       },
       {
        "key": "mean_wall_slope",
@@ -6829,7 +6846,7 @@ export const PIPELINE = {
        "target": 0.992,
        "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.003054
+       "contribution": 0.002748
       },
       {
        "key": "rim_coherence",
@@ -6844,133 +6861,11 @@ export const PIPELINE = {
      ]
     },
     {
-     "ref_id": "copernicus",
-     "rank": 3,
-     "score": 0.596915,
-     "wed": 0.485247,
-     "cosine": 0.525191,
-     "coverage": 1.0,
-     "missing_earth": [],
-     "missing_reference": [],
-     "features": [
-      {
-       "key": "diameter_m",
-       "weight": 0.1,
-       "used": true,
-       "earth": 14337.0,
-       "target": 96100.0,
-       "target_scaled": 96100.0,
-       "scale": 1.0,
-       "contribution": 0.067704
-      },
-      {
-       "key": "depth_m",
-       "weight": 0.12,
-       "used": true,
-       "earth": 119.1,
-       "target": 3525.2,
-       "target_scaled": 3525.2,
-       "scale": 1.0,
-       "contribution": 0.074938
-      },
-      {
-       "key": "depth_diameter_ratio",
-       "weight": 0.15,
-       "used": true,
-       "earth": 0.0083,
-       "target": 0.0367,
-       "target_scaled": 0.0367,
-       "scale": 1.0,
-       "contribution": 0.002297
-      },
-      {
-       "key": "rim_height_m",
-       "weight": 0.08,
-       "used": true,
-       "earth": 83.3,
-       "target": 759.2,
-       "target_scaled": 759.2,
-       "scale": 1.0,
-       "contribution": 0.021986
-      },
-      {
-       "key": "rim_height_diameter_ratio",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.0058,
-       "target": 0.0079,
-       "target_scaled": 0.0079,
-       "scale": 1.0,
-       "contribution": 7.8e-05
-      },
-      {
-       "key": "rim_variation_m",
-       "weight": 0.07,
-       "used": true,
-       "earth": 84.1,
-       "target": 235.0,
-       "target_scaled": 235.0,
-       "scale": 1.0,
-       "contribution": 0.000601
-      },
-      {
-       "key": "rim_radius_cv",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.06,
-       "target": 0.035,
-       "target_scaled": 0.035,
-       "scale": 1.0,
-       "contribution": 0.003005
-      },
-      {
-       "key": "mean_wall_slope",
-       "weight": 0.12,
-       "used": true,
-       "earth": 4.0,
-       "target": 13.7,
-       "target_scaled": 13.7,
-       "scale": 1.0,
-       "contribution": 0.009541
-      },
-      {
-       "key": "wall_slope_p90",
-       "weight": 0.1,
-       "used": true,
-       "earth": 9.3,
-       "target": 29.3,
-       "target_scaled": 29.3,
-       "scale": 1.0,
-       "contribution": 0.027847
-      },
-      {
-       "key": "circularity",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.92,
-       "target": 0.94,
-       "target_scaled": 0.94,
-       "scale": 1.0,
-       "contribution": 0.000236
-      },
-      {
-       "key": "rim_coherence",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.542,
-       "target": 0.88,
-       "target_scaled": 0.88,
-       "scale": 1.0,
-       "contribution": 0.027232
-      }
-     ]
-    },
-    {
      "ref_id": "aristarchus",
-     "rank": 4,
-     "score": 0.586564,
-     "wed": 0.464099,
-     "cosine": 0.480636,
+     "rank": 3,
+     "score": 0.64038,
+     "wed": 0.44978,
+     "cosine": 0.602326,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -6983,7 +6878,7 @@ export const PIPELINE = {
        "target": 40481.0,
        "target_scaled": 40481.0,
        "scale": 1.0,
-       "contribution": 0.006922
+       "contribution": 0.006849
       },
       {
        "key": "depth_m",
@@ -6993,7 +6888,7 @@ export const PIPELINE = {
        "target": 3109.0,
        "target_scaled": 3109.0,
        "scale": 1.0,
-       "contribution": 0.057743
+       "contribution": 0.056942
       },
       {
        "key": "depth_diameter_ratio",
@@ -7013,7 +6908,7 @@ export const PIPELINE = {
        "target": 837.6,
        "target_scaled": 837.6,
        "scale": 1.0,
-       "contribution": 0.027382
+       "contribution": 0.026573
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -7043,7 +6938,7 @@ export const PIPELINE = {
        "target": 0.011,
        "target_scaled": 0.011,
        "scale": 1.0,
-       "contribution": 0.011543
+       "contribution": 0.000463
       },
       {
        "key": "mean_wall_slope",
@@ -7073,7 +6968,7 @@ export const PIPELINE = {
        "target": 0.994,
        "target_scaled": 0.994,
        "scale": 1.0,
-       "contribution": 0.003226
+       "contribution": 0.002903
       },
       {
        "key": "rim_coherence",
@@ -7088,11 +6983,133 @@ export const PIPELINE = {
      ]
     },
     {
+     "ref_id": "copernicus",
+     "rank": 4,
+     "score": 0.629762,
+     "wed": 0.47974,
+     "cosine": 0.602478,
+     "coverage": 1.0,
+     "missing_earth": [],
+     "missing_reference": [],
+     "features": [
+      {
+       "key": "diameter_m",
+       "weight": 0.1,
+       "used": true,
+       "earth": 14337.0,
+       "target": 96100.0,
+       "target_scaled": 96100.0,
+       "scale": 1.0,
+       "contribution": 0.066987
+      },
+      {
+       "key": "depth_m",
+       "weight": 0.12,
+       "used": true,
+       "earth": 119.1,
+       "target": 3525.2,
+       "target_scaled": 3525.2,
+       "scale": 1.0,
+       "contribution": 0.073898
+      },
+      {
+       "key": "depth_diameter_ratio",
+       "weight": 0.15,
+       "used": true,
+       "earth": 0.0083,
+       "target": 0.0367,
+       "target_scaled": 0.0367,
+       "scale": 1.0,
+       "contribution": 0.002297
+      },
+      {
+       "key": "rim_height_m",
+       "weight": 0.08,
+       "used": true,
+       "earth": 83.3,
+       "target": 759.2,
+       "target_scaled": 759.2,
+       "scale": 1.0,
+       "contribution": 0.021336
+      },
+      {
+       "key": "rim_height_diameter_ratio",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.0058,
+       "target": 0.0079,
+       "target_scaled": 0.0079,
+       "scale": 1.0,
+       "contribution": 7.8e-05
+      },
+      {
+       "key": "rim_variation_m",
+       "weight": 0.07,
+       "used": true,
+       "earth": 84.1,
+       "target": 235.0,
+       "target_scaled": 235.0,
+       "scale": 1.0,
+       "contribution": 0.000601
+      },
+      {
+       "key": "rim_radius_cv",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.06,
+       "target": 0.035,
+       "target_scaled": 0.035,
+       "scale": 1.0,
+       "contribution": 0.00012
+      },
+      {
+       "key": "mean_wall_slope",
+       "weight": 0.12,
+       "used": true,
+       "earth": 4.0,
+       "target": 13.7,
+       "target_scaled": 13.7,
+       "scale": 1.0,
+       "contribution": 0.009541
+      },
+      {
+       "key": "wall_slope_p90",
+       "weight": 0.1,
+       "used": true,
+       "earth": 9.3,
+       "target": 29.3,
+       "target_scaled": 29.3,
+       "scale": 1.0,
+       "contribution": 0.027847
+      },
+      {
+       "key": "circularity",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.92,
+       "target": 0.94,
+       "target_scaled": 0.94,
+       "scale": 1.0,
+       "contribution": 0.000212
+      },
+      {
+       "key": "rim_coherence",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.542,
+       "target": 0.88,
+       "target_scaled": 0.88,
+       "scale": 1.0,
+       "contribution": 0.027232
+      }
+     ]
+    },
+    {
      "ref_id": "shoemaker",
      "rank": 5,
-     "score": 0.579219,
-     "wed": 0.470431,
-     "cosine": 0.467902,
+     "score": 0.627474,
+     "wed": 0.457989,
+     "cosine": 0.577447,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -7105,7 +7122,7 @@ export const PIPELINE = {
        "target": 61200.0,
        "target_scaled": 61200.0,
        "scale": 1.0,
-       "contribution": 0.022241
+       "contribution": 0.022006
       },
       {
        "key": "depth_m",
@@ -7115,7 +7132,7 @@ export const PIPELINE = {
        "target": 3737.5,
        "target_scaled": 3737.5,
        "scale": 1.0,
-       "contribution": 0.084571
+       "contribution": 0.083398
       },
       {
        "key": "depth_diameter_ratio",
@@ -7135,7 +7152,7 @@ export const PIPELINE = {
        "target": 883.7,
        "target_scaled": 883.7,
        "scale": 1.0,
-       "contribution": 0.030832
+       "contribution": 0.029921
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -7165,7 +7182,7 @@ export const PIPELINE = {
        "target": 0.016,
        "target_scaled": 0.016,
        "scale": 1.0,
-       "contribution": 0.009307
+       "contribution": 0.000373
       },
       {
        "key": "mean_wall_slope",
@@ -7195,7 +7212,7 @@ export const PIPELINE = {
        "target": 0.991,
        "target_scaled": 0.991,
        "scale": 1.0,
-       "contribution": 0.00297
+       "contribution": 0.002673
       },
       {
        "key": "rim_coherence",
@@ -7220,289 +7237,54 @@ export const PIPELINE = {
    "lat": -5.93611,
    "lon": -36.36306,
    "metrics": {
-    "diameter_m": 6995.0,
-    "depth_m": 128.0,
-    "depth_diameter_ratio": 0.0183,
-    "rim_height_m": 118.5,
-    "rim_height_diameter_ratio": 0.0169,
-    "rim_variation_m": 190.0,
-    "rim_radius_cv": 0.138,
-    "mean_wall_slope": 5.6,
-    "wall_slope_p90": 10.5,
-    "circularity": 0.81,
-    "rim_coherence": 0.792
+    "diameter_m": 701.034929251534,
+    "depth_m": 7.59156292548812,
+    "depth_diameter_ratio": 0.010829079420612205,
+    "rim_height_m": 4.117502125267549,
+    "rim_height_diameter_ratio": 0.005873462153538678,
+    "rim_variation_m": 18.18047397070195,
+    "rim_radius_cv": 0.653358403953054,
+    "mean_wall_slope": 6.510255722235766,
+    "wall_slope_p90": 11.340675393746238,
+    "circularity": 0.6909046686908598,
+    "rim_coherence": 0.6388888888888888
    },
    "dq": {
-    "source": "catalogo",
+    "source": "raster",
     "provenance": {
-     "diameter_m": "catalogo:craters.diameter_m (calculado fora deste repositório)",
-     "depth_m": "catalogo:craters.depth_m (calculado fora deste repositório)",
-     "depth_diameter_ratio": "catalogo:craters.depth_diameter_ratio (calculado fora deste repositório)",
-     "rim_height_m": "catalogo:craters.rim_height_m (calculado fora deste repositório)",
-     "rim_height_diameter_ratio": "catalogo:craters.rim_height_diameter_ratio (calculado fora deste repositório)",
-     "rim_variation_m": "catalogo:craters.rim_variation_m (calculado fora deste repositório)",
-     "rim_radius_cv": "catalogo:craters.rim_radius_cv (calculado fora deste repositório)",
-     "mean_wall_slope": "catalogo:craters.mean_wall_slope (calculado fora deste repositório)",
-     "wall_slope_p90": "catalogo:craters.wall_slope_p90 (calculado fora deste repositório)",
-     "circularity": "catalogo:craters.circularity (calculado fora deste repositório)",
-     "rim_coherence": "catalogo:craters.rim_coherence (calculado fora deste repositório)"
+     "diameter_m": "raster:crater_morphometrics",
+     "depth_m": "raster:crater_morphometrics",
+     "depth_diameter_ratio": "raster:crater_morphometrics",
+     "rim_height_m": "raster:crater_morphometrics",
+     "rim_height_diameter_ratio": "raster:crater_morphometrics",
+     "rim_variation_m": "raster:crater_morphometrics",
+     "rim_radius_cv": "raster:crater_morphometrics",
+     "mean_wall_slope": "raster:crater_morphometrics",
+     "wall_slope_p90": "raster:crater_morphometrics",
+     "circularity": "raster:crater_morphometrics",
+     "rim_coherence": "raster:crater_morphometrics"
     },
-    "issues": [],
+    "issues": [
+     "classe medida no raster (partial_ring) difere do catálogo (crater); vale a mais conservadora (partial_ring)",
+     "anel de borda parcial: confiança baixa na comparação com crateras",
+     "diameter_m: raster (701) difere do catálogo (6995) em mais de 50%; usando o raster",
+     "depth_m: raster (7.592) difere do catálogo (128) em mais de 50%; usando o raster",
+     "rim_height_m: raster (4.118) difere do catálogo (118.5) em mais de 50%; usando o raster",
+     "rim_height_diameter_ratio: raster (0.005873) difere do catálogo (0.0169) em mais de 50%; usando o raster",
+     "rim_variation_m: raster (18.18) difere do catálogo (190) em mais de 50%; usando o raster",
+     "rim_radius_cv: raster (0.6534) difere do catálogo (0.138) em mais de 50%; usando o raster"
+    ],
     "features_missing": []
    },
-   "crater_class": "crater",
-   "confidence": "alta",
+   "crater_class": "partial_ring",
+   "confidence": "baixa",
    "matches": [
     {
-     "ref_id": "de_gerlache",
-     "rank": 1,
-     "score": 0.548696,
-     "wed": 0.468277,
-     "cosine": 0.389684,
-     "coverage": 1.0,
-     "missing_earth": [],
-     "missing_reference": [],
-     "features": [
-      {
-       "key": "diameter_m",
-       "weight": 0.1,
-       "used": true,
-       "earth": 6995.0,
-       "target": 32612.0,
-       "target_scaled": 32612.0,
-       "scale": 1.0,
-       "contribution": 0.006646
-      },
-      {
-       "key": "depth_m",
-       "weight": 0.12,
-       "used": true,
-       "earth": 128.0,
-       "target": 2797.3,
-       "target_scaled": 2797.3,
-       "scale": 1.0,
-       "contribution": 0.046024
-      },
-      {
-       "key": "depth_diameter_ratio",
-       "weight": 0.15,
-       "used": true,
-       "earth": 0.0183,
-       "target": 0.0858,
-       "target_scaled": 0.0858,
-       "scale": 1.0,
-       "contribution": 0.012976
-      },
-      {
-       "key": "rim_height_m",
-       "weight": 0.08,
-       "used": true,
-       "earth": 118.5,
-       "target": 688.5,
-       "target_scaled": 688.5,
-       "scale": 1.0,
-       "contribution": 0.015636
-      },
-      {
-       "key": "rim_height_diameter_ratio",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.0169,
-       "target": 0.0211,
-       "target_scaled": 0.0211,
-       "scale": 1.0,
-       "contribution": 0.000313
-      },
-      {
-       "key": "rim_variation_m",
-       "weight": 0.07,
-       "used": true,
-       "earth": 190.0,
-       "target": 589.4,
-       "target_scaled": 589.4,
-       "scale": 1.0,
-       "contribution": 0.004211
-      },
-      {
-       "key": "rim_radius_cv",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.138,
-       "target": 0.016,
-       "target_scaled": 0.016,
-       "scale": 1.0,
-       "contribution": 0.071553
-      },
-      {
-       "key": "mean_wall_slope",
-       "weight": 0.12,
-       "used": true,
-       "earth": 5.6,
-       "target": 21.0,
-       "target_scaled": 21.0,
-       "scale": 1.0,
-       "contribution": 0.024049
-      },
-      {
-       "key": "wall_slope_p90",
-       "weight": 0.1,
-       "used": true,
-       "earth": 10.5,
-       "target": 25.0,
-       "target_scaled": 25.0,
-       "scale": 1.0,
-       "contribution": 0.014637
-      },
-      {
-       "key": "circularity",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.81,
-       "target": 0.992,
-       "target_scaled": 0.992,
-       "scale": 1.0,
-       "contribution": 0.019514
-      },
-      {
-       "key": "rim_coherence",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.792,
-       "target": 0.917,
-       "target_scaled": 0.917,
-       "scale": 1.0,
-       "contribution": 0.003724
-      }
-     ]
-    },
-    {
-     "ref_id": "faustini",
-     "rank": 2,
-     "score": 0.543022,
-     "wed": 0.46375,
-     "cosine": 0.371471,
-     "coverage": 1.0,
-     "missing_earth": [],
-     "missing_reference": [],
-     "features": [
-      {
-       "key": "diameter_m",
-       "weight": 0.1,
-       "used": true,
-       "earth": 6995.0,
-       "target": 45982.0,
-       "target_scaled": 45982.0,
-       "scale": 1.0,
-       "contribution": 0.015394
-      },
-      {
-       "key": "depth_m",
-       "weight": 0.12,
-       "used": true,
-       "earth": 128.0,
-       "target": 3048.0,
-       "target_scaled": 3048.0,
-       "scale": 1.0,
-       "contribution": 0.055075
-      },
-      {
-       "key": "depth_diameter_ratio",
-       "weight": 0.15,
-       "used": true,
-       "earth": 0.0183,
-       "target": 0.0663,
-       "target_scaled": 0.0663,
-       "scale": 1.0,
-       "contribution": 0.006562
-      },
-      {
-       "key": "rim_height_m",
-       "weight": 0.08,
-       "used": true,
-       "earth": 118.5,
-       "target": 792.8,
-       "target_scaled": 792.8,
-       "scale": 1.0,
-       "contribution": 0.021882
-      },
-      {
-       "key": "rim_height_diameter_ratio",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.0169,
-       "target": 0.0172,
-       "target_scaled": 0.0172,
-       "scale": 1.0,
-       "contribution": 2e-06
-      },
-      {
-       "key": "rim_variation_m",
-       "weight": 0.07,
-       "used": true,
-       "earth": 190.0,
-       "target": 564.8,
-       "target_scaled": 564.8,
-       "scale": 1.0,
-       "contribution": 0.003708
-      },
-      {
-       "key": "rim_radius_cv",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.138,
-       "target": 0.015,
-       "target_scaled": 0.015,
-       "scale": 1.0,
-       "contribution": 0.072731
-      },
-      {
-       "key": "mean_wall_slope",
-       "weight": 0.12,
-       "used": true,
-       "earth": 5.6,
-       "target": 15.3,
-       "target_scaled": 15.3,
-       "scale": 1.0,
-       "contribution": 0.009541
-      },
-      {
-       "key": "wall_slope_p90",
-       "weight": 0.1,
-       "used": true,
-       "earth": 10.5,
-       "target": 19.1,
-       "target_scaled": 19.1,
-       "scale": 1.0,
-       "contribution": 0.005149
-      },
-      {
-       "key": "circularity",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.81,
-       "target": 0.992,
-       "target_scaled": 0.992,
-       "scale": 1.0,
-       "contribution": 0.019514
-      },
-      {
-       "key": "rim_coherence",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.792,
-       "target": 0.944,
-       "target_scaled": 0.944,
-       "scale": 1.0,
-       "contribution": 0.005507
-      }
-     ]
-    },
-    {
      "ref_id": "bessel",
-     "rank": 3,
-     "score": 0.539482,
-     "wed": 0.495437,
-     "cosine": 0.390481,
+     "rank": 1,
+     "score": 0.462202,
+     "wed": 0.555358,
+     "cosine": 0.247835,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -7511,67 +7293,67 @@ export const PIPELINE = {
        "key": "diameter_m",
        "weight": 0.1,
        "used": true,
-       "earth": 6995.0,
+       "earth": 701.0349,
        "target": 15311.0,
        "target_scaled": 15311.0,
        "scale": 1.0,
-       "contribution": 0.0007
+       "contribution": 0.002139
       },
       {
        "key": "depth_m",
        "weight": 0.12,
        "used": true,
-       "earth": 128.0,
+       "earth": 7.5916,
        "target": 1747.6,
        "target_scaled": 1747.6,
        "scale": 1.0,
-       "contribution": 0.016943
+       "contribution": 0.019285
       },
       {
        "key": "depth_diameter_ratio",
        "weight": 0.15,
        "used": true,
-       "earth": 0.0183,
+       "earth": 0.0108,
        "target": 0.1141,
        "target_scaled": 0.1141,
        "scale": 1.0,
-       "contribution": 0.026137
+       "contribution": 0.030373
       },
       {
        "key": "rim_height_m",
        "weight": 0.08,
        "used": true,
-       "earth": 118.5,
+       "earth": 4.1175,
        "target": 427.3,
        "target_scaled": 427.3,
        "scale": 1.0,
-       "contribution": 0.004589
+       "contribution": 0.008364
       },
       {
        "key": "rim_height_diameter_ratio",
        "weight": 0.08,
        "used": true,
-       "earth": 0.0169,
+       "earth": 0.0059,
        "target": 0.0279,
        "target_scaled": 0.0279,
        "scale": 1.0,
-       "contribution": 0.002144
+       "contribution": 0.008595
       },
       {
        "key": "rim_variation_m",
        "weight": 0.07,
        "used": true,
-       "earth": 190.0,
+       "earth": 18.1805,
        "target": 255.3,
        "target_scaled": 255.3,
        "scale": 1.0,
-       "contribution": 0.000113
+       "contribution": 0.001484
       },
       {
        "key": "rim_radius_cv",
        "weight": 0.08,
        "used": true,
-       "earth": 0.138,
+       "earth": 0.6534,
        "target": 0.009,
        "target_scaled": 0.009,
        "scale": 1.0,
@@ -7581,50 +7363,50 @@ export const PIPELINE = {
        "key": "mean_wall_slope",
        "weight": 0.12,
        "used": true,
-       "earth": 5.6,
+       "earth": 6.5103,
        "target": 25.9,
        "target_scaled": 25.9,
        "scale": 1.0,
-       "contribution": 0.041788
+       "contribution": 0.038125
       },
       {
        "key": "wall_slope_p90",
        "weight": 0.1,
        "used": true,
-       "earth": 10.5,
+       "earth": 11.3407,
        "target": 35.1,
        "target_scaled": 35.1,
        "scale": 1.0,
-       "contribution": 0.04213
+       "contribution": 0.0393
       },
       {
        "key": "circularity",
        "weight": 0.05,
        "used": true,
-       "earth": 0.81,
+       "earth": 0.6909,
        "target": 0.997,
        "target_scaled": 0.997,
        "scale": 1.0,
-       "contribution": 0.020601
+       "contribution": 0.049675
       },
       {
        "key": "rim_coherence",
        "weight": 0.05,
        "used": true,
-       "earth": 0.792,
+       "earth": 0.6389,
        "target": 1.0,
        "target_scaled": 1.0,
        "scale": 1.0,
-       "contribution": 0.010313
+       "contribution": 0.031083
       }
      ]
     },
     {
-     "ref_id": "aristarchus",
-     "rank": 4,
-     "score": 0.529428,
-     "wed": 0.499565,
-     "cosine": 0.368917,
+     "ref_id": "de_gerlache",
+     "rank": 2,
+     "score": 0.449968,
+     "wed": 0.537989,
+     "cosine": 0.202878,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -7633,120 +7415,364 @@ export const PIPELINE = {
        "key": "diameter_m",
        "weight": 0.1,
        "used": true,
-       "earth": 6995.0,
-       "target": 40481.0,
-       "target_scaled": 40481.0,
+       "earth": 701.0349,
+       "target": 32612.0,
+       "target_scaled": 32612.0,
        "scale": 1.0,
-       "contribution": 0.011356
+       "contribution": 0.010204
       },
       {
        "key": "depth_m",
        "weight": 0.12,
        "used": true,
-       "earth": 128.0,
-       "target": 3109.0,
-       "target_scaled": 3109.0,
+       "earth": 7.5916,
+       "target": 2797.3,
+       "target_scaled": 2797.3,
        "scale": 1.0,
-       "contribution": 0.0574
+       "contribution": 0.049572
       },
       {
        "key": "depth_diameter_ratio",
        "weight": 0.15,
        "used": true,
-       "earth": 0.0183,
-       "target": 0.0768,
-       "target_scaled": 0.0768,
+       "earth": 0.0108,
+       "target": 0.0858,
+       "target_scaled": 0.0858,
        "scale": 1.0,
-       "contribution": 0.009746
+       "contribution": 0.016007
       },
       {
        "key": "rim_height_m",
        "weight": 0.08,
        "used": true,
-       "earth": 118.5,
-       "target": 837.6,
-       "target_scaled": 837.6,
+       "earth": 4.1175,
+       "target": 688.5,
+       "target_scaled": 688.5,
        "scale": 1.0,
-       "contribution": 0.024886
+       "contribution": 0.021875
       },
       {
        "key": "rim_height_diameter_ratio",
        "weight": 0.08,
        "used": true,
-       "earth": 0.0169,
-       "target": 0.0207,
-       "target_scaled": 0.0207,
+       "earth": 0.0059,
+       "target": 0.0211,
+       "target_scaled": 0.0211,
        "scale": 1.0,
-       "contribution": 0.000256
+       "contribution": 0.004107
       },
       {
        "key": "rim_variation_m",
        "weight": 0.07,
        "used": true,
-       "earth": 190.0,
-       "target": 577.5,
-       "target_scaled": 577.5,
+       "earth": 18.1805,
+       "target": 589.4,
+       "target_scaled": 589.4,
        "scale": 1.0,
-       "contribution": 0.003964
+       "contribution": 0.008614
       },
       {
        "key": "rim_radius_cv",
        "weight": 0.08,
        "used": true,
-       "earth": 0.138,
-       "target": 0.011,
-       "target_scaled": 0.011,
+       "earth": 0.6534,
+       "target": 0.016,
+       "target_scaled": 0.016,
        "scale": 1.0,
-       "contribution": 0.077539
+       "contribution": 0.078271
       },
       {
        "key": "mean_wall_slope",
        "weight": 0.12,
        "used": true,
-       "earth": 5.6,
-       "target": 17.5,
-       "target_scaled": 17.5,
+       "earth": 6.5103,
+       "target": 21.0,
+       "target_scaled": 21.0,
        "scale": 1.0,
-       "contribution": 0.01436
+       "contribution": 0.02129
       },
       {
        "key": "wall_slope_p90",
        "weight": 0.1,
        "used": true,
-       "earth": 10.5,
-       "target": 29.3,
-       "target_scaled": 29.3,
+       "earth": 11.3407,
+       "target": 25.0,
+       "target_scaled": 25.0,
        "scale": 1.0,
-       "contribution": 0.024606
+       "contribution": 0.012989
       },
       {
        "key": "circularity",
        "weight": 0.05,
        "used": true,
-       "earth": 0.81,
-       "target": 0.994,
-       "target_scaled": 0.994,
+       "earth": 0.6909,
+       "target": 0.992,
+       "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.019945
+       "contribution": 0.048065
       },
       {
        "key": "rim_coherence",
        "weight": 0.05,
        "used": true,
-       "earth": 0.792,
+       "earth": 0.6389,
+       "target": 0.917,
+       "target_scaled": 0.917,
+       "scale": 1.0,
+       "contribution": 0.018436
+      }
+     ]
+    },
+    {
+     "ref_id": "aristarchus",
+     "rank": 3,
+     "score": 0.437636,
+     "wed": 0.564995,
+     "cosine": 0.194299,
+     "coverage": 1.0,
+     "missing_earth": [],
+     "missing_reference": [],
+     "features": [
+      {
+       "key": "diameter_m",
+       "weight": 0.1,
+       "used": true,
+       "earth": 701.0349,
+       "target": 40481.0,
+       "target_scaled": 40481.0,
+       "scale": 1.0,
+       "contribution": 0.015856
+      },
+      {
+       "key": "depth_m",
+       "weight": 0.12,
+       "used": true,
+       "earth": 7.5916,
+       "target": 3109.0,
+       "target_scaled": 3109.0,
+       "scale": 1.0,
+       "contribution": 0.061269
+      },
+      {
+       "key": "depth_diameter_ratio",
+       "weight": 0.15,
+       "used": true,
+       "earth": 0.0108,
+       "target": 0.0768,
+       "target_scaled": 0.0768,
+       "scale": 1.0,
+       "contribution": 0.012395
+      },
+      {
+       "key": "rim_height_m",
+       "weight": 0.08,
+       "used": true,
+       "earth": 4.1175,
+       "target": 837.6,
+       "target_scaled": 837.6,
+       "scale": 1.0,
+       "contribution": 0.032445
+      },
+      {
+       "key": "rim_height_diameter_ratio",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.0059,
+       "target": 0.0207,
+       "target_scaled": 0.0207,
+       "scale": 1.0,
+       "contribution": 0.003894
+      },
+      {
+       "key": "rim_variation_m",
+       "weight": 0.07,
+       "used": true,
+       "earth": 18.1805,
+       "target": 577.5,
+       "target_scaled": 577.5,
+       "scale": 1.0,
+       "contribution": 0.008259
+      },
+      {
+       "key": "rim_radius_cv",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.6534,
+       "target": 0.011,
+       "target_scaled": 0.011,
+       "scale": 1.0,
+       "contribution": 0.079504
+      },
+      {
+       "key": "mean_wall_slope",
+       "weight": 0.12,
+       "used": true,
+       "earth": 6.5103,
+       "target": 17.5,
+       "target_scaled": 17.5,
+       "scale": 1.0,
+       "contribution": 0.012247
+      },
+      {
+       "key": "wall_slope_p90",
+       "weight": 0.1,
+       "used": true,
+       "earth": 11.3407,
+       "target": 29.3,
+       "target_scaled": 29.3,
+       "scale": 1.0,
+       "contribution": 0.022454
+      },
+      {
+       "key": "circularity",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.6909,
+       "target": 0.994,
+       "target_scaled": 0.994,
+       "scale": 1.0,
+       "contribution": 0.048706
+      },
+      {
+       "key": "rim_coherence",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.6389,
        "target": 0.944,
        "target_scaled": 0.944,
        "scale": 1.0,
-       "contribution": 0.005507
+       "contribution": 0.02219
+      }
+     ]
+    },
+    {
+     "ref_id": "faustini",
+     "rank": 4,
+     "score": 0.434931,
+     "wed": 0.536843,
+     "cosine": 0.164329,
+     "coverage": 1.0,
+     "missing_earth": [],
+     "missing_reference": [],
+     "features": [
+      {
+       "key": "diameter_m",
+       "weight": 0.1,
+       "used": true,
+       "earth": 701.0349,
+       "target": 45982.0,
+       "target_scaled": 45982.0,
+       "scale": 1.0,
+       "contribution": 0.020545
+      },
+      {
+       "key": "depth_m",
+       "weight": 0.12,
+       "used": true,
+       "earth": 7.5916,
+       "target": 3048.0,
+       "target_scaled": 3048.0,
+       "scale": 1.0,
+       "contribution": 0.058882
+      },
+      {
+       "key": "depth_diameter_ratio",
+       "weight": 0.15,
+       "used": true,
+       "earth": 0.0108,
+       "target": 0.0663,
+       "target_scaled": 0.0663,
+       "scale": 1.0,
+       "contribution": 0.008763
+      },
+      {
+       "key": "rim_height_m",
+       "weight": 0.08,
+       "used": true,
+       "earth": 4.1175,
+       "target": 792.8,
+       "target_scaled": 792.8,
+       "scale": 1.0,
+       "contribution": 0.029051
+      },
+      {
+       "key": "rim_height_diameter_ratio",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.0059,
+       "target": 0.0172,
+       "target_scaled": 0.0172,
+       "scale": 1.0,
+       "contribution": 0.002273
+      },
+      {
+       "key": "rim_variation_m",
+       "weight": 0.07,
+       "used": true,
+       "earth": 18.1805,
+       "target": 564.8,
+       "target_scaled": 564.8,
+       "scale": 1.0,
+       "contribution": 0.007888
+      },
+      {
+       "key": "rim_radius_cv",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.6534,
+       "target": 0.015,
+       "target_scaled": 0.015,
+       "scale": 1.0,
+       "contribution": 0.078517
+      },
+      {
+       "key": "mean_wall_slope",
+       "weight": 0.12,
+       "used": true,
+       "earth": 6.5103,
+       "target": 15.3,
+       "target_scaled": 15.3,
+       "scale": 1.0,
+       "contribution": 0.007835
+      },
+      {
+       "key": "wall_slope_p90",
+       "weight": 0.1,
+       "used": true,
+       "earth": 11.3407,
+       "target": 19.1,
+       "target_scaled": 19.1,
+       "scale": 1.0,
+       "contribution": 0.004191
+      },
+      {
+       "key": "circularity",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.6909,
+       "target": 0.992,
+       "target_scaled": 0.992,
+       "scale": 1.0,
+       "contribution": 0.048065
+      },
+      {
+       "key": "rim_coherence",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.6389,
+       "target": 0.944,
+       "target_scaled": 0.944,
+       "scale": 1.0,
+       "contribution": 0.02219
       }
      ]
     },
     {
      "ref_id": "copernicus",
      "rank": 5,
-     "score": 0.523968,
-     "wed": 0.520794,
-     "cosine": 0.373425,
+     "score": 0.421515,
+     "wed": 0.589901,
+     "cosine": 0.174039,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -7755,111 +7781,111 @@ export const PIPELINE = {
        "key": "diameter_m",
        "weight": 0.1,
        "used": true,
-       "earth": 6995.0,
+       "earth": 701.0349,
        "target": 96100.0,
        "target_scaled": 96100.0,
        "scale": 1.0,
-       "contribution": 0.080409
+       "contribution": 0.091194
       },
       {
        "key": "depth_m",
        "weight": 0.12,
        "used": true,
-       "earth": 128.0,
+       "earth": 7.5916,
        "target": 3525.2,
        "target_scaled": 3525.2,
        "scale": 1.0,
-       "contribution": 0.074547
+       "contribution": 0.078816
       },
       {
        "key": "depth_diameter_ratio",
        "weight": 0.15,
        "used": true,
-       "earth": 0.0183,
+       "earth": 0.0108,
        "target": 0.0367,
        "target_scaled": 0.0367,
        "scale": 1.0,
-       "contribution": 0.000964
+       "contribution": 0.001906
       },
       {
        "key": "rim_height_m",
        "weight": 0.08,
        "used": true,
-       "earth": 118.5,
+       "earth": 4.1175,
        "target": 759.2,
        "target_scaled": 759.2,
        "scale": 1.0,
-       "contribution": 0.019756
+       "contribution": 0.026628
       },
       {
        "key": "rim_height_diameter_ratio",
        "weight": 0.08,
        "used": true,
-       "earth": 0.0169,
+       "earth": 0.0059,
        "target": 0.0079,
        "target_scaled": 0.0079,
        "scale": 1.0,
-       "contribution": 0.001435
+       "contribution": 7.3e-05
       },
       {
        "key": "rim_variation_m",
        "weight": 0.07,
        "used": true,
-       "earth": 190.0,
+       "earth": 18.1805,
        "target": 235.0,
        "target_scaled": 235.0,
        "scale": 1.0,
-       "contribution": 5.3e-05
+       "contribution": 0.001241
       },
       {
        "key": "rim_radius_cv",
        "weight": 0.08,
        "used": true,
-       "earth": 0.138,
+       "earth": 0.6534,
        "target": 0.035,
        "target_scaled": 0.035,
        "scale": 1.0,
-       "contribution": 0.051002
+       "contribution": 0.073674
       },
       {
        "key": "mean_wall_slope",
        "weight": 0.12,
        "used": true,
-       "earth": 5.6,
+       "earth": 6.5103,
        "target": 13.7,
        "target_scaled": 13.7,
        "scale": 1.0,
-       "contribution": 0.006653
+       "contribution": 0.005242
       },
       {
        "key": "wall_slope_p90",
        "weight": 0.1,
        "used": true,
-       "earth": 10.5,
+       "earth": 11.3407,
        "target": 29.3,
        "target_scaled": 29.3,
        "scale": 1.0,
-       "contribution": 0.024606
+       "contribution": 0.022454
       },
       {
        "key": "circularity",
        "weight": 0.05,
        "used": true,
-       "earth": 0.81,
+       "earth": 0.6909,
        "target": 0.94,
        "target_scaled": 0.94,
        "scale": 1.0,
-       "contribution": 0.009956
+       "contribution": 0.032897
       },
       {
        "key": "rim_coherence",
        "weight": 0.05,
        "used": true,
-       "earth": 0.792,
+       "earth": 0.6389,
        "target": 0.88,
        "target_scaled": 0.88,
        "scale": 1.0,
-       "contribution": 0.001846
+       "contribution": 0.013857
       }
      ]
     }
@@ -7911,133 +7937,11 @@ export const PIPELINE = {
    "confidence": "baixa",
    "matches": [
     {
-     "ref_id": "de_gerlache",
-     "rank": 1,
-     "score": 0.654078,
-     "wed": 0.407292,
-     "cosine": 0.597443,
-     "coverage": 1.0,
-     "missing_earth": [],
-     "missing_reference": [],
-     "features": [
-      {
-       "key": "diameter_m",
-       "weight": 0.1,
-       "used": true,
-       "earth": 14400.0,
-       "target": 32612.0,
-       "target_scaled": 32612.0,
-       "scale": 1.0,
-       "contribution": 0.003359
-      },
-      {
-       "key": "depth_m",
-       "weight": 0.12,
-       "used": true,
-       "earth": 263.3,
-       "target": 2797.3,
-       "target_scaled": 2797.3,
-       "scale": 1.0,
-       "contribution": 0.041476
-      },
-      {
-       "key": "depth_diameter_ratio",
-       "weight": 0.15,
-       "used": true,
-       "earth": 0.0183,
-       "target": 0.0858,
-       "target_scaled": 0.0858,
-       "scale": 1.0,
-       "contribution": 0.012976
-      },
-      {
-       "key": "rim_height_m",
-       "weight": 0.08,
-       "used": true,
-       "earth": 84.2,
-       "target": 688.5,
-       "target_scaled": 688.5,
-       "scale": 1.0,
-       "contribution": 0.017575
-      },
-      {
-       "key": "rim_height_diameter_ratio",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.0058,
-       "target": 0.0211,
-       "target_scaled": 0.0211,
-       "scale": 1.0,
-       "contribution": 0.004147
-      },
-      {
-       "key": "rim_variation_m",
-       "weight": 0.07,
-       "used": true,
-       "earth": 118.5,
-       "target": 589.4,
-       "target_scaled": 589.4,
-       "scale": 1.0,
-       "contribution": 0.005854
-      },
-      {
-       "key": "rim_radius_cv",
-       "weight": 0.08,
-       "used": true,
-       "earth": 0.087,
-       "target": 0.016,
-       "target_scaled": 0.016,
-       "scale": 1.0,
-       "contribution": 0.024234
-      },
-      {
-       "key": "mean_wall_slope",
-       "weight": 0.12,
-       "used": true,
-       "earth": 8.0,
-       "target": 21.0,
-       "target_scaled": 21.0,
-       "scale": 1.0,
-       "contribution": 0.017138
-      },
-      {
-       "key": "wall_slope_p90",
-       "weight": 0.1,
-       "used": true,
-       "earth": 16.1,
-       "target": 25.0,
-       "target_scaled": 25.0,
-       "scale": 1.0,
-       "contribution": 0.005514
-      },
-      {
-       "key": "circularity",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.867,
-       "target": 0.992,
-       "target_scaled": 0.992,
-       "scale": 1.0,
-       "contribution": 0.009205
-      },
-      {
-       "key": "rim_coherence",
-       "weight": 0.05,
-       "used": true,
-       "earth": 0.597,
-       "target": 0.917,
-       "target_scaled": 0.917,
-       "scale": 1.0,
-       "contribution": 0.024408
-      }
-     ]
-    },
-    {
      "ref_id": "bessel",
-     "rank": 2,
-     "score": 0.64889,
-     "wed": 0.436724,
-     "cosine": 0.611736,
+     "rank": 1,
+     "score": 0.751728,
+     "wed": 0.401611,
+     "cosine": 0.836222,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -8060,7 +7964,7 @@ export const PIPELINE = {
        "target": 1747.6,
        "target_scaled": 1747.6,
        "scale": 1.0,
-       "contribution": 0.014231
+       "contribution": 0.014033
       },
       {
        "key": "depth_diameter_ratio",
@@ -8080,7 +7984,7 @@ export const PIPELINE = {
        "target": 427.3,
        "target_scaled": 427.3,
        "scale": 1.0,
-       "contribution": 0.005665
+       "contribution": 0.005498
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -8110,7 +8014,7 @@ export const PIPELINE = {
        "target": 0.009,
        "target_scaled": 0.009,
        "scale": 1.0,
-       "contribution": 0.029248
+       "contribution": 0.001172
       },
       {
        "key": "mean_wall_slope",
@@ -8140,7 +8044,7 @@ export const PIPELINE = {
        "target": 0.997,
        "target_scaled": 0.997,
        "scale": 1.0,
-       "contribution": 0.009956
+       "contribution": 0.00896
       },
       {
        "key": "rim_coherence",
@@ -8155,11 +8059,133 @@ export const PIPELINE = {
      ]
     },
     {
+     "ref_id": "de_gerlache",
+     "rank": 2,
+     "score": 0.746849,
+     "wed": 0.37493,
+     "cosine": 0.798544,
+     "coverage": 1.0,
+     "missing_earth": [],
+     "missing_reference": [],
+     "features": [
+      {
+       "key": "diameter_m",
+       "weight": 0.1,
+       "used": true,
+       "earth": 14400.0,
+       "target": 32612.0,
+       "target_scaled": 32612.0,
+       "scale": 1.0,
+       "contribution": 0.003323
+      },
+      {
+       "key": "depth_m",
+       "weight": 0.12,
+       "used": true,
+       "earth": 263.3,
+       "target": 2797.3,
+       "target_scaled": 2797.3,
+       "scale": 1.0,
+       "contribution": 0.040901
+      },
+      {
+       "key": "depth_diameter_ratio",
+       "weight": 0.15,
+       "used": true,
+       "earth": 0.0183,
+       "target": 0.0858,
+       "target_scaled": 0.0858,
+       "scale": 1.0,
+       "contribution": 0.012976
+      },
+      {
+       "key": "rim_height_m",
+       "weight": 0.08,
+       "used": true,
+       "earth": 84.2,
+       "target": 688.5,
+       "target_scaled": 688.5,
+       "scale": 1.0,
+       "contribution": 0.017055
+      },
+      {
+       "key": "rim_height_diameter_ratio",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.0058,
+       "target": 0.0211,
+       "target_scaled": 0.0211,
+       "scale": 1.0,
+       "contribution": 0.004147
+      },
+      {
+       "key": "rim_variation_m",
+       "weight": 0.07,
+       "used": true,
+       "earth": 118.5,
+       "target": 589.4,
+       "target_scaled": 589.4,
+       "scale": 1.0,
+       "contribution": 0.005854
+      },
+      {
+       "key": "rim_radius_cv",
+       "weight": 0.08,
+       "used": true,
+       "earth": 0.087,
+       "target": 0.016,
+       "target_scaled": 0.016,
+       "scale": 1.0,
+       "contribution": 0.000971
+      },
+      {
+       "key": "mean_wall_slope",
+       "weight": 0.12,
+       "used": true,
+       "earth": 8.0,
+       "target": 21.0,
+       "target_scaled": 21.0,
+       "scale": 1.0,
+       "contribution": 0.017138
+      },
+      {
+       "key": "wall_slope_p90",
+       "weight": 0.1,
+       "used": true,
+       "earth": 16.1,
+       "target": 25.0,
+       "target_scaled": 25.0,
+       "scale": 1.0,
+       "contribution": 0.005514
+      },
+      {
+       "key": "circularity",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.867,
+       "target": 0.992,
+       "target_scaled": 0.992,
+       "scale": 1.0,
+       "contribution": 0.008284
+      },
+      {
+       "key": "rim_coherence",
+       "weight": 0.05,
+       "used": true,
+       "earth": 0.597,
+       "target": 0.917,
+       "target_scaled": 0.917,
+       "scale": 1.0,
+       "contribution": 0.024408
+      }
+     ]
+    },
+    {
      "ref_id": "aristarchus",
      "rank": 3,
-     "score": 0.636242,
-     "wed": 0.439326,
-     "cosine": 0.582493,
+     "score": 0.735321,
+     "wed": 0.404718,
+     "cosine": 0.798132,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -8172,7 +8198,7 @@ export const PIPELINE = {
        "target": 40481.0,
        "target_scaled": 40481.0,
        "scale": 1.0,
-       "contribution": 0.006889
+       "contribution": 0.006816
       },
       {
        "key": "depth_m",
@@ -8182,7 +8208,7 @@ export const PIPELINE = {
        "target": 3109.0,
        "target_scaled": 3109.0,
        "scale": 1.0,
-       "contribution": 0.052308
+       "contribution": 0.051582
       },
       {
        "key": "depth_diameter_ratio",
@@ -8202,7 +8228,7 @@ export const PIPELINE = {
        "target": 837.6,
        "target_scaled": 837.6,
        "scale": 1.0,
-       "contribution": 0.027317
+       "contribution": 0.02651
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -8232,7 +8258,7 @@ export const PIPELINE = {
        "target": 0.011,
        "target_scaled": 0.011,
        "scale": 1.0,
-       "contribution": 0.027768
+       "contribution": 0.001113
       },
       {
        "key": "mean_wall_slope",
@@ -8262,7 +8288,7 @@ export const PIPELINE = {
        "target": 0.994,
        "target_scaled": 0.994,
        "scale": 1.0,
-       "contribution": 0.009502
+       "contribution": 0.008551
       },
       {
        "key": "rim_coherence",
@@ -8279,9 +8305,9 @@ export const PIPELINE = {
     {
      "ref_id": "faustini",
      "rank": 4,
-     "score": 0.635214,
-     "wed": 0.409067,
-     "cosine": 0.551949,
+     "score": 0.72459,
+     "wed": 0.375468,
+     "cosine": 0.743417,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -8294,7 +8320,7 @@ export const PIPELINE = {
        "target": 45982.0,
        "target_scaled": 45982.0,
        "scale": 1.0,
-       "contribution": 0.010101
+       "contribution": 0.009994
       },
       {
        "key": "depth_m",
@@ -8304,7 +8330,7 @@ export const PIPELINE = {
        "target": 3048.0,
        "target_scaled": 3048.0,
        "scale": 1.0,
-       "contribution": 0.050089
+       "contribution": 0.049394
       },
       {
        "key": "depth_diameter_ratio",
@@ -8324,7 +8350,7 @@ export const PIPELINE = {
        "target": 792.8,
        "target_scaled": 792.8,
        "scale": 1.0,
-       "contribution": 0.024165
+       "contribution": 0.023451
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -8354,7 +8380,7 @@ export const PIPELINE = {
        "target": 0.015,
        "target_scaled": 0.015,
        "scale": 1.0,
-       "contribution": 0.024922
+       "contribution": 0.000999
       },
       {
        "key": "mean_wall_slope",
@@ -8384,7 +8410,7 @@ export const PIPELINE = {
        "target": 0.992,
        "target_scaled": 0.992,
        "scale": 1.0,
-       "contribution": 0.009205
+       "contribution": 0.008284
       },
       {
        "key": "rim_coherence",
@@ -8401,9 +8427,9 @@ export const PIPELINE = {
     {
      "ref_id": "copernicus",
      "rank": 5,
-     "score": 0.63508,
-     "wed": 0.458594,
-     "cosine": 0.597005,
+     "score": 0.700746,
+     "wed": 0.441814,
+     "cosine": 0.74602,
      "coverage": 1.0,
      "missing_earth": [],
      "missing_reference": [],
@@ -8416,7 +8442,7 @@ export const PIPELINE = {
        "target": 96100.0,
        "target_scaled": 96100.0,
        "scale": 1.0,
-       "contribution": 0.067599
+       "contribution": 0.066884
       },
       {
        "key": "depth_m",
@@ -8426,7 +8452,7 @@ export const PIPELINE = {
        "target": 3525.2,
        "target_scaled": 3525.2,
        "scale": 1.0,
-       "contribution": 0.068727
+       "contribution": 0.067774
       },
       {
        "key": "depth_diameter_ratio",
@@ -8446,7 +8472,7 @@ export const PIPELINE = {
        "target": 759.2,
        "target_scaled": 759.2,
        "scale": 1.0,
-       "contribution": 0.021928
+       "contribution": 0.02128
       },
       {
        "key": "rim_height_diameter_ratio",
@@ -8476,7 +8502,7 @@ export const PIPELINE = {
        "target": 0.035,
        "target_scaled": 0.035,
        "scale": 1.0,
-       "contribution": 0.012999
+       "contribution": 0.000521
       },
       {
        "key": "mean_wall_slope",
@@ -8506,7 +8532,7 @@ export const PIPELINE = {
        "target": 0.94,
        "target_scaled": 0.94,
        "scale": 1.0,
-       "contribution": 0.003139
+       "contribution": 0.002825
       },
       {
        "key": "rim_coherence",
@@ -8549,7 +8575,7 @@ export const PIPELINE = {
   "fazenda_tanque": {
    "kind": "crater",
    "status": "excluded",
-   "reason": "sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.778)",
+   "reason": "sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.08333333333333333)",
    "name": "Estromatólitos da Fazenda Tanque (Morro do Chapéu)",
    "category": "afloramento",
    "lat": -11.54306,
@@ -8560,7 +8586,7 @@ export const PIPELINE = {
   "pedra_cariri": {
    "kind": "crater",
    "status": "excluded",
-   "reason": "sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.583)",
+   "reason": "sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.3888888888888889)",
    "name": "Pedra Cariri (Geopark Araripe)",
    "category": "afloramento",
    "lat": -7.09,
@@ -8571,7 +8597,7 @@ export const PIPELINE = {
   "pedreira_mdc": {
    "kind": "crater",
    "status": "excluded",
-   "reason": "sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.444)",
+   "reason": "sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.4861111111111111)",
    "name": "Pedreira de Morro do Chapéu (BA-052)",
    "category": "afloramento",
    "lat": -11.55889,
@@ -8582,7 +8608,7 @@ export const PIPELINE = {
   "pico_cabugi": {
    "kind": "crater",
    "status": "excluded",
-   "reason": "sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.611)",
+   "reason": "sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.125)",
    "name": "Pico do Cabugi (Lajes/Angicos)",
    "category": "vulcanico",
    "lat": -5.71,
@@ -8604,7 +8630,7 @@ export const PIPELINE = {
   "serra_tombador": {
    "kind": "crater",
    "status": "excluded",
-   "reason": "sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.819)",
+   "reason": "sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.5416666666666666)",
    "name": "Serra do Tombador (BR-324)",
    "category": "afloramento",
    "lat": -11.09611,

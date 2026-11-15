@@ -138,5 +138,205 @@
       "east": 76.53667451436951
     },
     "data_download": "2026-11-15T13:11:34"
+  },
+  "lencois": {
+    "id": "lencois",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\lencois_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 324,
+    "altura_pixels": 323,
+    "limites": {
+      "south": -2.6449155587495508,
+      "north": -2.5550844412504494,
+      "west": -43.04496184382985,
+      "east": -42.95503815617015
+    },
+    "data_download": "2026-11-15T19:10:22"
+  },
+  "jericoacoara": {
+    "id": "jericoacoara",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\jericoacoara_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 162,
+    "altura_pixels": 162,
+    "limites": {
+      "south": -2.8474577793747757,
+      "north": -2.8025422206252246,
+      "west": -40.51248510490376,
+      "east": -40.467514895096244
+    },
+    "data_download": "2026-11-15T19:10:34"
+  },
+  "rosado": {
+    "id": "rosado",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\rosado_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 162,
+    "altura_pixels": 162,
+    "limites": {
+      "south": -5.052457779374776,
+      "north": -5.007542220625225,
+      "west": -36.867544600278514,
+      "east": -36.822455399721484
+    },
+    "data_download": "2026-11-15T19:10:47"
+  },
+  "ibiraba": {
+    "id": "ibiraba",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\ibiraba_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 263,
+    "altura_pixels": 259,
+    "limites": {
+      "south": -10.74593244699964,
+      "north": -10.674067553000361,
+      "west": -42.836569473453665,
+      "east": -42.76343052654633
+    },
+    "data_download": "2026-11-15T19:10:59"
+  },
+  "pedra_cariri": {
+    "id": "pedra_cariri",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\pedra_cariri_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 163,
+    "altura_pixels": 162,
+    "limites": {
+      "south": -7.112457779374775,
+      "north": -7.067542220625224,
+      "west": -39.722630826092896,
+      "east": -39.67736917390711
+    },
+    "data_download": "2026-11-15T19:11:11"
+  },
+  "fazenda_tanque": {
+    "id": "fazenda_tanque",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\fazenda_tanque_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 165,
+    "altura_pixels": 162,
+    "limites": {
+      "south": -11.565517779374776,
+      "north": -11.520602220625225,
+      "west": -41.30875137343179,
+      "east": -41.262908626568205
+    },
+    "data_download": "2026-11-15T19:11:22"
+  },
+  "pedreira_mdc": {
+    "id": "pedreira_mdc",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\pedreira_mdc_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 165,
+    "altura_pixels": 162,
+    "limites": {
+      "south": -11.581347779374775,
+      "north": -11.536432220625224,
+      "west": -41.175702667768896,
+      "east": -41.129857332231104
+    },
+    "data_download": "2026-11-15T19:11:35"
+  },
+  "serra_tombador": {
+    "id": "serra_tombador",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\serra_tombador_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 165,
+    "altura_pixels": 162,
+    "limites": {
+      "south": -11.118567779374775,
+      "north": -11.073652220625224,
+      "west": -40.689275609068396,
+      "east": -40.643504390931604
+    },
+    "data_download": "2026-11-15T19:11:47"
+  },
+  "serra_verde": {
+    "id": "serra_verde",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\serra_verde_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 163,
+    "altura_pixels": 162,
+    "limites": {
+      "south": -5.958567779374776,
+      "north": -5.913652220625225,
+      "west": -36.38563885088132,
+      "east": -36.34048114911867
+    },
+    "data_download": "2026-11-15T19:11:58"
+  },
+  "pico_cabugi": {
+    "id": "pico_cabugi",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\pico_cabugi_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 163,
+    "altura_pixels": 162,
+    "limites": {
+      "south": -5.7324577793747755,
+      "north": -5.687542220625224,
+      "west": -36.34256976558084,
+      "east": -36.29743023441916
+    },
+    "data_download": "2026-11-15T19:12:10"
   }
 }
