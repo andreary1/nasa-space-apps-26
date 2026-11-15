@@ -9,6 +9,7 @@ import { buildComparison, metricPairs } from '../../deliverables/demo/js/service
 import { panelLocation } from '../../deliverables/demo/js/utils/formatters.js';
 import { profilePaths, radarPoints } from '../../deliverables/demo/js/services/chartData.js';
 import { PRESETS } from '../../deliverables/demo/js/data/presets.js';
+import { compactTable } from '../../deliverables/demo/js/components/compactComparison.js';
 
 // Independent oracle: execute the complete original script up to UI initialization.
 const html = execFileSync('git', ['show', 'f0ddeec:deliverables/demo/index.html'], {encoding: 'utf8'});
@@ -65,3 +66,20 @@ const beforeProfile = profilePaths(dune, MARS_DUNE_REFERENCES[0]);
 const afterProfile = profilePaths({...dune, metrics: {...dune.metrics, wavelength: dune.metrics.wavelength * 2}}, MARS_DUNE_REFERENCES[0]);
 assert.notDeepEqual(beforeProfile, afterProfile);
 console.log('PASS: reference catalogs, rankings, panel adapters, chart normalization, null/undefined/NaN, legitimate zero and data-dependent profiles.');
+
+for (const site of SITES_DATA) {
+  const location = panelLocation(buildComparison(site));
+  const target = site.type === 'crater' ? 'lunar' : 'martian';
+  assert.equal(compactTable(location, target).rows.length, site.type === 'crater' ? 5 : 8);
+  assert.equal(compactTable(location, target === 'lunar' ? 'martian' : 'lunar'), null);
+}
+const barringer = panelLocation(buildComparison(SITES_DATA.find(site => site.id === 'barringer')));
+const lencois = panelLocation(buildComparison(SITES_DATA.find(site => site.id === 'lencois')));
+assert.equal(compactTable(barringer, 'lunar').demo, true);
+assert.deepEqual(compactTable(barringer, 'lunar').rows[2], ['Bordas', 'Elevadas', 'Elevadas']);
+assert.deepEqual(compactTable(lencois, 'martian').rows[4], ['Densidade de dunas', '—', '—']);
+assert.equal(compactTable(lencois, 'martian').rows[1][1], '45');
+assert.equal(lencois.comparison.earth.mean_height, 6.3, 'UI fixtures must not overwrite catalog metrics');
+const missing = panelLocation(buildComparison(incomplete));
+assert.equal(compactTable(missing, 'martian').rows[1][1], '—');
+console.log('PASS: compact five/eight-field tables, incompatible targets, isolated demo fixtures and missing data.');

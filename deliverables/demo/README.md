@@ -1,4 +1,4 @@
-# Planetary Analog Finder — frontend Kauan, motor main
+# Planetary Analog Finder — exploração e comparação
 
 Execute `python -m http.server 8000` na raiz e abra
 http://localhost:8000/deliverables/demo/. Não há instalação, build, CDN ou backend
@@ -12,9 +12,12 @@ A tela inicial é a exploração original: introdução e estatísticas à esque
 globo ocupando o fundo, legenda inferior e painéis flutuantes na seleção.
 Não contém o HTML de cards da main nem uma camada de overrides de Tailwind.
 
-`styles/kauan.css` é uma cópia integral, sem alterações, do CSS dessa branch.
-Logo, ícones SVG, texturas, atmosfera, cores, tipografia, espaçamentos, sombras,
-anéis de similaridade e transições de painéis são os originais. `panels.js` e
+`styles/kauan.css` permanece como base preservada dessa branch. O refinamento
+atual em `styles/refinement.css` remove a moldura externa, ocupa a viewport e
+adapta a tabela flutuante. O globo usa mapas de superfície e normais em 8K,
+continentes claros, oceanos azuis, nuvens translúcidas e iluminação difusa;
+telas até 1000 px ou GPUs sem texturas 8K recebem mapas em 2K. Os ícones,
+anéis de similaridade e transições de seleção são preservados. `panels.js` e
 o controlador do globo derivam dos componentes dessa branch. A seleção mantém
 centralização por quaternion, zoom de 4,5%, pausa de rotação e fechamento por Esc.
 Movimento reduzido, toque, teclado, foco e suspensão do loop continuam disponíveis.
@@ -32,9 +35,11 @@ interface original e não a quantidade de referências desse catálogo.
 - Os 24 pins substituem os seis locais demonstrativos, preservando as posições do
   catálogo main e os ícones da Kauan. Regiões densas apresentam sobreposição; todas
   as localidades também podem ser escolhidas pelo catálogo e seletor das páginas.
-- Os dois painéis flutuantes usam o mesmo modelo científico das páginas completas.
-  O compacto mostra cinco métricas, como o original, com acesso às 11 de crateras
-  ou sete de dunas. Os anéis só mostram o corpo com referências compatíveis:
+- O painel direito usa o mesmo modelo científico das páginas completas.
+  A tabela compacta possui três colunas e botões Lua/Marte. Lua começa selecionada
+  a cada nova localidade, com cinco categorias de crateras; Marte tem oito
+  categorias de dunas. Combinações incompatíveis exibem mensagem e campos ausentes
+  exibem “—”, sem confundir variação numérica de borda com descrição. Os anéis só mostram o corpo com referências compatíveis:
   crateras–Lua ou dunas–Marte; não há índice inventado para combinações ausentes.
 - Os filtros do globo aparecem durante a exploração; ficam ocultos enquanto os
   painéis estão abertos para não sobrepor os indicadores. Os filtros completos
@@ -42,7 +47,14 @@ interface original e não a quantidade de referências desse catálogo.
 - Mapa, comparação completa, análise, gráficos, relatórios e cadastro são extensões
   com os mesmos painéis claros, bordas, sombras, fontes e cores da Kauan.
 
-Os scores mockados e as tabelas ilustrativas da Kauan não são usados. Informações
+Os scores mockados da Kauan não são usados. Os exemplos pedidos para a tabela
+Barringer–Shackleton e Lençóis–dunas marcianas ficam isolados em
+`js/data/comparisonDemo.js`, explicitamente identificados como demonstrativos.
+Esses exemplos afetam **somente a tabela compacta**, não o catálogo, o contexto,
+os scores, rankings, relatórios ou gráficos. O painel informa a referência
+ilustrativa e que os valores são independentes dos scores do painel direito.
+Para as demais localidades, a tabela usa os dados disponíveis do catálogo.
+Informações
 como idade, sem dado no catálogo main, aparecem como não informadas. O catálogo,
 presets e seus textos foram preservados sem nova validação científica; inclusive
 o preset explicitamente ilustrativo de Shackleton. Não há novas medições.
@@ -57,7 +69,10 @@ Não há navegação principal por `scrollIntoView()`.
 O catálogo, a comparação completa e os gráficos são compartilhados entre páginas,
 sem clones. Trocar de página preserva seleção, filtros, região, formulário, aba
 de gráfico e canvas WebGL. O globo redimensiona ao reaparecer. As páginas extensas
-rolam dentro da área principal no desktop e naturalmente no mobile.
+usam a rolagem vertical principal, sem scroll de um dashboard embutido. O globo
+ocupa `100dvh`, com altura mínima de 720 px para não cortar os painéis. Em telas
+menores, os painéis entram no fluxo vertical. A sidebar mantém seus sete destinos
+e o menu mobile existente; somente a página atual fica destacada.
 
 Na análise, alternar Dunas/Crateras filtra o catálogo sem mudar a seleção sozinho.
 Relatórios permite consultar/copiar JSON e cadastrar; o cadastro abre Comparações.
@@ -71,6 +86,15 @@ Configurações informa que tema, unidades e preferências salvas estão indispo
 - `js/app.js`, `js/navigation.js`, `js/components/sidebar.js`: integração,
   estado, histórico, montagem de páginas e menu acessível.
 - `js/components/globe.js`, `globeController.js`, `panels.js`: experiência Kauan.
+- `styles/refinement.css`: enquadramento fullscreen e tabela compacta, sem alterar
+  os estilos base de gráficos, formulários ou componentes do mapa.
+- `js/components/compactComparison.js`: tabela única dinâmica, unidades de
+  apresentação, estados incompatíveis e transições com cancelamento. Fade de
+  saída de 110 ms, troca de linhas e fade/ajuste de altura de 220 ms; total de
+  aproximadamente 330 ms. Movimento reduzido torna a troca imediata. A aba Lua
+  tem fundo cinza e Marte, laranja suave; ambas têm texto branco quando ativas.
+- `js/data/comparisonDemo.js`: fixtures exclusivamente visuais, separados dos
+  dados originais e do motor de similaridade. Não há novas medições ou algoritmo.
 - `js/components/worldMap.js`, `comparison.js`, `metrics.js`, `charts.js`,
   `siteSelector.js`, `siteForm.js`, `toast.js`: componentes funcionais adaptados.
 - `js/data/`: catálogos, pesos/rótulos e presets originais.
@@ -80,6 +104,10 @@ Configurações informa que tema, unidades e preferências salvas estão indispo
 - `vendor/`, `assets/`: Three.js 0.170.0 e texturas locais da Kauan. Licença MIT em
   `vendor/THREE-LICENSE.txt`; texturas earth_atmos_2048, earth_normal_2048 e
   earth_specular_2048 dos exemplos oficiais Three.js r170.
+- As novas texturas são da Solar System Scope / INOVE, sob CC BY 4.0.
+  [Créditos, fontes e conversão dos normal maps](assets/ATTRIBUTION.md).
+  O carregamento desktop usa aproximadamente 17 MB, com mapas menores no mobile.
+  Não há dependências adicionais nem acesso a CDN em tempo de execução.
 
 Foram removidos o antigo `js/tailwind-config.js` e `styles/globe.css`: o CSS Kauan
 já contém os estilos completos do globo. Não há dois sistemas de estilos conflitantes.
@@ -116,24 +144,32 @@ $qaDir = Join-Path $env:TEMP 'paf-browser-qa'
 npm install --prefix $qaDir playwright --no-package-lock --no-audit --no-fund
 $env:PLAYWRIGHT_MODULE = Join-Path $qaDir 'node_modules/playwright'
 node tests/integration/demo-browser.cjs
+node tests/integration/demo-refinement.cjs
 git diff --check
 ```
 
 O teste de navegador precisa do servidor ativo e do Chrome; `BROWSER_EXECUTABLE`
 e `DEMO_URL` permitem alterar os padrões. Playwright é dependência opcional de QA,
-instalada fora do repositório. O teste serve uma cópia da branch Kauan em porta
-temporária para comparação visual, sem mudar o checkout ou o histórico.
+instalada fora do repositório. O teste verifica a geometria fullscreen em
+1366×768, 1600×900 e 1920×1080, sem depender do antigo enquadramento com moldura.
 
 Verificações executadas:
 
-- Estática: 130 IDs únicos, 24 scripts, sintaxe, imports, assets e grafo sem ciclos.
+- Estática: 140 IDs únicos, 27 scripts, sintaxe, imports, assets e grafo sem ciclos.
 - Regressão: 24 registros e todos os catálogos intactos; 200 pares com mesmos
   score/WED/cosseno; mesmos rankings, normalização dos gráficos, adaptadores dos
   painéis, ausência de dados e zeros legítimos.
-- Chrome: geometria do frame, dashboard, sidebar e globo igual à referência a
-  menos de 1 px em 1366×768 e 1920×1080; mesma posição da introdução e legenda.
+- Chrome: dashboard com largura/altura da viewport e sidebar na borda esquerda,
+  sem overflow horizontal em 1366×768, 1600×900 e 1920×1080.
   Capturas em `%TEMP%/paf-design-qa/` para inspeção visual original/integrado,
   seleção e mobile.
+- Tabela: três colunas, cinco/oito categorias, fixtures isolados, dados ausentes,
+  reset para Lua e alternância sem alterar scores. As oito métricas podem usar
+  rolagem apenas dentro da tabela quando a altura disponível exigir.
+- `demo-refinement.cjs`: ambos os estados da tabela em 1920×1080, 1600×900,
+  1366×768 e 390×844, com capturas na pasta temporária; testes de transição normal,
+  cancelamento por troca rápida e Esc. A altura do painel de contexto respeita
+  os offsets superior e inferior para manter fichas longas acessíveis.
 - Fluxos: painéis e anéis, teclado/arraste/Esc, sete páginas, histórico,
   seleção/canvas/filtros preservados, barras/radar/perfil, cadastro, JSON, menu
   mobile e ausência de overflow nas sete páginas a 390 px.
@@ -143,6 +179,13 @@ O pipeline Python não foi alterado nem reexecutado nesta etapa. Na verificaçã
 anterior, ingestão passou; morfometria, matching e pipeline ficaram impedidos por
 ausência de `scipy`/`sklearn` no ambiente. `pytest` também não estava instalado.
 Não houve commit ou push.
+
+Limites visuais: requer WebGL 2 e a aparência final depende da GPU. A projeção e
+texturas cobrem o planeta inteiro, sem usar a imagem de referência como fundo.
+Pins das 24 localidades mantêm as coordenadas e podem se sobrepor em regiões
+densas. O fullscreen preserva as sete páginas atuais e suas rotas, em vez de
+reconstruir a navegação. Nenhum dado científico ou arquivo raster do pipeline foi
+alterado; os novos mapas são apenas assets de visualização.
 
 ## Contexto geográfico
 

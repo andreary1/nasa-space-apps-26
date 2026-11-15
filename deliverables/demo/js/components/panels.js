@@ -1,4 +1,5 @@
 import { GeographicalContext } from './geographicalContext.js';
+import { CompactComparison } from './compactComparison.js';
 
 const formatScore = (value) =>
   value.toLocaleString('pt-BR', {
@@ -12,6 +13,7 @@ export class Panels {
   constructor(reducedMotion) {
     this.reducedMotion = reducedMotion;
     this.context = new GeographicalContext();
+    this.compact = new CompactComparison(reducedMotion);
     this.elements = [...document.querySelectorAll('.panel')];
     this.scoreElements = ['lunar', 'martian'].map((name) => ({
       value: document.getElementById(`${name}-score`),
@@ -32,22 +34,7 @@ export class Panels {
       `Local: ${location.name} (Terra)`;
     document.getElementById('similarity-subtitle').textContent =
       `${location.shortName} × Referências`;
-    const tbody = document.getElementById('metrics');
-    tbody.replaceChildren(
-      ...location.rows.map((row, index) => {
-        const tr = document.createElement('tr');
-        const heading = document.createElement('th');
-        heading.scope = 'row';
-        heading.textContent = location.metricLabels[index];
-        tr.append(heading);
-        row.forEach((value) => {
-          const td = document.createElement('td');
-          td.textContent = value;
-          tr.append(td);
-        });
-        return tr;
-      }),
-    );
+    this.compact.prepare(location);
     const details = [
       ['pin', 'Localização', location.region],
       [
@@ -100,6 +87,7 @@ export class Panels {
   }
 
   hide() {
+    this.compact.cancel();
     this.visible = false;
     this.started = null;
     this.elements.forEach((element) => {
@@ -126,4 +114,6 @@ export class Panels {
     });
     if (progress === 1) this.started = null;
   }
+
+  dispose() { this.compact.dispose(); }
 }

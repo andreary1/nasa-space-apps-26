@@ -157,22 +157,27 @@
                 inert
                 aria-hidden="true"
               >
-                <h2 id="comparison-title">Comparação de Características</h2>
-                <p id="comparison-location"></p>
-                <div class="table-scroll">
-                  <table>
+                <div class="compact-heading">
+                  <div><h2 id="comparison-title">Comparação de Características</h2><p id="comparison-location"></p></div>
+                  <div class="compact-targets" role="group" aria-label="Referência da comparação">
+                    <button type="button" data-comparison-target="lunar" aria-pressed="true" aria-controls="compact-table"><svg aria-hidden="true"><use href="#i-moon"/></svg>Lua</button>
+                    <button type="button" data-comparison-target="martian" aria-pressed="false" aria-controls="compact-table"><svg aria-hidden="true"><use href="#i-mars"/></svg>Marte</button>
+                  </div>
+                </div>
+                <p id="compact-reference" class="compact-reference" role="status"></p>
+                <div class="table-scroll" id="compact-table-content">
+                  <table id="compact-table" aria-label="Características da localidade terrestre e referência planetária">
                     <thead>
                       <tr>
                         <th scope="col">Métrica</th>
                         <th scope="col">Terra</th>
-                        <th scope="col">Lua</th>
-                        <th scope="col">Marte</th>
+                        <th scope="col" id="compact-target-name">Lua</th>
                       </tr>
                     </thead>
                     <tbody id="metrics"></tbody>
                   </table>
                 </div>
-                <p class="mock-note">Catálogo herdado · <button class="text-button" data-action="navigate" data-value="comparisons">Todas as métricas e gráficos →</button></p>
+                <p class="mock-note"><span id="compact-data-note">Dados demonstrativos · sem validação científica</span><br><button class="text-button" data-action="navigate" data-value="comparisons">Todas as métricas e gráficos →</button></p>
               </section>
 
               <section

@@ -23,5 +23,7 @@ Projeto para comparar dunas marcianas e crateras lunares com localidades terrest
 1. Documentar o desafio e as fontes de dados.
 2. Definir o contrato de dados em `docs/methodology/data-contract.md`.
 3. Implementar a ingestão, o processamento e os critérios de comparação.
+4. Realizar o tratamento de dados
+5. Aprimorar o frontend
 
 Estrutura inicial: ainda não há dados, dependências ou código executável. Os arquivos `.gitkeep` preservam as pastas vazias quando o projeto for adicionado ao Git.
