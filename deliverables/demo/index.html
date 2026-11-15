@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e8ecf5" />
+    <meta
+      name="description"
+      content="Explore localidades terrestres e comparações demonstrativas com feições da Lua e de Marte."
+    />
+    <title>Análogos Planetários · Planetary Analog Finder</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='13' fill='none' stroke='%238963e9' stroke-width='9'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg
+      class="icon-library"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="i-grid" viewBox="0 0 24 24">
+          <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" />
+        </symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24">
+          <path d="m3 8 9-5 9 5-9 5zM3 12l9 5 9-5M3 16l9 5 9-5" />
+        </symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="m6 5 3 4-1 4 4 2 1 5M14 3l-1 5 5 2 3-1" />
+        </symbol>
+        <symbol id="i-table" viewBox="0 0 24 24">
+          <path d="M3 4h18v16H3zM3 9h18M3 13h18" />
+        </symbol>
+        <symbol id="i-settings" viewBox="0 0 24 24">
+          <path
+            d="m10 3-1 3-3 1-3 3 2 3v4l4 1 2 3 4-1 1-3 4-2-1-4 1-3-4-2-2-3z"
+          />
+          <circle cx="12" cy="12" r="3" />
+        </symbol>
+        <symbol id="i-mountain" viewBox="0 0 24 24">
+          <path d="m2 20 8-15 8 15zM13 10l3-5 7 15h-5" />
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24">
+          <path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z" />
+        </symbol>
+        <symbol id="i-mars" viewBox="0 0 24 24">
+          <circle cx="9" cy="15" r="6" />
+          <path d="m13 11 8-8M15 3h6v6" />
+        </symbol>
+        <symbol id="i-crater" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="8" cy="8" r="1.5" />
+          <circle cx="15" cy="14" r="2" />
+          <path d="m8 16 1 1M16 7h.01" />
+        </symbol>
+        <symbol id="i-dune" viewBox="0 0 24 24">
+          <path
+            d="M2 17c5 0 5-10 10-10s5 10 10 10M2 20h20M5 17c4 0 5-6 7-6s4 6 7 6"
+          />
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24">
+          <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+          <circle cx="12" cy="10" r="2" />
+        </symbol>
+        <symbol id="i-target" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="7" />
+          <circle cx="12" cy="12" r="3" />
+          <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+        </symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24">
+          <path d="M4 5h16v16H4zM4 10h16M8 3v4M16 3v4" />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <main>
+      <section class="planetary-section" aria-labelledby="explorer-title">
+        <div class="dashboard-frame">
+          <div class="dashboard">
+            <aside class="sidebar" aria-label="Ferramentas de exploração">
+              <a
+                class="brand"
+                href="#explorer-title"
+                aria-label="Planetary Analog Finder"
+                ><span></span
+              ></a>
+              <nav aria-label="Navegação da demonstração">
+                <button
+                  class="nav-button"
+                  disabled
+                  aria-label="Visão geral — em breve"
+                  data-tooltip="Visão geral · em breve"
+                >
+                  <svg><use href="#i-grid" /></svg>
+                </button>
+                <button
+                  class="nav-button"
+                  disabled
+                  aria-label="Camadas — em breve"
+                  data-tooltip="Camadas · em breve"
+                >
+                  <svg><use href="#i-layers" /></svg>
+                </button>
+                <button
+                  class="nav-button active"
+                  aria-label="Exploração do globo"
+                  aria-current="page"
+                  data-tooltip="Exploração do globo"
+                >
+                  <svg><use href="#i-globe" /></svg>
+                </button>
+                <button
+                  class="nav-button"
+                  disabled
+                  aria-label="Relatórios — em breve"
+                  data-tooltip="Relatórios · em breve"
+                >
+                  <svg><use href="#i-table" /></svg>
+                </button>
+                <button
+                  class="nav-button"
+                  disabled
+                  aria-label="Configurações — em breve"
+                  data-tooltip="Configurações · em breve"
+                >
+                  <svg><use href="#i-settings" /></svg>
+                </button>
+              </nav>
+              <span class="sidebar-caption">PAF / 26</span>
+            </aside>
+
+            <div class="explorer">
+              <header class="intro">
+                <p class="eyebrow">Planetary Analog Finder</p>
+                <h1 id="explorer-title">Análogos Planetários</h1>
+                <p class="description">
+                  Comparação de dunas e crateras da Terra<br
+                    class="desktop-break"
+                  />
+                  com feições de Marte e da Lua.
+                </p>
+                <dl class="statistics">
+                  <div>
+                    <dt>
+                      <span class="stat-icon earth"
+                        ><svg><use href="#i-mountain" /></svg></span
+                      ><span>Análogos<br />Terrestres</span>
+                    </dt>
+                    <dd>24</dd>
+                  </div>
+                  <div>
+                    <dt>
+                      <span class="stat-icon moon"
+                        ><svg><use href="#i-moon" /></svg></span
+                      ><span>Referências<br />Lunares</span>
+                    </dt>
+                    <dd>16</dd>
+                  </div>
+                  <div>
+                    <dt>
+                      <span class="stat-icon mars"
+                        ><svg><use href="#i-mars" /></svg></span
+                      ><span>Referências<br />Marcianas</span>
+                    </dt>
+                    <dd>8</dd>
+                  </div>
+                </dl>
+              </header>
+
+              <div class="globe-stage" aria-label="Globo terrestre interativo">
+                <div class="globe-halo" aria-hidden="true"></div>
+                <div
+                  id="globe"
+                  tabindex="0"
+                  role="group"
+                  aria-label="Arraste para girar o globo ou use as setas do teclado. Selecione uma localidade para comparar."
+                ></div>
+                <div id="pins" aria-label="Localidades terrestres"></div>
+                <p id="globe-loading" role="status">Preparando o planeta…</p>
+              </div>
+
+              <div class="exploration-caption">
+                <span class="live-dot"></span
+                ><span id="exploration-status">Explore o planeta</span
+                ><span class="caption-divider"></span
+                ><span id="interaction-hint"
+                  >Arraste para girar · Selecione um pin</span
+                >
+              </div>
+
+              <section
+                class="comparison panel"
+                id="comparison"
+                aria-labelledby="comparison-title"
+                inert
+                aria-hidden="true"
+              >
+                <h2 id="comparison-title">Comparação de Características</h2>
+                <p id="comparison-location"></p>
+                <div class="table-scroll">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th scope="col">Métrica</th>
+                        <th scope="col">Terra</th>
+                        <th scope="col">Lua</th>
+                        <th scope="col">Marte</th>
+                      </tr>
+                    </thead>
+                    <tbody id="metrics"></tbody>
+                  </table>
+                </div>
+                <p class="mock-note">
+                  Dados demonstrativos · sem validação científica
+                </p>
+              </section>
+
+              <section
+                class="similarity panel"
+                id="similarity"
+                aria-labelledby="similarity-title"
+                inert
+                aria-hidden="true"
+              >
+                <button
+                  id="close-selection"
+                  class="close-button"
+                  aria-label="Fechar seleção e retomar exploração (Esc)"
+                >
+                  <svg><use href="#i-close" /></svg>
+                </button>
+                <h2 id="similarity-title">Similaridade</h2>
+                <p id="similarity-subtitle"></p>
+                <div class="scores">
+                  <div class="score-row">
+                    <div class="score-ring lunar">
+                      <svg viewBox="0 0 100 100" aria-hidden="true">
+                        <circle class="ring-track" cx="50" cy="50" r="44" />
+                        <circle
+                          class="ring-value"
+                          cx="50"
+                          cy="50"
+                          r="44"
+                          pathLength="1"
+                        /></svg
+                      ><strong id="lunar-score">0,00</strong>
+                    </div>
+                    <p>Lua<span id="lunar-reference"></span></p>
+                  </div>
+                  <div class="score-row">
+                    <div class="score-ring martian">
+                      <svg viewBox="0 0 100 100" aria-hidden="true">
+                        <circle class="ring-track" cx="50" cy="50" r="44" />
+                        <circle
+                          class="ring-value"
+                          cx="50"
+                          cy="50"
+                          r="44"
+                          pathLength="1"
+                        /></svg
+                      ><strong id="martian-score">0,00</strong>
+                    </div>
+                    <p>Marte<span id="martian-reference"></span></p>
+                  </div>
+                </div>
+                <div class="location-details">
+                  <h2>Detalhes do Local</h2>
+                  <dl id="location-details"></dl>
+                </div>
+                <p class="mock-note">
+                  Índices ilustrativos, não probabilidades.
+                </p>
+              </section>
+              <p
+                class="sr-only"
+                id="selection-announcement"
+                aria-live="polite"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

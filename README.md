@@ -24,4 +24,10 @@ Projeto para comparar dunas marcianas e crateras lunares com localidades terrest
 2. Definir o contrato de dados em `docs/methodology/data-contract.md`.
 3. Implementar a ingestão, o processamento e os critérios de comparação.
 
-Estrutura inicial: ainda não há dados, dependências ou código executável. Os arquivos `.gitkeep` preservam as pastas vazias quando o projeto for adicionado ao Git.
+O pipeline e os dados científicos ainda estão na fase de estruturação. Os arquivos `.gitkeep` preservam as pastas vazias.
+
+## Demonstração interativa
+
+A primeira seção do Planetary Analog Finder está em [`deliverables/demo/`](deliverables/demo/README.md), com globo 3D, localidades selecionáveis e comparações demonstrativas.
+
+Execute `py -m http.server 8000` na raiz e abra http://localhost:8000/deliverables/demo/. A demo usa arquivos locais e dispensa build e backend.
