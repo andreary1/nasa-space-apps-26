@@ -1,0 +1,145 @@
+# Planetary Analog Finder — frontend Kauan, motor main
+
+Execute `python -m http.server 8000` na raiz e abra
+http://localhost:8000/deliverables/demo/. Não há instalação, build, CDN ou backend
+necessário para a interface. Os módulos ES precisam de HTTP e o globo de WebGL 2.
+
+## Origem visual e funcional
+
+O HTML parte de `origin/novoFrontKauan` (`9cd8b60`), incluindo a composição
+`.planetary-section > .dashboard-frame > .dashboard > .sidebar + .explorer`.
+A tela inicial é a exploração original: introdução e estatísticas à esquerda,
+globo ocupando o fundo, legenda inferior e painéis flutuantes na seleção.
+Não contém o HTML de cards da main nem uma camada de overrides de Tailwind.
+
+`styles/kauan.css` é uma cópia integral, sem alterações, do CSS dessa branch.
+Logo, ícones SVG, texturas, atmosfera, cores, tipografia, espaçamentos, sombras,
+anéis de similaridade e transições de painéis são os originais. `panels.js` e
+o controlador do globo derivam dos componentes dessa branch. A seleção mantém
+centralização por quaternion, zoom de 4,5%, pausa de rotação e fechamento por Esc.
+Movimento reduzido, toque, teclado, foco e suspensão do loop continuam disponíveis.
+
+A camada científica vem de main `f0ddeec`: **24 localidades terrestres, 9 referências
+lunares e 7 marcianas**, seus parâmetros, diagnósticos, pesos, unidades, coordenadas,
+normalização por máximo, fator Bagnold 2,82, WED, cosseno ponderado e score híbrido.
+Os indicadores agora contam os registros existentes; 16/8 eram números fixos da
+interface original e não a quantidade de referências desse catálogo.
+
+## Adaptações necessárias ao design original
+
+- Sete destinos reais na sidebar; o espaçamento do menu acomoda os dois itens
+  adicionais. No mobile há um menu recolhível com foco contido, conforme solicitado.
+- Os 24 pins substituem os seis locais demonstrativos, preservando as posições do
+  catálogo main e os ícones da Kauan. Regiões densas apresentam sobreposição; todas
+  as localidades também podem ser escolhidas pelo catálogo e seletor das páginas.
+- Os dois painéis flutuantes usam o mesmo modelo científico das páginas completas.
+  O compacto mostra cinco métricas, como o original, com acesso às 11 de crateras
+  ou sete de dunas. Os anéis só mostram o corpo com referências compatíveis:
+  crateras–Lua ou dunas–Marte; não há índice inventado para combinações ausentes.
+- Os filtros do globo aparecem durante a exploração; ficam ocultos enquanto os
+  painéis estão abertos para não sobrepor os indicadores. Os filtros completos
+  continuam no Mapa Mundial, e seu estado acompanha a navegação.
+- Mapa, comparação completa, análise, gráficos, relatórios e cadastro são extensões
+  com os mesmos painéis claros, bordas, sombras, fontes e cores da Kauan.
+
+Os scores mockados e as tabelas ilustrativas da Kauan não são usados. Informações
+como idade, sem dado no catálogo main, aparecem como não informadas. O catálogo,
+presets e seus textos foram preservados sem nova validação científica; inclusive
+o preset explicitamente ilustrativo de Shackleton. Não há novas medições.
+
+## Navegação e estado
+
+Destinos: Visão geral, Exploração do globo, Mapa mundial, Comparações, Dunas e
+crateras, Relatórios e Configurações. URLs `#/globe`, `#/map`, etc. funcionam com
+links diretos e voltar/avançar. O antigo endereço `#/dunes` abre a análise.
+Não há navegação principal por `scrollIntoView()`.
+
+O catálogo, a comparação completa e os gráficos são compartilhados entre páginas,
+sem clones. Trocar de página preserva seleção, filtros, região, formulário, aba
+de gráfico e canvas WebGL. O globo redimensiona ao reaparecer. As páginas extensas
+rolam dentro da área principal no desktop e naturalmente no mobile.
+
+Na análise, alternar Dunas/Crateras filtra o catálogo sem mudar a seleção sozinho.
+Relatórios permite consultar/copiar JSON e cadastrar; o cadastro abre Comparações.
+Configurações informa que tema, unidades e preferências salvas estão indisponíveis.
+
+## Organização
+
+- `index.html`: base estrutural Kauan e extensões semânticas, sem CSS/JS inline.
+- `styles/kauan.css`: CSS original; `main.css`: imports; `components.css`,
+  `sidebar.css`, `responsive.css`: apenas estilos das extensões e adaptações.
+- `js/app.js`, `js/navigation.js`, `js/components/sidebar.js`: integração,
+  estado, histórico, montagem de páginas e menu acessível.
+- `js/components/globe.js`, `globeController.js`, `panels.js`: experiência Kauan.
+- `js/components/worldMap.js`, `comparison.js`, `metrics.js`, `charts.js`,
+  `siteSelector.js`, `siteForm.js`, `toast.js`: componentes funcionais adaptados.
+- `js/data/`: catálogos, pesos/rótulos e presets originais.
+- `js/services/similarity.js`, `calculations.js`, `comparisonModel.js`,
+  `chartData.js`: cálculo, normalização, modelo comum e geometria dos gráficos.
+- `js/utils/formatters.js`, `helpers.js`: adaptação aos painéis, formatos e escape.
+- `vendor/`, `assets/`: Three.js 0.170.0 e texturas locais da Kauan. Licença MIT em
+  `vendor/THREE-LICENSE.txt`; texturas earth_atmos_2048, earth_normal_2048 e
+  earth_specular_2048 dos exemplos oficiais Three.js r170.
+
+Foram removidos o antigo `js/tailwind-config.js` e `styles/globe.css`: o CSS Kauan
+já contém os estilos completos do globo. Não há dois sistemas de estilos conflitantes.
+
+## Correções de tratamento e limites
+
+Para todos os dados completos, os resultados são iguais aos da main. Duas
+correções explícitas foram necessárias:
+
+1. `null`, `undefined`, `NaN` e infinitos não viram zero. Se faltar uma métrica
+   ponderada, o índice fica indisponível; não se recalculam pesos para mascarar a
+   ausência. Zeros legítimos continuam válidos. Os valores originais permanecem
+   intactos no JSON. O cadastro exige as métricas e coordenadas válidas, sem
+   preencher campos vazios com defaults arbitrários.
+2. Os perfis SVG fixos da main foram substituídos por esquemas paramétricos que
+   respondem a diâmetro/profundidade/borda ou altura/comprimento de onda. Continuam
+   identificados como **esquemas, não cortes medidos de DEM**. Barras e radar usam
+   a normalização e os limites originais; a mudança dos perfis não altera scores.
+
+O rótulo P90 usa `wall_slope_p90`, conforme o contrato, em vez do antigo campo
+inexistente. Cadastro é apenas na sessão; exportação copia JSON e oferece prompt
+se a área de transferência falhar. Resultados do pipeline não são carregados
+automaticamente: o escopo desta integração é a interface e a lógica JS da main.
+
+Os scripts históricos `scripts/build_demo.py` e `scripts/build_world_demo.py`
+sobrescrevem o HTML com a interface antiga; não são o build desta versão.
+
+## Validação reproduzível
+
+```powershell
+python scripts/verify_html.py
+node tests/integration/demo-modules.mjs
+$qaDir = Join-Path $env:TEMP 'paf-browser-qa'
+npm install --prefix $qaDir playwright --no-package-lock --no-audit --no-fund
+$env:PLAYWRIGHT_MODULE = Join-Path $qaDir 'node_modules/playwright'
+node tests/integration/demo-browser.cjs
+git diff --check
+```
+
+O teste de navegador precisa do servidor ativo e do Chrome; `BROWSER_EXECUTABLE`
+e `DEMO_URL` permitem alterar os padrões. Playwright é dependência opcional de QA,
+instalada fora do repositório. O teste serve uma cópia da branch Kauan em porta
+temporária para comparação visual, sem mudar o checkout ou o histórico.
+
+Verificações executadas:
+
+- Estática: 130 IDs únicos, 24 scripts, sintaxe, imports, assets e grafo sem ciclos.
+- Regressão: 24 registros e todos os catálogos intactos; 200 pares com mesmos
+  score/WED/cosseno; mesmos rankings, normalização dos gráficos, adaptadores dos
+  painéis, ausência de dados e zeros legítimos.
+- Chrome: geometria do frame, dashboard, sidebar e globo igual à referência a
+  menos de 1 px em 1366×768 e 1920×1080; mesma posição da introdução e legenda.
+  Capturas em `%TEMP%/paf-design-qa/` para inspeção visual original/integrado,
+  seleção e mobile.
+- Fluxos: painéis e anéis, teclado/arraste/Esc, sete páginas, histórico,
+  seleção/canvas/filtros preservados, barras/radar/perfil, cadastro, JSON, menu
+  mobile e ausência de overflow nas sete páginas a 390 px.
+- `git diff --check` sem erros. Não há comando de build/lint configurado.
+
+O pipeline Python não foi alterado nem reexecutado nesta etapa. Na verificação
+anterior, ingestão passou; morfometria, matching e pipeline ficaram impedidos por
+ausência de `scipy`/`sklearn` no ambiente. `pytest` também não estava instalado.
+Não houve commit ou push.

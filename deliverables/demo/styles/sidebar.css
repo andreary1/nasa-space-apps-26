@@ -1,0 +1,21 @@
+/* Original rail retained; spacing accommodates the two additional destinations. */
+.sidebar nav { margin-top: 36px; gap: 8px; }
+.nav-button { cursor: pointer; }
+.nav-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.menu-button, .menu-backdrop { display: none; }
+@media (max-width: 760px) {
+  .sidebar { position: fixed; top: 0; left: 0; width: 260px; height: 100svh; z-index: 40; border-radius: 0 17px 17px 0; transform: translateX(-100%); background: #f9faff; align-items: flex-start; overflow-y: auto; transition: transform .2s; }
+  .sidebar .brand { margin-left: 24px; }
+  .sidebar nav { margin-top: 36px; gap: 8px; }
+  .nav-button { display: flex; align-items: center; justify-content: flex-start; padding-left: 24px; gap: 16px; }
+  .nav-label { position: static; width: auto; height: auto; clip-path: none; font-size: 14px; }
+  .nav-button:after { display: none; }
+  .sidebar-caption { margin-left: 24px; }
+  .menu-button { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid white; border-radius: 10px; color: #8555e9; background: #f9fbfff5; }
+  .menu-button svg { width: 20px; height: 20px; }
+  #menu-toggle { position: fixed; top: 27px; left: 28px; z-index: 30; }
+  #menu-close { position: absolute; top: 20px; right: 18px; }
+  .menu-backdrop { display: block; position: fixed; inset: 0; background: #19235250; border: 0; z-index: 35; }
+  .menu-open .sidebar { transform: none; }
+  .menu-open { overflow: hidden; }
+}
