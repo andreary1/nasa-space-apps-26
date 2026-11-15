@@ -2,32 +2,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
-const http = require('node:http');
-const {execFileSync} = require('node:child_process');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
-// Serve the original branch separately for measured visual comparison.
-function referenceServer() {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'paf-kauan-reference-'));
-  const prefix = 'deliverables/demo/';
-  const files = execFileSync('git', ['ls-tree', '-r', '--name-only', 'origin/novoFrontKauan', prefix], {encoding: 'utf8'}).trim().split('\n');
-  for (const file of files) {
-    const target = path.join(root, file.slice(prefix.length));
-    fs.mkdirSync(path.dirname(target), {recursive: true});
-    fs.writeFileSync(target, execFileSync('git', ['show', `origin/novoFrontKauan:${file}`], {maxBuffer: 12 * 1024 * 1024}));
-  }
-  const types = {'.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.jpg': 'image/jpeg'};
-  const server = http.createServer((request, response) => {
-    const name = path.resolve(root, '.' + decodeURIComponent(request.url === '/' ? '/index.html' : request.url));
-    if (!name.startsWith(root + path.sep) || !fs.existsSync(name)) { response.writeHead(404); response.end(); return; }
-    response.setHeader('Content-Type', types[path.extname(name)] || 'text/plain');
-    fs.createReadStream(name).pipe(response);
-  });
-  return new Promise(resolve => server.listen(0, '127.0.0.1', () => resolve({server, url: `http://127.0.0.1:${server.address().port}/`})));
-}
-
 (async () => {
-  const reference = await referenceServer();
   const browser = await chromium.launch({executablePath: process.env.BROWSER_EXECUTABLE || 'C:/Program Files/Google/Chrome/Application/chrome.exe', args: ['--enable-webgl', '--use-angle=swiftshader', '--enable-unsafe-swiftshader']});
   const output = path.join(os.tmpdir(), 'paf-design-qa');
   fs.mkdirSync(output, {recursive: true});
@@ -46,26 +23,14 @@ function referenceServer() {
     assert.equal(await page.locator('script[src*="tailwind"]').count(), 0);
     assert.equal(await page.locator('.panel.is-visible').count(), 0);
     assert.equal(await page.locator('#comparison').getAttribute('aria-hidden'), 'true');
-    const baseline = await browser.newPage({viewport: {width: 1366, height: 768}, reducedMotion: 'reduce'});
-    await baseline.goto(reference.url);
-    await baseline.waitForSelector('#globe-loading[hidden]', {state: 'attached'});
-    for (const [width, height] of [[1366, 768], [1920, 1080]]) {
+    for (const [width, height] of [[1366, 768], [1600, 900], [1920, 1080]]) {
       await page.setViewportSize({width, height});
-      await baseline.setViewportSize({width, height});
       await page.waitForTimeout(150);
-      for (const selector of ['.dashboard-frame', '.dashboard', '.sidebar', '.globe-stage']) {
-        const actual = await page.locator(selector).boundingBox();
-        const expected = await baseline.locator(selector).boundingBox();
-        for (const key of ['x', 'y', 'width', 'height']) assert.ok(Math.abs(actual[key] - expected[key]) < 1, `${selector}.${key}: visual divergence`);
-      }
-      for (const selector of ['.intro', '.exploration-caption']) {
-        const actual = await page.locator(selector).boundingBox(), expected = await baseline.locator(selector).boundingBox();
-        assert.ok(Math.abs(actual.x - expected.x) < 1 && Math.abs(actual.y - expected.y) < 1, `${selector}: position`);
-      }
-      await page.screenshot({path: path.join(output, `integrated-${width}.png`)});
-      await baseline.screenshot({path: path.join(output, `reference-${width}.png`)});
+      assert.deepEqual(await page.locator('.dashboard').boundingBox(), {x:0,y:0,width,height});
+      assert.equal((await page.locator('.sidebar').boundingBox()).x,0);
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false);
+      await page.screenshot({path:path.join(output, `integrated-${width}.png`)});
     }
-    await baseline.close();
     await page.setViewportSize({width: 1366, height: 768});
     const goTo = async name => {
       if (await page.locator('#menu-toggle').isVisible()) await page.locator('#menu-toggle').click();
@@ -85,6 +50,18 @@ function referenceServer() {
     assert.notEqual(await page.locator('#lunar-score').innerText(), '—');
     assert.equal(await page.locator('#martian-score').innerText(), '—');
     assert.equal(await page.locator('#comparison').getAttribute('aria-hidden'), 'false');
+    assert.equal(await page.locator('#compact-table thead th').count(), 3);
+    assert.equal(await page.locator('[data-comparison-target="lunar"]').getAttribute('aria-pressed'), 'true');
+    assert.deepEqual(await page.locator('#metrics tr').evaluateAll(rows => rows.map(row => [...row.cells].map(cell => cell.textContent))), [
+      ['Diâmetro (km)', '1,186', '21,0'], ['Profundidade (km)', '0,170', '4,10'],
+      ['Bordas', 'Elevadas', 'Elevadas'], ['Declividade (°)', '34,1', '28,6'],
+      ['Estrutura interna', 'Piso definido', 'Piso com elevação'],
+    ]);
+    const lunarScore = await page.locator('#lunar-score').textContent();
+    await page.locator('[data-comparison-target="martian"]').click();
+    assert.equal(await page.locator('.compact-empty').count(), 1);
+    assert.equal(await page.locator('#lunar-score').textContent(), lunarScore);
+    await page.locator('[data-comparison-target="lunar"]').click();
     const selected = await page.locator('#pair-title').textContent();
     const canvas = await page.locator('#globe canvas').elementHandle();
     await page.screenshot({path: path.join(output, 'selected-desktop.png')});
@@ -123,6 +100,10 @@ function referenceServer() {
     await page.waitForSelector('#similarity.is-visible');
     assert.equal(await page.locator('#lunar-score').innerText(), '—');
     assert.notEqual(await page.locator('#martian-score').innerText(), '—');
+    assert.equal(await page.locator('[data-comparison-target="lunar"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('.compact-empty').count(), 1);
+    await page.locator('[data-comparison-target="martian"]').click();
+    assert.equal(await page.locator('#metrics tr').count(), 8);
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('#comparison').getAttribute('aria-hidden'), 'true');
     await page.locator('#globe').focus();
@@ -170,9 +151,8 @@ function referenceServer() {
     const ids = await page.locator('[id]').evaluateAll(elements => elements.map(element => element.id));
     assert.equal(new Set(ids).size, ids.length);
     assert.deepEqual(errors, []);
-    console.log(`PASS: original layout geometry at 1366/1920; floating panels/rings; seven views; preserved WebGL, selection, filters, charts, registration, JSON, keyboard/mobile. Screenshots: ${output}`);
+    console.log(`PASS: fullscreen geometry at 1366/1600/1920; floating panels/rings; seven views; preserved WebGL, selection, filters, charts, registration, JSON, keyboard/mobile. Screenshots: ${output}`);
   } finally {
     await browser.close();
-    reference.server.close();
   }
 })().catch(error => { console.error(error); process.exit(1); });
