@@ -1,8 +1,10 @@
-# Planetary Analog Finder
+# GeoEcos - The Universe Closer to the Ground
+
+<img width="934" height="888" alt="image" src="https://github.com/user-attachments/assets/fcf578f4-8ec5-4f48-811a-7da3c91bc14a" />
 
 **NASA Space Apps Challenge 2026** · Finding places on Earth that look like Mars and the Moon.
 
-Planetary Analog Finder compares the shape of the terrain at Brazilian sites, mostly in the
+GeoEcos compares the shape of the terrain at Brazilian sites, mostly in the
 Northeast, with **Martian dune fields** and **lunar impact craters**. Each site gets a similarity
 score against every planetary reference, a breakdown of which measurements match and which
 don't, and an AI-written report suggesting how NASA could use the site (astronaut training,
