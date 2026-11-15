@@ -8,17 +8,21 @@ export function createSiteSelector(state) {
     document.getElementById('catalog-title').textContent = state.activePage === 'analysis'
       ? `${state.analysisType === 'dune' ? 'Dunas' : 'Crateras'} (${sites.length})` : `Localidades terrestres (${sites.length})`;
     const mapDesign = state.activePage === 'map';
+    const analysisDesign = state.activePage === 'analysis';
+    const decoratedDesign = mapDesign || analysisDesign;
     document.getElementById('catalog-section').classList.toggle('map-catalog', mapDesign);
-    if (mapDesign) {
-      document.getElementById('catalog-title').insertAdjacentHTML('afterbegin', '<svg class="catalog-heading-icon" aria-hidden="true"><use href="#i-layers"/></svg>');
+    if (decoratedDesign) {
+      const icon = analysisDesign ? state.analysisType === 'dune' ? 'dune' : 'crater' : 'layers';
+      document.getElementById('catalog-title').insertAdjacentHTML('afterbegin', `<svg class="catalog-heading-icon" aria-hidden="true"><use href="#i-${icon}"/></svg>`);
     }
     const grid = document.getElementById('site-selector');
     const signature = sites.map(({site}) => site.id).join('|');
-    const reuseCards = mapDesign && grid.dataset.design === 'map' && grid.dataset.sites === signature;
+    const design = mapDesign ? 'map' : analysisDesign ? 'analysis' : 'default';
+    const reuseCards = decoratedDesign && grid.dataset.design === design && grid.dataset.sites === signature;
     if (!reuseCards) grid.innerHTML = sites.map(({site, index}) => `
       <button class="site-option" data-action="selectSite" data-value="${index}" aria-pressed="${index === state.currentSiteIndex}">
-      ${mapDesign ? `<svg class="catalog-site-icon" data-type="${site.type}" aria-hidden="true"><use href="#i-${site.type === 'dune' ? 'dune' : 'crater'}"/></svg><span class="catalog-site-copy"><span>${site.type === 'dune' ? 'Duna' : 'Cratera'} · ${escapeHtml(site.uf)}</span><strong>${escapeHtml(site.name)}</strong></span>` : `<span>${site.type === 'dune' ? 'Duna' : 'Cratera'} · ${escapeHtml(site.uf)}</span>${escapeHtml(site.name)}`}</button>`).join('');
-    grid.dataset.design = mapDesign ? 'map' : 'default';
+      ${decoratedDesign ? `<svg class="catalog-site-icon" data-type="${site.type}" aria-hidden="true"><use href="#i-${site.type === 'dune' ? 'dune' : 'crater'}"/></svg><span class="catalog-site-copy"><span>${site.type === 'dune' ? 'Duna' : 'Cratera'} · ${escapeHtml(site.uf)}</span><strong>${escapeHtml(site.name)}</strong></span>` : `<span>${site.type === 'dune' ? 'Duna' : 'Cratera'} · ${escapeHtml(site.uf)}</span>${escapeHtml(site.name)}`}</button>`).join('');
+    grid.dataset.design = design;
     grid.dataset.sites = signature;
     if (reuseCards) grid.querySelectorAll('button').forEach(button => {
       button.setAttribute('aria-pressed', String(Number(button.dataset.value) === state.currentSiteIndex));

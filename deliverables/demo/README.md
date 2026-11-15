@@ -258,3 +258,51 @@ ao mapa precisa decodificar/processar as texturas. Grupos representam a posiçã
 média dos membros; ao expandi-los, cada pin individual volta à sua âncora exata.
 O zoom fica limitado a 2048×. O globo 3D, a sidebar, as fórmulas, os 24 registros,
 as referências e os arquivos do pipeline científico não foram modificados.
+
+## Padronização visual de Dunas e Crateras
+
+`styles/analysis.css` aplica somente dentro de `#view-analysis` a paleta e os
+valores visuais do catálogo do Mapa Mundial: gradientes branco/lilás/azul-gelo,
+bordas claras, cantos de 26/19 px, ícones de 52 px, textos azul-marinho e seleção
+com o mesmo gradiente roxo e texto branco. Tabelas, diagnósticos e rankings
+recebem o mesmo padrão visual, sem modificar seus textos ou valores.
+
+`siteSelector.js` reutiliza a apresentação dos cartões do mapa na análise,
+incluindo SVGs decorativos. O catálogo continua filtrado pela lógica existente:
+oito dunas ou dezesseis crateras. Os elementos são preservados ao trocar apenas
+a seleção para permitir a transição de 280 ms, sem mudar os eventos existentes.
+Hover eleva somente os cartões clicáveis em 2 px durante 250 ms, sem mudar
+suas dimensões ou o fluxo da grade. O mapa e seu CSS permanecem inalterados.
+
+`analysisReveal.js`, importado por `app.js`, usa `IntersectionObserver` para
+animar apenas os blocos que entram na viewport: fade e deslocamento de 16 px,
+460 ms, com atrasos discretos de 50 ms entre cartões. Cada localidade/bloco
+anima uma vez por carregamento da página; seleção e rolagem posteriores não
+reiniciam o efeito. `MutationObserver` acompanha a montagem dos componentes
+compartilhados e os filtros, sem substituir seus handlers. As animações são
+canceladas ao sair da seção, receber foco ou ativar movimento reduzido.
+Sem suporte à animação/observer, o conteúdo permanece visível por padrão.
+
+Validação desta etapa:
+
+```powershell
+node tests/integration/demo-modules.mjs
+node tests/integration/context-panel.mjs
+python scripts/verify_html.py
+# Servidor HTTP ativo e PLAYWRIGHT_MODULE configurado:
+node tests/integration/analysis-visual.cjs
+git diff --check
+```
+
+O teste visual compara textos, métricas, unidades, rankings e estados dos 24
+locais com o renderer anterior via `git show HEAD`, verifica os estilos visíveis
+das demais páginas, filtros, seleção/dropdown, gráficos, hover e reveal. Cobre
+1920×1080, 1600×900, 1366×768 e 390×844, movimento reduzido e ausência de
+IntersectionObserver; capturas em `%TEMP%/paf-analysis-qa/`.
+
+Limitação preexistente: com `py -m http.server 8000`, a integração opcional de IA
+consulta `/api/health`, que retorna HTTP 404. `demo-browser.cjs` executou seus
+fluxos, mas falhou na asserção final de console por esse aviso. O teste visual
+exclui especificamente essa resposta preexistente e continua verificando erros
+JavaScript e falhas em outros recursos. A integração de IA não foi alterada.
+A tabela mantém sua rolagem local em telas estreitas para preservar as métricas.
