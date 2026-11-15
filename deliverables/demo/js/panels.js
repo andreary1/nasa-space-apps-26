@@ -1,4 +1,13 @@
-import { metrics } from './data.js';
+import { comparisonData, comparisonFields } from './data.js';
+
+function displayValue(value) {
+  if (value === null || value === undefined || value === '') return '—';
+  if (Array.isArray(value)) return value.length ? value.join('; ') : '—';
+  if (typeof value === 'object') return value.descricao || '—';
+  return typeof value === 'number'
+    ? value.toLocaleString('pt-BR')
+    : String(value);
+}
 
 const formatScore = (value) =>
   value.toLocaleString('pt-BR', {
@@ -20,6 +29,22 @@ export class Panels {
     }));
     this.started = null;
     this.visible = false;
+    this.tableAnimations = [];
+    this.tableRequest = 0;
+    this.targetButtons = [
+      ...document.querySelectorAll('[data-comparison-target]'),
+    ];
+    this.listeners = new AbortController();
+    this.targetButtons.forEach((button) =>
+      button.addEventListener(
+        'click',
+        () => {
+          if (this.target !== button.dataset.comparisonTarget)
+            this.setTarget(button.dataset.comparisonTarget);
+        },
+        { signal: this.listeners.signal },
+      ),
+    );
   }
 
   prepare(location) {
@@ -29,22 +54,7 @@ export class Panels {
       `Local: ${location.name} (Terra)`;
     document.getElementById('similarity-subtitle').textContent =
       `${location.shortName} × Referências`;
-    const tbody = document.getElementById('metrics');
-    tbody.replaceChildren(
-      ...location.rows.map((row, index) => {
-        const tr = document.createElement('tr');
-        const heading = document.createElement('th');
-        heading.scope = 'row';
-        heading.textContent = (location.metricLabels || metrics)[index];
-        tr.append(heading);
-        row.forEach((value) => {
-          const td = document.createElement('td');
-          td.textContent = value;
-          tr.append(td);
-        });
-        return tr;
-      }),
-    );
+    this.setTarget('lunar', false);
     const details = [
       ['pin', 'Localização', location.region],
       [
@@ -99,6 +109,7 @@ export class Panels {
   hide() {
     this.visible = false;
     this.started = null;
+    this.cancelTableTransition();
     this.elements.forEach((element) => {
       element.inert = true;
       element.setAttribute('aria-hidden', 'true');
@@ -122,5 +133,105 @@ export class Panels {
       this.scoreElements[index].arc.style.strokeDashoffset = String(1 - value);
     });
     if (progress === 1) this.started = null;
+  }
+
+  renderTable(target) {
+    const name = target === 'lunar' ? 'Lua' : 'Marte';
+    const comparison = comparisonData[this.location.id]?.[target];
+    const tbody = document.getElementById('metrics');
+    document.getElementById('comparison-target-heading').textContent = name;
+    const description = comparison
+      ? `${this.location.name} × ${comparison.reference}. Dados demonstrativos.`
+      : `Não existem dados comparáveis entre ${this.location.name} e ${name} nesta demonstração. ${target === 'lunar' ? 'Selecione Marte para consultar métricas de dunas.' : 'Selecione Lua para consultar métricas de crateras.'}`;
+    document.getElementById('comparison-caption').textContent = description;
+    document.getElementById('comparison-status').textContent = description;
+    if (!comparison) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = 3;
+      td.className = 'comparison-empty';
+      td.textContent = description;
+      tr.append(td);
+      tbody.replaceChildren(tr);
+      return;
+    }
+    tbody.replaceChildren(
+      ...comparisonFields[target].map(({ key, label }) => {
+        const tr = document.createElement('tr');
+        const th = document.createElement('th');
+        th.scope = 'row';
+        th.textContent = label;
+        tr.append(th);
+        [comparison.earth, comparison.referenceMetrics].forEach((values) => {
+          const td = document.createElement('td');
+          td.textContent = displayValue(values[key]);
+          tr.append(td);
+        });
+        return tr;
+      }),
+    );
+  }
+
+  cancelTableTransition() {
+    this.tableRequest++;
+    this.tableAnimations.forEach((animation) => animation.cancel());
+    this.tableAnimations = [];
+    const content = document.getElementById('comparison-content');
+    content.style.removeProperty('height');
+    content.inert = false;
+    content.removeAttribute('aria-busy');
+  }
+
+  async setTarget(target, animate = true) {
+    const content = document.getElementById('comparison-content');
+    const currentHeight = content.getBoundingClientRect().height;
+    this.cancelTableTransition();
+    const request = this.tableRequest;
+    this.target = target;
+    this.targetButtons.forEach((button) =>
+      button.setAttribute(
+        'aria-pressed',
+        String(button.dataset.comparisonTarget === target),
+      ),
+    );
+    const shouldAnimate =
+      animate && this.visible && !this.reducedMotion.matches;
+    if (shouldAnimate) content.style.height = `${currentHeight}px`;
+    const play = (frames, duration) => {
+      const animation = content.animate(frames, {
+        duration,
+        easing: 'ease-in-out',
+      });
+      this.tableAnimations.push(animation);
+      return animation.finished.catch(() => {});
+    };
+    content.inert = true;
+    content.setAttribute('aria-busy', 'true');
+    if (shouldAnimate) await play([{ opacity: 1 }, { opacity: 0 }], 110);
+    if (request !== this.tableRequest) return;
+    const previousHeight = content.getBoundingClientRect().height;
+    content.style.removeProperty('height');
+    this.renderTable(target);
+    const nextHeight = content.getBoundingClientRect().height;
+    if (shouldAnimate) {
+      content.style.height = `${nextHeight}px`;
+      await Promise.all([
+        play(
+          [{ height: `${previousHeight}px` }, { height: `${nextHeight}px` }],
+          220,
+        ),
+        play([{ opacity: 0 }, { opacity: 1 }], 220),
+      ]);
+    }
+    if (request !== this.tableRequest) return;
+    content.style.removeProperty('height');
+    content.inert = false;
+    content.removeAttribute('aria-busy');
+    this.tableAnimations = [];
+  }
+
+  dispose() {
+    this.cancelTableTransition();
+    this.listeners.abort();
   }
 }

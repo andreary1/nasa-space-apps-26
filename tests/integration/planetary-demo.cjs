@@ -30,6 +30,20 @@ const assert = require('node:assert/strict');
     await page.waitForFunction(
       () => document.querySelector('#globe-loading').hidden,
     );
+    assert.equal(
+      await page
+        .locator('.sidebar')
+        .evaluate((e) => e.getBoundingClientRect().left),
+      0,
+    );
+    if (width > 1000) {
+      const frame = await page.locator('.dashboard').boundingBox();
+      assert.deepEqual(frame, { x: 0, y: 0, width, height });
+      assert.equal(
+        await page.evaluate(() => document.documentElement.scrollHeight),
+        height,
+      );
+    }
     assert.equal(await page.locator('.panel.is-visible').count(), 0);
     assert.equal(
       await page
@@ -58,6 +72,48 @@ const assert = require('node:assert/strict');
     assert.equal(await page.locator('#lunar-score').textContent(), '0,87');
     assert.equal(await page.locator('#martian-score').textContent(), '0,83');
     assert.equal(await page.locator('.panel.is-visible').count(), 2);
+    assert.equal(await page.locator('#comparison-table thead th').count(), 3);
+    assert.equal(await page.locator('#metrics tr').count(), 5);
+    assert.deepEqual(
+      await page
+        .locator('#metrics tr')
+        .allTextContents()
+        .then((rows) => rows.map((row) => row.replace(/\s+/g, ' ').trim())),
+      [
+        'Diâmetro (km)1,18621,0',
+        'Profundidade (km)0,1704,10',
+        'BordasElevadasElevadas',
+        'Declividade (°)34,128,6',
+        'Estrutura internaPiso definidoPiso com elevação',
+      ],
+    );
+    const lunarTab = page.locator('[data-comparison-target="lunar"]');
+    const martianTab = page.locator('[data-comparison-target="martian"]');
+    assert.equal(await lunarTab.getAttribute('aria-pressed'), 'true');
+    await martianTab.click();
+    await page.waitForFunction(
+      () =>
+        document.querySelector('#comparison-target-heading').textContent ===
+        'Marte',
+    );
+    assert.equal(await page.locator('.comparison-empty').count(), 1);
+    assert.equal(await page.locator('#lunar-score').textContent(), '0,87');
+    assert.equal(await page.locator('#martian-score').textContent(), '0,83');
+    // Rapid toggles must not allow a stale animation to overwrite the last tab.
+    await page.evaluate(() => {
+      document.querySelector('[data-comparison-target="lunar"]').click();
+      document.querySelector('[data-comparison-target="martian"]').click();
+      document.querySelector('[data-comparison-target="lunar"]').click();
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('#comparison-target-heading').textContent ===
+          'Lua' &&
+        !document
+          .querySelector('#comparison-content')
+          .hasAttribute('aria-busy'),
+    );
+    assert.equal(await page.locator('#metrics tr').count(), 5);
     const pos = await pin.getAttribute('style');
     await page.waitForTimeout(500);
     assert.equal(
@@ -93,6 +149,67 @@ const assert = require('node:assert/strict');
       path: require('node:os').tmpdir() + `/paf-${width}-selected.png`,
       fullPage: true,
     });
+    await page.locator('[data-location="lencois"]').click({ force: true });
+    await page.waitForFunction(
+      () => document.querySelector('#martian-score').textContent === '0,84',
+    );
+    assert.equal(await lunarTab.getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('.comparison-empty').count(), 1);
+    await martianTab.click();
+    await page.waitForFunction(
+      () =>
+        document.querySelector('#comparison-target-heading').textContent ===
+          'Marte' &&
+        !document
+          .querySelector('#comparison-content')
+          .hasAttribute('aria-busy'),
+    );
+    assert.equal(await page.locator('#metrics tr').count(), 8);
+    assert.deepEqual(
+      await page
+        .locator('#metrics tr')
+        .evaluateAll((rows) =>
+          rows.map((row) => [...row.cells].map((cell) => cell.textContent)),
+        ),
+      [
+        ['Tipo de duna', 'Barcana', 'Barcana'],
+        ['Altura média (m)', '45', '40'],
+        ['Comprimento de onda (m)', '280', '310'],
+        ['Orientação / azimute (°)', '75', '82'],
+        ['Densidade de dunas', '—', '—'],
+        ['Espaçamento médio (m)', '280', '310'],
+        ['Padrão de distribuição', 'Agrupado', 'Agrupado'],
+        ['Índice de aridez', '—', '—'],
+      ],
+    );
+    assert.equal(await page.locator('#lunar-score').textContent(), '—');
+    assert.equal(await page.locator('#martian-score').textContent(), '0,84');
+    const duneLayout = await page.evaluate(() => ({
+      top: document.querySelector('#comparison').getBoundingClientRect().top,
+      bottom: document.querySelector('#similarity').getBoundingClientRect()
+        .bottom,
+      stats: document.querySelector('.statistics').getBoundingClientRect()
+        .bottom,
+      sectionBottom: document
+        .querySelector('.dashboard')
+        .getBoundingClientRect().bottom,
+    }));
+    assert.ok(
+      duneLayout.top > duneLayout.stats,
+      'Eight-row table must clear statistics',
+    );
+    assert.ok(
+      duneLayout.bottom <= duneLayout.sectionBottom,
+      'Panels must fit the first section',
+    );
+    await page.screenshot({
+      path: require('node:os').tmpdir() + `/paf-${width}-mars.png`,
+      fullPage: true,
+    });
+    // Escape during a table transition must cancel pending work.
+    await page.evaluate(() =>
+      document.querySelector('[data-comparison-target="lunar"]').click(),
+    );
     await page.keyboard.press('Escape');
     await page.waitForTimeout(500);
     assert.equal(await page.locator('.panel.is-visible').count(), 0);
@@ -161,6 +278,7 @@ const assert = require('node:assert/strict');
   await reduced.waitForTimeout(100);
   assert.equal(await reduced.locator('#lunar-score').textContent(), '0,87');
   await reduced.keyboard.press('Escape');
+  await reduced.close();
 
   const lifecycle = await browser.newPage({
     viewport: { width: 1366, height: 768 },

@@ -257,6 +257,7 @@ window.addEventListener(
     stopFrame();
     observer?.disconnect();
     listeners.abort();
+    panels.dispose();
     globe?.dispose();
   },
   { signal: listeners.signal },

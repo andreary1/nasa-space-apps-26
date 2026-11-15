@@ -202,21 +202,48 @@
                 inert
                 aria-hidden="true"
               >
-                <h2 id="comparison-title">Comparação de Características</h2>
-                <p id="comparison-location"></p>
-                <div class="table-scroll">
-                  <table>
+                <div class="comparison-heading">
+                  <div>
+                    <h2 id="comparison-title">Comparação de Características</h2>
+                    <p id="comparison-location"></p>
+                  </div>
+                  <div
+                    class="comparison-targets"
+                    role="group"
+                    aria-label="Corpo de referência da tabela"
+                  >
+                    <button
+                      type="button"
+                      data-comparison-target="lunar"
+                      aria-pressed="true"
+                      aria-controls="comparison-table"
+                    >
+                      <svg aria-hidden="true"><use href="#i-moon" /></svg>Lua
+                    </button>
+                    <button
+                      type="button"
+                      data-comparison-target="martian"
+                      aria-pressed="false"
+                      aria-controls="comparison-table"
+                    >
+                      <svg aria-hidden="true"><use href="#i-mars" /></svg>Marte
+                    </button>
+                  </div>
+                </div>
+                <div class="table-scroll" id="comparison-content">
+                  <table id="comparison-table">
+                    <caption class="sr-only" id="comparison-caption"></caption>
                     <thead>
                       <tr>
                         <th scope="col">Métrica</th>
                         <th scope="col">Terra</th>
-                        <th scope="col">Lua</th>
-                        <th scope="col">Marte</th>
+                        <th scope="col" id="comparison-target-heading">Lua</th>
                       </tr>
                     </thead>
                     <tbody id="metrics"></tbody>
                   </table>
                 </div>
+                <p class="sr-only" id="comparison-status" role="status"></p>
                 <p class="mock-note">
                   Dados demonstrativos · sem validação científica
                 </p>

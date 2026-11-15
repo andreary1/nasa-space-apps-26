@@ -7,6 +7,28 @@ export const metrics = [
   'Declividade média (°)',
   'Circularidade',
 ];
+
+// Display schemas are independent from the legacy rows and similarity scores.
+// These fixtures model crater → Moon and dune → Mars comparisons only.
+export const comparisonFields = {
+  lunar: [
+    { key: 'diametro', label: 'Diâmetro (km)' },
+    { key: 'profundidade', label: 'Profundidade (km)' },
+    { key: 'bordas', label: 'Bordas' },
+    { key: 'declividade', label: 'Declividade (°)' },
+    { key: 'estrutura_interna', label: 'Estrutura interna' },
+  ],
+  martian: [
+    { key: 'tipo_duna', label: 'Tipo de duna' },
+    { key: 'altura_media', label: 'Altura média (m)' },
+    { key: 'comprimento_onda', label: 'Comprimento de onda (m)' },
+    { key: 'orientacao_azimute', label: 'Orientação / azimute (°)' },
+    { key: 'densidade_dunas', label: 'Densidade de dunas' },
+    { key: 'espacamento_medio', label: 'Espaçamento médio (m)' },
+    { key: 'padrao_distribuicao', label: 'Padrão de distribuição' },
+    { key: 'indice_aridez', label: 'Índice de aridez' },
+  ],
+};
 const craterReferences = {
   lunar: { name: 'Shackleton', score: 0.87 },
   martian: { name: 'Orkott', score: 0.83 },
@@ -116,3 +138,67 @@ export const locations = [
     ],
   })),
 ];
+
+// Additional descriptions/azimuths below are the explicitly supplied UI examples.
+// Unknown characteristics stay null; original scores and legacy fixture rows stay intact.
+export const comparisonData = Object.fromEntries(
+  locations.map((location) => {
+    if (location.category === 'crater') {
+      return [
+        location.id,
+        {
+          lunar: {
+            reference: 'Shackleton',
+            earth: {
+              diametro: location.rows[0][0],
+              profundidade: location.rows[1][0],
+              bordas:
+                location.id === 'barringer' ? { descricao: 'Elevadas' } : {},
+              declividade: location.rows[3][0],
+              estrutura_interna:
+                location.id === 'barringer' ? ['Piso definido'] : [],
+            },
+            referenceMetrics: {
+              diametro: '21,0',
+              profundidade: '4,10',
+              bordas: { descricao: 'Elevadas' },
+              declividade: '28,6',
+              estrutura_interna: ['Piso com elevação'],
+            },
+          },
+          martian: null,
+        },
+      ];
+    }
+    const isExample = location.id === 'lencois';
+    return [
+      location.id,
+      {
+        lunar: null,
+        martian: {
+          reference: 'Dunas de Bagnold',
+          earth: {
+            tipo_duna: isExample ? 'Barcana' : null,
+            altura_media: '45',
+            comprimento_onda: isExample ? '280' : null,
+            orientacao_azimute: isExample ? '75' : null,
+            densidade_dunas: null,
+            espacamento_medio: '280',
+            padrao_distribuicao: isExample ? 'Agrupado' : null,
+            indice_aridez: null,
+          },
+          referenceMetrics: {
+            tipo_duna: isExample ? 'Barcana' : null,
+            altura_media: '40',
+            comprimento_onda: isExample ? '310' : null,
+            orientacao_azimute: isExample ? '82' : null,
+            densidade_dunas: null,
+            espacamento_medio: '310',
+            padrao_distribuicao: isExample ? 'Agrupado' : null,
+            indice_aridez: null,
+          },
+        },
+      },
+    ];
+  }),
+);
