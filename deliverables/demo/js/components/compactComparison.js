@@ -25,9 +25,9 @@ export function compactTable(location, target) {
           ['Diâmetro (km)', km(earth.diameter_m), km(reference.diameter_m)],
           ['Profundidade (km)', km(earth.depth_m), km(reference.depth_m)],
           [
-            'Bordas',
-            description(earth.bordas?.descricao),
-            description(reference.bordas?.descricao),
+            'Altura da borda (m)',
+            value(earth.rim_height_m),
+            value(reference.rim_height_m),
           ],
           [
             'Declividade (°)',
@@ -35,9 +35,9 @@ export function compactTable(location, target) {
             value(reference.mean_wall_slope),
           ],
           [
-            'Estrutura interna',
-            description(earth.estrutura_interna?.join('; ')),
-            description(reference.estrutura_interna?.join('; ')),
+            'Razão profundidade/diâmetro',
+            value(earth.depth_diameter_ratio),
+            value(reference.depth_diameter_ratio),
           ],
         ]
       : [
@@ -72,9 +72,9 @@ export function compactTable(location, target) {
             value(reference.mean_spacing),
           ],
           [
-            'Padrão de distribuição',
-            description(earth.padrao_distribuicao),
-            description(reference.padrao_distribuicao),
+            'Altura P90 (m)',
+            value(earth.height_p90),
+            value(reference.height_p90),
           ],
           [
             'Índice de aridez',

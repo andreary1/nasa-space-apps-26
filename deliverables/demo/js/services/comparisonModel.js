@@ -45,7 +45,8 @@ export function buildComparison(site) {
     site, matches, best,
     rows: best ? best.features.map(rowFromFeature) : earthOnlyRows(site),
     status: entry?.status || 'not_processed',
-    reason: entry ? (entry.reason || '') : NOT_PROCESSED,
+    reason: (entry ? (entry.reason || '') : NOT_PROCESSED) +
+      (site.catalogOnly && Object.keys(site.metrics || {}).length ? ' Os valores exibidos vêm do catálogo e não geram score.' : ''),
     quality: entry?.dq || null,
   };
 }

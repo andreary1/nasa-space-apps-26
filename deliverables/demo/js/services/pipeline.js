@@ -29,7 +29,10 @@ export function applyPipeline(sites) {
   for (const site of sites) {
     const entry = PIPELINE.sites[site.id] || null;
     attach(site, entry);
-    site.metrics = entry?.metrics ? {...entry.metrics} : {};
+    // Com métricas do pipeline, elas substituem o catálogo. Sem elas (sítio excluído ou
+    // não processado), os valores do catálogo continuam visíveis, só informativos e sem score.
+    if (entry?.metrics) site.metrics = {...entry.metrics};
+    Object.defineProperty(site, 'catalogOnly', {value: !entry?.metrics, configurable: true, enumerable: false});
   }
   for (const [id, entry] of Object.entries(PIPELINE.sites)) {
     if (sites.some(site => site.id === id)) continue;
@@ -44,6 +47,7 @@ export function applyPipeline(sites) {
       lat: entry.lat, lon: entry.lon, metrics: {...(entry.metrics || {})},
     };
     attach(site, entry);
+    Object.defineProperty(site, 'catalogOnly', {value: !entry.metrics, configurable: true, enumerable: false});
     sites.push(site);
   }
   return sites;
