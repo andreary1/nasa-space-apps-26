@@ -1,3 +1,4 @@
+import { applyPipeline } from '../services/pipeline.js';
 // Catalog preserved from main; source annotations remain on the records.
 export const SITES_DATA = [
   {
@@ -505,3 +506,6 @@ export const SITES_DATA = [
     ]
   }
 ];
+
+// Atributos e scores vêm do pipeline; sem resultado, o sítio fica sem números.
+applyPipeline(SITES_DATA);

@@ -1,5 +1,4 @@
 import { numericValue } from './comparisonModel.js';
-import { scaledTarget } from './calculations.js';
 
 // Presentation geometry only. The normalization clamps are those in main.
 export function radarPoints(rows, side, cx = 200, cy = 110, radius = 85) {
@@ -12,12 +11,15 @@ export function radarPoints(rows, side, cx = 200, cy = 110, radius = 85) {
   });
 }
 
-// Parametric diagrams, explicitly not sampled DEM profiles. Their extents now
-// depend on the supplied dimensions, unlike the fixed paths in the old HTML.
-export function profilePaths(site, target) {
-  if (!target) return null;
+// Parametric diagrams, explicitly not sampled DEM profiles. Extents depend on the
+// pipeline's values (earth metric vs. reference already scaled by the pipeline).
+export function profilePaths(site, target, rows) {
+  if (!target || !rows?.length) return null;
+  const pick = key => rows.find(row => row.key === key);
+  const sides = ['earth', 'comparable'];
   if (site.type === 'crater') {
-    const pairs = [site.metrics, target].map(metrics => ['diameter_m', 'depth_m', 'rim_height_m'].map(key => numericValue(metrics[key])));
+    const keys = ['diameter_m', 'depth_m', 'rim_height_m'];
+    const pairs = sides.map(side => keys.map(key => numericValue(pick(key)?.[side])));
     if (pairs.flat().some(value => value === null)) return null;
     const horizontal = Math.max(...pairs.map(pair => pair[0]), 1e-4);
     const vertical = Math.max(...pairs.map(pair => pair[1] + pair[2]), 1e-4);
@@ -28,10 +30,8 @@ export function profilePaths(site, target) {
       return `M40,45 L${left},45 L${left},${top} Q340,${2 * bottom - top} ${right},${top} L${right},45 L640,45`;
     });
   }
-  const pairs = [site.metrics, target].map((metrics, index) => ['mean_height', 'wavelength'].map(key => {
-    const value = numericValue(metrics[key]);
-    return value === null ? null : index ? scaledTarget(value, key, 'dune') : value;
-  }));
+  const keys = ['mean_height', 'wavelength'];
+  const pairs = sides.map(side => keys.map(key => numericValue(pick(key)?.[side])));
   if (pairs.flat().some(value => value === null || value < 0) || pairs.some(pair => pair[1] === 0)) return null;
   const height = Math.max(...pairs.map(pair => pair[0]), 1e-4);
   const wavelength = Math.max(...pairs.map(pair => pair[1]), 1e-4);

@@ -1,7 +1,6 @@
 import { SITES_DATA } from './data/sites.js';
 import './components/analysisReveal.js';
-import { MOON_CRATER_REFERENCES } from './data/moon.js';
-import { MARS_DUNE_REFERENCES } from './data/mars.js';
+import { MOON_REFS, MARS_REFS } from './services/pipeline.js';
 import { createWorldMap } from './components/worldMap.js';
 import { createSiteSelector } from './components/siteSelector.js';
 import { renderComparison } from './components/comparison.js';
@@ -68,7 +67,7 @@ function setMapFilter(filter) {
 }
 
 function updateCounts() {
-  const counts = {earth: SITES_DATA.length, moon: MOON_CRATER_REFERENCES.length, mars: MARS_DUNE_REFERENCES.length};
+  const counts = {earth: SITES_DATA.length, moon: MOON_REFS.length, mars: MARS_REFS.length};
   document.querySelectorAll('[data-count]').forEach(element => { element.textContent = counts[element.dataset.count]; });
   for (const [type, label] of [['all', 'Todos'], ['dune', 'Dunas'], ['crater', 'Crateras']]) {
     const count = SITES_DATA.filter(site => type === 'all' || site.type === type).length;

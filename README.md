@@ -20,7 +20,7 @@ rover testing, instrument calibration and more).
 - **Geographic context panel** with NASA POWER climatology and site notes.
 - **AI analysis reports** generated on demand from the page, grounded in the measured metrics:
   similarities, differences, suggestions for NASA, limitations and a confidence level.
-- **Session catalog**: register a new site in the browser and compare it immediately.
+- **Session catalog**: register a site in the browser to place it on the map; it only gets a score after the pipeline runs for it.
 - **Real planetary data**: HiRISE DTMs of 8 Martian dune fields and LOLA/SLDEM2015 DEMs of
   lunar craters.
 
@@ -50,14 +50,16 @@ press Ctrl+C) to stop it.
 | Craters | SRTM / Copernicus GLO-30 DEMs | Moon (LOLA, SLDEM2015) | diameter, depth, depth/diameter, rim height, rim height/diameter, rim variation, rim radius CV, mean wall slope, wall slope P90, circularity, rim coherence |
 | Dunes | SRTM / Copernicus GLO-30 DEMs | Mars (HiRISE DTMs) | mean height, height P90, wavelength, crest azimuth, dune density, mean spacing, aridity index |
 
-1. **Physical scaling.** For dunes, the Martian scale metrics (height, wavelength, spacing) are
-   multiplied by the Bagnold factor β ≈ 2.82, derived from the gravity and atmospheric density
-   ratios between Earth and Mars.
+All of this is computed by the Python pipeline (`src/matching/`); the demo only displays it.
+
+1. **Physical scaling.** For dunes, the Martian lengths are divided by the Bagnold factor β and the
+   crest density is multiplied by β², with β derived from the gravity and atmospheric density ratios
+   between Earth and Mars (β = 4.82 with the project constants; see the pipeline limitations).
 2. **Normalization.** Each metric pair is normalized by its maximum absolute value.
-3. **Score.** `0.6 × exp(−2.2 × WED) + 0.4 × cosine similarity`, where WED is the weighted
-   Euclidean distance. Weights live in `deliverables/demo/js/data/constants.js`.
-4. **Missing data is never zero.** If a weighted metric is missing, the score is reported as
-   unavailable instead of being recomputed with fewer metrics.
+3. **Score.** `0.6 × exp(−k × WED) + 0.4 × cosine similarity`, where WED is the weighted Euclidean
+   distance. Weights live in `src/shared/constants.py`.
+4. **Missing data is never zero.** Only attributes present on both sides count and the weights are
+   renormalized. Below 60% of the total weight the pair gets no score, and the report says why.
 
 The full data contract (field names, units and definitions) is in
 [`docs/methodology/data-contract.md`](docs/methodology/data-contract.md).
@@ -167,6 +169,20 @@ python -m src.application.pipeline --filename matching_report_v2.json
 | `--log` | log file (default: `<filename>.log` next to the report; `none` disables it) |
 | `--no-scaling` | turns off Bagnold scaling |
 
+### Showing the results in the demo
+
+The demo does **not** compute scores. It displays what the pipeline wrote:
+
+```bash
+python -m src.application.pipeline --filename matching_report_v2.json
+python scripts/export_pipeline_to_demo.py          # writes deliverables/demo/js/data/pipeline-results.js
+```
+
+Rerun both commands whenever the pipeline, the catalogs or the rasters change. The export carries each
+site's measured attributes, the top 5 references with score / WED / cosine / coverage, the per-attribute
+scaling the pipeline applied (Bagnold β from `src/shared/constants.py`), provenance and warnings.
+Excluded and unprocessed sites keep their reason instead of a number.
+
 ### Downloading a new site from coordinates
 
 Needs a free OpenTopography key (portal.opentopography.org, under *MyOpenTopo*):
@@ -230,10 +246,10 @@ running `npm run reports` locally so every visitor sees them.
 
 ## Known limitations and next steps
 
-- The demo computes scores in the browser from its own catalog. It does not yet load the Python
-  pipeline report.
-- In the current pipeline report, every crater site gets the same score with no matched lunar
-  reference. This needs investigation before pipeline results are used.
+- The demo shows the pipeline's scores (see "Showing the results in the demo" above). Sites the
+  pipeline did not process, or excluded, appear with the reason and no score; sites registered in the
+  browser form have no pipeline result, so they get no score until the pipeline is run for them.
+- The hand-written similarities/differences texts of catalog sites are not generated from the pipeline.
 - Planetary references are fixed values in code. The downloaded Mars and Moon DTMs are not yet
   processed by the pipeline.
 - ASTER and EMIT data are downloaded but not used yet.

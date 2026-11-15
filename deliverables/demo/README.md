@@ -98,8 +98,11 @@ Configurações informa que tema, unidades e preferências salvas estão indispo
 - `js/components/worldMap.js`, `comparison.js`, `metrics.js`, `charts.js`,
   `siteSelector.js`, `siteForm.js`, `toast.js`: componentes funcionais adaptados.
 - `js/data/`: catálogos, pesos/rótulos e presets originais.
-- `js/services/similarity.js`, `calculations.js`, `comparisonModel.js`,
-  `chartData.js`: cálculo, normalização, modelo comum e geometria dos gráficos.
+- `js/data/pipeline-results.js`: **gerado** por `scripts/export_pipeline_to_demo.py` a partir de
+  `data/processed/comparisons/matching_report_v2.json`. O demo não calcula scores: exibe os do pipeline
+  (score, WED, cosseno, cobertura, escalonamento de Bagnold, proveniência e avisos).
+- `js/services/pipeline.js`, `comparisonModel.js`, `calculations.js`, `chartData.js`: aplicação dos
+  resultados do pipeline, modelo comum, normalização das barras/radar e geometria dos gráficos.
 - `js/utils/formatters.js`, `helpers.js`: adaptação aos painéis, formatos e escape.
 - `vendor/`, `assets/`: Three.js 0.170.0 e texturas locais da Kauan. Licença MIT em
   `vendor/THREE-LICENSE.txt`; texturas earth_atmos_2048, earth_normal_2048 e

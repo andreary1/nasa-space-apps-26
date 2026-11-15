@@ -1,31 +1,51 @@
-import { CRATER_WEIGHTS, DUNE_WEIGHTS, PARAM_LABELS } from '../data/constants.js';
-import { MOON_CRATER_REFERENCES } from '../data/moon.js';
-import { MARS_DUNE_REFERENCES } from '../data/mars.js';
-import { calculateMatch } from './similarity.js';
-import { scaledTarget, normalizePair } from './calculations.js';
+import { PARAM_LABELS } from '../data/constants.js';
+import { PIPELINE, MOON_REFS, MARS_REFS } from './pipeline.js';
+import { normalizePair } from './calculations.js';
 
 export const numericValue = value => typeof value === 'number' && Number.isFinite(value) ? value : null;
-export const weightsFor = type => type === 'crater' ? CRATER_WEIGHTS : DUNE_WEIGHTS;
 
-export function metricPairs(earthMetrics, targetMetrics, type) {
-  return Object.entries(weightsFor(type)).map(([key, weight]) => {
-    const earth = numericValue(earthMetrics?.[key]);
-    const target = numericValue(targetMetrics?.[key]);
-    const comparable = target === null ? null : scaledTarget(target, key, type);
-    const available = earth !== null && comparable !== null;
-    const [normalizedEarth, normalizedTarget] = available ? normalizePair(earth, comparable) : [null, null];
-    return {
-      key, label: PARAM_LABELS[key] || key, weight, earth, target, comparable,
-      scaled: type === 'dune' && ['wavelength', 'mean_spacing', 'mean_height'].includes(key),
-      difference: available ? ((earth - comparable) / Math.max(Math.abs(comparable), 1e-4)) * 100 : null,
-      normalizedEarth, normalizedTarget,
-    };
-  });
+function rowFromFeature(feature) {
+  const earth = numericValue(feature.earth);
+  const target = numericValue(feature.target);
+  const comparable = numericValue(feature.target_scaled);
+  const available = earth !== null && comparable !== null;
+  const [normalizedEarth, normalizedTarget] = available ? normalizePair(earth, comparable) : [null, null];
+  return {
+    key: feature.key, label: PARAM_LABELS[feature.key] || feature.key, weight: feature.weight,
+    earth, target, comparable, used: feature.used,
+    scale: numericValue(feature.scale),
+    scaled: numericValue(feature.scale) !== null && feature.scale !== 1,
+    difference: available ? ((earth - comparable) / Math.max(Math.abs(comparable), 1e-4)) * 100 : null,
+    normalizedEarth, normalizedTarget,
+  };
 }
 
+// Linhas sem alvo (sítio sem score): só o valor medido do lado da Terra.
+function earthOnlyRows(site) {
+  return (PIPELINE.meta.feature_keys[site.type] || []).map(key => ({
+    key, label: PARAM_LABELS[key] || key, weight: null, earth: numericValue(site.metrics?.[key]),
+    target: null, comparable: null, used: false, scale: null, scaled: false,
+    difference: null, normalizedEarth: null, normalizedTarget: null,
+  }));
+}
+
+const NOT_PROCESSED = 'Este sítio não foi processado pelo pipeline. Rode o pipeline e exporte o relatório (scripts/export_pipeline_to_demo.py) para ver o score.';
+
+// Monta o modelo exibido na interface a partir do resultado do pipeline.
 export function buildComparison(site) {
-  const targets = site.type === 'crater' ? MOON_CRATER_REFERENCES : MARS_DUNE_REFERENCES;
-  const matches = targets.map(target => ({target, ...calculateMatch(site.metrics, target, site.type)}))
-    .filter(match => match.score !== null).sort((a, b) => b.score - a.score);
-  return {site, matches, best: matches[0] || null, rows: metricPairs(site.metrics, matches[0]?.target, site.type)};
+  const entry = site.pipeline || null;
+  const refs = site.type === 'crater' ? MOON_REFS : MARS_REFS;
+  const matches = (entry?.matches || []).map(match => ({
+    target: refs.find(ref => ref.id === match.ref_id) || {id: match.ref_id, name: match.ref_id},
+    score: match.score, wed: match.wed, cosine: match.cosine, coverage: match.coverage,
+    features: match.features, missingEarth: match.missing_earth, missingReference: match.missing_reference,
+  }));
+  const best = matches[0] || null;
+  return {
+    site, matches, best,
+    rows: best ? best.features.map(rowFromFeature) : earthOnlyRows(site),
+    status: entry?.status || 'not_processed',
+    reason: entry ? (entry.reason || '') : NOT_PROCESSED,
+    quality: entry?.dq || null,
+  };
 }

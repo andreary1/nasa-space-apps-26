@@ -5,7 +5,7 @@ import { escapeHtml } from '../utils/helpers.js';
 export function createCharts(state) {
   function render(model) {
     const {site, best, rows} = model;
-    const paths = profilePaths(site, best?.target);
+    const paths = profilePaths(site, best?.target, rows);
     document.getElementById('svg-container').innerHTML = paths ? `
       <svg viewBox="0 0 680 175" role="img" aria-label="Esquema paramétrico: Terra e alvo planetário">
       <path d="M40 45H640M40 135H640" stroke="#dce3f3" stroke-dasharray="3 3"/>
