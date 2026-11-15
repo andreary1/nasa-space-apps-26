@@ -3,7 +3,7 @@
 export const PIPELINE = {
  "meta": {
   "source_file": "matching_report_v2.json",
-  "generated_at": "2026-11-15 22:20:12 UTC",
+  "generated_at": "2026-11-15 22:42:02 UTC",
   "pipeline_version": "1.0.0",
   "beta": 4.82,
   "min_coverage": 0.6,
@@ -8586,7 +8586,7 @@ export const PIPELINE = {
   "pedra_cariri": {
    "kind": "crater",
    "status": "excluded",
-   "reason": "sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.3888888888888889)",
+   "reason": "sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.3888888888888889)",
    "name": "Pedra Cariri (Geopark Araripe)",
    "category": "afloramento",
    "lat": -7.09,
@@ -8597,7 +8597,7 @@ export const PIPELINE = {
   "pedreira_mdc": {
    "kind": "crater",
    "status": "excluded",
-   "reason": "sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.4861111111111111)",
+   "reason": "sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.4861111111111111)",
    "name": "Pedreira de Morro do Chapéu (BA-052)",
    "category": "afloramento",
    "lat": -11.55889,

@@ -140,7 +140,7 @@ DUNE_CIRCULAR_FEATURES = {"crest_azimuth": 180.0}
 CRATER_GEOMETRIC_FEATURES: tuple = ()
 
 # Classificação de crateras medidas no raster (nós medimos; ver morphometrics).
-CRATER_CLASS_MIN_COHERENCE = {"crater": 0.75, "partial_ring": 0.5}
+CRATER_CLASS_MIN_COHERENCE = {"crater": 0.75, "partial_ring": 0.3}
 
 # ---------------------------------------------------------------------------
 # Referências marcianas — Campos de Dunas (Marte)
