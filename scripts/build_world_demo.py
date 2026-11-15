@@ -1949,15 +1949,32 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         ? `NASA POWER · ${climate.period} · ${climate.scope}` : '';
       const facts = document.getElementById('geo-context-facts');
       facts.replaceChildren();
-      for (const [key, label] of [['climate', 'Clima'], ['biome', 'Bioma'], ['vegetation', 'Vegetação'], ['nearby_locality', 'Localidade próxima']]) {
+      for (const [key, label] of [['climate', 'Clima'], ['biome', 'Bioma'], ['vegetation', 'Vegetação'], ['nearby_locality', 'Localidades de referência'], ['geology', 'Geologia']]) {
+        if (typeof context?.[key] !== 'string' || !context[key].trim()) continue;
         const group = document.createElement('div');
         const term = document.createElement('dt');
         term.className = 'text-slate-500 mb-1';
         term.textContent = label;
         const value = document.createElement('dd');
         value.className = 'text-slate-300';
-        value.textContent = context?.[key] || 'Não informado';
+        value.textContent = context[key];
         group.append(term, value);
+        const evidence = context.field_sources?.[key];
+        if (evidence) {
+          const note = document.createElement('p');
+          note.className = 'text-slate-500 mt-1 leading-relaxed';
+          note.textContent = evidence.scope;
+          group.append(note);
+          if (/^https?:\/\//i.test(evidence.url)) {
+            const link = document.createElement('a');
+            link.textContent = 'Fonte: ' + evidence.title;
+            link.href = evidence.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'block mt-1 text-sky-400 underline';
+            group.append(link);
+          }
+        }
         facts.append(group);
       }
       const sources = document.getElementById('geo-context-sources');
