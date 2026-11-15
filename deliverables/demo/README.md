@@ -201,3 +201,60 @@ novos sítios sem ficha têm um estado explícito de ausência. Falhas de carreg
 permitem nova tentativa. Nenhuma API externa é chamada ao abrir o painel.
 
 Verificação: `node tests/integration/context-panel.mjs` (da raiz do repositório).
+
+## Redesign do Mapa Mundial 2D e catálogo
+
+O mapa usa os mapas equiretangulares locais já existentes, da Solar System Scope /
+INOVE, sob CC BY 4.0 ([créditos](assets/ATTRIBUTION.md)). `mapTexture.js` combina
+superfície, máscara de água, normais e nuvens em uma imagem gerada em memória,
+com oceanos azuis e continentes claros. Não é uma captura da referência: pins,
+seleção e navegação são camadas interativas independentes. A textura é carregada
+ao abrir a página do mapa e reutilizada durante a sessão, sem dependência externa.
+
+`mapGeometry.js` usa projeção equiretangular / plate carrée com extensão completa
+WGS84, incluindo a Antártida. O mesmo sistema transforma textura, coordenadas do
+cursor e âncoras dos pins; não há margens artificiais nem coordenadas deslocadas.
+Os enquadramentos Brasil / América do Sul e Nordeste preservam os limites usados
+para filtrar localidades, com margem visual para os pins. Mundo mostra todos os
+registros. Os contadores continuam derivados do catálogo, inclusive após cadastro.
+
+`worldMap.js` mantém sua API e recebe o mesmo estado da aplicação. Grupos com
+contagem reúnem pins próximos, sem nomes permanentes. Clique ou Enter aproxima
+o grupo até expor localidades individuais. Grupos mistos usam o ícone de camadas;
+pins de dunas são verdes e de crateras, lilás. Nenhum registro é removido ou tem
+suas coordenadas alteradas. Zoom pelos botões, +/− ou Ctrl + rolagem; arraste e
+setas navegam; Home ou o botão de enquadramento restauram a região. A rolagem
+normal continua movimentando a página; no toque, o gesto vertical mantém essa
+rolagem e o arraste horizontal navega no mapa.
+
+O catálogo continua sendo um único componente compartilhado. Apenas na página
+Mapa Mundial, `siteSelector.js` inclui ícones e mantém os elementos dos cartões
+durante a seleção, permitindo a transição de 280 ms do gradiente roxo e preservando
+o foco. `world-map.css` fica restrito a `#view-map`: outras páginas mantêm o design
+anterior. Clique no pin/cartão ou mudança do dropdown chamam o mesmo `selectSite`
+em `app.js`, que permanece inalterado. Filtros afetam o mapa e o globo conforme a
+regra existente; o catálogo do mapa continua mostrando todas as localidades.
+Se um filtro/enquadramento ocultar o local selecionado, a seleção é preservada.
+Selecionar pelo catálogo não reposiciona o mapa, mantendo o comportamento anterior.
+
+Verificações executadas nesta etapa, além de `demo-modules.mjs`,
+`demo-browser.cjs`, `context-panel.mjs`, `verify_html.py` e `git diff --check`:
+
+```powershell
+node tests/integration/map-geometry.mjs
+# Com servidor HTTP ativo e PLAYWRIGHT_MODULE configurado como acima:
+node tests/integration/map-redesign.cjs
+```
+
+O teste geométrico verifica extensão, ida/volta das coordenadas, regiões e
+agrupamentos sem perdas ou duplicações. O teste de navegador explora os 24 pins,
+confere seleção compartilhada, nomes, filtros, regiões, zoom/arraste/teclado,
+coordenadas do cursor e ausência de overflow nas quatro resoluções 1920×1080,
+1600×900, 1366×768 e 390×844. Capturas em `%TEMP%/paf-map-qa/`.
+
+Limitações: a textura global fica pixelada em aproximações extremas; é uma
+visualização de superfície, sem tiles locais ou DEM detalhado. O primeiro acesso
+ao mapa precisa decodificar/processar as texturas. Grupos representam a posição
+média dos membros; ao expandi-los, cada pin individual volta à sua âncora exata.
+O zoom fica limitado a 2048×. O globo 3D, a sidebar, as fórmulas, os 24 registros,
+as referências e os arquivos do pipeline científico não foram modificados.

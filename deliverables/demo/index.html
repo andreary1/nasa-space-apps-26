@@ -282,39 +282,15 @@
 <section class="surface"><div class="toolbar">
 <div class="segmented" aria-label="Região do mapa"><button id="btn-view-mundo" data-action="setMapViewMode" data-value="mundo" aria-pressed="true">Mundo</button><button id="btn-view-br" data-action="setMapViewMode" data-value="brasil" aria-pressed="false">Brasil / América do Sul</button><button id="btn-view-ne" data-action="setMapViewMode" data-value="nordeste" aria-pressed="false">Nordeste</button></div>
 <div class="segmented" aria-label="Tipo de localidade"><button id="filter-all" data-action="setMapFilter" data-value="all" aria-pressed="true">Todos</button><button id="filter-dune" data-action="setMapFilter" data-value="dune" aria-pressed="false">Dunas</button><button id="filter-crater" data-action="setMapFilter" data-value="crater" aria-pressed="false">Crateras</button></div></div>
-<div class="map-stage"><svg id="world-map-svg" viewBox="0 0 960 480" class="world-map" data-mousemove-action="handleMapHover">
-          <defs>
-            <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0369a1" stop-opacity="0.18"/>
-              <stop offset="100%" stop-color="#082f49" stop-opacity="0.05"/>
-            </linearGradient>
-            <filter id="glowDune" x="-40%" y="-40%" width="180%" height="180%">
-              <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#f97316" flood-opacity="0.95"/>
-            </filter>
-            <filter id="glowCrater" x="-40%" y="-40%" width="180%" height="180%">
-              <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#38bdf8" flood-opacity="0.95"/>
-            </filter>
-          </defs>
-
-          <!-- Ocean background -->
-          <rect x="0" y="0" width="960" height="480" fill="url(#oceanGrad)" />
-
-          <!-- Dynamic Landmass Polygon Layer -->
-          <g id="map-basemap-layer"></g>
-
-          <!-- Cartographic Coordinate Grid -->
-          <g id="map-grid-layer"></g>
-
-          <!-- Region & Country Labels Layer -->
-          <g id="map-labels-layer"></g>
-
-          <!-- Targeting Radar Ring for Active Site -->
-          <g id="map-reticle-layer"></g>
-
-          <!-- Georeferenced Pins Layer -->
-          <g id="map-pins-layer"></g>
-        </svg><div id="map-pin-tooltip" class="map-tooltip" hidden><strong id="tooltip-title"></strong><span id="tooltip-sub"></span></div></div>
-<div class="map-legend"><span>● Dunas → Marte</span><span>● Crateras → Lua</span><span id="map-coord-display">WGS84 · EPSG:4326</span></div></section><div data-slot="catalog"></div></section><section id="view-comparisons" data-page-view="comparisons" class="content-page" aria-label="Comparações" hidden>
+<div class="map-stage">
+<svg id="world-map-svg" viewBox="0 0 960 480" class="world-map" tabindex="0" role="group" aria-label="Mapa interativo de localidades terrestres" aria-describedby="map-help">
+  <g id="map-basemap-layer"><image id="map-earth-texture" x="0" y="0" width="960" height="480" preserveAspectRatio="none"/></g>
+  <g id="map-grid-layer"></g><g id="map-labels-layer"></g><g id="map-reticle-layer"></g><g id="map-pins-layer"></g>
+</svg>
+<div id="map-status" class="map-status" role="status" hidden></div>
+<div class="map-zoom" role="group" aria-label="Zoom do mapa"><button id="map-zoom-in" aria-label="Aproximar mapa">+</button><button id="map-zoom-out" aria-label="Afastar mapa">−</button><button id="map-zoom-reset" aria-label="Restaurar enquadramento"><svg aria-hidden="true"><use href="#i-target"/></svg></button><span id="map-zoom-level">1×</span></div>
+<div id="map-pin-tooltip" class="map-tooltip" hidden><strong id="tooltip-title"></strong><span id="tooltip-sub"></span></div></div>
+<div class="map-legend"><span class="map-dune-key">● Dunas → Marte</span><span class="map-crater-key">● Crateras → Lua</span><span id="map-coord-display">WGS84 · EPSG:4326</span><span id="map-visible-count"></span></div><p id="map-help" class="map-help">Arraste para navegar · + / − para zoom · Ctrl + rolagem aproxima no cursor · Clique nos grupos para explorar</p></section><div data-slot="catalog"></div></section><section id="view-comparisons" data-page-view="comparisons" class="content-page" aria-label="Comparações" hidden>
 <header class="page-heading"><p class="eyebrow">Planetary Analog Finder</p><h1 data-view-title tabindex="-1">Comparações</h1><p class="description">Terra ↔ Lua para crateras · Terra ↔ Marte para dunas.</p></header><div data-slot="catalog"><section id="catalog-section" class="surface"><div class="toolbar"><h2 id="catalog-title">Localidades terrestres</h2><label>Selecionar localidade <select id="site-select"></select></label></div><div id="site-selector" class="site-grid"></div></section></div><div data-slot="comparison"><section id="comparison-card-section" class="surface">
 <div class="toolbar"><div><span id="badge-body" class="badge"></span><span id="badge-cat" class="badge"></span><span id="badge-region" class="badge"></span></div><div class="score-summary"><strong id="score-display"></strong><span id="distance-display"></span></div></div>
 <h2 id="pair-title"></h2><p id="site-coords"></p><p id="comparison-status" role="status"></p>

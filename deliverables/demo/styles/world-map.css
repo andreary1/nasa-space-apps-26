@@ -1,0 +1,401 @@
+/* Scoped to the map page: shared catalog keeps its existing design elsewhere. */
+#view-map > .surface {
+  padding: 26px;
+  border-radius: 26px;
+  background: #f9fbffcf;
+}
+#view-map .toolbar {
+  gap: 18px;
+}
+#view-map .segmented {
+  padding: 5px;
+  border-color: #dce4f5;
+  background: #e9eef9;
+  border-radius: 15px;
+}
+#view-map .segmented button {
+  min-height: 40px;
+  padding: 9px 16px;
+  font-size: 13px;
+  border-radius: 11px;
+  font-weight: 600;
+}
+#view-map .map-stage {
+  margin-top: 24px;
+  overflow: hidden;
+  border-color: #d1e1ee;
+  border-radius: 15px;
+  background: #548fb0;
+  box-shadow: 0 8px 22px #526d9c12;
+}
+#view-map svg.world-map {
+  aspect-ratio: 2;
+  height: auto;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+#view-map svg.world-map.is-dragging {
+  cursor: grabbing;
+}
+#view-map .map-pin {
+  --pin: #9257e5;
+  --pin-bg: #d8c3ff;
+  stroke: none;
+  outline: none;
+}
+#view-map .map-pin[data-type="dune"] {
+  --pin: #33a940;
+  --pin-bg: #d4f2b8;
+}
+#view-map .map-pin-badge {
+  fill: var(--pin-bg);
+  stroke: #fff;
+  stroke-width: 3;
+  filter: drop-shadow(0 3px 5px #22366855);
+}
+#view-map .map-pin-icon {
+  stroke: var(--pin);
+  fill: none;
+  stroke-width: 1.9;
+  pointer-events: none;
+}
+#view-map .map-pin-stem {
+  stroke: #fff;
+  stroke-width: 3;
+}
+#view-map .map-pin-dot {
+  fill: var(--pin);
+  stroke: #fff;
+  stroke-width: 3;
+}
+#view-map .map-pin-selection {
+  fill: #ab79e848;
+  stroke: #fff;
+  stroke-width: 1.5;
+  opacity: 0;
+}
+#view-map .map-pin[aria-pressed="true"] .map-pin-selection {
+  opacity: 1;
+}
+#view-map .map-pin[aria-pressed="true"] .map-pin-badge,
+#view-map .map-pin:hover .map-pin-badge,
+#view-map .map-pin:focus-visible .map-pin-badge {
+  stroke: #d8bbff;
+  stroke-width: 4;
+  filter: drop-shadow(0 3px 7px #543c8f88);
+}
+#view-map .map-cluster-count {
+  fill: #fff;
+  stroke: var(--pin);
+  stroke-width: 1.5;
+}
+#view-map .map-cluster-number {
+  fill: #5c3b91;
+  font:
+    700 12px "Segoe UI",
+    sans-serif;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+#view-map .map-zoom {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: grid;
+  background: #f9fbfff2;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0 4px 12px #23365a25;
+}
+#view-map .map-zoom button {
+  width: 34px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  padding: 5px;
+  font-size: 22px;
+  color: #26345f;
+  line-height: 1;
+}
+#view-map .map-zoom button svg {
+  width: 19px;
+  height: 19px;
+}
+#view-map .map-zoom button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+#view-map .map-zoom button:hover:not(:disabled) {
+  background: #ebe5fd;
+}
+#view-map .map-zoom span {
+  text-align: center;
+  font-size: 10px;
+  color: #65718e;
+  padding: 3px 0;
+}
+#view-map .map-status {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  max-width: calc(100% - 24px);
+  padding: 10px 14px;
+  border-radius: 9px;
+  background: #f8fbfff5;
+  color: #26365b;
+  font-size: 12px;
+}
+#view-map .map-legend {
+  padding-top: 16px;
+  gap: 18px;
+  font-size: 12px;
+  color: #53618b;
+}
+#view-map .map-dune-key {
+  color: #448447;
+}
+#view-map .map-crater-key {
+  color: #8157bd;
+}
+#view-map #map-visible-count {
+  margin-left: auto;
+}
+#view-map .map-help {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: #7a87a2;
+}
+#view-map .map-tooltip {
+  max-width: min(280px, calc(100% - 16px));
+  border-color: #dce3f7;
+}
+
+#view-map .map-catalog {
+  position: relative;
+  margin-top: 28px;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px solid #fff;
+  background:
+    radial-gradient(ellipse at 20% -20%, #dcd6ffb0, transparent 57%),
+    radial-gradient(ellipse at 100% 0, #c8e1ffb5, transparent 60%),
+    linear-gradient(115deg, #f8faff, #f2f3ff 50%, #edf5ff);
+  box-shadow: 0 12px 30px #536da118;
+}
+#view-map .map-catalog .toolbar {
+  margin-bottom: 28px;
+}
+#view-map #catalog-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: clamp(21px, 1.5vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+#view-map .catalog-heading-icon {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  padding: 9px;
+  border-radius: 17px;
+  color: #6754dc;
+  background: #d9daff;
+  stroke-width: 1.8;
+}
+#view-map .map-catalog label {
+  font-size: 14px;
+  color: #58658b;
+  gap: 16px;
+}
+#view-map #site-select {
+  min-width: 280px;
+  max-width: 350px;
+  padding: 13px 16px;
+  border: 1px solid #c4d0ec;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px #5b67a010;
+  font-size: 15px;
+  font-weight: 650;
+}
+#view-map .site-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(235px, 100%), 1fr));
+  gap: 14px;
+  margin: 0;
+}
+#view-map .site-grid .site-option {
+  position: relative;
+  isolation: isolate;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-height: 104px;
+  padding: 16px 12px;
+  border: 1px solid #d8ddf5;
+  border-radius: 19px;
+  background: #fbfcffcf;
+  box-shadow: 0 2px 4px #2c437d09;
+  color: #192352;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s,
+    border-color 0.25s,
+    color 0.25s;
+}
+#view-map .site-option::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  background: linear-gradient(125deg, #a78aed, #9761e7 70%, #ab79ef);
+  opacity: 0;
+  transition: opacity 0.28s;
+}
+#view-map .site-option .catalog-site-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  color: inherit;
+}
+#view-map .catalog-site-copy > span {
+  font-size: 12px;
+  color: #56618a;
+  line-height: 1.4;
+  transition: color 0.25s;
+}
+#view-map .catalog-site-copy strong {
+  font-size: 15px;
+  font-weight: 650;
+  color: inherit;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+#view-map .catalog-site-icon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  padding: 9px;
+  border-radius: 18px;
+  background: #eee4ff;
+  stroke: #9144e7;
+  stroke-width: 1.8;
+  transition:
+    color 0.25s,
+    stroke 0.25s,
+    background 0.25s;
+}
+#view-map .catalog-site-icon[data-type="dune"] {
+  stroke: #36a640;
+  background: #e5f5e2;
+}
+#view-map .site-option:hover {
+  transform: translateY(-2px);
+  border-color: #b8a3ed;
+  box-shadow: 0 6px 14px #7363aa21;
+}
+#view-map .site-option[aria-pressed="true"] {
+  color: #fff;
+  border-color: #a56af1;
+  outline: 2px solid #be8cfa;
+  outline-offset: 2px;
+  box-shadow:
+    0 6px 16px #8c59d539,
+    inset 0 0 0 2px #ffffff70;
+}
+#view-map .site-option[aria-pressed="true"]::before {
+  opacity: 1;
+}
+#view-map .site-option[aria-pressed="true"] .catalog-site-copy > span {
+  color: #f5eaff;
+}
+#view-map .site-option[aria-pressed="true"] .catalog-site-icon {
+  stroke: #fff;
+  background: #ffffff3d;
+}
+#view-map .site-option:focus-visible {
+  outline: 3px solid #7146c4;
+  outline-offset: 3px;
+}
+@media (min-width: 1850px) {
+  #view-map .site-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  #view-map > .surface,
+  #view-map .map-catalog {
+    padding: 16px;
+    border-radius: 19px;
+  }
+  #view-map .segmented button {
+    padding: 8px 10px;
+    font-size: 11px;
+    min-height: 36px;
+  }
+  #view-map .map-stage {
+    margin-top: 18px;
+  }
+  #view-map .map-zoom {
+    right: 6px;
+    bottom: 6px;
+    padding: 1px;
+    border-radius: 8px;
+  }
+  #view-map .map-zoom button {
+    width: 26px;
+    height: 25px;
+    font-size: 18px;
+  }
+  #view-map .map-zoom span {
+    display: none;
+  }
+  #view-map .map-legend {
+    gap: 8px 14px;
+    font-size: 10px;
+  }
+  #view-map #map-visible-count {
+    margin-left: 0;
+  }
+  #view-map .map-catalog .toolbar {
+    margin-bottom: 20px;
+  }
+  #view-map #catalog-title {
+    gap: 10px;
+    font-size: 19px;
+  }
+  #view-map .catalog-heading-icon {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+    padding: 7px;
+    border-radius: 13px;
+  }
+  #view-map #site-select {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    font-size: 14px;
+  }
+  #view-map .map-catalog label {
+    gap: 8px;
+  }
+  #view-map .site-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  #view-map .site-grid .site-option {
+    min-height: 88px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #view-map .site-option,
+  #view-map .site-option *,
+  #view-map .site-option::before {
+    transition: none;
+  }
+}
