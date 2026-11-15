@@ -1,5 +1,10 @@
 # Planetary Analog Finder — exploração e comparação
 
+Nova funcionalidade: [Análise Inteligente — execução Windows, fontes DEM,
+metodologia, evidências, endpoints e testes](../../docs/analise-inteligente.md).
+Para executar análises reais, use `iniciar-analise-inteligente.bat` na raiz;
+o servidor HTTP estático continua servindo a interface, mas não executa a API.
+
 Execute `python -m http.server 8000` na raiz e abra
 http://localhost:8000/deliverables/demo/. Não há instalação, build, CDN ou backend
 necessário para a interface. Os módulos ES precisam de HTTP e o globo de WebGL 2.

@@ -15,6 +15,7 @@ import { initSidebar } from './components/sidebar.js';
 import { buildComparison } from './services/comparisonModel.js';
 import { panelLocation } from './utils/formatters.js';
 import { createAiReport } from './components/aiReport.js';
+import { createIntelligentAnalysis } from './components/intelligentAnalysis.js';
 
 const state = {
   activePage: 'globe', currentSiteIndex: 0, hasSelection: false,
@@ -25,7 +26,11 @@ const panels = new Panels(matchMedia('(prefers-reduced-motion: reduce)'));
 const charts = createCharts(state);
 const renderSelectors = createSiteSelector(state);
 const aiReport = createAiReport();
-const map = createWorldMap(state, selectSite);
+const map = createWorldMap(state, selectSite, candidate => {
+  intelligent.showResult(candidate.id);
+  navigation.show('intelligent');
+});
+const intelligent = createIntelligentAnalysis(candidates => map.setCandidates(candidates), () => navigation.show('map'));
 let globe;
 const navigation = createNavigation(state, () => {
   renderSelectors();

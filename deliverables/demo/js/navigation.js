@@ -1,4 +1,5 @@
 export const PAGES = {
+  intelligent: 'Análise Inteligente',
   overview: 'Visão geral', globe: 'Exploração do globo', map: 'Mapa mundial',
   comparisons: 'Comparações', analysis: 'Dunas e crateras', reports: 'Relatórios', settings: 'Configurações',
 };

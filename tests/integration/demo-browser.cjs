@@ -26,6 +26,7 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     for (const [width, height] of [[1366, 768], [1600, 900], [1920, 1080]]) {
       await page.setViewportSize({width, height});
       await page.waitForTimeout(150);
+      await page.waitForFunction(() => document.querySelector('.dashboard').getBoundingClientRect().height === innerHeight);
       assert.deepEqual(await page.locator('.dashboard').boundingBox(), {x:0,y:0,width,height});
       assert.equal((await page.locator('.sidebar').boundingBox()).x,0);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false);
@@ -130,7 +131,7 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     await page.setViewportSize({width: 390, height: 844});
     await page.locator('#menu-toggle').click();
     assert.ok(await page.locator('#workspace').evaluate(element => element.inert));
-    await page.locator('.sidebar nav [data-page="settings"]').focus();
+    await page.locator('.sidebar nav [data-page]').last().focus();
     await page.keyboard.press('Tab');
     assert.ok(await page.locator('.sidebar .brand').evaluate(element => element === document.activeElement));
     await page.keyboard.press('Escape');

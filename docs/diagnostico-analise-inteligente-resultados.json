@@ -1,0 +1,2627 @@
+[
+  {
+    "id": "erg-chebbi",
+    "executed_at": "2026-11-15T21:09:07.214Z",
+    "input": {
+      "latitude": 31.1381,
+      "longitude": -3.9761,
+      "raio_km": 5,
+      "comparar_com": [
+        "lua",
+        "marte"
+      ],
+      "nome": "Erg Chebbi"
+    },
+    "topography": {
+      "metrics": {
+        "elevation_min_m": 697.5127563476562,
+        "elevation_max_m": 902.3938598632812,
+        "elevation_mean_m": 738.1190254638924,
+        "relief_m": 204.881103515625,
+        "slope_mean_deg": 4.28535470401173,
+        "slope_p90_deg": 10.428336019092656,
+        "roughness_rms_m": 2.519314380003574
+      },
+      "coverage": 1,
+      "resolution_m": 30,
+      "metric_crs": "EPSG:32630",
+      "bounds_wgs84": [
+        -4.029029603447783,
+        31.092583878476816,
+        -3.923220024819012,
+        31.1835958599767
+      ],
+      "valid_pixels": 87270,
+      "slope_valid_pixels": 87270,
+      "slope_distribution": {
+        "bins_deg": [
+          0,
+          5,
+          15,
+          30,
+          45,
+          90
+        ],
+        "counts": [
+          63318,
+          19806,
+          4083,
+          63,
+          0
+        ]
+      },
+      "source": {
+        "id": "cop30",
+        "title": "Copernicus GLO-30 Public / Sinergise",
+        "url": "https://registry.opendata.aws/copernicus-dem/",
+        "kind": "DSM, EGM2008; inclui vegetação e edificações",
+        "cache_hit": true,
+        "files": [
+          "Copernicus_DSM_COG_10_N31_00_W005_00_DEM_7a6f75f08e6dcb9c8b3f.tif",
+          "Copernicus_DSM_COG_10_N31_00_W004_00_DEM_7a6f75f08e6dcb9c8b3f.tif"
+        ],
+        "inputs": [
+          {
+            "file": "Copernicus_DSM_COG_10_N31_00_W005_00_DEM_7a6f75f08e6dcb9c8b3f.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          },
+          {
+            "file": "Copernicus_DSM_COG_10_N31_00_W004_00_DEM_7a6f75f08e6dcb9c8b3f.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          }
+        ]
+      },
+      "method": "ROI circular; reamostragem bilinear em CRS métrico; gradiente central sem preenchimento de NoData; RMS do resíduo de média local 7×7; relevo máximo−mínimo.",
+      "warnings": [
+        "DEM/DSM não identifica crateras de impacto nem campos de dunas."
+      ]
+    },
+    "identification": {
+      "id": "erg_chebbi",
+      "status": "documented_region",
+      "kind": "dune",
+      "message": "Campo de dunas documentado: Erg Chebbi. A caixa da área de estudo não delimita cristas nem exclui afloramentos/planícies; métricas de dunas ainda ausentes.",
+      "sources": [
+        {
+          "id": "erg-study",
+          "title": "Herzog et al. (2019), área de estudo e levantamento laser/GNSS de Erg Chebbi",
+          "url": "https://meetingorganizer.copernicus.org/EGU2019/EGU2019-6950.pdf"
+        },
+        {
+          "id": "erg-nasa",
+          "title": "NASA Earth Observatory: Sandy Sculptures in Morocco’s Erg Chebbi",
+          "url": "https://science.nasa.gov/earth/earth-observatory/sandy-sculptures-in-moroccos-erg-chebbi-153562/"
+        }
+      ],
+      "limitations": [
+        "A resolução de 30 m resolve parte das megadunas, mas não comprova segmentação de cristas/interdunas.",
+        "Azimute único é ambíguo em dunas estrela; P/ET0 exige climatologia, não é medido pelo DEM.",
+        "Levantamento laser/GNSS publicado com resolução de 10 cm cobre uma duna; não é um DEM público automaticamente disponível para toda a ROI."
+      ],
+      "acquisition": [
+        {
+          "title": "Levantamento de alta resolução e métodos",
+          "url": "https://meetingorganizer.copernicus.org/EGU2019/EGU2019-6950.pdf"
+        },
+        {
+          "title": "Estudo de Lala Lallia (2024), dados/métodos e disponibilidade",
+          "url": "https://doi.org/10.1038/s41598-024-53485-3"
+        }
+      ]
+    },
+    "feature": null,
+    "catalog": {
+      "official_count": 24,
+      "nearby": [
+        {
+          "id": "erg_chebbi",
+          "name": "Erg Chebbi (Saara)",
+          "kind": "dune",
+          "distance_m": 1477.2003460387216,
+          "tolerance_m": 2000,
+          "metrics_present": [
+            "mean_height",
+            "height_p90",
+            "wavelength",
+            "crest_azimuth",
+            "dune_density",
+            "mean_spacing",
+            "aridity_index"
+          ],
+          "metrics_reused": [],
+          "scores_reused": false,
+          "reason": "Proximidade é indicação, não delimitação. sites.js não fornece fonte, método, resolução e área de amostragem por métrica; valores não promovidos a medições revisadas."
+        }
+      ],
+      "method": "Haversine em WGS84; tolerância de busca (1,2 km crateras / 2 km dunas), sem reutilização automática de scores/métricas."
+    },
+    "comparisons": {
+      "lua": {
+        "outcome": "incompatible_geomorphology",
+        "reason": "Feição eólica (dunas) documentada; este catálogo contém crateras lunares.",
+        "score": null,
+        "coverage": 0,
+        "metrics_comparable": [],
+        "missing": [
+          "diameter_m",
+          "depth_m",
+          "depth_diameter_ratio",
+          "rim_height_m",
+          "rim_height_diameter_ratio",
+          "rim_variation_m",
+          "rim_radius_cv",
+          "mean_wall_slope",
+          "wall_slope_p90",
+          "circularity",
+          "rim_coherence"
+        ],
+        "normalization": {
+          "executed": false,
+          "reason": "Não executada: bloqueio anterior ao cálculo.",
+          "method": "frontend_hybrid_max_v1: 0.6 exp(-2.2 WED) + 0.4 cosseno ponderado; pesos/normalização/fator Bagnold existentes"
+        },
+        "checks": {
+          "evidence": false,
+          "geomorphology": false,
+          "resolution": false,
+          "extent": false
+        },
+        "reference": null,
+        "ranking": [],
+        "references_loaded": [
+          {
+            "id": "shackleton",
+            "name": "Shackleton (Polo Sul - Artemis)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "cabeus",
+            "name": "Cabeus (Polo Sul - LCROSS)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "copernicus",
+            "name": "Copernicus (Cratera Complexa)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "tycho",
+            "name": "Tycho (Cratera com Raios de Ejecta)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "de_gerlache",
+            "name": "De Gerlache (Polo Sul)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "censorinus",
+            "name": "Censorinus (Cratera Simples)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "bessel",
+            "name": "Bessel (Mare Serenitatis)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "alfraganus",
+            "name": "Alfraganus",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "aristarchus",
+            "name": "Aristarchus (Cratera Complexa)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          }
+        ],
+        "rows": [],
+        "measurement_validation": {
+          "diameter_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "depth_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "depth_diameter_ratio": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_height_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_height_diameter_ratio": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_variation_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_radius_cv": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "mean_wall_slope": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "wall_slope_p90": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "circularity": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_coherence": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          }
+        }
+      },
+      "marte": {
+        "outcome": "insufficient_data",
+        "reason": "Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score.",
+        "score": null,
+        "coverage": 0,
+        "metrics_comparable": [],
+        "missing": [
+          "mean_height",
+          "height_p90",
+          "wavelength",
+          "crest_azimuth",
+          "dune_density",
+          "mean_spacing",
+          "aridity_index"
+        ],
+        "normalization": {
+          "executed": false,
+          "reason": "Não executada: bloqueio anterior ao cálculo.",
+          "method": "frontend_hybrid_max_v1: 0.6 exp(-2.2 WED) + 0.4 cosseno ponderado; pesos/normalização/fator Bagnold existentes"
+        },
+        "checks": {
+          "evidence": false,
+          "geomorphology": false,
+          "resolution": false,
+          "extent": false
+        },
+        "reference": null,
+        "ranking": [],
+        "references_loaded": [
+          {
+            "id": "namib_dune_gale",
+            "name": "Namib Dune (Gale Crater)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "bagnold_dunes_gale",
+            "name": "Bagnold Dunes Field (MSL)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "nili_patera",
+            "name": "Nili Patera Dune Field",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "proctor_crater",
+            "name": "Proctor Crater Dunes",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "olympia_undae",
+            "name": "Olympia Undae (Erg Polar Norte)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "kaiser_crater",
+            "name": "Kaiser Crater (Megadunas)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "hellespontus",
+            "name": "Hellespontus (Dunas Barcanoides)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          }
+        ],
+        "rows": [],
+        "measurement_validation": {
+          "mean_height": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "height_p90": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "wavelength": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "crest_azimuth": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "dune_density": {
+            "value": null,
+            "expected_unit": "crests/km2",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "mean_spacing": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "aridity_index": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          }
+        }
+      }
+    },
+    "pin": {
+      "eligible": false,
+      "type": null,
+      "thresholds": {
+        "score": 0.8,
+        "coverage": 0.8,
+        "experimental": true
+      },
+      "reasons": [
+        "Lua: Feição eólica (dunas) documentada; este catálogo contém crateras lunares.",
+        "Marte: Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score."
+      ]
+    },
+    "stages": [
+      {
+        "stage": "obtendo_dem",
+        "message": "Localizando DEM com cobertura para a região…"
+      },
+      {
+        "stage": "processando_relevo",
+        "message": "Métricas do mesmo DEM, região e resolução recuperadas do cache…"
+      },
+      {
+        "stage": "dem_obtido",
+        "message": "DEM obtido com sucesso; cobertura calculada sobre a ROI circular."
+      },
+      {
+        "stage": "metricas_terreno",
+        "message": "Elevações, relevo, declividade e rugosidade calculados; não equivalem a medidas de uma cratera/duna."
+      },
+      {
+        "stage": "verificando_feicao",
+        "message": "Verificando evidências e delimitações geomorfológicas…"
+      },
+      {
+        "stage": "identificacao",
+        "message": "Campo de dunas documentado: Erg Chebbi. A caixa da área de estudo não delimita cristas nem exclui afloramentos/planícies; métricas de dunas ainda ausentes."
+      }
+    ]
+  },
+  {
+    "id": "barringer",
+    "executed_at": "2026-11-15T21:09:08.684Z",
+    "input": {
+      "latitude": 35.0333,
+      "longitude": -111.0167,
+      "raio_km": 2,
+      "comparar_com": [
+        "lua",
+        "marte"
+      ],
+      "nome": "Cratera de Barringer"
+    },
+    "topography": {
+      "metrics": {
+        "elevation_min_m": 1562.4014892578125,
+        "elevation_max_m": 1745.8221435546875,
+        "elevation_mean_m": 1675.9752249009593,
+        "relief_m": 183.420654296875,
+        "slope_mean_deg": 3.792866183615788,
+        "slope_p90_deg": 7.851917668613888,
+        "roughness_rms_m": 3.103415608577479
+      },
+      "coverage": 1,
+      "resolution_m": 30,
+      "metric_crs": "EPSG:32612",
+      "bounds_wgs84": [
+        -111.03863478343747,
+        35.015260194517516,
+        -110.99477255393514,
+        35.05133590415786
+      ],
+      "valid_pixels": 13966,
+      "slope_valid_pixels": 13966,
+      "slope_distribution": {
+        "bins_deg": [
+          0,
+          5,
+          15,
+          30,
+          45,
+          90
+        ],
+        "counts": [
+          11846,
+          1282,
+          445,
+          378,
+          15
+        ]
+      },
+      "source": {
+        "id": "cop30",
+        "title": "Copernicus GLO-30 Public / Sinergise",
+        "url": "https://registry.opendata.aws/copernicus-dem/",
+        "kind": "DSM, EGM2008; inclui vegetação e edificações",
+        "cache_hit": true,
+        "files": [
+          "Copernicus_DSM_COG_10_N35_00_W112_00_DEM_5f11c8bf6ad74b9cf362.tif",
+          "Copernicus_DSM_COG_10_N35_00_W111_00_DEM_5f11c8bf6ad74b9cf362.tif"
+        ],
+        "inputs": [
+          {
+            "file": "Copernicus_DSM_COG_10_N35_00_W112_00_DEM_5f11c8bf6ad74b9cf362.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          },
+          {
+            "file": "Copernicus_DSM_COG_10_N35_00_W111_00_DEM_5f11c8bf6ad74b9cf362.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          }
+        ]
+      },
+      "method": "ROI circular; reamostragem bilinear em CRS métrico; gradiente central sem preenchimento de NoData; RMS do resíduo de média local 7×7; relevo máximo−mínimo.",
+      "warnings": [
+        "DEM/DSM não identifica crateras de impacto nem campos de dunas."
+      ]
+    },
+    "identification": {
+      "id": "barringer",
+      "status": "documented_site",
+      "kind": "crater",
+      "message": "Cratera documentada; não foi possível validar a delimitação: ROI não contém a cratera e seu entorno de 2 raios (necessários 2.069 km a partir do centro informado). Aumente o raio.",
+      "seed": [
+        35.027,
+        -111.022
+      ],
+      "reference_diameter_m": 1186,
+      "sources": [
+        {
+          "id": "barringer-lpi",
+          "title": "LPI: Barringer, localização arredondada e diâmetro de referência (prior de busca)",
+          "url": "https://www.lpi.usra.edu/science/kring/epo_web/impact_cratering/World_Craters_web/northamericacraters/Barringer.html"
+        }
+      ],
+      "limitations": [
+        "Centro inicial do catálogo local; ajustado à borda altimétrica, nunca ao nome digitado.",
+        "Morfometria exploratória em DSM de 30 m; não substitui levantamento de campo. Incerteza horizontal de pelo menos um pixel."
+      ],
+      "acquisition": [
+        {
+          "title": "NCALM/OpenTopography: levantamento LiDAR Meteor Crater (EPSG:26912)",
+          "url": "https://catalog.data.gov/dataset/meteor-crater-az"
+        }
+      ],
+      "boundary_status": "unavailable",
+      "suggested_input": {
+        "latitude": 35.0333,
+        "longitude": -111.0167,
+        "raio_km": 2.5,
+        "comparar_com": [
+          "lua",
+          "marte"
+        ],
+        "nome": "Cratera de Barringer"
+      }
+    },
+    "feature": null,
+    "catalog": {
+      "official_count": 24,
+      "nearby": [
+        {
+          "id": "barringer",
+          "name": "Barringer Meteor Crater",
+          "kind": "crater",
+          "distance_m": 850.6589353554297,
+          "tolerance_m": 1200,
+          "metrics_present": [
+            "diameter_m",
+            "depth_m",
+            "depth_diameter_ratio",
+            "rim_height_m",
+            "rim_height_diameter_ratio",
+            "rim_variation_m",
+            "rim_radius_cv",
+            "mean_wall_slope",
+            "wall_slope_p90",
+            "circularity",
+            "rim_coherence"
+          ],
+          "metrics_reused": [],
+          "scores_reused": false,
+          "reason": "Proximidade é indicação, não delimitação. sites.js não fornece fonte, método, resolução e área de amostragem por métrica; valores não promovidos a medições revisadas."
+        }
+      ],
+      "method": "Haversine em WGS84; tolerância de busca (1,2 km crateras / 2 km dunas), sem reutilização automática de scores/métricas."
+    },
+    "comparisons": {
+      "lua": {
+        "outcome": "insufficient_data",
+        "reason": "Cratera documentada; não foi possível validar a delimitação: ROI não contém a cratera e seu entorno de 2 raios (necessários 2.069 km a partir do centro informado). Aumente o raio.",
+        "score": null,
+        "coverage": 0,
+        "metrics_comparable": [],
+        "missing": [
+          "diameter_m",
+          "depth_m",
+          "depth_diameter_ratio",
+          "rim_height_m",
+          "rim_height_diameter_ratio",
+          "rim_variation_m",
+          "rim_radius_cv",
+          "mean_wall_slope",
+          "wall_slope_p90",
+          "circularity",
+          "rim_coherence"
+        ],
+        "normalization": {
+          "executed": false,
+          "reason": "Não executada: bloqueio anterior ao cálculo.",
+          "method": "frontend_hybrid_max_v1: 0.6 exp(-2.2 WED) + 0.4 cosseno ponderado; pesos/normalização/fator Bagnold existentes"
+        },
+        "checks": {
+          "evidence": false,
+          "geomorphology": false,
+          "resolution": false,
+          "extent": false
+        },
+        "reference": null,
+        "ranking": [],
+        "references_loaded": [
+          {
+            "id": "shackleton",
+            "name": "Shackleton (Polo Sul - Artemis)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "cabeus",
+            "name": "Cabeus (Polo Sul - LCROSS)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "copernicus",
+            "name": "Copernicus (Cratera Complexa)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "tycho",
+            "name": "Tycho (Cratera com Raios de Ejecta)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "de_gerlache",
+            "name": "De Gerlache (Polo Sul)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "censorinus",
+            "name": "Censorinus (Cratera Simples)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "bessel",
+            "name": "Bessel (Mare Serenitatis)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "alfraganus",
+            "name": "Alfraganus",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "aristarchus",
+            "name": "Aristarchus (Cratera Complexa)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          }
+        ],
+        "rows": [],
+        "measurement_validation": {
+          "diameter_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "depth_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "depth_diameter_ratio": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_height_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_height_diameter_ratio": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_variation_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_radius_cv": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "mean_wall_slope": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "wall_slope_p90": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "circularity": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_coherence": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          }
+        }
+      },
+      "marte": {
+        "outcome": "incompatible_geomorphology",
+        "reason": "Feição de impacto (cratera) documentada; este catálogo contém dunas marcianas.",
+        "score": null,
+        "coverage": 0,
+        "metrics_comparable": [],
+        "missing": [
+          "mean_height",
+          "height_p90",
+          "wavelength",
+          "crest_azimuth",
+          "dune_density",
+          "mean_spacing",
+          "aridity_index"
+        ],
+        "normalization": {
+          "executed": false,
+          "reason": "Não executada: bloqueio anterior ao cálculo.",
+          "method": "frontend_hybrid_max_v1: 0.6 exp(-2.2 WED) + 0.4 cosseno ponderado; pesos/normalização/fator Bagnold existentes"
+        },
+        "checks": {
+          "evidence": false,
+          "geomorphology": false,
+          "resolution": false,
+          "extent": false
+        },
+        "reference": null,
+        "ranking": [],
+        "references_loaded": [
+          {
+            "id": "namib_dune_gale",
+            "name": "Namib Dune (Gale Crater)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "bagnold_dunes_gale",
+            "name": "Bagnold Dunes Field (MSL)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "nili_patera",
+            "name": "Nili Patera Dune Field",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "proctor_crater",
+            "name": "Proctor Crater Dunes",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "olympia_undae",
+            "name": "Olympia Undae (Erg Polar Norte)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "kaiser_crater",
+            "name": "Kaiser Crater (Megadunas)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "hellespontus",
+            "name": "Hellespontus (Dunas Barcanoides)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          }
+        ],
+        "rows": [],
+        "measurement_validation": {
+          "mean_height": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "height_p90": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "wavelength": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "crest_azimuth": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "dune_density": {
+            "value": null,
+            "expected_unit": "crests/km2",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "mean_spacing": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "aridity_index": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          }
+        }
+      }
+    },
+    "pin": {
+      "eligible": false,
+      "type": null,
+      "thresholds": {
+        "score": 0.8,
+        "coverage": 0.8,
+        "experimental": true
+      },
+      "reasons": [
+        "Lua: Cratera documentada; não foi possível validar a delimitação: ROI não contém a cratera e seu entorno de 2 raios (necessários 2.069 km a partir do centro informado). Aumente o raio.",
+        "Marte: Feição de impacto (cratera) documentada; este catálogo contém dunas marcianas."
+      ]
+    },
+    "stages": [
+      {
+        "stage": "obtendo_dem",
+        "message": "Localizando DEM com cobertura para a região…"
+      },
+      {
+        "stage": "processando_relevo",
+        "message": "Reprojetando DEM e calculando métricas em metros…"
+      },
+      {
+        "stage": "dem_obtido",
+        "message": "DEM obtido com sucesso; cobertura calculada sobre a ROI circular."
+      },
+      {
+        "stage": "metricas_terreno",
+        "message": "Elevações, relevo, declividade e rugosidade calculados; não equivalem a medidas de uma cratera/duna."
+      },
+      {
+        "stage": "verificando_feicao",
+        "message": "Verificando evidências e delimitações geomorfológicas…"
+      },
+      {
+        "stage": "identificacao",
+        "message": "Cratera documentada; não foi possível validar a delimitação: ROI não contém a cratera e seu entorno de 2 raios (necessários 2.069 km a partir do centro informado). Aumente o raio."
+      }
+    ]
+  },
+  {
+    "id": "barringer-contexto",
+    "executed_at": "2026-11-15T21:09:09.865Z",
+    "input": {
+      "latitude": 35.0333,
+      "longitude": -111.0167,
+      "raio_km": 3,
+      "comparar_com": [
+        "lua",
+        "marte"
+      ],
+      "nome": "Cratera de Barringer (entorno completo)"
+    },
+    "topography": {
+      "metrics": {
+        "elevation_min_m": 1562.3343505859375,
+        "elevation_max_m": 1742.490966796875,
+        "elevation_mean_m": 1675.4491192425755,
+        "relief_m": 180.1566162109375,
+        "slope_mean_deg": 2.2204185440128916,
+        "slope_p90_deg": 3.2606627299198645,
+        "roughness_rms_m": 2.0562792462347983
+      },
+      "coverage": 1,
+      "resolution_m": 30,
+      "metric_crs": "EPSG:32612",
+      "bounds_wgs84": [
+        -111.04960579043573,
+        35.006238789900124,
+        -110.98380521561958,
+        35.06035325869049
+      ],
+      "valid_pixels": 31428,
+      "slope_valid_pixels": 31428,
+      "slope_distribution": {
+        "bins_deg": [
+          0,
+          5,
+          15,
+          30,
+          45,
+          90
+        ],
+        "counts": [
+          29314,
+          1279,
+          443,
+          379,
+          13
+        ]
+      },
+      "source": {
+        "id": "cop30",
+        "title": "Copernicus GLO-30 Public / Sinergise",
+        "url": "https://registry.opendata.aws/copernicus-dem/",
+        "kind": "DSM, EGM2008; inclui vegetação e edificações",
+        "cache_hit": true,
+        "files": [
+          "Copernicus_DSM_COG_10_N35_00_W112_00_DEM_6ec5071d91cdf09c2acd.tif",
+          "Copernicus_DSM_COG_10_N35_00_W111_00_DEM_6ec5071d91cdf09c2acd.tif"
+        ],
+        "inputs": [
+          {
+            "file": "Copernicus_DSM_COG_10_N35_00_W112_00_DEM_6ec5071d91cdf09c2acd.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          },
+          {
+            "file": "Copernicus_DSM_COG_10_N35_00_W111_00_DEM_6ec5071d91cdf09c2acd.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          }
+        ]
+      },
+      "method": "ROI circular; reamostragem bilinear em CRS métrico; gradiente central sem preenchimento de NoData; RMS do resíduo de média local 7×7; relevo máximo−mínimo.",
+      "warnings": [
+        "DEM/DSM não identifica crateras de impacto nem campos de dunas."
+      ]
+    },
+    "identification": {
+      "id": "barringer",
+      "status": "documented_site",
+      "kind": "crater",
+      "message": "Cratera de impacto documentada; borda delimitada no DEM, 72 perfis e onze métricas calculados. Medição automática experimental, ainda sem revisão humana.",
+      "seed": [
+        35.027,
+        -111.022
+      ],
+      "reference_diameter_m": 1186,
+      "sources": [
+        {
+          "id": "barringer-lpi",
+          "title": "LPI: Barringer, localização arredondada e diâmetro de referência (prior de busca)",
+          "url": "https://www.lpi.usra.edu/science/kring/epo_web/impact_cratering/World_Craters_web/northamericacraters/Barringer.html"
+        }
+      ],
+      "limitations": [
+        "Centro inicial do catálogo local; ajustado à borda altimétrica, nunca ao nome digitado.",
+        "Morfometria exploratória em DSM de 30 m; não substitui levantamento de campo. Incerteza horizontal de pelo menos um pixel."
+      ],
+      "acquisition": [
+        {
+          "title": "NCALM/OpenTopography: levantamento LiDAR Meteor Crater (EPSG:26912)",
+          "url": "https://catalog.data.gov/dataset/meteor-crater-az"
+        }
+      ],
+      "boundary_status": "measured"
+    },
+    "feature": {
+      "id": "barringer-dem",
+      "kind": "crater",
+      "reviewed": false,
+      "validation": {
+        "passed": true,
+        "method": "radial_dem_v1",
+        "radials": 72,
+        "radius_cv": 0.04490739623325528
+      },
+      "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+      "method": "radial_dem_v1: 72 máximos radiais; centro ajustado por mínimos quadrados; piso P5 em r<0,6R; parede 0,6–0,95R; entorno 1,5–2R; circularidade do polígono observado. Diâmetro publicado é apenas prior de busca.",
+      "measurement_resolution_m": 30.92222222222222,
+      "extent_m": 1249.0640919626458,
+      "center": {
+        "latitude": 35.027374825253254,
+        "longitude": -111.02273582434314
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.01620828885997,
+              35.027375872631026
+            ],
+            [
+              -111.01623322061992,
+              35.02784384431095
+            ],
+            [
+              -111.01646957631196,
+              35.02828473804354
+            ],
+            [
+              -111.01658981530557,
+              35.0287305187029
+            ],
+            [
+              -111.01660231874348,
+              35.02921226590915
+            ],
+            [
+              -111.01682033296439,
+              35.0296450001877
+            ],
+            [
+              -111.01694097547302,
+              35.030128108091084
+            ],
+            [
+              -111.01725474626465,
+              35.0305330778561
+            ],
+            [
+              -111.0174842844672,
+              35.031000973670515
+            ],
+            [
+              -111.01800473993288,
+              35.0312680092598
+            ],
+            [
+              -111.01822389633458,
+              35.031799640587764
+            ],
+            [
+              -111.01880420940186,
+              35.03199545928576
+            ],
+            [
+              -111.01930876989948,
+              35.03225974246313
+            ],
+            [
+              -111.019908884976,
+              35.03236424725066
+            ],
+            [
+              -111.02044832377797,
+              35.03254792996306
+            ],
+            [
+              -111.02100517512149,
+              35.03269223992358
+            ],
+            [
+              -111.02160372103307,
+              35.03266286759097
+            ],
+            [
+              -111.02218265234225,
+              35.03258915809462
+            ],
+            [
+              -111.02273727378338,
+              35.03260897294517
+            ],
+            [
+              -111.02329188418913,
+              35.032588950253576
+            ],
+            [
+              -111.02381366750735,
+              35.03239604206913
+            ],
+            [
+              -111.02429901666295,
+              35.03216901708093
+            ],
+            [
+              -111.0248010611374,
+              35.032038703735154
+            ],
+            [
+              -111.02535692028935,
+              35.03199546709342
+            ],
+            [
+              -111.02608332400874,
+              35.032141336018654
+            ],
+            [
+              -111.02695307158585,
+              35.03232632065263
+            ],
+            [
+              -111.02735593955438,
+              35.03190154140381
+            ],
+            [
+              -111.02758537523015,
+              35.03136185348053
+            ],
+            [
+              -111.02798937170866,
+              35.030999005369125
+            ],
+            [
+              -111.02848811001097,
+              35.030686125623724
+            ],
+            [
+              -111.02895949859303,
+              35.030328726527586
+            ],
+            [
+              -111.02909973230955,
+              35.029814168142494
+            ],
+            [
+              -111.02933396258459,
+              35.02934864213525
+            ],
+            [
+              -111.02935912568421,
+              35.02883312557454
+            ],
+            [
+              -111.0294884176182,
+              35.02835273632362
+            ],
+            [
+              -111.02940250159695,
+              35.027853156905735
+            ],
+            [
+              -111.02942779477232,
+              35.02737338700442
+            ],
+            [
+              -111.02940215801793,
+              35.026893629409926
+            ],
+            [
+              -111.02900193329845,
+              35.026464588824616
+            ],
+            [
+              -111.02904044759595,
+              35.02598377429071
+            ],
+            [
+              -111.02886905527531,
+              35.02553707416016
+            ],
+            [
+              -111.02865098849213,
+              35.02510436125635
+            ],
+            [
+              -111.02838790746455,
+              35.02468892854232
+            ],
+            [
+              -111.02808181488304,
+              35.02429393742998
+            ],
+            [
+              -111.02773504065402,
+              35.02392239372852
+            ],
+            [
+              -111.02735022415703,
+              35.02357712477774
+            ],
+            [
+              -111.02703595174768,
+              35.02315711843354
+            ],
+            [
+              -111.0265727218188,
+              35.0228648805983
+            ],
+            [
+              -111.02616247116497,
+              35.022489807491375
+            ],
+            [
+              -111.02570132190904,
+              35.02214012767724
+            ],
+            [
+              -111.02507923470702,
+              35.02207455763972
+            ],
+            [
+              -111.02455128399158,
+              35.02179605971032
+            ],
+            [
+              -111.02392480854827,
+              35.02182034414524
+            ],
+            [
+              -111.02330321862195,
+              35.02202573626636
+            ],
+            [
+              -111.02273437527654,
+              35.02214067303787
+            ],
+            [
+              -111.02219420228612,
+              35.02229543697883
+            ],
+            [
+              -111.02165811315966,
+              35.02235359465208
+            ],
+            [
+              -111.02117281469482,
+              35.022580609427344
+            ],
+            [
+              -111.02061455335725,
+              35.02258381364542
+            ],
+            [
+              -111.02004550408998,
+              35.02263154646948
+            ],
+            [
+              -111.01938871339532,
+              35.022608218259776
+            ],
+            [
+              -111.01880209354356,
+              35.0227555338232
+            ],
+            [
+              -111.01822193272177,
+              35.022951529847155
+            ],
+            [
+              -111.01788674438774,
+              35.023387600443364
+            ],
+            [
+              -111.01748274067938,
+              35.02375041538108
+            ],
+            [
+              -111.01698400253143,
+              35.02406325025541
+            ],
+            [
+              -111.01665501154567,
+              35.02448821428694
+            ],
+            [
+              -111.0165213304674,
+              35.02499229112913
+            ],
+            [
+              -111.01613800315592,
+              35.025400648879184
+            ],
+            [
+              -111.01579508555074,
+              35.0258461885103
+            ],
+            [
+              -111.01582145191753,
+              35.02637307162395
+            ],
+            [
+              -111.01590541362373,
+              35.02688436010674
+            ],
+            [
+              -111.01620828885997,
+              35.027375872631026
+            ]
+          ]
+        ]
+      },
+      "measurements": {
+        "diameter_m": {
+          "value": 1218.3999999999999,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "depth_m": {
+          "value": 164.08350927940864,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "depth_diameter_ratio": {
+          "value": 0.13467129783273857,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "rim_height_m": {
+          "value": 36.83803282590645,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "rim_height_diameter_ratio": {
+          "value": 0.03023476101929289,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "rim_variation_m": {
+          "value": 6.601423940769415,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "rim_radius_cv": {
+          "value": 0.04490739623325528,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "mean_wall_slope": {
+          "value": 29.977631507457343,
+          "unit": "deg",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "wall_slope_p90": {
+          "value": 40.02411502984637,
+          "unit": "deg",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "circularity": {
+          "value": 0.9174163412769752,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        },
+        "rim_coherence": {
+          "value": 1,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1"
+        }
+      },
+      "diagnostics": {
+        "rim_radii_m": [
+          595.45,
+          595.45,
+          580.45,
+          580.45,
+          595.45,
+          595.45,
+          610.45,
+          610.45,
+          625.45,
+          610.45,
+          640.45,
+          625.45,
+          625.45,
+          610.45,
+          610.45,
+          610.45,
+          595.45,
+          580.45,
+          580.45,
+          580.45,
+          565.45,
+          550.45,
+          550.45,
+          565.45,
+          610.45,
+          670.45,
+          655.45,
+          625.45,
+          625.45,
+          640.45,
+          655.45,
+          640.45,
+          640.45,
+          625.45,
+          625.45,
+          610.45,
+          610.45,
+          610.45,
+          580.45,
+          595.45,
+          595.45,
+          595.45,
+          595.45,
+          595.45,
+          595.45,
+          595.45,
+          610.45,
+          610.45,
+          625.45,
+          640.45,
+          625.45,
+          640.45,
+          625.45,
+          595.45,
+          580.45,
+          565.45,
+          565.45,
+          550.45,
+          565.45,
+          580.45,
+          610.45,
+          625.45,
+          640.45,
+          625.45,
+          625.45,
+          640.45,
+          640.45,
+          625.45,
+          640.45,
+          655.45,
+          640.45,
+          625.45
+        ],
+        "rim_elevations_m": [
+          1722.929107898607,
+          1718.9861903242559,
+          1719.7362527989653,
+          1720.7599643561134,
+          1722.1185807153927,
+          1723.1716483342516,
+          1722.90017731704,
+          1724.9358122976291,
+          1728.0881990613875,
+          1727.849582640394,
+          1723.715164692119,
+          1724.8893112622793,
+          1727.0082202560359,
+          1726.8145600215312,
+          1728.9804411780801,
+          1724.3507944473379,
+          1720.0689891542638,
+          1716.5007491589095,
+          1714.2269784271418,
+          1715.0588814479038,
+          1717.2114271270502,
+          1715.7351897576311,
+          1715.1849415351035,
+          1718.8609019021526,
+          1718.3926032350855,
+          1715.8950977181955,
+          1715.5047723401551,
+          1720.5752788075806,
+          1725.191702529014,
+          1725.8453179480327,
+          1729.9944500938657,
+          1733.0374108611268,
+          1733.715101824015,
+          1727.8391683486514,
+          1725.339759526708,
+          1727.8105106032215,
+          1728.8310983306528,
+          1729.2412282671014,
+          1730.0540810126029,
+          1729.3588499697653,
+          1731.5137970752796,
+          1736.7051087481889,
+          1740.2385500436371,
+          1741.130474447671,
+          1737.0538781167754,
+          1738.2798277352692,
+          1742.0461389488535,
+          1740.4385454393168,
+          1733.0469133084762,
+          1729.7302290294394,
+          1735.0298068539125,
+          1736.0784347618733,
+          1732.2226247380313,
+          1729.0040452667902,
+          1731.8532841355811,
+          1732.2223113689008,
+          1728.441122692327,
+          1726.5588409867794,
+          1728.1805919268136,
+          1726.1727359702322,
+          1726.7931944648808,
+          1726.2718028646118,
+          1722.7961205883319,
+          1721.9711159112087,
+          1726.7540313113102,
+          1727.3921083274977,
+          1732.2849750528335,
+          1728.2458691169982,
+          1723.365640518452,
+          1728.3189050619294,
+          1728.7380370862566,
+          1726.5673642792563
+        ],
+        "floor_p5_m": 1562.827880859375,
+        "wall_pixels": 699,
+        "floor_pixels": 466,
+        "horizontal_uncertainty_at_least_m": 30.92222222222222,
+        "radius_search_m": [
+          385.45,
+          805.45
+        ]
+      }
+    },
+    "catalog": {
+      "official_count": 24,
+      "nearby": [
+        {
+          "id": "barringer",
+          "name": "Barringer Meteor Crater",
+          "kind": "crater",
+          "distance_m": 850.6589353554297,
+          "tolerance_m": 1200,
+          "metrics_present": [
+            "diameter_m",
+            "depth_m",
+            "depth_diameter_ratio",
+            "rim_height_m",
+            "rim_height_diameter_ratio",
+            "rim_variation_m",
+            "rim_radius_cv",
+            "mean_wall_slope",
+            "wall_slope_p90",
+            "circularity",
+            "rim_coherence"
+          ],
+          "metrics_reused": [],
+          "scores_reused": false,
+          "reason": "Proximidade é indicação, não delimitação. sites.js não fornece fonte, método, resolução e área de amostragem por métrica; valores não promovidos a medições revisadas."
+        }
+      ],
+      "method": "Haversine em WGS84; tolerância de busca (1,2 km crateras / 2 km dunas), sem reutilização automática de scores/métricas."
+    },
+    "comparisons": {
+      "lua": {
+        "outcome": "below_threshold",
+        "reason": "Score calculado (0.485617), abaixo do limiar 0.8.",
+        "score": 0.48561747862006044,
+        "coverage": 1,
+        "metrics_comparable": [
+          "diameter_m",
+          "depth_m",
+          "depth_diameter_ratio",
+          "rim_height_m",
+          "rim_height_diameter_ratio",
+          "rim_variation_m",
+          "rim_radius_cv",
+          "mean_wall_slope",
+          "wall_slope_p90",
+          "circularity",
+          "rim_coherence"
+        ],
+        "missing": [],
+        "normalization": {
+          "executed": true,
+          "reason": "Executada pela fórmula existente.",
+          "method": "frontend_hybrid_max_v1: 0.6 exp(-2.2 WED) + 0.4 cosseno ponderado; pesos/normalização/fator Bagnold existentes"
+        },
+        "checks": {
+          "evidence": true,
+          "geomorphology": true,
+          "resolution": true,
+          "extent": true
+        },
+        "reference": {
+          "id": "censorinus",
+          "name": "Censorinus (Cratera Simples)",
+          "source": "Catálogo planetário herdado"
+        },
+        "ranking": [
+          {
+            "id": "censorinus",
+            "name": "Censorinus (Cratera Simples)",
+            "score": 0.48561747862006044,
+            "wed": 0.5999033393482849,
+            "cosine": 0.8132555236816749
+          },
+          {
+            "id": "bessel",
+            "name": "Bessel (Mare Serenitatis)",
+            "score": 0.4605263705067524,
+            "wed": 0.6128998335211917,
+            "cosine": 0.761824928274048
+          },
+          {
+            "id": "alfraganus",
+            "name": "Alfraganus",
+            "score": 0.4572410299996035,
+            "wed": 0.6307434820099063,
+            "cosine": 0.7686052250597754
+          },
+          {
+            "id": "shackleton",
+            "name": "Shackleton (Polo Sul - Artemis)",
+            "score": 0.4516153042114458,
+            "wed": 0.6378222324086952,
+            "cosine": 0.7603278739001359
+          },
+          {
+            "id": "de_gerlache",
+            "name": "De Gerlache (Polo Sul)",
+            "score": 0.41415500618143986,
+            "wed": 0.651764624084499,
+            "cosine": 0.6778149885183355
+          },
+          {
+            "id": "aristarchus",
+            "name": "Aristarchus (Cratera Complexa)",
+            "score": 0.3946128134783197,
+            "wed": 0.6730167861380552,
+            "cosine": 0.6452929156137133
+          },
+          {
+            "id": "tycho",
+            "name": "Tycho (Cratera com Raios de Ejecta)",
+            "score": 0.36536549206396707,
+            "wed": 0.6988104680810162,
+            "cosine": 0.5909994324733919
+          },
+          {
+            "id": "copernicus",
+            "name": "Copernicus (Cratera Complexa)",
+            "score": 0.34323590585344566,
+            "wed": 0.717885853210512,
+            "cosine": 0.5489258791517041
+          },
+          {
+            "id": "cabeus",
+            "name": "Cabeus (Polo Sul - LCROSS)",
+            "score": 0.3396243236311022,
+            "wed": 0.726341692138737,
+            "cosine": 0.5455950862877228
+          }
+        ],
+        "references_loaded": [
+          {
+            "id": "shackleton",
+            "name": "Shackleton (Polo Sul - Artemis)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.4516153042114458
+          },
+          {
+            "id": "cabeus",
+            "name": "Cabeus (Polo Sul - LCROSS)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.3396243236311022
+          },
+          {
+            "id": "copernicus",
+            "name": "Copernicus (Cratera Complexa)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.34323590585344566
+          },
+          {
+            "id": "tycho",
+            "name": "Tycho (Cratera com Raios de Ejecta)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.36536549206396707
+          },
+          {
+            "id": "de_gerlache",
+            "name": "De Gerlache (Polo Sul)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.41415500618143986
+          },
+          {
+            "id": "censorinus",
+            "name": "Censorinus (Cratera Simples)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.48561747862006044
+          },
+          {
+            "id": "bessel",
+            "name": "Bessel (Mare Serenitatis)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.4605263705067524
+          },
+          {
+            "id": "alfraganus",
+            "name": "Alfraganus",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.4572410299996035
+          },
+          {
+            "id": "aristarchus",
+            "name": "Aristarchus (Cratera Complexa)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": 0.3946128134783197
+          }
+        ],
+        "rows": [
+          {
+            "key": "diameter_m",
+            "label": "Diâmetro (m)",
+            "weight": 0.1,
+            "earth": 1218.3999999999999,
+            "target": 4139,
+            "comparable": 4139,
+            "scaled": false,
+            "difference": -70.56293790770718,
+            "normalizedEarth": 0.2943706209229282,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "depth_m",
+            "label": "Profundidade (m)",
+            "weight": 0.12,
+            "earth": 164.08350927940864,
+            "target": 984,
+            "comparable": 984,
+            "scaled": false,
+            "difference": -83.32484661794628,
+            "normalizedEarth": 0.16675153382053723,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "depth_diameter_ratio",
+            "label": "Razão d/D",
+            "weight": 0.15,
+            "earth": 0.13467129783273857,
+            "target": 0.2378,
+            "comparable": 0.2378,
+            "scaled": false,
+            "difference": -43.36783102071549,
+            "normalizedEarth": 0.5663216897928451,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "rim_height_m",
+            "label": "Altura Borda (m)",
+            "weight": 0.08,
+            "earth": 36.83803282590645,
+            "target": 298.2,
+            "comparable": 298.2,
+            "scaled": false,
+            "difference": -87.64653493430366,
+            "normalizedEarth": 0.1235346506569633,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "rim_height_diameter_ratio",
+            "label": "Razão Borda/D",
+            "weight": 0.08,
+            "earth": 0.03023476101929289,
+            "target": 0.072,
+            "comparable": 0.072,
+            "scaled": false,
+            "difference": -58.00727636209321,
+            "normalizedEarth": 0.4199272363790679,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "rim_variation_m",
+            "label": "Variação Borda (m)",
+            "weight": 0.07,
+            "earth": 6.601423940769415,
+            "target": 121.2,
+            "comparable": 121.2,
+            "scaled": false,
+            "difference": -94.55328057692293,
+            "normalizedEarth": 0.054467194230770746,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "rim_radius_cv",
+            "label": "CV Raio Borda",
+            "weight": 0.08,
+            "earth": 0.04490739623325528,
+            "target": 0.012,
+            "comparable": 0.012,
+            "scaled": false,
+            "difference": 274.228301943794,
+            "normalizedEarth": 1,
+            "normalizedTarget": 0.2672165613359173
+          },
+          {
+            "key": "mean_wall_slope",
+            "label": "Declividade Média (°)",
+            "weight": 0.12,
+            "earth": 29.977631507457343,
+            "target": 36.8,
+            "comparable": 36.8,
+            "scaled": false,
+            "difference": -18.539044816691998,
+            "normalizedEarth": 0.81460955183308,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "wall_slope_p90",
+            "label": "Declividade P90 (°)",
+            "weight": 0.1,
+            "earth": 40.02411502984637,
+            "target": 41.9,
+            "comparable": 41.9,
+            "scaled": false,
+            "difference": -4.477052434734195,
+            "normalizedEarth": 0.955229475652658,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "circularity",
+            "label": "Circularidade",
+            "weight": 0.05,
+            "earth": 0.9174163412769752,
+            "target": 0.998,
+            "comparable": 0.998,
+            "scaled": false,
+            "difference": -8.074514902106689,
+            "normalizedEarth": 0.9192548509789331,
+            "normalizedTarget": 1
+          },
+          {
+            "key": "rim_coherence",
+            "label": "Coerência Borda",
+            "weight": 0.05,
+            "earth": 1,
+            "target": 1,
+            "comparable": 1,
+            "scaled": false,
+            "difference": 0,
+            "normalizedEarth": 1,
+            "normalizedTarget": 1
+          }
+        ],
+        "measurement_validation": {
+          "diameter_m": {
+            "value": 1218.3999999999999,
+            "expected_unit": "m",
+            "received_unit": "m",
+            "status": "valid"
+          },
+          "depth_m": {
+            "value": 164.08350927940864,
+            "expected_unit": "m",
+            "received_unit": "m",
+            "status": "valid"
+          },
+          "depth_diameter_ratio": {
+            "value": 0.13467129783273857,
+            "expected_unit": "1",
+            "received_unit": "1",
+            "status": "valid"
+          },
+          "rim_height_m": {
+            "value": 36.83803282590645,
+            "expected_unit": "m",
+            "received_unit": "m",
+            "status": "valid"
+          },
+          "rim_height_diameter_ratio": {
+            "value": 0.03023476101929289,
+            "expected_unit": "1",
+            "received_unit": "1",
+            "status": "valid"
+          },
+          "rim_variation_m": {
+            "value": 6.601423940769415,
+            "expected_unit": "m",
+            "received_unit": "m",
+            "status": "valid"
+          },
+          "rim_radius_cv": {
+            "value": 0.04490739623325528,
+            "expected_unit": "1",
+            "received_unit": "1",
+            "status": "valid"
+          },
+          "mean_wall_slope": {
+            "value": 29.977631507457343,
+            "expected_unit": "deg",
+            "received_unit": "deg",
+            "status": "valid"
+          },
+          "wall_slope_p90": {
+            "value": 40.02411502984637,
+            "expected_unit": "deg",
+            "received_unit": "deg",
+            "status": "valid"
+          },
+          "circularity": {
+            "value": 0.9174163412769752,
+            "expected_unit": "1",
+            "received_unit": "1",
+            "status": "valid"
+          },
+          "rim_coherence": {
+            "value": 1,
+            "expected_unit": "1",
+            "received_unit": "1",
+            "status": "valid"
+          }
+        }
+      },
+      "marte": {
+        "outcome": "incompatible_geomorphology",
+        "reason": "Feição de impacto (cratera) documentada; este catálogo contém dunas marcianas.",
+        "score": null,
+        "coverage": 0,
+        "metrics_comparable": [],
+        "missing": [
+          "mean_height",
+          "height_p90",
+          "wavelength",
+          "crest_azimuth",
+          "dune_density",
+          "mean_spacing",
+          "aridity_index"
+        ],
+        "normalization": {
+          "executed": false,
+          "reason": "Não executada: bloqueio anterior ao cálculo.",
+          "method": "frontend_hybrid_max_v1: 0.6 exp(-2.2 WED) + 0.4 cosseno ponderado; pesos/normalização/fator Bagnold existentes"
+        },
+        "checks": {
+          "evidence": true,
+          "geomorphology": false,
+          "resolution": false,
+          "extent": true
+        },
+        "reference": null,
+        "ranking": [],
+        "references_loaded": [
+          {
+            "id": "namib_dune_gale",
+            "name": "Namib Dune (Gale Crater)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "bagnold_dunes_gale",
+            "name": "Bagnold Dunes Field (MSL)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "nili_patera",
+            "name": "Nili Patera Dune Field",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "proctor_crater",
+            "name": "Proctor Crater Dunes",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "olympia_undae",
+            "name": "Olympia Undae (Erg Polar Norte)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "kaiser_crater",
+            "name": "Kaiser Crater (Megadunas)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "hellespontus",
+            "name": "Hellespontus (Dunas Barcanoides)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          }
+        ],
+        "rows": [],
+        "measurement_validation": {
+          "mean_height": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "height_p90": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "wavelength": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "crest_azimuth": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "dune_density": {
+            "value": null,
+            "expected_unit": "crests/km2",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "mean_spacing": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "aridity_index": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          }
+        }
+      }
+    },
+    "pin": {
+      "eligible": false,
+      "type": "crater",
+      "thresholds": {
+        "score": 0.8,
+        "coverage": 0.8,
+        "experimental": true
+      },
+      "reasons": [
+        "Lua: Score calculado (0.485617), abaixo do limiar 0.8.",
+        "Marte: Feição de impacto (cratera) documentada; este catálogo contém dunas marcianas."
+      ]
+    },
+    "stages": [
+      {
+        "stage": "obtendo_dem",
+        "message": "Localizando DEM com cobertura para a região…"
+      },
+      {
+        "stage": "processando_relevo",
+        "message": "Reprojetando DEM e calculando métricas em metros…"
+      },
+      {
+        "stage": "dem_obtido",
+        "message": "DEM obtido com sucesso; cobertura calculada sobre a ROI circular."
+      },
+      {
+        "stage": "metricas_terreno",
+        "message": "Elevações, relevo, declividade e rugosidade calculados; não equivalem a medidas de uma cratera/duna."
+      },
+      {
+        "stage": "verificando_feicao",
+        "message": "Verificando evidências e delimitações geomorfológicas…"
+      },
+      {
+        "stage": "identificacao",
+        "message": "Cratera de impacto documentada; borda delimitada no DEM, 72 perfis e onze métricas calculados. Medição automática experimental, ainda sem revisão humana."
+      }
+    ]
+  },
+  {
+    "id": "aratanha",
+    "executed_at": "2026-11-15T21:09:10.773Z",
+    "input": {
+      "latitude": -3.97,
+      "longitude": -38.63,
+      "raio_km": 5,
+      "comparar_com": [
+        "lua",
+        "marte"
+      ],
+      "nome": "Serra da Aratanha"
+    },
+    "topography": {
+      "metrics": {
+        "elevation_min_m": 39.2207145690918,
+        "elevation_max_m": 775.12451171875,
+        "elevation_mean_m": 236.9433564574363,
+        "relief_m": 735.9037971496582,
+        "slope_mean_deg": 12.704656536502679,
+        "slope_p90_deg": 28.543208498131023,
+        "roughness_rms_m": 5.6012083739576015
+      },
+      "coverage": 1,
+      "resolution_m": 30,
+      "metric_crs": "EPSG:32724",
+      "bounds_wgs84": [
+        -38.675057845901314,
+        -4.015252626861268,
+        -38.584937251692175,
+        -3.924745324051002
+      ],
+      "valid_pixels": 87270,
+      "slope_valid_pixels": 87270,
+      "slope_distribution": {
+        "bins_deg": [
+          0,
+          5,
+          15,
+          30,
+          45,
+          90
+        ],
+        "counts": [
+          33939,
+          18619,
+          28356,
+          6262,
+          94
+        ]
+      },
+      "source": {
+        "id": "cop30",
+        "title": "Copernicus GLO-30 Public / Sinergise",
+        "url": "https://registry.opendata.aws/copernicus-dem/",
+        "kind": "DSM, EGM2008; inclui vegetação e edificações",
+        "cache_hit": true,
+        "files": [
+          "Copernicus_DSM_COG_10_S05_00_W039_00_DEM_a81052098523b47f5b5c.tif",
+          "Copernicus_DSM_COG_10_S04_00_W039_00_DEM_a81052098523b47f5b5c.tif"
+        ],
+        "inputs": [
+          {
+            "file": "Copernicus_DSM_COG_10_S05_00_W039_00_DEM_a81052098523b47f5b5c.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          },
+          {
+            "file": "Copernicus_DSM_COG_10_S04_00_W039_00_DEM_a81052098523b47f5b5c.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          }
+        ]
+      },
+      "method": "ROI circular; reamostragem bilinear em CRS métrico; gradiente central sem preenchimento de NoData; RMS do resíduo de média local 7×7; relevo máximo−mínimo.",
+      "warnings": [
+        "DEM/DSM não identifica crateras de impacto nem campos de dunas."
+      ]
+    },
+    "identification": {
+      "status": "unidentified",
+      "kind": null,
+      "message": "Não foi possível identificar limites da feição. DEM válido mede relevo; origem de impacto/eólica exige evidência adicional.",
+      "sources": [],
+      "limitations": []
+    },
+    "feature": null,
+    "catalog": {
+      "official_count": 24,
+      "nearby": [],
+      "method": "Haversine em WGS84; tolerância de busca (1,2 km crateras / 2 km dunas), sem reutilização automática de scores/métricas."
+    },
+    "comparisons": {
+      "lua": {
+        "outcome": "insufficient_data",
+        "reason": "Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score.",
+        "score": null,
+        "coverage": 0,
+        "metrics_comparable": [],
+        "missing": [
+          "diameter_m",
+          "depth_m",
+          "depth_diameter_ratio",
+          "rim_height_m",
+          "rim_height_diameter_ratio",
+          "rim_variation_m",
+          "rim_radius_cv",
+          "mean_wall_slope",
+          "wall_slope_p90",
+          "circularity",
+          "rim_coherence"
+        ],
+        "normalization": {
+          "executed": false,
+          "reason": "Não executada: bloqueio anterior ao cálculo.",
+          "method": "frontend_hybrid_max_v1: 0.6 exp(-2.2 WED) + 0.4 cosseno ponderado; pesos/normalização/fator Bagnold existentes"
+        },
+        "checks": {
+          "evidence": false,
+          "geomorphology": false,
+          "resolution": false,
+          "extent": false
+        },
+        "reference": null,
+        "ranking": [],
+        "references_loaded": [
+          {
+            "id": "shackleton",
+            "name": "Shackleton (Polo Sul - Artemis)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "cabeus",
+            "name": "Cabeus (Polo Sul - LCROSS)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "copernicus",
+            "name": "Copernicus (Cratera Complexa)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "tycho",
+            "name": "Tycho (Cratera com Raios de Ejecta)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "de_gerlache",
+            "name": "De Gerlache (Polo Sul)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "censorinus",
+            "name": "Censorinus (Cratera Simples)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "bessel",
+            "name": "Bessel (Mare Serenitatis)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "alfraganus",
+            "name": "Alfraganus",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "aristarchus",
+            "name": "Aristarchus (Cratera Complexa)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          }
+        ],
+        "rows": [],
+        "measurement_validation": {
+          "diameter_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "depth_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "depth_diameter_ratio": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_height_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_height_diameter_ratio": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_variation_m": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_radius_cv": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "mean_wall_slope": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "wall_slope_p90": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "circularity": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "rim_coherence": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          }
+        }
+      },
+      "marte": {
+        "outcome": "insufficient_data",
+        "reason": "Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score.",
+        "score": null,
+        "coverage": 0,
+        "metrics_comparable": [],
+        "missing": [
+          "mean_height",
+          "height_p90",
+          "wavelength",
+          "crest_azimuth",
+          "dune_density",
+          "mean_spacing",
+          "aridity_index"
+        ],
+        "normalization": {
+          "executed": false,
+          "reason": "Não executada: bloqueio anterior ao cálculo.",
+          "method": "frontend_hybrid_max_v1: 0.6 exp(-2.2 WED) + 0.4 cosseno ponderado; pesos/normalização/fator Bagnold existentes"
+        },
+        "checks": {
+          "evidence": false,
+          "geomorphology": false,
+          "resolution": false,
+          "extent": false
+        },
+        "reference": null,
+        "ranking": [],
+        "references_loaded": [
+          {
+            "id": "namib_dune_gale",
+            "name": "Namib Dune (Gale Crater)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "bagnold_dunes_gale",
+            "name": "Bagnold Dunes Field (MSL)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "nili_patera",
+            "name": "Nili Patera Dune Field",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "proctor_crater",
+            "name": "Proctor Crater Dunes",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "olympia_undae",
+            "name": "Olympia Undae (Erg Polar Norte)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "kaiser_crater",
+            "name": "Kaiser Crater (Megadunas)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          },
+          {
+            "id": "hellespontus",
+            "name": "Hellespontus (Dunas Barcanoides)",
+            "provenance": "Catálogo herdado do projeto; sem procedência individual por métrica em moon.js/mars.js. Índice experimental, não validação independente.",
+            "missing": [],
+            "score": null
+          }
+        ],
+        "rows": [],
+        "measurement_validation": {
+          "mean_height": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "height_p90": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "wavelength": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "crest_azimuth": {
+            "value": null,
+            "expected_unit": "deg",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "dune_density": {
+            "value": null,
+            "expected_unit": "crests/km2",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "mean_spacing": {
+            "value": null,
+            "expected_unit": "m",
+            "received_unit": null,
+            "status": "missing"
+          },
+          "aridity_index": {
+            "value": null,
+            "expected_unit": "1",
+            "received_unit": null,
+            "status": "missing"
+          }
+        }
+      }
+    },
+    "pin": {
+      "eligible": false,
+      "type": null,
+      "thresholds": {
+        "score": 0.8,
+        "coverage": 0.8,
+        "experimental": true
+      },
+      "reasons": [
+        "Lua: Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score.",
+        "Marte: Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score."
+      ]
+    },
+    "stages": [
+      {
+        "stage": "obtendo_dem",
+        "message": "Localizando DEM com cobertura para a região…"
+      },
+      {
+        "stage": "processando_relevo",
+        "message": "Métricas do mesmo DEM, região e resolução recuperadas do cache…"
+      },
+      {
+        "stage": "dem_obtido",
+        "message": "DEM obtido com sucesso; cobertura calculada sobre a ROI circular."
+      },
+      {
+        "stage": "metricas_terreno",
+        "message": "Elevações, relevo, declividade e rugosidade calculados; não equivalem a medidas de uma cratera/duna."
+      },
+      {
+        "stage": "verificando_feicao",
+        "message": "Verificando evidências e delimitações geomorfológicas…"
+      },
+      {
+        "stage": "identificacao",
+        "message": "Não foi possível identificar limites da feição. DEM válido mede relevo; origem de impacto/eólica exige evidência adicional."
+      }
+    ]
+  }
+]
