@@ -1,0 +1,118 @@
+{
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=35.027&longitude=-111.022&format=JSON",
+  "retrieved_at": "2026-11-15T14:25:14.816010+00:00",
+  "response": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -111.022,
+        35.027,
+        1914.92
+      ]
+    },
+    "properties": {
+      "parameter": {
+        "PRECTOTCORR": {
+          "JAN": 1.38,
+          "FEB": 1.48,
+          "MAR": 0.88,
+          "APR": 0.51,
+          "MAY": 0.46,
+          "JUN": 0.21,
+          "JUL": 2.04,
+          "AUG": 2.11,
+          "SEP": 1.14,
+          "OCT": 0.86,
+          "NOV": 1.02,
+          "DEC": 1.57,
+          "ANN": 1.14
+        },
+        "RH2M": {
+          "JAN": 63.28,
+          "FEB": 58.74,
+          "MAR": 49.83,
+          "APR": 41.56,
+          "MAY": 36.08,
+          "JUN": 26.84,
+          "JUL": 44.13,
+          "AUG": 48.52,
+          "SEP": 44.46,
+          "OCT": 45.96,
+          "NOV": 51.57,
+          "DEC": 61.73,
+          "ANN": 47.71
+        },
+        "T2M": {
+          "JAN": 0.24,
+          "FEB": 2.0,
+          "MAR": 6.13,
+          "APR": 9.81,
+          "MAY": 14.99,
+          "JUN": 21.28,
+          "JUL": 23.32,
+          "AUG": 22.1,
+          "SEP": 18.6,
+          "OCT": 11.77,
+          "NOV": 5.41,
+          "DEC": 0.22,
+          "ANN": 11.36
+        },
+        "WS2M": {
+          "JAN": 2.15,
+          "FEB": 2.54,
+          "MAR": 2.68,
+          "APR": 3.07,
+          "MAY": 2.78,
+          "JUN": 2.69,
+          "JUL": 1.95,
+          "AUG": 1.79,
+          "SEP": 2.03,
+          "OCT": 2.2,
+          "NOV": 2.21,
+          "DEC": 2.19,
+          "ANN": 2.35
+        }
+      }
+    },
+    "header": {
+      "title": "NASA/POWER Source Native Resolution Climatology Climatologies",
+      "api": {
+        "version": "v2.10.1",
+        "name": "POWER Climatology API"
+      },
+      "sources": [
+        "MERRA2",
+        "POWER"
+      ],
+      "fill_value": -999.0,
+      "time_standard": "LST",
+      "range": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+    },
+    "messages": [
+      "The requested parameters are retrieved from a pre-computed climatological period (January 2001 - December 2025)"
+    ],
+    "parameters": {
+      "PRECTOTCORR": {
+        "units": "mm/day",
+        "longname": "Precipitation Corrected"
+      },
+      "RH2M": {
+        "units": "%",
+        "longname": "Relative Humidity at 2 Meters"
+      },
+      "T2M": {
+        "units": "C",
+        "longname": "Temperature at 2 Meters"
+      },
+      "WS2M": {
+        "units": "m/s",
+        "longname": "Wind Speed at 2 Meters"
+      }
+    },
+    "times": {
+      "data": 0.156,
+      "process": 0.03
+    }
+  }
+}

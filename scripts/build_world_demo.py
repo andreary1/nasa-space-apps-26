@@ -4,6 +4,8 @@ Builder for World-Scale Planetary Analog Engine with 3D Rotating Globe.
 """
 
 import os
+import json
+from pathlib import Path
 
 HTML_CONTENT = r'''<!DOCTYPE html>
 <html lang="pt-BR" class="dark">
@@ -443,6 +445,17 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             </div>
           </div>
         </div>
+
+        <section aria-labelledby="geo-context-title" class="p-4 md:p-5 rounded-xl border border-sky-500/20 bg-space-950/60 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 id="geo-context-title" class="text-sm font-bold text-sky-300">Sobre este local</h3>
+            <span id="geo-context-status" class="text-xs text-slate-400"></span>
+          </div>
+          <p id="geo-context-summary" class="text-sm text-slate-300 leading-relaxed" aria-live="polite"></p>
+          <dl id="geo-context-facts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs"></dl>
+          <p id="geo-climate-period" class="text-xs text-slate-400 leading-relaxed"></p>
+          <div id="geo-context-sources" class="text-xs text-slate-400 flex flex-wrap gap-2"></div>
+        </section>
 
         <!-- DUAL DIAGNOSTIC CARDS: "NO QUE É PARECIDO" vs "NO QUE NÃO É PARECIDO" -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1922,8 +1935,50 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     // =========================================================================
     // DETALHES DO MATCHING & DIAGNÓSTICO COMPARATIVO ("NO QUE É PARECIDO" vs "NO QUE NÃO É")
     // =========================================================================
+    const GEOGRAPHICAL_CONTEXT = __GEOGRAPHICAL_CONTEXT_JSON__;
+
+    function renderGeographicalContext(site) {
+      const context = GEOGRAPHICAL_CONTEXT.sites[site.id];
+      document.getElementById('geo-context-status').textContent = context
+        ? (context.review_status === 'reviewed' ? 'Revisado manualmente' : 'Pendente de revisão')
+        : 'Sem ficha cadastrada';
+      document.getElementById('geo-context-summary').textContent = context?.summary
+        || 'Contexto ainda não cadastrado para esta localidade.';
+      const climate = context?.climatology;
+      document.getElementById('geo-climate-period').textContent = climate
+        ? `NASA POWER · ${climate.period} · ${climate.scope}` : '';
+      const facts = document.getElementById('geo-context-facts');
+      facts.replaceChildren();
+      for (const [key, label] of [['climate', 'Clima'], ['biome', 'Bioma'], ['vegetation', 'Vegetação'], ['nearby_locality', 'Localidade próxima']]) {
+        const group = document.createElement('div');
+        const term = document.createElement('dt');
+        term.className = 'text-slate-500 mb-1';
+        term.textContent = label;
+        const value = document.createElement('dd');
+        value.className = 'text-slate-300';
+        value.textContent = context?.[key] || 'Não informado';
+        group.append(term, value);
+        facts.append(group);
+      }
+      const sources = document.getElementById('geo-context-sources');
+      sources.replaceChildren();
+      for (const source of context?.sources || []) {
+        const safeUrl = typeof source.url === 'string' && /^https?:\/\//i.test(source.url);
+        const element = document.createElement(safeUrl ? 'a' : 'span');
+        element.textContent = source.title;
+        if (safeUrl) {
+          element.href = source.url;
+          element.target = '_blank';
+          element.rel = 'noopener noreferrer';
+          element.className = 'underline hover:text-sky-300';
+        }
+        sources.append(element);
+      }
+    }
+
     function renderDetail() {
       const site = SITES_DATA[currentSiteIndex];
+      renderGeographicalContext(site);
       const targets = site.type === "crater" ? MOON_CRATER_REFERENCES : MARS_DUNE_REFERENCES;
 
       // Executa o matching estatístico
@@ -2497,19 +2552,27 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 </html>
 '''
 
+def render_html():
+    catalog = Path(__file__).resolve().parents[1] / "data/earth/geographical_context.json"
+    context = json.loads(catalog.read_text(encoding="utf-8"))
+    payload = json.dumps(context, ensure_ascii=False).replace("<", "\\u003c")
+    return HTML_CONTENT.replace("__GEOGRAPHICAL_CONTEXT_JSON__", payload)
+
+
 def build():
+    rendered = render_html()
     dest1 = os.path.abspath("deliverables/demo/index.html")
     dest2 = r"C:\Users\corre\.gemini\antigravity\brain\55bdf316-4566-4b24-9470-557a8cd94845\analog_explorer.html"
 
     os.makedirs(os.path.dirname(dest1), exist_ok=True)
     with open(dest1, "w", encoding="utf-8") as f:
-        f.write(HTML_CONTENT)
-    print(f"Generated: {dest1} ({len(HTML_CONTENT)} bytes)")
+        f.write(rendered)
+    print(f"Generated: {dest1} ({len(rendered)} bytes)")
 
     if os.path.exists(os.path.dirname(dest2)):
         with open(dest2, "w", encoding="utf-8") as f:
-            f.write(HTML_CONTENT)
-        print(f"Generated artifact: {dest2} ({len(HTML_CONTENT)} bytes)")
+            f.write(rendered)
+        print(f"Generated artifact: {dest2} ({len(rendered)} bytes)")
 
 if __name__ == "__main__":
     build()
