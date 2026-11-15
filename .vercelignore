@@ -1,0 +1,18 @@
+# Fora do deploy na Vercel: dados pesados, pipeline Python e arquivos locais.
+# (O requirements.txt fora daqui faz a Vercel tentar rodar o projeto como app Python.)
+data/
+docs/
+src/
+tests/
+assets/
+requirements.txt
+pyproject.toml
+sites.json
+sitios.json
+**/__pycache__/
+scripts/*.py
+iniciar-demo.bat
+iniciar-demo.sh
+.env
+deliverables/presentation/
+deliverables/submission/

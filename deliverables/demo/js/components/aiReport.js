@@ -87,6 +87,7 @@ export function createAiReport() {
       ? `Para gerar pela página, abra a demo com: ${SERVER_COMMAND}`
       : !status.configured ? 'Servidor sem chave de API. Confira o arquivo .env e reinicie o servidor.'
       : busy ? 'Consultando a IA. Pode levar até 1 minuto.'
+      : status.hosted ? `Modelo: ${status.model} · relatórios novos valem só nesta aba`
       : `Modelo: ${status.model}`;
     const elapsed = el('span', { className: 'ai-elapsed' });
     if (busy) elapsed.dataset.started = generating.started;
@@ -180,7 +181,9 @@ export function createAiReport() {
       });
       const body = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(body.error || `HTTP ${response.status}`);
-      if (body.persisted) {
+      // persisted: salvo em ai-reports.json (servidor local).
+      // hosted: gerado na Vercel, sem disco; fica na página enquanto a aba estiver aberta.
+      if (body.persisted || body.hosted) {
         const data = await loadCatalog().catch(() => ({ reports: {} }));
         data.reports ||= {};
         data.reports[site.id] = body.entry;
