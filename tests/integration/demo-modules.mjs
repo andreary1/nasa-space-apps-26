@@ -92,5 +92,8 @@ for (const site of SITES_DATA) {
   assert.ok(compactTable(location, target).rows.length >= 5);
 }
 const barringer = panelLocation(buildComparison(SITES_DATA.find(s => s.id === 'barringer')));
-assert.equal(compactTable(barringer, 'lunar').demo, true);
+const barringerTable = compactTable(barringer, 'lunar');
+assert.equal(barringerTable.demo, false, 'no hand-written fixtures: the table shows pipeline values');
+const bModel = buildComparison(SITES_DATA.find(s => s.id === 'barringer'));
+assert.equal(barringerTable.rows[0][1], (bModel.site.metrics.diameter_m / 1000).toLocaleString('pt-BR', {maximumFractionDigits: 3}));
 console.log('PASS: charts, panel adapters and compact tables for all sites.');

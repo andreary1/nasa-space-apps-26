@@ -52,11 +52,9 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     assert.equal(await page.locator('#comparison').getAttribute('aria-hidden'), 'false');
     assert.equal(await page.locator('#compact-table thead th').count(), 3);
     assert.equal(await page.locator('[data-comparison-target="lunar"]').getAttribute('aria-pressed'), 'true');
-    assert.deepEqual(await page.locator('#metrics tr').evaluateAll(rows => rows.map(row => [...row.cells].map(cell => cell.textContent))), [
-      ['Diâmetro (km)', '1,186', '21,0'], ['Profundidade (km)', '0,170', '4,10'],
-      ['Bordas', 'Elevadas', 'Elevadas'], ['Declividade (°)', '34,1', '28,6'],
-      ['Estrutura interna', 'Piso definido', 'Piso com elevação'],
-    ]);
+    const compactRows = await page.locator('#metrics tr').evaluateAll(rows => rows.map(row => [...row.cells].map(cell => cell.textContent)));
+    assert.deepEqual(compactRows.map(row => row[0]), ['Diâmetro (km)', 'Profundidade (km)', 'Altura da borda (m)', 'Declividade (°)', 'Razão profundidade/diâmetro']);
+    assert.ok(compactRows.every(row => row[1] !== '—'), 'Barringer has every compact value from the pipeline');
     const lunarScore = await page.locator('#lunar-score').textContent();
     await page.locator('[data-comparison-target="martian"]').click();
     assert.equal(await page.locator('.compact-empty').count(), 1);

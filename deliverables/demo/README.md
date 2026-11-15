@@ -47,13 +47,9 @@ interface original e não a quantidade de referências desse catálogo.
 - Mapa, comparação completa, análise, gráficos, relatórios e cadastro são extensões
   com os mesmos painéis claros, bordas, sombras, fontes e cores da Kauan.
 
-Os scores mockados da Kauan não são usados. Os exemplos pedidos para a tabela
-Barringer–Shackleton e Lençóis–dunas marcianas ficam isolados em
-`js/data/comparisonDemo.js`, explicitamente identificados como demonstrativos.
-Esses exemplos afetam **somente a tabela compacta**, não o catálogo, o contexto,
-os scores, rankings, relatórios ou gráficos. O painel informa a referência
-ilustrativa e que os valores são independentes dos scores do painel direito.
-Para as demais localidades, a tabela usa os dados disponíveis do catálogo.
+Os scores mockados da Kauan não são usados, e os exemplos escritos à mão da tabela compacta
+(Barringer–Shackleton e Lençóis–dunas marcianas) foram removidos: a tabela exibe os valores do
+pipeline para todas as localidades.
 Informações
 como idade, sem dado no catálogo main, aparecem como não informadas. O catálogo,
 presets e seus textos foram preservados sem nova validação científica; inclusive
@@ -93,8 +89,6 @@ Configurações informa que tema, unidades e preferências salvas estão indispo
   saída de 110 ms, troca de linhas e fade/ajuste de altura de 220 ms; total de
   aproximadamente 330 ms. Movimento reduzido torna a troca imediata. A aba Lua
   tem fundo cinza e Marte, laranja suave; ambas têm texto branco quando ativas.
-- `js/data/comparisonDemo.js`: fixtures exclusivamente visuais, separados dos
-  dados originais e do motor de similaridade. Não há novas medições ou algoritmo.
 - `js/components/worldMap.js`, `comparison.js`, `metrics.js`, `charts.js`,
   `siteSelector.js`, `siteForm.js`, `toast.js`: componentes funcionais adaptados.
 - `js/data/`: catálogos, pesos/rótulos e presets originais.

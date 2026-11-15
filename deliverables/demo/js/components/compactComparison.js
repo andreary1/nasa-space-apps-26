@@ -1,5 +1,3 @@
-import { COMPARISON_DEMO } from '../data/comparisonDemo.js';
-
 const value = (number) =>
   typeof number === 'number' && Number.isFinite(number)
     ? number.toLocaleString('pt-BR', { maximumFractionDigits: 3 })
@@ -15,8 +13,6 @@ export function compactTable(location, target) {
   const data = location.comparison;
   const compatible = data?.type === (target === 'lunar' ? 'crater' : 'dune');
   if (!compatible) return null;
-  const fixture = COMPARISON_DEMO[location.id]?.[target];
-  if (fixture) return { ...fixture, demo: true };
   const earth = data.earth || {},
     reference = data.target || {};
   const rows =
