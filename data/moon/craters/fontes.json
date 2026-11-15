@@ -1,0 +1,62 @@
+{
+ "cabeus_dem60": {
+  "nome": "Cabeus",
+  "lat": -85.33,
+  "lon": -42.13,
+  "diametro_ref_km": 100.6,
+  "pixel_m": 60,
+  "fonte": "LOLA RDR, pontos gradeados por nós (s3://asc-moon/hobu/LolaRDR_-90N-75N_*.copc.laz)",
+  "projecao": "aeqd centrada em (-85.33,-42.13), R=1737400 m",
+  "lado_km": 251.5,
+  "arquivo": "cabeus_dem60.tif",
+  "valido": 0.903
+ },
+ "tycho_dem60": {
+  "nome": "Tycho",
+  "lat": -43.31,
+  "lon": -11.36,
+  "diametro_ref_km": 85.3,
+  "pixel_m": 60,
+  "fonte": "SLDEM2015 512 ppd (s3://asc-moon/Lunar_LRO_LOLAKaguya_DEMmerge_60N60S_512ppd_radius.tif)",
+  "projecao": "aeqd centrada em (-43.31,-11.36), R=1737400 m",
+  "lado_km": 213.25,
+  "arquivo": "tycho_dem60.tif",
+  "valido": 1.0
+ },
+ "copernicus_dem60": {
+  "nome": "Copernicus",
+  "lat": 9.62,
+  "lon": -20.08,
+  "diametro_ref_km": 96.1,
+  "pixel_m": 60,
+  "fonte": "SLDEM2015 512 ppd (s3://asc-moon/Lunar_LRO_LOLAKaguya_DEMmerge_60N60S_512ppd_radius.tif)",
+  "projecao": "aeqd centrada em (9.62,-20.08), R=1737400 m",
+  "lado_km": 240.25,
+  "arquivo": "copernicus_dem60.tif",
+  "valido": 1.0
+ },
+ "shackleton_dem20": {
+  "nome": "Shackleton",
+  "lat": -89.67,
+  "lon": 129.78,
+  "diametro_ref_km": 20.9,
+  "pixel_m": 20,
+  "fonte": "LOLA RDR, pontos gradeados por nós (s3://asc-moon/hobu/LolaRDR_-90N-75N_*.copc.laz)",
+  "projecao": "aeqd centrada em (-89.67,129.78), R=1737400 m",
+  "lado_km": 52.25,
+  "arquivo": "shackleton_dem20.tif",
+  "valido": 0.738
+ },
+ "de_gerlache_dem20": {
+  "nome": "de Gerlache",
+  "lat": -88.5,
+  "lon": -87.1,
+  "diametro_ref_km": 32.4,
+  "pixel_m": 20,
+  "fonte": "LOLA RDR, pontos gradeados por nós (s3://asc-moon/hobu/LolaRDR_-90N-75N_*.copc.laz)",
+  "projecao": "aeqd centrada em (-88.5,-87.1), R=1737400 m",
+  "lado_km": 81.0,
+  "arquivo": "de_gerlache_dem20.tif",
+  "valido": 0.668
+ }
+}
