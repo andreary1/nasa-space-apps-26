@@ -11,7 +11,10 @@ from typing import Any
 
 from src.matching.engine import MatchingEngine, MatchResult
 from src.processing.dunes.dune_processor import DuneFeatureVector
-from src.shared.constants import DUNE_FEATURE_WEIGHTS, MARS_DUNE_REFERENCES
+from src.shared.constants import (
+    DUNE_AREAL_DENSITY_FEATURES, DUNE_CIRCULAR_FEATURES, DUNE_FEATURE_WEIGHTS,
+    DUNE_GEOMETRIC_FEATURES, MARS_DUNE_REFERENCES,
+)
 
 log = logging.getLogger(__name__)
 
@@ -33,7 +36,11 @@ class DuneMatcher:
         self.engine = MatchingEngine(
             feature_weights=weights,
             physical_scaling=physical_scaling,
+            geometric_features=DUNE_GEOMETRIC_FEATURES,
+            areal_features=DUNE_AREAL_DENSITY_FEATURES,
+            circular_features=DUNE_CIRCULAR_FEATURES,
         )
+        self.skipped: list[dict] = []
 
     def run(self, earth_sites: list[DuneFeatureVector]) -> list[MatchResult]:
         """
@@ -45,8 +52,6 @@ class DuneMatcher:
         if not earth_sites:
             log.warning("DuneMatcher: nenhum sítio terrestre para comparar.")
             return []
-
-        feature_names = list(DUNE_FEATURE_WEIGHTS.keys())
 
         # Monta vetores terrestres
         earth_vectors = []
@@ -61,6 +66,7 @@ class DuneMatcher:
             target_body="mars",
             feature_type="dune",
         )
+        self.skipped = self.engine.skipped
 
         log.info(
             f"DuneMatcher: {len(earth_sites)} sítios × {len(self.refs)} refs "

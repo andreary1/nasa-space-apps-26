@@ -207,7 +207,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <span class="text-xs text-slate-500 font-mono hidden sm:inline">•</span>
           <span class="text-[11px] text-slate-400 font-mono tracking-tight hidden sm:inline">COPERNICUS GLO-30 / LOLA RDR / HiRISE DTM</span>
           <span class="text-xs text-slate-500 font-mono hidden md:inline">•</span>
-          <span class="text-[10px] px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/20 text-sky-400 font-mono font-medium hidden md:inline">Bagnold Scaling β ≈ 2.82×</span>
+          <span class="text-[10px] px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/20 text-sky-400 font-mono font-medium hidden md:inline" id="beta-badge">Bagnold Scaling β</span>
         </div>
         <h1 class="text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight text-white flex items-center gap-3">
           <span class="shiny-text">Planetary Analog Engine</span>
@@ -383,7 +383,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div class="font-mono text-[9px] text-slate-400 uppercase tracking-wider font-semibold">Legenda de Feições Mundiais</div>
           <div class="flex items-center gap-2 text-slate-300 text-[11px]">
             <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm shadow-amber-500/80"></span>
-            <span><strong>Duna Terrestre</strong> ↔ Alvo Marciano (Bagnold Scaled 2.82×)</span>
+            <span><strong>Duna Terrestre</strong> ↔ Alvo Marciano (Bagnold: comprimentos ÷ β)</span>
           </div>
           <div class="flex items-center gap-2 text-slate-300 text-[11px]">
             <span class="w-2.5 h-2.5 rounded-full bg-sky-400 shadow-sm shadow-sky-400/80"></span>
@@ -438,8 +438,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div class="border-beam-card min-w-[210px] shadow-2xl">
             <div class="border-beam-content p-4 text-right">
               <div class="text-[9px] uppercase font-mono tracking-wider text-slate-400 font-semibold">Score de Similaridade</div>
-              <div id="score-display" class="text-3xl font-black font-mono text-emerald-400 tracking-tight my-0.5">0.6603</div>
-              <div class="text-[10px] text-slate-400 font-mono" id="distance-display">WED: 0.842 | Cos: 0.941</div>
+              <div id="score-display" class="text-3xl font-black font-mono text-emerald-400 tracking-tight my-0.5">—</div>
+              <div class="text-[10px] text-slate-400 font-mono" id="distance-display">carregando…</div>
             </div>
           </div>
         </div>
@@ -581,11 +581,11 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           </div>
           <div class="text-[11px] text-slate-300 space-y-1">
             <div class="text-slate-400">Escalonamento de Bagnold (Dunas Marte):</div>
-            <div class="text-amber-300 bg-white/5 p-1.5 rounded text-[10px]">λ_Marte = 2.82 × λ_Terra</div>
+            <div class="text-amber-300 bg-white/5 p-1.5 rounded text-[10px]">λ_Marte,equiv = λ_Marte ÷ β</div>
           </div>
           <div class="text-[11px] text-slate-300 space-y-1">
             <div class="text-slate-400">Score Híbrido Final:</div>
-            <div class="text-emerald-300 bg-white/5 p-1.5 rounded text-[10px]">S = 0.60·e^(-2.2·WED) + 0.40·cos(θ)</div>
+            <div class="text-emerald-300 bg-white/5 p-1.5 rounded text-[10px]">S = 0.60·e^(-k·WED) + 0.40·cos(θ), k = 3/√n</div>
           </div>
         </div>
 
@@ -776,31 +776,15 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     // =========================================================================
     // DADOS DE REFERÊNCIA OFICIAIS (LUA & MARTE) COM DADOS DOS TIFFS
     // =========================================================================
-    const MOON_CRATER_REFERENCES = [
-      { id: "shackleton", name: "Shackleton (Polo Sul - Artemis)", diameter_m: 20924, depth_m: 3970.8, depth_diameter_ratio: 0.1898, rim_height_m: 1312.9, rim_height_diameter_ratio: 0.0627, rim_variation_m: 660.8, rim_radius_cv: 0.019, mean_wall_slope: 30.3, wall_slope_p90: 33.6, circularity: 0.994, rim_coherence: 0.972 },
-      { id: "cabeus", name: "Cabeus (Polo Sul - LCROSS)", diameter_m: 100600, depth_m: 3751.8, depth_diameter_ratio: 0.0373, rim_height_m: 484.8, rim_height_diameter_ratio: 0.0048, rim_variation_m: 1633.6, rim_radius_cv: 0.035, mean_wall_slope: 12.4, wall_slope_p90: 35.0, circularity: 0.940, rim_coherence: 0.880 },
-      { id: "copernicus", name: "Copernicus (Cratera Complexa)", diameter_m: 96100, depth_m: 3525.2, depth_diameter_ratio: 0.0367, rim_height_m: 759.2, rim_height_diameter_ratio: 0.0079, rim_variation_m: 235.0, rim_radius_cv: 0.035, mean_wall_slope: 13.7, wall_slope_p90: 29.3, circularity: 0.940, rim_coherence: 0.880 },
-      { id: "tycho", name: "Tycho (Cratera com Raios de Ejecta)", diameter_m: 85300, depth_m: 4348.0, depth_diameter_ratio: 0.0510, rim_height_m: 657.5, rim_height_diameter_ratio: 0.0077, rim_variation_m: 470.0, rim_radius_cv: 0.035, mean_wall_slope: 15.3, wall_slope_p90: 31.1, circularity: 0.940, rim_coherence: 0.880 },
-      { id: "de_gerlache", name: "De Gerlache (Polo Sul)", diameter_m: 32612, depth_m: 2797.3, depth_diameter_ratio: 0.0858, rim_height_m: 688.5, rim_height_diameter_ratio: 0.0211, rim_variation_m: 589.4, rim_radius_cv: 0.016, mean_wall_slope: 21.0, wall_slope_p90: 25.0, circularity: 0.992, rim_coherence: 0.917 },
-      { id: "censorinus", name: "Censorinus (Cratera Simples)", diameter_m: 4139, depth_m: 984.0, depth_diameter_ratio: 0.2378, rim_height_m: 298.2, rim_height_diameter_ratio: 0.0720, rim_variation_m: 121.2, rim_radius_cv: 0.012, mean_wall_slope: 36.8, wall_slope_p90: 41.9, circularity: 0.998, rim_coherence: 1.000 },
-      { id: "bessel", name: "Bessel (Mare Serenitatis)", diameter_m: 15311, depth_m: 1747.6, depth_diameter_ratio: 0.1141, rim_height_m: 427.3, rim_height_diameter_ratio: 0.0279, rim_variation_m: 255.3, rim_radius_cv: 0.009, mean_wall_slope: 25.9, wall_slope_p90: 35.1, circularity: 0.997, rim_coherence: 1.000 },
-      { id: "alfraganus", name: "Alfraganus", diameter_m: 20591, depth_m: 3500.6, depth_diameter_ratio: 0.1700, rim_height_m: 935.2, rim_height_diameter_ratio: 0.0454, rim_variation_m: 584.6, rim_radius_cv: 0.013, mean_wall_slope: 31.6, wall_slope_p90: 34.9, circularity: 0.996, rim_coherence: 1.000 },
-      { id: "aristarchus", name: "Aristarchus (Cratera Complexa)", diameter_m: 40481, depth_m: 3109.0, depth_diameter_ratio: 0.0768, rim_height_m: 837.6, rim_height_diameter_ratio: 0.0207, rim_variation_m: 577.5, rim_radius_cv: 0.011, mean_wall_slope: 17.5, wall_slope_p90: 29.3, circularity: 0.994, rim_coherence: 0.944 }
-    ];
+    const MOON_CRATER_REFERENCES = /*__MOON_REFS__*/;
 
-    const MARS_DUNE_REFERENCES = [
-      { id: "namib_dune_gale", name: "Namib Dune (Gale Crater)", mean_height: 5.0, height_p90: 8.0, wavelength: 85.0, crest_azimuth: 170.0, dune_density: 8.5, mean_spacing: 90.0, aridity_index: 0.0 },
-      { id: "bagnold_dunes_gale", name: "Bagnold Dunes Field (MSL)", mean_height: 6.5, height_p90: 12.0, wavelength: 90.0, crest_azimuth: 165.0, dune_density: 11.0, mean_spacing: 95.0, aridity_index: 0.0 },
-      { id: "nili_patera", name: "Nili Patera Dune Field", mean_height: 22.4, height_p90: 31.0, wavelength: 120.0, crest_azimuth: 155.0, dune_density: 7.0, mean_spacing: 130.0, aridity_index: 0.0 },
-      { id: "proctor_crater", name: "Proctor Crater Dunes", mean_height: 15.0, height_p90: 26.0, wavelength: 180.0, crest_azimuth: 140.0, dune_density: 4.5, mean_spacing: 190.0, aridity_index: 0.0 },
-      { id: "olympia_undae", name: "Olympia Undae (Erg Polar Norte)", mean_height: 12.0, height_p90: 18.0, wavelength: 120.0, crest_azimuth: 85.0, dune_density: 14.5, mean_spacing: 125.0, aridity_index: 0.0 },
-      { id: "kaiser_crater", name: "Kaiser Crater (Megadunas)", mean_height: 25.0, height_p90: 38.0, wavelength: 180.0, crest_azimuth: 135.0, dune_density: 6.0, mean_spacing: 190.0, aridity_index: 0.0 },
-      { id: "hellespontus", name: "Hellespontus (Dunas Barcanoides)", mean_height: 16.0, height_p90: 24.0, wavelength: 140.0, crest_azimuth: 150.0, dune_density: 8.0, mean_spacing: 145.0, aridity_index: 0.0 }
-    ];
+    const MARS_DUNE_REFERENCES = /*__MARS_REFS__*/;
 
     // =========================================================================
     // BANCO DE DADOS DOS SÍTIOS TERRESTRES (24 ANÁLOGOS GLOBAIS)
     // =========================================================================
+    const PIPELINE = /*__PIPELINE_DATA__*/;
+
     let SITES_DATA = [
       {
         id: "jericoacoara",
@@ -1313,7 +1297,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     let currentViewMode = "mundo";
     let currentStudioTab = "profile";
     let activeFormType = "crater";
-    let previousScore = 0.6603;
+    let previousScore = 0;
 
     // Pesos Oficiais
     const CRATER_WEIGHTS = {
@@ -1364,41 +1348,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     // =========================================================================
     // MOTOR DE CÁLCULO ESTATÍSTICO COM FÍSICA DE BAGNOLD
     // =========================================================================
-    function calculateMatch(earthMetrics, targetMetrics, type) {
-      const weights = type === "crater" ? CRATER_WEIGHTS : DUNE_WEIGHTS;
-      let weightedSqSum = 0;
-      let dotProd = 0, normA = 0, normB = 0;
-      const bagnoldBeta = 2.82;
 
-      for (const [key, weight] of Object.entries(weights)) {
-        let valEarth = Number(earthMetrics[key]) || 0;
-        let valPlanet = Number(targetMetrics[key]) || 0;
-
-        if (type === "dune" && (key === "wavelength" || key === "mean_spacing" || key === "mean_height")) {
-          valPlanet = valPlanet * bagnoldBeta;
-        }
-
-        const maxVal = Math.max(Math.abs(valEarth), Math.abs(valPlanet), 1e-4);
-        const normEarth = valEarth / maxVal;
-        const normTarget = valPlanet / maxVal;
-
-        const diff = normEarth - normTarget;
-        weightedSqSum += weight * (diff * diff);
-
-        dotProd += (weight * normEarth) * (weight * normTarget);
-        normA += Math.pow(weight * normEarth, 2);
-        normB += Math.pow(weight * normTarget, 2);
-      }
-
-      const wed = Math.sqrt(weightedSqSum);
-      const cosineSim = (normA > 0 && normB > 0) ? Math.max(0, Math.min(1, dotProd / (Math.sqrt(normA) * Math.sqrt(normB)))) : 0;
-      
-      const k = 2.2;
-      const eucScore = Math.exp(-k * wed);
-      const finalScore = 0.6 * eucScore + 0.4 * cosineSim;
-
-      return { score: finalScore, wed: wed, cosine: cosineSim };
-    }
 
     // =========================================================================
     // GLOBO 3D INTERATIVO EM CANVAS (PROJEÇÃO ORTOGRÁFICA ROTAÇÃO SUAVE)
@@ -1922,123 +1872,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     // =========================================================================
     // DETALHES DO MATCHING & DIAGNÓSTICO COMPARATIVO ("NO QUE É PARECIDO" vs "NO QUE NÃO É")
     // =========================================================================
-    function renderDetail() {
-      const site = SITES_DATA[currentSiteIndex];
-      const targets = site.type === "crater" ? MOON_CRATER_REFERENCES : MARS_DUNE_REFERENCES;
+    /*__PIPELINE_JS__*/
 
-      // Executa o matching estatístico
-      const matches = targets.map(t => {
-        const m = calculateMatch(site.metrics, t, site.type);
-        return { target: t, ...m };
-      }).sort((a, b) => b.score - a.score);
-
-      const best = matches[0];
-
-      // Atualiza cabeçalho
-      document.getElementById("badge-body").textContent = site.body === "mars" ? "Terra ↔ Marte (Duna)" : "Terra ↔ Lua (Cratera)";
-      document.getElementById("badge-body").className = `px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono uppercase tracking-wider ${
-        site.body === "mars" ? "bg-amber-500/15 text-amber-400 border border-amber-500/30" : "bg-sky-500/15 text-sky-400 border border-sky-500/30"
-      }`;
-      document.getElementById("badge-cat").textContent = site.category;
-      document.getElementById("badge-region").textContent = site.uf;
-      document.getElementById("pair-title").textContent = `${site.name} ↔ ${best.target.name}`;
-      document.getElementById("site-coords").textContent = `📍 Lat: ${site.lat.toFixed(3)}°, Lon: ${site.lon.toFixed(3)}° (${site.uf})`;
-      
-      // Animated score ticker
-      animateValue("score-display", previousScore, best.score, 600, 4);
-      previousScore = best.score;
-
-      document.getElementById("distance-display").textContent = `WED: ${best.wed.toFixed(3)} | Cos: ${best.cosine.toFixed(3)}`;
-
-      // Injeta diagnósticos: "No que é parecido" vs "No que NÃO é parecido"
-      const simContainer = document.getElementById("similarities-content");
-      const diffContainer = document.getElementById("differences-content");
-
-      simContainer.innerHTML = (site.similarities || [
-        "Convergência morfométrica e geométrica alta com o alvo planetário.",
-        "Perfil topográfico dimensional compatível sob normalização estatística."
-      ]).map(txt => `
-        <div class="flex items-start gap-2">
-          <span class="text-emerald-400 font-bold">•</span>
-          <span>${txt}</span>
-        </div>
-      `).join("");
-
-      diffContainer.innerHTML = (site.differences || [
-        "Erosão eólica e hídrica terrestre atuando sobre a morfologia ao longo de milhões de anos.",
-        "Diferença gravitacional de 1.0g na Terra vs baixa gravidade no corpo planetário."
-      ]).map(txt => `
-        <div class="flex items-start gap-2">
-          <span class="text-rose-400 font-bold">•</span>
-          <span>${txt}</span>
-        </div>
-      `).join("");
-
-      // Atualiza legenda dos estúdios
-      const planetDot = document.getElementById("legend-planet-dot");
-      if (planetDot) {
-        planetDot.className = `w-2.5 h-2.5 rounded-full ${site.body === 'mars' ? 'bg-amber-500' : 'bg-sky-400'}`;
-      }
-      const thPlanet = document.getElementById("th-planet-name");
-      if (thPlanet) {
-        thPlanet.className = `p-3 font-semibold ${site.body === 'mars' ? 'text-amber-400' : 'text-sky-400'}`;
-        thPlanet.textContent = `Alvo Planetário (${best.target.name.split(" ")[0]})`;
-      }
-      document.getElementById("metrics-type-label").textContent = site.type === "crater" ? "11 métricas contratuais" : "7 métricas de dunas";
-
-      // Renderiza os 3 estúdios visuais
-      renderDynamicFigure(site, best.target);
-      renderFeatureBars(site, best.target);
-      renderRadarChart(site.metrics, best.target, site.type);
-
-      // Renderiza Top Matches List
-      const topMatchesContainer = document.getElementById("top-matches-list");
-      topMatchesContainer.innerHTML = matches.slice(0, 5).map((m, rank) => `
-        <div class="spotlight-card p-3 rounded-xl border border-white/5 bg-space-950/70 hover:border-white/15 transition-all">
-          <div class="flex items-center justify-between text-xs mb-1">
-            <span class="font-bold font-mono ${rank === 0 ? 'text-emerald-400' : 'text-slate-300'}">#${rank + 1} ${m.target.name}</span>
-            <span class="font-mono text-[10px] ${m.score > 0.6 ? 'text-emerald-400 font-bold' : 'text-slate-400'}">${m.score.toFixed(4)}</span>
-          </div>
-          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden my-1">
-            <div class="h-1.5 rounded-full ${rank === 0 ? 'bg-emerald-400' : 'bg-sky-500'}" style="width: ${(m.score * 100).toFixed(1)}%"></div>
-          </div>
-          <div class="flex justify-between text-[10px] text-slate-500 font-mono">
-            <span>WED: ${m.wed.toFixed(3)}</span>
-            <span>Cos: ${m.cosine.toFixed(3)}</span>
-          </div>
-        </div>
-      `).join("");
-
-      // Renderiza Tabela de Métricas
-      const tableBody = document.getElementById("metrics-table-body");
-      const weights = site.type === "crater" ? CRATER_WEIGHTS : DUNE_WEIGHTS;
-
-      tableBody.innerHTML = Object.keys(weights).map(key => {
-        const valEarth = site.metrics[key];
-        let valTarget = best.target[key];
-        const isBagnoldScaled = (site.type === "dune" && (key === "wavelength" || key === "mean_spacing" || key === "mean_height"));
-        
-        let diffStr = "-";
-        if (typeof valEarth === "number" && typeof valTarget === "number") {
-          const compTarget = isBagnoldScaled ? valTarget * 2.82 : valTarget;
-          const diffPct = ((valEarth - compTarget) / Math.max(Math.abs(compTarget), 1e-4)) * 100;
-          diffStr = `${diffPct > 0 ? '+' : ''}${diffPct.toFixed(1)}%`;
-        }
-
-        return `
-          <tr class="hover:bg-white/[0.02] transition-colors">
-            <td class="p-3 text-slate-300 font-medium">${PARAM_LABELS[key] || key}</td>
-            <td class="p-3 text-emerald-400 font-semibold">${typeof valEarth === 'number' ? (Number.isInteger(valEarth) ? valEarth : valEarth.toFixed(3)) : valEarth}</td>
-            <td class="p-3 ${site.body === 'mars' ? 'text-amber-400' : 'text-sky-400'}">
-              ${typeof valTarget === 'number' ? (Number.isInteger(valTarget) ? valTarget : valTarget.toFixed(3)) : valTarget}
-              ${isBagnoldScaled ? '<span class="text-[9px] text-amber-500/80 font-mono ml-1">(2.82×)</span>' : ''}
-            </td>
-            <td class="p-3 text-slate-400 font-mono text-[10px]">${diffStr}</td>
-            <td class="p-3 text-right text-slate-400">${(weights[key] * 100).toFixed(0)}%</td>
-          </tr>
-        `;
-      }).join("");
-    }
 
     // =========================================================================
     // ESTÚDIO 1: PERFIL TOPOGRÁFICO (DEM 2D)
@@ -2106,7 +1941,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <circle cx="450" cy="55" r="3.5" fill="#f97316" />
 
             <text x="220" y="42" fill="#f97316" font-size="10" font-family="monospace" text-anchor="middle">Crista (+${site.metrics.mean_height}m)</text>
-            <text x="335" y="105" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">λ = ${site.metrics.wavelength}m (Bagnold Scaled)</text>
+            <text x="335" y="105" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">λ = ${site.metrics.wavelength}m</text>
           </svg>
         `;
       }
@@ -2115,115 +1950,12 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     // =========================================================================
     // ESTÚDIO 2: DECOMPOSIÇÃO EM BARRAS
     // =========================================================================
-    function renderFeatureBars(site, target) {
-      const container = document.getElementById("feature-bars-container");
-      const weights = site.type === "crater" ? CRATER_WEIGHTS : DUNE_WEIGHTS;
 
-      container.innerHTML = Object.keys(weights).map(key => {
-        let valEarth = Number(site.metrics[key]) || 0;
-        let valPlanet = Number(target[key]) || 0;
-
-        if (site.type === "dune" && (key === "wavelength" || key === "mean_spacing" || key === "mean_height")) {
-          valPlanet = valPlanet * 2.82;
-        }
-
-        const maxVal = Math.max(Math.abs(valEarth), Math.abs(valPlanet), 1e-4);
-        const normE = Math.min(100, Math.max(0, (valEarth / maxVal) * 100));
-        const normP = Math.min(100, Math.max(0, (valPlanet / maxVal) * 100));
-        const planetColor = site.body === 'mars' ? 'bg-amber-500' : 'bg-sky-400';
-
-        return `
-          <div class="space-y-1">
-            <div class="flex justify-between text-[11px] font-mono">
-              <span class="text-slate-300">${PARAM_LABELS[key] || key}</span>
-              <div class="flex gap-3">
-                <span class="text-emerald-400">${Number.isInteger(valEarth) ? valEarth : valEarth.toFixed(2)}</span>
-                <span class="${site.body === 'mars' ? 'text-amber-400' : 'text-sky-400'}">${Number.isInteger(valPlanet) ? valPlanet : valPlanet.toFixed(2)}</span>
-              </div>
-            </div>
-            <div class="space-y-0.5">
-              <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
-                <div class="h-1.5 rounded-full bg-emerald-500 transition-all duration-300" style="width: ${normE.toFixed(1)}%"></div>
-              </div>
-              <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
-                <div class="h-1.5 rounded-full ${planetColor} transition-all duration-300" style="width: ${normP.toFixed(1)}%"></div>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
 
     // =========================================================================
     // ESTÚDIO 3: RADAR MULTIDIMENSIONAL
     // =========================================================================
-    function renderRadarChart(earthMetrics, targetMetrics, type) {
-      const container = document.getElementById("radar-svg-container");
-      const weights = type === "crater" ? CRATER_WEIGHTS : DUNE_WEIGHTS;
-      const keys = Object.keys(weights);
-      const totalAxes = keys.length;
-      
-      const cx = 200, cy = 110, r = 85;
-      const angleStep = (Math.PI * 2) / totalAxes;
 
-      const rings = [0.25, 0.50, 0.75, 1.00].map(level => {
-        const pts = [];
-        for (let i = 0; i < totalAxes; i++) {
-          const angle = i * angleStep - Math.PI / 2;
-          const x = cx + Math.cos(angle) * (r * level);
-          const y = cy + Math.sin(angle) * (r * level);
-          pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
-        }
-        return `<polygon points="${pts.join(' ')}" fill="none" stroke="#1e293b" stroke-dasharray="2 2" stroke-width="1"/>`;
-      }).join("");
-
-      const axes = keys.map((key, i) => {
-        const angle = i * angleStep - Math.PI / 2;
-        const x2 = cx + Math.cos(angle) * r;
-        const y2 = cy + Math.sin(angle) * r;
-        const lx = cx + Math.cos(angle) * (r + 18);
-        const ly = cy + Math.sin(angle) * (r + 18);
-        const shortLabel = (PARAM_LABELS[key] || key).split(" ")[0].slice(0, 8);
-
-        return `
-          <line x1="${cx}" y1="${cy}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#334155" stroke-opacity="0.5"/>
-          <text x="${lx.toFixed(1)}" y="${(ly + 3).toFixed(1)}" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">${shortLabel}</text>
-        `;
-      }).join("");
-
-      const ptsEarth = [];
-      const ptsTarget = [];
-
-      keys.forEach((key, i) => {
-        let valEarth = Number(earthMetrics[key]) || 0;
-        let valPlanet = Number(targetMetrics[key]) || 0;
-
-        if (type === "dune" && (key === "wavelength" || key === "mean_spacing" || key === "mean_height")) {
-          valPlanet = valPlanet * 2.82;
-        }
-
-        const maxVal = Math.max(Math.abs(valEarth), Math.abs(valPlanet), 1e-4);
-        const normE = Math.min(1.0, Math.max(0.05, valEarth / maxVal));
-        const normP = Math.min(1.0, Math.max(0.05, valPlanet / maxVal));
-
-        const angle = i * angleStep - Math.PI / 2;
-        ptsEarth.push(`${(cx + Math.cos(angle) * (r * normE)).toFixed(1)},${(cy + Math.sin(angle) * (r * normE)).toFixed(1)}`);
-        ptsTarget.push(`${(cx + Math.cos(angle) * (r * normP)).toFixed(1)},${(cy + Math.sin(angle) * (r * normP)).toFixed(1)}`);
-      });
-
-      const targetStroke = type === "crater" ? "#38bdf8" : "#fb923c";
-      const targetFill = type === "crater" ? "rgba(56, 189, 248, 0.2)" : "rgba(251, 146, 60, 0.2)";
-
-      container.innerHTML = `
-        <svg viewBox="0 0 400 220" class="w-full h-full">
-          ${rings}
-          ${axes}
-          <polygon points="${ptsTarget.join(' ')}" fill="${targetFill}" stroke="${targetStroke}" stroke-width="1.8" stroke-dasharray="3 2" />
-          <polygon points="${ptsEarth.join(' ')}" fill="rgba(16, 185, 129, 0.25)" stroke="#10b981" stroke-width="2.2" />
-          <circle cx="${cx}" cy="${cy}" r="2" fill="#ffffff" />
-        </svg>
-      `;
-    }
 
     function setStudioTab(tab) {
       currentStudioTab = tab;
@@ -2370,76 +2102,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       showToast(`Preset "${p.name}" carregado com sucesso!`);
     }
 
-    function addNewSiteFromForm() {
-      const name = document.getElementById("input-name").value.trim();
-      const uf = document.getElementById("input-uf").value.trim() || "Global";
-      const lat = parseFloat(document.getElementById("input-lat").value);
-      const lon = parseFloat(document.getElementById("input-lon").value);
 
-      if (!name || isNaN(lat) || isNaN(lon)) {
-        showToast("Preencha Nome, Latitude e Longitude da localidade.", "error");
-        return;
-      }
-
-      const id = name.toLowerCase().replace(/[^a-z0-9]/g, "_");
-      let metrics = {};
-
-      if (activeFormType === "crater") {
-        metrics = {
-          diameter_m: parseFloat(document.getElementById("c-diametro_m").value) || 3000,
-          depth_m: parseFloat(document.getElementById("c-profundidade_m").value) || 200,
-          depth_diameter_ratio: parseFloat(document.getElementById("c-razao_dD").value) || 0.06,
-          rim_height_m: parseFloat(document.getElementById("c-altura_borda_m").value) || 80,
-          rim_height_diameter_ratio: parseFloat(document.getElementById("c-razao_borda_D").value) || 0.02,
-          rim_variation_m: parseFloat(document.getElementById("c-borda_variacao_m").value) || 50,
-          rim_radius_cv: parseFloat(document.getElementById("c-borda_raio_cv").value) || 0.03,
-          mean_wall_slope: parseFloat(document.getElementById("c-declividade_parede_media").value) || 16,
-          wall_slope_p90: parseFloat(document.getElementById("c-declividade_parede_p90").value) || 25,
-          circularity: parseFloat(document.getElementById("c-circularidade").value) || 0.92,
-          rim_coherence: parseFloat(document.getElementById("c-coerencia_borda").value) || 0.88
-        };
-      } else {
-        metrics = {
-          mean_height: parseFloat(document.getElementById("d-altura_media").value) || 7,
-          height_p90: parseFloat(document.getElementById("d-altura_p90").value) || 12,
-          wavelength: parseFloat(document.getElementById("d-comprimento_onda").value) || 300,
-          crest_azimuth: parseFloat(document.getElementById("d-orientacao_azimute").value) || 160,
-          dune_density: parseFloat(document.getElementById("d-densidade_dunas").value) || 5,
-          mean_spacing: parseFloat(document.getElementById("d-espacamento_medio").value) || 350,
-          aridity_index: parseFloat(document.getElementById("d-indice_aridez").value) || 0.35
-        };
-      }
-
-      const newSite = {
-        id: id,
-        name: name,
-        uf: uf,
-        category: activeFormType === "crater" ? "Cratera de Impacto" : "Campo de Dunas",
-        type: activeFormType,
-        body: activeFormType === "crater" ? "moon" : "mars",
-        lat: lat,
-        lon: lon,
-        metrics: metrics,
-        similarities: [
-          "Morfometria cadastrada compatível com alvos de catálogo.",
-          "Valores de curvatura e razão adimensional calculados via motor."
-        ],
-        differences: [
-          "Intemperismo superficial terrestre ativo.",
-          "Ambiente deposicional condicionado pela atmosfera local."
-        ]
-      };
-
-      SITES_DATA.unshift(newSite);
-      currentSiteIndex = 0;
-
-      setMapViewMode('mundo');
-      renderSelectors();
-      renderDetail();
-      renderMapPins();
-      showToast(`Localidade "${name}" adicionada ao catálogo mundial!`);
-      scrollToComparison();
-    }
 
     function exportCurrentSiteJson() {
       const site = SITES_DATA[currentSiteIndex];
@@ -2487,6 +2150,8 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       });
     });
 
+    applyPipeline();
+
     // Inicialização geral
     initGlobe();
     renderBaseMap();
@@ -2497,19 +2162,118 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 </html>
 '''
 
-def build():
-    dest1 = os.path.abspath("deliverables/demo/index.html")
+DEFAULT_REPORT = "data/processed/comparisons/matching_report_v2.json"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def load_pipeline(report_path):
+    """Resume o relatório do pipeline no formato que o JavaScript do demo consome."""
+    import json
+    import math
+    import sys
+
+    if ROOT not in sys.path:
+        sys.path.insert(0, ROOT)
+    from src.shared.constants import (
+        CRATER_FEATURE_WEIGHTS, DUNE_FEATURE_WEIGHTS, MARS, MARS_DUNE_REFERENCES,
+        MIN_FEATURE_COVERAGE, MOON_CRATER_REFERENCES,
+    )
+
+    with open(report_path, encoding="utf-8") as fh:
+        rep = json.load(fh)
+    dq = rep["data_quality"]
+
+    def indexed(rows):
+        return {r["site_id"]: r for r in rows}
+
+    sites = {}
+    for kind, weights, feats, dq_rows, res_key in (
+        ("dune", DUNE_FEATURE_WEIGHTS, rep["earth_features"]["dunes"], dq["dunes"], "dunes_mars"),
+        ("crater", CRATER_FEATURE_WEIGHTS, rep["earth_features"]["craters"], dq["craters"], "craters_moon"),
+    ):
+        summaries = {x["earth_site_id"]: x for x in rep["results"][res_key]["site_summaries"]}
+        dq_by = indexed(dq_rows)
+        skipped = dq["matches_without_score"]["dunes" if kind == "dune" else "craters"]
+        for fv in feats:
+            sid = fv["site_id"]
+            entry = {
+                "kind": kind, "name": fv.get("name") or sid, "category": fv.get("category"),
+                "lat": fv["lat"], "lon": fv["lon"],
+                "metrics": {k: fv[k] for k in weights},
+                "dq": {k: dq_by[sid][k] for k in ("provenance", "issues", "features_missing", "source")},
+                "crater_class": fv.get("crater_class"), "confidence": fv.get("confidence"),
+            }
+            if sid in summaries:
+                entry["status"], entry["summary"] = "ok", summaries[sid]
+            else:
+                why = [x["reason"] for x in skipped if x["earth_site_id"] == sid]
+                entry["status"], entry["reason"] = "no_score", "; ".join(why) or "sem score"
+            sites[sid] = entry
+
+    for ex in dq["craters_excluded"]:
+        sites[ex["site_id"]] = {
+            "kind": "crater", "status": "excluded", "reason": ex["reason"], "name": ex.get("name"),
+            "category": ex.get("category"), "lat": ex.get("lat"), "lon": ex.get("lon"), "metrics": None,
+        }
+
+    beta = math.sqrt(MARS["gravity_ratio"]) / math.sqrt(MARS["atm_density_ratio"])
+    meta = {
+        "source_file": os.path.basename(report_path),
+        "generated_at": rep["metadata"]["generated_at"][:19].replace("T", " ") + " UTC",
+        "notes": dq["notes"], "beta": round(beta, 2), "min_coverage": MIN_FEATURE_COVERAGE,
+    }
+
+    def refs(rows, weights):
+        return [{"id": r["id"], "name": r.get("name", r["id"]), **{k: r.get(k) for k in weights}} for r in rows]
+
+    return {
+        "pipeline": {"meta": meta, "sites": sites},
+        "moon_refs": refs(MOON_CRATER_REFERENCES, CRATER_FEATURE_WEIGHTS),
+        "mars_refs": refs(MARS_DUNE_REFERENCES, DUNE_FEATURE_WEIGHTS),
+    }
+
+
+def render_html(report_path):
+    """HTML final: template + dados do pipeline + JavaScript do demo."""
+    import json
+
+    data = load_pipeline(report_path)
+    with open(os.path.join(ROOT, "scripts", "demo_pipeline.js"), encoding="utf-8") as fh:
+        js = fh.read()
+
+    def dump(obj):
+        # "</" em JSON dentro de <script> poderia fechar a tag antes da hora
+        return json.dumps(obj, ensure_ascii=False, allow_nan=False).replace("</", "<\\/")
+
+    html = HTML_CONTENT
+    for placeholder, value in (
+        ("/*__PIPELINE_DATA__*/", dump(data["pipeline"])),
+        ("/*__MOON_REFS__*/", dump(data["moon_refs"])),
+        ("/*__MARS_REFS__*/", dump(data["mars_refs"])),
+        ("/*__PIPELINE_JS__*/", js),
+    ):
+        assert html.count(placeholder) == 1, placeholder
+        html = html.replace(placeholder, value)
+    return html
+
+
+def build(report_path=None):
+    report_path = os.path.abspath(report_path or os.path.join(ROOT, DEFAULT_REPORT))
+    html = render_html(report_path)
+    dest1 = os.path.join(ROOT, "deliverables", "demo", "index.html")
     dest2 = r"C:\Users\corre\.gemini\antigravity\brain\55bdf316-4566-4b24-9470-557a8cd94845\analog_explorer.html"
 
     os.makedirs(os.path.dirname(dest1), exist_ok=True)
     with open(dest1, "w", encoding="utf-8") as f:
-        f.write(HTML_CONTENT)
-    print(f"Generated: {dest1} ({len(HTML_CONTENT)} bytes)")
+        f.write(html)
+    print(f"Generated: {dest1} ({len(html)} bytes) a partir de {report_path}")
 
     if os.path.exists(os.path.dirname(dest2)):
         with open(dest2, "w", encoding="utf-8") as f:
-            f.write(HTML_CONTENT)
-        print(f"Generated artifact: {dest2} ({len(HTML_CONTENT)} bytes)")
+            f.write(html)
+        print(f"Generated artifact: {dest2} ({len(html)} bytes)")
+
 
 if __name__ == "__main__":
-    build()
+    import sys
+    build(sys.argv[1] if len(sys.argv) > 1 else None)

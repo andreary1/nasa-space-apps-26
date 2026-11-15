@@ -1,0 +1,142 @@
+{
+  "erg_chebbi": {
+    "id": "erg_chebbi",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\erg_chebbi_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 378,
+    "altura_pixels": 323,
+    "limites": {
+      "south": 31.105084441250447,
+      "north": 31.19491555874955,
+      "west": -4.035482728578742,
+      "east": -3.9305172714212584
+    },
+    "data_download": "2026-11-15T13:10:10"
+  },
+  "sossusvlei": {
+    "id": "sossusvlei",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\sossusvlei_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 356,
+    "altura_pixels": 323,
+    "limites": {
+      "south": -24.77191555874955,
+      "north": -24.68208444125045,
+      "west": 15.29055047140637,
+      "east": 15.38944952859363
+    },
+    "data_download": "2026-11-15T13:10:23"
+  },
+  "rub_al_khali": {
+    "id": "rub_al_khali",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\rub_al_khali_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 344,
+    "altura_pixels": 323,
+    "limites": {
+      "south": 19.95508444125045,
+      "north": 20.04491555874955,
+      "west": 49.952201860740395,
+      "east": 50.047798139259605
+    },
+    "data_download": "2026-11-15T13:10:37"
+  },
+  "white_sands": {
+    "id": "white_sands",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\white_sands_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 385,
+    "altura_pixels": 323,
+    "limites": {
+      "south": 32.73508444125045,
+      "north": 32.82491555874955,
+      "west": -106.37342284534601,
+      "east": -106.26657715465397
+    },
+    "data_download": "2026-11-15T13:10:50"
+  },
+  "barringer": {
+    "id": "barringer",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\barringer_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 237,
+    "altura_pixels": 194,
+    "limites": {
+      "south": 35.00055066475027,
+      "north": 35.054449335249735,
+      "west": -111.05571012773454,
+      "east": -110.98988987226546
+    },
+    "data_download": "2026-11-15T13:11:07"
+  },
+  "pingualuit": {
+    "id": "pingualuit",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\pingualuit_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 694,
+    "altura_pixels": 334,
+    "limites": {
+      "south": 61.23164714337046,
+      "north": 61.32435285662954,
+      "west": -73.76345586682154,
+      "east": -73.57054413317846
+    },
+    "data_download": "2026-11-15T13:11:21"
+  },
+  "lonar": {
+    "id": "lonar",
+    "arquivo": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\lonar_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 206,
+    "altura_pixels": 194,
+    "limites": {
+      "south": 19.949050664750267,
+      "north": 20.00294933524973,
+      "west": 76.47932548563048,
+      "east": 76.53667451436951
+    },
+    "data_download": "2026-11-15T13:11:34"
+  }
+}

@@ -3,98 +3,125 @@ src/processing/dunes/dune_processor.py
 =======================================
 Pipeline de processamento de dunas terrestres.
 
-Integra:
-  - Leitura de DEM (raster_io)
-  - Extração de métricas morfométricas (morphometrics)
-  - Leitura de metadados pre-calculados de sitios.json
-  - Produz um FeatureVector padronizado para o matching engine
+Regras de dados (nenhum valor é inventado):
+  - Cada atributo do matching vem de UMA origem registrada em ``provenance``:
+      "raster:..."    calculado do DEM (morphometrics.dune_morphometrics)
+      "catalogo:..."  lido do sitios.json/sites.json (calculado fora deste repositório)
+      "ausente"       indisponível -> valor None, com o motivo em ``issues``
+  - Se há raster e catálogo, vale o valor calculado do raster; o do catálogo fica em
+    ``extra["catalog_values"]`` e uma divergência grande vira aviso.
+  - Nunca há valor padrão: o que não existe é None, e o motor de matching
+    compara apenas os atributos disponíveis (reportando a cobertura).
 """
 
 from __future__ import annotations
 
 import json
 import logging
+import math
 from dataclasses import dataclass, asdict, field
 from pathlib import Path
 from typing import Any, Optional
 
 import numpy as np
 
-from src.processing.shared.raster_io import load_dem, audit_raster, site_id_from_path
-from src.processing.shared.morphometrics import extract_morphometrics
+from src.processing.shared.raster_io import load_dem, audit_raster, site_id_from_path, resolution_m
+from src.processing.shared.morphometrics import extract_morphometrics, dune_morphometrics
 from src.shared.constants import DUNE_FEATURE_WEIGHTS
 
 log = logging.getLogger(__name__)
 
+# Menor número = preferido quando o mesmo sítio tem mais de um raster.
+RASTER_EXT_PRIORITY = {".tif": 0, ".tiff": 0, ".hgt": 1, ".npy": 2}
 
-# ---------------------------------------------------------------------------
-# Dataclass: vetor de features de duna
-# ---------------------------------------------------------------------------
+# atributo do matching -> campos aceitos no catálogo (português, inglês)
+CATALOG_KEYS: dict[str, tuple[str, ...]] = {
+    "mean_height": ("altura_media", "mean_height"),
+    "height_p90": ("altura_p90", "height_p90"),
+    "wavelength": ("comprimento_onda", "wavelength"),
+    "crest_azimuth": ("orientacao_azimute", "crest_azimuth"),
+    "dune_density": ("densidade_dunas", "dune_density"),
+    "mean_spacing": ("espacamento_medio", "mean_spacing"),
+    "aridity_index": ("indice_aridez", "aridity_index"),
+}
+
+# Atributos que não podem ser calculados de um DEM.
+NOT_FROM_DEM = {"aridity_index": "índice de aridez (P/ET0) exige climatologia (ex.: NASA POWER), não um DEM"}
+
+# Diferença relativa raster × catálogo acima da qual se emite aviso.
+DIVERGENCE_WARN = 0.5
 
 
 @dataclass
 class DuneFeatureVector:
-    """Vetor de features morfométricas de um sítio de dunas."""
+    """Atributos de um sítio de dunas. None = indisponível (nunca zero)."""
 
     site_id: str
-    source: str                        # "raster" | "sitios_json" | "hybrid"
-    lat: float
-    lon: float
-    body: str = "earth"                # corpo celeste
+    source: str                        # "raster" | "catalogo" | "hybrid"
+    lat: Optional[float] = None
+    lon: Optional[float] = None
+    body: str = "earth"
 
-    # Métricas primárias (do DEM)
+    # Atributos do matching (nomes iguais a DUNE_FEATURE_WEIGHTS)
+    mean_height: Optional[float] = None
+    height_p90: Optional[float] = None
+    wavelength: Optional[float] = None
+    crest_azimuth: Optional[float] = None
+    dune_density: Optional[float] = None
+    mean_spacing: Optional[float] = None
+    aridity_index: Optional[float] = None
+
+    # Diagnóstico (só existe com raster; não entra no matching)
     slope_mean_deg: Optional[float] = None
     slope_p90_deg: Optional[float] = None
     roughness_rms_m: Optional[float] = None
     tri: Optional[float] = None
     aspect_ratio: Optional[float] = None
-    wavelength_m: Optional[float] = None
-    dune_density_per_km2: Optional[float] = None
-    aridity_index: Optional[float] = None
-
-    # Métricas secundárias / diagnóstico
     relief_m: Optional[float] = None
     anisotropy: Optional[float] = None
     curvature_mean: Optional[float] = None
     dem_mean_m: Optional[float] = None
     n_pixels: Optional[int] = None
 
-    # Metadados originais (passthrough)
+    provenance: dict = field(default_factory=dict)   # atributo -> origem
+    issues: list = field(default_factory=list)       # avisos legíveis
     extra: dict = field(default_factory=dict)
 
     def to_array(self, weights: dict[str, float] = None) -> np.ndarray:
-        """
-        Converte para array numpy com as features do vetor de matching.
-        Retorna apenas features definidas em DUNE_FEATURE_WEIGHTS (ou weights).
-        """
+        """Vetor do matching; atributo indisponível vira NaN (não 0)."""
         w = weights or DUNE_FEATURE_WEIGHTS
-        vec = []
-        for feat in w:
-            val = getattr(self, feat, None)
-            vec.append(float(val) if val is not None else 0.0)
-        return np.array(vec, dtype=np.float64)
+        return np.array(
+            [np.nan if getattr(self, f) is None else float(getattr(self, f)) for f in w],
+            dtype=np.float64,
+        )
+
+    def missing(self, weights: dict[str, float] = None) -> list[str]:
+        w = weights or DUNE_FEATURE_WEIGHTS
+        return [f for f in w if getattr(self, f) is None]
 
     def to_dict(self) -> dict:
         return asdict(self)
 
 
-# ---------------------------------------------------------------------------
-# Processador de dunas
-# ---------------------------------------------------------------------------
+def _catalog_value(meta: dict, keys: tuple[str, ...]) -> tuple[Optional[float], Optional[str]]:
+    for k in keys:
+        v = meta.get(k)
+        if v is not None and isinstance(v, (int, float)) and math.isfinite(v):
+            return float(v), k
+    return None, None
 
 
 class DuneProcessor:
     """
     Processa sítios de dunas a partir de:
       1. Arquivos raster (.tif / .hgt) na pasta data/earth/dunes/
-      2. Metadados pre-calculados em sitios.json
+      2. Atributos já registrados em sitios.json
     """
 
     def __init__(
         self,
         raster_dir: str | Path = "data/earth/dunes",
         sitios_json: str | Path = "data/earth/sites.json",
-        res_fallback_m: float = 30.0,
     ):
         self.raster_dir = Path(raster_dir)
         self.sitios_json = Path(sitios_json)
@@ -103,82 +130,58 @@ class DuneProcessor:
                 if alt.exists():
                     self.sitios_json = alt
                     break
-        self.res_fallback_m = res_fallback_m
 
     # ------------------------------------------------------------------
     # API pública
     # ------------------------------------------------------------------
 
     def process_all(self) -> list[DuneFeatureVector]:
-        """
-        Processa todos os sítios disponíveis e retorna lista de DuneFeatureVector.
-
-        Lógica de prioridade:
-          1. Se há raster na pasta de dunas → extrai métricas via DEM
-          2. Se há entrada em sitios.json (dunas_detectadas=True) → usa pre-calc
-          3. Combina ("hybrid") se ambos disponíveis
-        """
         results: list[DuneFeatureVector] = []
-
-        # Rasters na pasta de dunas
-        raster_map = self._discover_rasters()
-        # Sítios com dunas no JSON
+        raster_map = {sid: path for path, sid in self._discover_rasters().items()}
         json_map = self._load_sitios_json()
 
-        processed_ids: set[str] = set()
-
-        # Prioridade 1: rasters
-        for raster_path, site_id in raster_map.items():
-            json_meta = json_map.get(site_id, {})
-            fv = self._process_raster(raster_path, site_id, json_meta)
-            if fv:
-                results.append(fv)
-                processed_ids.add(site_id)
-
-        # Prioridade 2: apenas JSON (sem raster correspondente)
-        for site_id, meta in json_map.items():
-            if site_id not in processed_ids:
-                fv = self._process_json_only(site_id, meta)
-                if fv:
-                    results.append(fv)
+        for site_id in sorted(set(raster_map) | set(json_map)):
+            fv = self._build(site_id, json_map.get(site_id, {}), raster_map.get(site_id))
+            results.append(fv)
+            for msg in fv.issues:
+                log.warning(f"[dunas:{site_id}] {msg}")
 
         log.info(f"DuneProcessor: {len(results)} sítios processados.")
         return results
 
     def audit_rasters(self) -> list[dict[str, Any]]:
-        """Audita todos os rasters disponíveis e retorna metadados."""
         audits = []
-        for path in self.raster_dir.rglob("*.tif"):
-            try:
-                audits.append(audit_raster(path))
-            except Exception as e:
-                audits.append({"file": str(path), "error": str(e)})
-        for path in self.raster_dir.rglob("*.hgt"):
-            try:
-                audits.append(audit_raster(path))
-            except Exception as e:
-                audits.append({"file": str(path), "error": str(e)})
+        for pattern in ("*.tif", "*.hgt"):
+            for path in self.raster_dir.rglob(pattern):
+                try:
+                    audits.append(audit_raster(path))
+                except Exception as e:
+                    audits.append({"file": str(path), "error": str(e)})
         return audits
 
     # ------------------------------------------------------------------
-    # Métodos internos
+    # Internos
     # ------------------------------------------------------------------
 
     def _discover_rasters(self) -> dict[Path, str]:
-        """
-        Mapeia rasters → site_id (inferido do nome do arquivo).
-        Ex.: jericoacoara_dem.tif → "jericoacoara"
-        """
+        """Mapeia raster -> site_id (um por sítio; prefere .tif a .npy)."""
         mapping: dict[Path, str] = {}
         if not self.raster_dir.exists():
             return mapping
-        for ext in ["*.tif", "*.tiff", "*.hgt", "*.npy"]:
-            for f in self.raster_dir.rglob(ext):
-                mapping[f] = site_id_from_path(f)
+        escolhidos: dict[str, Path] = {}
+        for f in sorted(self.raster_dir.rglob("*")):
+            if f.suffix.lower() not in RASTER_EXT_PRIORITY:
+                continue
+            site_id = site_id_from_path(f)
+            atual = escolhidos.get(site_id)
+            if atual is None or RASTER_EXT_PRIORITY[f.suffix.lower()] < RASTER_EXT_PRIORITY[atual.suffix.lower()]:
+                escolhidos[site_id] = f
+        for site_id, f in escolhidos.items():
+            mapping[f] = site_id
         return mapping
 
     def _load_sitios_json(self) -> dict[str, dict]:
-        """Retorna dict site_id → metadados, apenas sítios com dunas."""
+        """site_id -> metadados, apenas sítios de dunas."""
         if not self.sitios_json.exists():
             return {}
         with open(self.sitios_json, encoding="utf-8") as fh:
@@ -187,101 +190,82 @@ class DuneProcessor:
         return {
             s["id"]: s
             for s in sites_list
-            if s.get("dunas_detectadas") or s.get("dunes_detected") or s.get("categoria") == "campo_de_dunas" or s.get("category") == "dune_field"
+            if s.get("dunas_detectadas") or s.get("dunes_detected")
+            or s.get("categoria") == "campo_de_dunas" or s.get("category") == "dune_field"
         }
 
-    def _process_raster(
-        self,
-        path: Path,
-        site_id: str,
-        json_meta: dict,
-    ) -> Optional[DuneFeatureVector]:
-        """Extrai métricas morfométricas do raster."""
-        try:
-            dem, raster_meta = load_dem(path)
-            res_m = _res_to_m(raster_meta)
+    def _build(self, site_id: str, meta: dict, raster_path: Optional[Path]) -> DuneFeatureVector:
+        issues: list[str] = []
+        prov: dict[str, str] = {}
+        extra: dict[str, Any] = {"json_meta": meta}
 
-            log.info(f"Processando raster: {path.name}  res={res_m:.1f}m  shape={dem.shape}")
-            morph = extract_morphometrics(dem, res_m=res_m)
+        lat, lon = meta.get("lat"), meta.get("lon")
+        if lat is None or lon is None:
+            issues.append("lat/lon ausentes: o sítio não está no catálogo (coordenadas desconhecidas)")
 
-            # Mescla com JSON se disponível
-            source = "hybrid" if json_meta else "raster"
-            return DuneFeatureVector(
-                site_id=site_id,
-                source=source,
-                lat=json_meta.get("lat", 0.0),
-                lon=json_meta.get("lon", 0.0),
-                slope_mean_deg=morph["slope_mean_deg"],
-                slope_p90_deg=morph["slope_p90_deg"],
-                roughness_rms_m=morph["roughness_rms_m"],
-                tri=morph["tri"],
-                aspect_ratio=morph["aspect_ratio"],
-                wavelength_m=json_meta.get("comprimento_onda") or morph["wavelength_m"],
-                dune_density_per_km2=json_meta.get("densidade_dunas"),
-                aridity_index=json_meta.get("indice_aridez"),
-                relief_m=morph["relief_m"],
-                anisotropy=morph["anisotropy"],
-                curvature_mean=morph["curvature_mean"],
-                dem_mean_m=morph["dem_mean_m"],
-                n_pixels=morph["n_pixels"],
-                extra={
-                    "raster_file": str(path),
-                    "raster_res_m": res_m,
-                    "json_meta": json_meta,
-                },
-            )
-        except Exception as e:
-            log.warning(f"Falha ao processar raster {path}: {e}")
-            return None
+        computed: dict[str, Optional[float]] = {}
+        why_not: dict[str, str] = {}
+        diag: dict[str, Any] = {}
+        if raster_path is not None:
+            try:
+                dem, rmeta = load_dem(raster_path)
+                rx, ry, avisos = resolution_m(rmeta)
+                issues.extend(avisos)
+                computed, why_not = dune_morphometrics(dem, rx, ry)
+                diag = extract_morphometrics(dem, res_m=rx, res_y_m=ry)
+                if diag.get("nan_fraction", 0) > 0:
+                    issues.append(f"{diag['nan_fraction']:.1%} do raster sem dados (preenchido com a média só nos diagnósticos)")
+                extra.update(raster_file=str(raster_path), raster_res_m=[rx, ry])
+            except Exception as e:
+                issues.append(f"raster {raster_path.name} não pôde ser processado: {e}")
 
-    def _process_json_only(self, site_id: str, meta: dict) -> Optional[DuneFeatureVector]:
-        """
-        Constrói DuneFeatureVector apenas com dados de sitios.json.
-        As métricas do DEM são estimadas a partir de relações morfométricas
-        quando possível.
-        """
-        h = meta.get("altura_media") or 0.0
-        h90 = meta.get("altura_p90") or 0.0
-        lam = meta.get("comprimento_onda") or 1.0
-        diag = meta.get("diagnostico", {})
+        values: dict[str, Optional[float]] = {}
+        catalog_values: dict[str, float] = {}
+        for feat, keys in CATALOG_KEYS.items():
+            cv, field_name = _catalog_value(meta, keys)
+            if cv is not None:
+                catalog_values[feat] = cv
+            rv = computed.get(feat)
 
-        # Estimativas derivadas
-        slope_mean = float(np.degrees(np.arctan(h / (lam * 0.5)))) if lam > 0 else None
-        slope_p90 = float(np.degrees(np.arctan(h90 / (lam * 0.3)))) if lam > 0 else None
-        rough = diag.get("amplitude_desvio_m", h * 0.4)
-        aspect_ratio = h / lam if lam > 0 else None
-        anisotropy = diag.get("anisotropia")
+            if rv is not None:
+                values[feat] = float(rv)
+                prov[feat] = "raster:dune_morphometrics"
+                if cv is not None and cv != 0 and abs(rv - cv) / abs(cv) > DIVERGENCE_WARN:
+                    issues.append(f"{feat}: raster ({rv:.4g}) difere do catálogo ({cv:.4g}) em mais de {DIVERGENCE_WARN:.0%}; usando o raster")
+            elif cv is not None:
+                values[feat] = cv
+                prov[feat] = f"catalogo:{field_name} (calculado fora deste repositório)"
+                if raster_path is not None and feat in why_not:
+                    issues.append(f"{feat}: não calculável do raster ({why_not[feat]}); usando o valor do catálogo")
+            else:
+                values[feat] = None
+                prov[feat] = "ausente"
+                if feat in NOT_FROM_DEM:
+                    motivo = NOT_FROM_DEM[feat]
+                elif feat in why_not:
+                    motivo = why_not[feat]
+                elif raster_path is None:
+                    motivo = "sem raster e sem valor no catálogo"
+                else:
+                    motivo = "não calculado"
+                issues.append(f"{feat}: INDISPONÍVEL — {motivo}")
+        extra["catalog_values"] = catalog_values
+
+        origens = {p.split(":")[0] for p in prov.values() if p != "ausente"}
+        source = "hybrid" if len(origens) > 1 else ("raster" if origens == {"raster"} else "catalogo")
 
         return DuneFeatureVector(
-            site_id=site_id,
-            source="sitios_json",
-            lat=meta.get("lat", 0.0),
-            lon=meta.get("lon", 0.0),
-            slope_mean_deg=slope_mean,
-            slope_p90_deg=slope_p90,
-            roughness_rms_m=float(rough) if rough else None,
-            tri=None,  # não disponível sem DEM
-            aspect_ratio=float(aspect_ratio) if aspect_ratio else None,
-            wavelength_m=float(lam) if lam else None,
-            dune_density_per_km2=meta.get("densidade_dunas"),
-            aridity_index=meta.get("indice_aridez"),
-            relief_m=float(h90),
-            anisotropy=float(anisotropy) if anisotropy else None,
-            extra={"json_meta": meta},
+            site_id=site_id, source=source, lat=lat, lon=lon,
+            slope_mean_deg=diag.get("slope_mean_deg"),
+            slope_p90_deg=diag.get("slope_p90_deg"),
+            roughness_rms_m=diag.get("roughness_rms_m"),
+            tri=diag.get("tri"),
+            aspect_ratio=diag.get("aspect_ratio"),
+            relief_m=diag.get("relief_m"),
+            anisotropy=diag.get("anisotropy"),
+            curvature_mean=diag.get("curvature_mean"),
+            dem_mean_m=diag.get("dem_mean_m"),
+            n_pixels=diag.get("n_pixels"),
+            provenance=prov, issues=issues, extra=extra,
+            **values,
         )
-
-
-# ---------------------------------------------------------------------------
-# Utilitários
-# ---------------------------------------------------------------------------
-
-
-def _res_to_m(raster_meta: dict) -> float:
-    """Extrai resolução em metros do metadado de raster."""
-    res = raster_meta.get("res")
-    if res is None:
-        return 30.0
-    res_deg = max(abs(res[0]), abs(res[1]))
-    if res_deg > 0.001:  # provavelmente em graus
-        return res_deg * 111_320
-    return res_deg  # provavelmente já em metros

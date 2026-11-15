@@ -117,6 +117,32 @@ CRATER_FIELD_ALIASES = {
 }
 
 # ---------------------------------------------------------------------------
+# Regras de comparação (qualidade de dados e escalonamento físico)
+# ---------------------------------------------------------------------------
+
+# Fração mínima do peso total das features que precisa estar disponível, tanto
+# no sítio terrestre quanto na referência, para um score ser calculado.
+# Abaixo disso o par NÃO é pontuado (e o motivo vai para o relatório).
+MIN_FEATURE_COVERAGE = 0.6
+
+# Dunas: escalonamento de Bagnold (contrato, seção 3).
+#  - comprimentos (m) dividem por β;  - densidade por km² multiplica por β².
+DUNE_GEOMETRIC_FEATURES = ("mean_height", "height_p90", "wavelength", "mean_spacing")
+DUNE_AREAL_DENSITY_FEATURES = ("dune_density",)
+
+# Grandezas circulares: nome -> período em graus. A diferença é a menor volta
+# (170° e 5° estão a 15° de distância, não a 165°). Azimute de crista é axial (0–180).
+DUNE_CIRCULAR_FEATURES = {"crest_azimuth": 180.0}
+
+# Crateras: o contrato preserva a geometria (sem escalonamento de comprimentos).
+# A normalização das declividades pela gravidade lunar NÃO está implementada:
+# o contrato não define a fórmula.
+CRATER_GEOMETRIC_FEATURES: tuple = ()
+
+# Classificação de crateras medidas no raster (nós medimos; ver morphometrics).
+CRATER_CLASS_MIN_COHERENCE = {"crater": 0.75, "partial_ring": 0.5}
+
+# ---------------------------------------------------------------------------
 # Referências marcianas — Campos de Dunas (Marte)
 # Compilação científica: HiRISE, CTX, Gale Curiosity & MGS TES
 # ---------------------------------------------------------------------------

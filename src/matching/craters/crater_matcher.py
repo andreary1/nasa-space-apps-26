@@ -10,7 +10,9 @@ import logging
 
 from src.matching.engine import MatchingEngine, MatchResult
 from src.processing.craters.crater_processor import CraterFeatureVector
-from src.shared.constants import CRATER_FEATURE_WEIGHTS, MOON_CRATER_REFERENCES
+from src.shared.constants import (
+    CRATER_FEATURE_WEIGHTS, CRATER_GEOMETRIC_FEATURES, MOON_CRATER_REFERENCES,
+)
 
 log = logging.getLogger(__name__)
 
@@ -32,7 +34,9 @@ class CraterMatcher:
         self.engine = MatchingEngine(
             feature_weights=weights,
             physical_scaling=physical_scaling,
+            geometric_features=CRATER_GEOMETRIC_FEATURES,
         )
+        self.skipped: list[dict] = []
 
     def run(self, earth_sites: list[CraterFeatureVector]) -> list[MatchResult]:
         if not earth_sites:
@@ -47,6 +51,7 @@ class CraterMatcher:
             target_body="moon",
             feature_type="crater",
         )
+        self.skipped = self.engine.skipped
 
         log.info(
             f"CraterMatcher: {len(earth_sites)} sítios × {len(self.refs)} refs "

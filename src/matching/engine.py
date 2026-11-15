@@ -18,11 +18,19 @@ onde:
   g   = gravidade
 
 Portanto, para comparar dunas terrestres com marcianas, escalonamos as
-métricas geométricas (λ, H) pelo fator de Bagnold:
+métricas geométricas (λ, H, espaçamento) pelo fator de Bagnold:
 
     β = (ρ_a_earth / ρ_a_planet)^0.5 × (g_planet / g_earth)^0.5
 
-E para rugosidade/TRI, usamos razões de gravidade diretamente.
+Comprimentos dividem por β; densidade por área multiplica por β².
+
+Dados ausentes
+--------------
+Nada é preenchido com zero ou valor padrão. Um atributo ausente (NaN) no sítio
+terrestre OU na referência é simplesmente excluído da comparação daquele par: os
+pesos dos atributos restantes são renormalizados e o resultado informa quais
+atributos foram usados, quais faltaram e a cobertura (fração do peso total usada).
+Abaixo de ``min_coverage`` o par não recebe score.
 
 Referências
 -----------
@@ -41,7 +49,15 @@ from typing import Any, Optional
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
+from src.shared.constants import MIN_FEATURE_COVERAGE
+
 log = logging.getLogger(__name__)
+
+
+def _clean(values, ndigits: int = 4) -> list[Optional[float]]:
+    """NaN -> None (JSON válido)."""
+    return [None if not math.isfinite(v) else round(float(v), ndigits) for v in values]
+
 
 # ---------------------------------------------------------------------------
 # Dataclasses de resultado
@@ -59,9 +75,15 @@ class MatchResult:
 
     # Scores (menores = mais similares)
     weighted_euclidean_dist: float
-    cosine_similarity: float      # 0–1, maior = mais similar
+    cosine_similarity: Optional[float]   # 0–1; None se só havia atributos circulares
     similarity_score: float       # score final 0–1 (1 = idêntico)
     rank: int = 0                 # posição no ranking
+
+    # Qualidade dos dados desta comparação
+    features_used: list[str] = field(default_factory=list)
+    features_missing_earth: list[str] = field(default_factory=list)
+    features_missing_reference: list[str] = field(default_factory=list)
+    coverage: float = 1.0         # fração do peso total efetivamente usada
 
     # Detalhamento por feature
     feature_contributions: dict[str, float] = field(default_factory=dict)
@@ -78,13 +100,17 @@ class MatchResult:
             "target_body": self.target_body,
             "feature_type": self.feature_type,
             "weighted_euclidean_dist": round(self.weighted_euclidean_dist, 6),
-            "cosine_similarity": round(self.cosine_similarity, 6),
+            "cosine_similarity": None if self.cosine_similarity is None else round(self.cosine_similarity, 6),
             "similarity_score": round(self.similarity_score, 6),
             "rank": self.rank,
+            "coverage": round(self.coverage, 4),
+            "features_used": self.features_used,
+            "features_missing_earth": self.features_missing_earth,
+            "features_missing_reference": self.features_missing_reference,
             "feature_contributions": {k: round(v, 6) for k, v in self.feature_contributions.items()},
             "physical_scaling_applied": self.physical_scaling_applied,
-            "earth_vector": [round(v, 4) for v in self.earth_vector],
-            "planet_vector_scaled": [round(v, 4) for v in self.planet_vector_scaled],
+            "earth_vector": _clean(self.earth_vector),
+            "planet_vector_scaled": _clean(self.planet_vector_scaled),
         }
 
 
@@ -102,10 +128,11 @@ class MatchingEngine:
     1. Aplica escalonamento físico (Bagnold) no vetor planetário para
        "traduzir" as métricas ao frame de referência terrestre.
     2. Normaliza ambos os vetores com MinMaxScaler ajustado no conjunto
-       completo de referências.
-    3. Calcula distância Euclidiana ponderada e similaridade de cosseno.
-    4. Converte distância em score 0–1 via função sigmoide decrescente.
-    5. Score final = média ponderada (60% Euclidiana + 40% Cosseno).
+       completo (Terra + referências já escalonadas).
+    3. Considera só os atributos presentes nos dois lados e renormaliza os pesos.
+    4. Distância Euclidiana ponderada (diferença angular mínima para atributos
+       circulares) e similaridade de cosseno (atributos não circulares).
+    5. Score final = 60% exp(-k·d) + 40% cosseno.
     """
 
     def __init__(
@@ -113,34 +140,44 @@ class MatchingEngine:
         feature_weights: dict[str, float],
         feature_names: list[str] = None,
         physical_scaling: bool = True,
+        geometric_features: tuple[str, ...] = (),
+        areal_features: tuple[str, ...] = (),
+        circular_features: dict[str, float] | None = None,
+        min_coverage: float = MIN_FEATURE_COVERAGE,
     ):
         """
-        Parâmetros
-        ----------
-        feature_weights : dict  nome_feature → peso (serão normalizados para soma=1)
-        feature_names   : lista ordenada de nomes (opcional; infere de weights se None)
-        physical_scaling: se True, aplica correções Bagnold/gravidade
+        feature_weights   : nome_feature → peso (normalizados para soma=1)
+        feature_names     : ordem das features (padrão: a de feature_weights)
+        physical_scaling  : se True, aplica Bagnold às features abaixo
+        geometric_features: comprimentos (m): dividem por β
+        areal_features    : densidades por área: multiplicam por β²
+        circular_features : nome → período em graus (ex.: azimute axial = 180)
+        min_coverage      : cobertura mínima de peso para pontuar um par
         """
         self.feature_names = feature_names or list(feature_weights.keys())
         raw_w = np.array([feature_weights.get(n, 0.0) for n in self.feature_names])
         self.weights = raw_w / raw_w.sum() if raw_w.sum() > 0 else raw_w
         self.physical_scaling = physical_scaling
+        self.geometric_features = set(geometric_features)
+        self.areal_features = set(areal_features)
+        self.circular_features = dict(circular_features or {})
+        self.min_coverage = min_coverage
         self._scaler: Optional[MinMaxScaler] = None
+        self.skipped: list[dict] = []       # pares não pontuados, com o motivo
+
+        unknown = (self.geometric_features | self.areal_features | set(self.circular_features)) - set(self.feature_names)
+        if unknown:
+            raise ValueError(f"features desconhecidas na configuração do motor: {sorted(unknown)}")
 
     # ------------------------------------------------------------------
     # Ajuste do scaler
     # ------------------------------------------------------------------
 
     def fit(self, all_vectors: list[np.ndarray]) -> "MatchingEngine":
-        """
-        Ajusta MinMaxScaler no conjunto de todos os vetores (Terra + Planeta).
-        Deve ser chamado antes de match().
-        """
+        """Ajusta MinMaxScaler (NaN é ignorado no ajuste e preservado na transformação)."""
         if not all_vectors:
             return self
-        X = np.vstack(all_vectors)
-        self._scaler = MinMaxScaler()
-        self._scaler.fit(X)
+        self._scaler = MinMaxScaler().fit(np.vstack(all_vectors))
         return self
 
     # ------------------------------------------------------------------
@@ -155,44 +192,58 @@ class MatchingEngine:
         planet_ref_id: str,
         target_body: str,
         feature_type: str,
-        gravity_ratio: float = 1.0,
-        atm_density_ratio: float = 1.0,
-    ) -> MatchResult:
+        gravity_ratio: Optional[float] = None,
+        atm_density_ratio: Optional[float] = None,
+    ) -> Optional[MatchResult]:
         """
-        Compara um par (sítio terrestre, referência planetária).
+        Compara um par. Retorna None se a cobertura de atributos disponíveis
+        for menor que ``min_coverage`` (não há dado suficiente para pontuar).
         """
         # 1. Escalonamento físico
         scaled_planet, scaling_map = self._apply_physical_scaling(
             planet_vec, gravity_ratio, atm_density_ratio
         )
 
-        # 2. Normalização
-        e_norm, p_norm = self._normalize_pair(earth_vec, scaled_planet)
+        # 2. Quais atributos existem nos dois lados?
+        ok_e, ok_p = np.isfinite(earth_vec), np.isfinite(scaled_planet)
+        mask = ok_e & ok_p
+        coverage = float(self.weights[mask].sum())
+        if coverage < self.min_coverage:
+            return None
+        w = self.weights[mask] / coverage
 
-        # 3. Distância Euclidiana ponderada
+        # 3. Normalização e diferenças por atributo
+        e_norm, p_norm = self._normalize_pair(earth_vec, scaled_planet)
         diff = e_norm - p_norm
-        weighted_sq = self.weights * diff**2
+        circ = np.zeros(len(self.feature_names), dtype=bool)
+        for i, name in enumerate(self.feature_names):
+            period = self.circular_features.get(name)
+            if period is None or not mask[i]:
+                continue
+            circ[i] = True
+            d = abs(earth_vec[i] - scaled_planet[i]) % period
+            diff[i] = min(d, period - d) / (period / 2.0)       # 0 (igual) a 1 (oposto)
+        diff = np.where(mask, diff, 0.0)
+
+        # 4. Distância Euclidiana ponderada (só atributos presentes)
+        weighted_sq = np.zeros(len(self.feature_names))
+        weighted_sq[mask] = w * diff[mask] ** 2
         wed = float(np.sqrt(weighted_sq.sum()))
 
-        # 4. Similaridade de cosseno ponderada
-        cos_sim = self._cosine_weighted(e_norm, p_norm)
+        # 5. Cosseno nos atributos não circulares presentes
+        lin = mask & ~circ
+        cos_sim: Optional[float] = None
+        if lin.any():
+            cos_sim = self._cosine_weighted(np.where(lin, e_norm, 0.0), np.where(lin, p_norm, 0.0), lin)
 
-        # 5. Score final
-        # Distância Euclidiana → score (1 = idêntico, 0 = máximo diferente)
-        # Usamos exp(-k * d) com k calibrado para d_max ≈ sqrt(n_features)
+        # 6. Score final. k usa o nº TOTAL de features, para que a escala do
+        #    score não dependa de quantas estavam disponíveis.
         n = len(self.feature_names)
-        d_max = math.sqrt(n)
-        k = 3.0 / d_max  # d_max → score ≈ 0.05
+        k = 3.0 / math.sqrt(n)
         euc_score = math.exp(-k * wed)
+        similarity_score = euc_score if cos_sim is None else 0.6 * euc_score + 0.4 * cos_sim
 
-        similarity_score = 0.6 * euc_score + 0.4 * cos_sim
-
-        # 6. Contribuições por feature
-        contributions = {
-            self.feature_names[i]: float(weighted_sq[i])
-            for i in range(len(self.feature_names))
-        }
-
+        names = self.feature_names
         return MatchResult(
             earth_site_id=earth_site_id,
             planetary_ref_id=planet_ref_id,
@@ -201,7 +252,11 @@ class MatchingEngine:
             weighted_euclidean_dist=wed,
             cosine_similarity=cos_sim,
             similarity_score=similarity_score,
-            feature_contributions=contributions,
+            coverage=coverage,
+            features_used=[names[i] for i in range(n) if mask[i]],
+            features_missing_earth=[names[i] for i in range(n) if not ok_e[i]],
+            features_missing_reference=[names[i] for i in range(n) if not ok_p[i]],
+            feature_contributions={names[i]: float(weighted_sq[i]) for i in range(n) if mask[i]},
             physical_scaling_applied=scaling_map,
             earth_vector=earth_vec.tolist(),
             planet_vector_scaled=scaled_planet.tolist(),
@@ -215,44 +270,52 @@ class MatchingEngine:
         feature_type: str,
     ) -> list[MatchResult]:
         """
-        Compara todos os sítios terrestres contra todas as referências planetárias.
+        Compara todos os sítios terrestres contra todas as referências.
 
-        earth_vectors : lista de (site_id, vetor_numpy)
-        planet_refs   : lista de dicts com chaves: id, gravity_ratio, atm_density_ratio
-                        + features (floats)
+        Pares sem dado suficiente não entram nos resultados: ficam em ``self.skipped``.
         """
-        # Fit scaler se ainda não feito
+        self.skipped = []
+        ref_arrays = {r["id"]: self._ref_to_array(r) for r in planet_refs}
+
         if self._scaler is None:
-            all_vecs = [v for _, v in earth_vectors]
-            all_vecs += [
-                self._ref_to_array(r)
+            scaled_refs = [
+                self._apply_physical_scaling(ref_arrays[r["id"]], r.get("gravity_ratio"), r.get("atm_density_ratio"))[0]
                 for r in planet_refs
             ]
-            self.fit(all_vecs)
+            self.fit([v for _, v in earth_vectors] + scaled_refs)
 
         results: list[MatchResult] = []
         for site_id, e_vec in earth_vectors:
             site_results: list[MatchResult] = []
             for ref in planet_refs:
-                p_vec = self._ref_to_array(ref)
+                p_vec = ref_arrays[ref["id"]]
                 mr = self.match_one(
-                    earth_vec=e_vec,
-                    planet_vec=p_vec,
-                    earth_site_id=site_id,
-                    planet_ref_id=ref["id"],
-                    target_body=target_body,
-                    feature_type=feature_type,
-                    gravity_ratio=ref.get("gravity_ratio", 1.0),
-                    atm_density_ratio=ref.get("atm_density_ratio", 1.0),
+                    earth_vec=e_vec, planet_vec=p_vec,
+                    earth_site_id=site_id, planet_ref_id=ref["id"],
+                    target_body=target_body, feature_type=feature_type,
+                    gravity_ratio=ref.get("gravity_ratio"),
+                    atm_density_ratio=ref.get("atm_density_ratio"),
                 )
+                if mr is None:
+                    cov = float(self.weights[np.isfinite(e_vec) & np.isfinite(p_vec)].sum())
+                    self.skipped.append({
+                        "earth_site_id": site_id, "planetary_ref_id": ref["id"],
+                        "coverage": round(cov, 4),
+                        "reason": f"cobertura {cov:.0%} < mínimo {self.min_coverage:.0%}",
+                        "missing_earth": [self.feature_names[i] for i in np.where(~np.isfinite(e_vec))[0]],
+                        "missing_reference": [self.feature_names[i] for i in np.where(~np.isfinite(p_vec))[0]],
+                    })
+                    log.warning(
+                        f"[{feature_type}] {site_id} × {ref['id']}: SEM SCORE — "
+                        f"cobertura {cov:.0%} < mínimo {self.min_coverage:.0%}"
+                    )
+                    continue
                 site_results.append(mr)
 
-            # Ranking por site
             site_results.sort(key=lambda x: x.similarity_score, reverse=True)
             for rank, mr in enumerate(site_results, start=1):
                 mr.rank = rank
             results.extend(site_results)
-
         return results
 
     # ------------------------------------------------------------------
@@ -262,77 +325,70 @@ class MatchingEngine:
     def _apply_physical_scaling(
         self,
         planet_vec: np.ndarray,
-        gravity_ratio: float,
-        atm_density_ratio: float,
+        gravity_ratio: Optional[float],
+        atm_density_ratio: Optional[float],
     ) -> tuple[np.ndarray, dict[str, float]]:
         """
         Projeta o vetor planetário no espaço de referência terrestre.
 
-        Fator de Bagnold para comprimento de onda e amplitude:
-            β_geom = (atm_density_ratio)^(-0.5) × (gravity_ratio)^(0.5)
+            β = sqrt(g_ratio) / sqrt(atm_density_ratio)
 
-        Quanto maior a gravidade e menor a densidade atmosférica (Marte),
-        maior β_geom → dunas de Marte seriam maiores para o mesmo vento.
-        Dividindo, "colapsamos" para o equivalente terrestre.
-
-        Para roughness/TRI: escala com gravity_ratio (peso relativo do grão).
-        Slope/aspect_ratio: adimensionais, não escalam.
+        - features geométricas (comprimentos): valor / β
+        - densidade por área: valor × β²
+        - demais (azimute, aridez, razões, declividades): inalteradas.
+        O mapa retornado tem o fator realmente aplicado a cada feature.
         """
-        if not self.physical_scaling:
-            return planet_vec.copy(), {}
-
-        # Fator geométrico
-        beta_geom = math.sqrt(abs(gravity_ratio)) / math.sqrt(max(abs(atm_density_ratio), 1e-10))
-
         scaled = planet_vec.copy().astype(np.float64)
-        scaling_map: dict[str, float] = {}
+        scaling_map = {name: 1.0 for name in self.feature_names}
+        if not self.physical_scaling or not (self.geometric_features or self.areal_features):
+            return scaled, scaling_map
 
-        geometric_features = {"wavelength_m", "roughness_rms_m", "relief_m"}
-        gravity_features = {"tri", "curvature_mean"}
-
+        if gravity_ratio is None or atm_density_ratio is None:
+            raise ValueError(
+                "referência sem gravity_ratio/atm_density_ratio: o escalonamento de Bagnold "
+                "não pode ser aplicado (e não será substituído por 1.0 em silêncio)"
+            )
+        beta = math.sqrt(abs(gravity_ratio)) / math.sqrt(max(abs(atm_density_ratio), 1e-10))
         for i, name in enumerate(self.feature_names):
-            if name in geometric_features:
-                # Divide pelo fator: "quanto deveria medir na Terra"
-                scaled[i] = planet_vec[i] / beta_geom
-                scaling_map[name] = 1.0 / beta_geom
-            elif name in gravity_features:
-                scaled[i] = planet_vec[i] * gravity_ratio
-                scaling_map[name] = gravity_ratio
-            else:
-                scaling_map[name] = 1.0
-
+            if name in self.geometric_features:
+                scaled[i] = planet_vec[i] / beta
+                scaling_map[name] = 1.0 / beta
+            elif name in self.areal_features:
+                scaled[i] = planet_vec[i] * beta**2
+                scaling_map[name] = beta**2
         return scaled, scaling_map
 
     # ------------------------------------------------------------------
     # Normalização e distâncias
     # ------------------------------------------------------------------
 
-    def _normalize_pair(
-        self, e: np.ndarray, p: np.ndarray
-    ) -> tuple[np.ndarray, np.ndarray]:
-        """Normaliza com scaler ajustado; fallback para Z-score."""
+    def _normalize_pair(self, e: np.ndarray, p: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        """MinMax (ajustado em fit/match_many). Sem scaler: normaliza pelo máximo do par."""
         if self._scaler is not None:
-            X = np.vstack([e.reshape(1, -1), p.reshape(1, -1)])
-            X_norm = self._scaler.transform(X)
-            return X_norm[0], X_norm[1]
-        # Fallback: normaliza pelo máximo de cada par
-        eps = 1e-10
-        mx = np.maximum(np.abs(e), np.abs(p)) + eps
+            X = self._scaler.transform(np.vstack([e.reshape(1, -1), p.reshape(1, -1)]))
+            return X[0], X[1]
+        mx = np.fmax(np.abs(e), np.abs(p)) + 1e-10
         return e / mx, p / mx
 
-    def _cosine_weighted(self, a: np.ndarray, b: np.ndarray) -> float:
-        """Similaridade de cosseno ponderada pelos pesos das features."""
-        wa = a * self.weights
-        wb = b * self.weights
-        num = float(np.dot(wa, wb))
+    def _cosine_weighted(self, a: np.ndarray, b: np.ndarray, used: np.ndarray) -> float:
+        """Similaridade de cosseno ponderada, só nos atributos ``used``."""
+        w = np.where(used, self.weights, 0.0)
+        wa, wb = a * w, b * w
         den = float(np.linalg.norm(wa) * np.linalg.norm(wb))
         if den < 1e-12:
             return 0.0
-        return max(0.0, min(1.0, num / den))
+        return max(0.0, min(1.0, float(np.dot(wa, wb)) / den))
 
     def _ref_to_array(self, ref: dict) -> np.ndarray:
-        """Converte dicionário de referência para array numpy."""
-        return np.array(
-            [float(ref.get(n, 0.0) or 0.0) for n in self.feature_names],
-            dtype=np.float64,
-        )
+        """Referência -> array; atributo ausente vira NaN (com aviso), nunca 0."""
+        vals, faltando = [], []
+        for n in self.feature_names:
+            v = ref.get(n)
+            if isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v):
+                vals.append(float(v))
+            else:
+                vals.append(np.nan)
+                faltando.append(n)
+        if faltando:
+            log.warning(f"referência '{ref.get('id')}': atributos ausentes {faltando}")
+        return np.array(vals, dtype=np.float64)

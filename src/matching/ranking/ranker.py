@@ -22,6 +22,18 @@ from src.matching.engine import MatchResult
 log = logging.getLogger(__name__)
 
 
+def _non_finite_to_none(obj):
+    """Troca NaN/Infinity por None, recursivamente."""
+    import math
+    if isinstance(obj, float):
+        return obj if math.isfinite(obj) else None
+    if isinstance(obj, dict):
+        return {k: _non_finite_to_none(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [_non_finite_to_none(v) for v in obj]
+    return obj
+
+
 class MatchingRanker:
     """
     Agrega resultados de DuneMatcher e CraterMatcher,
@@ -43,6 +55,7 @@ class MatchingRanker:
         audit_meta: list[dict] = None,
         earth_features_dunes: list[dict] = None,
         earth_features_craters: list[dict] = None,
+        data_quality: dict[str, Any] = None,
     ) -> dict[str, Any]:
         """
         Gera relatório JSON com:
@@ -64,7 +77,9 @@ class MatchingRanker:
                 ),
                 "methodology": {
                     "distance_metric": "Weighted Euclidean Distance + Cosine Similarity",
-                    "physical_scaling": "Bagnold (1941) aeolian scaling with gravity & atm density ratios",
+                    "physical_scaling": "Bagnold (1941): comprimentos de dunas ÷ β e densidade × β² (ver data_quality.notes)",
+                    "missing_data": "atributo ausente é excluído do par (pesos renormalizados); cobertura mínima exigida; nada é preenchido com valor padrão",
+                    "circular_features": "azimute de crista usa a menor diferença angular (período 180°)",
                     "normalization": "MinMaxScaler on combined Earth + Planetary feature space",
                     "similarity_score": "0.6 × exp(-k × WED) + 0.4 × Cosine",
                 },
@@ -78,6 +93,7 @@ class MatchingRanker:
                 "dunes_mars": self._summarize(dune_results, "dune"),
                 "craters_moon": self._summarize(crater_results, "crater"),
             },
+            "data_quality": data_quality or {},
             "global_ranking": self._global_ranking(dune_results + crater_results),
         }
 
@@ -87,7 +103,8 @@ class MatchingRanker:
         """Persiste o relatório em data/processed/comparisons/."""
         out_path = self.output_dir / filename
         with open(out_path, "w", encoding="utf-8") as fh:
-            json.dump(report, fh, indent=2, ensure_ascii=False)
+            # NaN/Infinity não são JSON válido: viram null (e allow_nan=False garante)
+            json.dump(_non_finite_to_none(report), fh, indent=2, ensure_ascii=False, allow_nan=False)
         log.info(f"Relatório salvo em: {out_path}")
         return out_path
 
@@ -147,6 +164,24 @@ class MatchingRanker:
             }
             for i, r in enumerate(ranked)
         ]
+
+    def print_data_quality(self, report: dict[str, Any]) -> None:
+        """Imprime os avisos de qualidade de dados (ausentes, excluídos, sem score)."""
+        dq = report.get("data_quality") or {}
+        print("── QUALIDADE DOS DADOS ──────────────────────────────────────────")
+        for kind in ("dunes", "craters"):
+            for s in dq.get(kind, []):
+                for msg in s["issues"]:
+                    print(f"  [{kind}:{s['site_id']}] {msg}")
+        for ex in dq.get("craters_excluded", []):
+            print(f"  [craters:{ex['site_id']}] EXCLUÍDO — {ex['reason']}")
+        for kind, lst in (dq.get("matches_without_score") or {}).items():
+            for sk in lst:
+                print(f"  [{kind}] sem score: {sk['earth_site_id']} × {sk['planetary_ref_id']} — {sk['reason']}")
+        print("  Notas:")
+        for n in dq.get("notes", []):
+            print(f"   - {n}")
+        print("=" * 70 + "\n")
 
     def print_summary(self, report: dict[str, Any]) -> None:
         """Imprime sumário no console."""

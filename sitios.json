@@ -638,6 +638,85 @@
           "amplitude_de_duna": false
         }
       }
+    },
+    {
+      "id": "erg_chebbi",
+      "nome": "Erg Chebbi (Sahara)",
+      "categoria": "campo_de_dunas",
+      "lat": 31.15,
+      "lon": -3.983,
+      "lado_km": 10.0,
+      "fonte_coord": "Coordenadas informadas pelo usuário (opentopography.py).",
+      "precisao_coord": "informada_pelo_usuario"
+    },
+    {
+      "id": "sossusvlei",
+      "nome": "Sossusvlei (Namib)",
+      "categoria": "campo_de_dunas",
+      "lat": -24.727,
+      "lon": 15.34,
+      "lado_km": 10.0,
+      "fonte_coord": "Coordenadas informadas pelo usuário (opentopography.py).",
+      "precisao_coord": "informada_pelo_usuario"
+    },
+    {
+      "id": "rub_al_khali",
+      "nome": "Rub al Khali",
+      "categoria": "campo_de_dunas",
+      "lat": 20.0,
+      "lon": 50.0,
+      "lado_km": 10.0,
+      "fonte_coord": "Coordenadas informadas pelo usuário (opentopography.py).",
+      "precisao_coord": "informada_pelo_usuario"
+    },
+    {
+      "id": "white_sands",
+      "nome": "White Sands",
+      "categoria": "campo_de_dunas",
+      "lat": 32.78,
+      "lon": -106.32,
+      "lado_km": 10.0,
+      "fonte_coord": "Coordenadas informadas pelo usuário (opentopography.py).",
+      "precisao_coord": "informada_pelo_usuario"
+    },
+    {
+      "id": "barringer",
+      "nome": "Barringer Meteor Crater",
+      "categoria": "crater",
+      "lat": 35.0275,
+      "lon": -111.0228,
+      "lado_km": 6,
+      "fonte_coord": "Coordenadas informadas pelo usuário (opentopography.py).",
+      "precisao_coord": "informada_pelo_usuario",
+      "craters": {
+        "diameter_m": 1186.0
+      }
+    },
+    {
+      "id": "pingualuit",
+      "nome": "Pingualuit Crater",
+      "categoria": "crater",
+      "lat": 61.278,
+      "lon": -73.667,
+      "lado_km": 10.32,
+      "fonte_coord": "Coordenadas informadas pelo usuário (opentopography.py).",
+      "precisao_coord": "informada_pelo_usuario",
+      "craters": {
+        "diameter_m": 3440.0
+      }
+    },
+    {
+      "id": "lonar",
+      "nome": "Lonar Crater",
+      "categoria": "crater",
+      "lat": 19.976,
+      "lon": 76.508,
+      "lado_km": 6,
+      "fonte_coord": "Coordenadas informadas pelo usuário (opentopography.py).",
+      "precisao_coord": "informada_pelo_usuario",
+      "craters": {
+        "diameter_m": 1830.0
+      }
     }
   ]
 }

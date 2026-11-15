@@ -10,6 +10,7 @@ Suporta:
 
 from __future__ import annotations
 
+import math
 import os
 import struct
 from pathlib import Path
@@ -170,7 +171,9 @@ def load_dem(path: str | Path, band: int = 1) -> tuple[np.ndarray, dict]:
 
     if suffix == ".npy":
         arr = np.load(path).astype(np.float32)
-        meta = {"transform": None, "crs": "EPSG:4326", "res": (30.0, 30.0), "nodata": np.nan, "bounds": None}
+        # .npy não tem georreferência: a resolução NÃO é conhecida, só assumida.
+        meta = {"transform": None, "crs": None, "res": (30.0, 30.0), "nodata": np.nan,
+                "bounds": None, "res_assumed": True}
         return arr, meta
 
     # GeoTIFF via rasterio
@@ -187,6 +190,37 @@ def load_dem(path: str | Path, band: int = 1) -> tuple[np.ndarray, dict]:
             "bounds": src.bounds,
         }
     return arr, meta
+
+
+def resolution_m(meta: dict) -> tuple[float, float, list[str]]:
+    """
+    Resolução (x, y) em metros e a lista de avisos.
+
+    - GeoTIFF/HGT em graus: converte com o cosseno da latitude do centro
+      (1° de longitude encolhe com a latitude; usar o mesmo valor nos dois eixos
+      distorcia a declividade).
+    - .npy (sem georreferência): usa 30 m e AVISA que é uma suposição.
+    """
+    avisos: list[str] = []
+    res = meta.get("res")
+    if res is None or meta.get("res_assumed"):
+        avisos.append("resolução assumida em 30 m (arquivo sem georreferência)")
+        return 30.0, 30.0, avisos
+
+    rx, ry = abs(float(res[0])), abs(float(res[1]))
+    crs = meta.get("crs")
+    geografico = bool(getattr(crs, "is_geographic", False)) or (crs is not None and "4326" in str(crs)) or max(rx, ry) < 0.01
+    if not geografico:
+        return rx, ry, avisos
+
+    b = meta.get("bounds")
+    if b is None:
+        raise ValueError("raster em graus sem 'bounds': não dá para converter a resolução para metros")
+    if isinstance(b, dict):
+        lat_c = (b["bottom"] + b["top"]) / 2.0
+    else:
+        lat_c = (b.bottom + b.top) / 2.0
+    return rx * 111_320.0 * math.cos(math.radians(lat_c)), ry * 110_574.0, avisos
 
 
 def _load_hgt(path: Path) -> tuple[np.ndarray, dict]:
