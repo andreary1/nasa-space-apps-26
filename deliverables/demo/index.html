@@ -189,7 +189,13 @@
                 >
                   <svg><use href="#i-close" /></svg>
                 </button>
-                <h2 id="similarity-title">Similaridade</h2>
+                <h2 id="similarity-title">Localidade selecionada</h2>
+                <div class="context-tabs" role="tablist" aria-label="Informações da localidade">
+                  <button id="comparison-tab" role="tab" aria-controls="comparison-tabpanel" aria-selected="false" tabindex="-1">Comparação</button>
+                  <button id="context-tab" role="tab" aria-controls="context-tabpanel" aria-selected="true" tabindex="0">Sobre o local</button>
+                </div>
+                <section id="context-tabpanel" role="tabpanel" aria-labelledby="context-tab" tabindex="0"><div id="geographical-context" aria-live="polite"></div></section>
+                <section id="comparison-tabpanel" role="tabpanel" aria-labelledby="comparison-tab" tabindex="0" hidden>
                 <p id="similarity-subtitle"></p>
                 <div class="scores">
                   <div class="score-row">
@@ -230,6 +236,7 @@
                 <p class="mock-note">
                   Índices calculados; não são probabilidades.
                 </p>
+                </section>
               </section>
               <p
                 class="sr-only"

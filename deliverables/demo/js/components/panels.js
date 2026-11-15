@@ -1,3 +1,4 @@
+import { GeographicalContext } from './geographicalContext.js';
 
 const formatScore = (value) =>
   value.toLocaleString('pt-BR', {
@@ -10,6 +11,7 @@ const coordinate = (value, positive, negative) =>
 export class Panels {
   constructor(reducedMotion) {
     this.reducedMotion = reducedMotion;
+    this.context = new GeographicalContext();
     this.elements = [...document.querySelectorAll('.panel')];
     this.scoreElements = ['lunar', 'martian'].map((name) => ({
       value: document.getElementById(`${name}-score`),
@@ -23,6 +25,8 @@ export class Panels {
 
   prepare(location) {
     this.location = location;
+    document.getElementById('similarity-title').textContent = location.name;
+    this.context.prepare(location);
     this.started = null;
     document.getElementById('comparison-location').textContent =
       `Local: ${location.name} (Terra)`;
