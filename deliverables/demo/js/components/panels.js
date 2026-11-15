@@ -62,6 +62,8 @@ export class Panels {
       }),
     );
     ['lunar', 'martian'].forEach((key, index) => {
+      const reference = location.references[key];
+      this.scoreElements[index].value.closest('.score-row').hidden = !reference;
       document.getElementById(`${key}-reference`).textContent = location
         .references[key]
         ? `(${location.references[key].name})`

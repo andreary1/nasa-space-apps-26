@@ -40,8 +40,6 @@ function locations() {
 function updateSelectionViews() {
   const site = SITES_DATA[state.currentSiteIndex];
   document.getElementById('overview-selection').textContent = `${site.name} · ${site.category} · ${site.uf}`;
-  document.getElementById('report-site-name').textContent = site.name;
-  document.getElementById('report-json').textContent = JSON.stringify(site, null, 2);
   aiReport.render(buildComparison(site));
   const compatible = site.type === state.analysisType;
   document.getElementById('analysis-empty').hidden = compatible;

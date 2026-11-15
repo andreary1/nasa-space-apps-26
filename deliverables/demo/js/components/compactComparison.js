@@ -107,7 +107,13 @@ export class CompactComparison {
 
   prepare(location) {
     this.location = location;
-    this.setTarget('lunar', false);
+    const target = location.comparison?.type === 'crater' ? 'lunar' : 'martian';
+    const available = !!location.references?.[target];
+    document.getElementById('comparison').hidden = !available;
+    this.buttons.forEach(button => {
+      button.hidden = !available || button.dataset.comparisonTarget !== target;
+    });
+    this.setTarget(target, false);
   }
 
   render(target) {
