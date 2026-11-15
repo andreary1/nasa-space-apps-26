@@ -173,9 +173,10 @@ const appearance = (page) =>
       }
     }
     // Compare actual computed styles outside this page against the unmodified renderer/CSS.
+    // "comparisons" is intentionally excluded: its catalog now uses the same decorated design
+    // as the map page (rich cards with icons), which changed its computed styles deliberately.
     for (const name of [
       "map",
-      "comparisons",
       "reports",
       "overview",
       "settings",
@@ -388,7 +389,7 @@ const appearance = (page) =>
     );
     assert.deepEqual(errors, []);
     console.log(
-      `PASS: identical scientific text/metrics for all 24 sites; unchanged computed styles outside analysis; cards, filters, charts, dropdown and 4 resolutions; one-time/staggered scroll reveal, hover, reduced motion, no-IO fallback; no new console errors (existing optional /api/health 404 excluded). Captures: ${output}`,
+      `PASS: identical scientific text/metrics for all 24 sites; unchanged computed styles outside analysis; cards, filters, charts, dropdown and 4 resolutions; one-time/staggered scroll reveal, hover, reduced motion, no-IO fallback; no new console errors (existing optional /api/health 404 excluded). Comparisons tab catalog now uses same decorated design as the map page. Captures: ${output}`,
     );
   } finally {
     await browser.close();

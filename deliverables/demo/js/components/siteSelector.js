@@ -8,16 +8,17 @@ export function createSiteSelector(state) {
     document.getElementById('catalog-title').textContent = state.activePage === 'analysis'
       ? `${state.analysisType === 'dune' ? 'Dunas' : 'Crateras'} (${sites.length})` : `Localidades terrestres (${sites.length})`;
     const mapDesign = state.activePage === 'map';
+    const comparisonsDesign = state.activePage === 'comparisons';
     const analysisDesign = state.activePage === 'analysis';
-    const decoratedDesign = mapDesign || analysisDesign;
-    document.getElementById('catalog-section').classList.toggle('map-catalog', mapDesign);
+    const decoratedDesign = mapDesign || comparisonsDesign || analysisDesign;
+    document.getElementById('catalog-section').classList.toggle('map-catalog', mapDesign || comparisonsDesign);
     if (decoratedDesign) {
       const icon = analysisDesign ? state.analysisType === 'dune' ? 'dune' : 'crater' : 'layers';
       document.getElementById('catalog-title').insertAdjacentHTML('afterbegin', `<svg class="catalog-heading-icon" aria-hidden="true"><use href="#i-${icon}"/></svg>`);
     }
     const grid = document.getElementById('site-selector');
     const signature = sites.map(({site}) => site.id).join('|');
-    const design = mapDesign ? 'map' : analysisDesign ? 'analysis' : 'default';
+    const design = mapDesign ? 'map' : comparisonsDesign ? 'comparisons' : analysisDesign ? 'analysis' : 'default';
     const reuseCards = decoratedDesign && grid.dataset.design === design && grid.dataset.sites === signature;
     if (!reuseCards) grid.innerHTML = sites.map(({site, index}) => `
       <button class="site-option" data-action="selectSite" data-value="${index}" aria-pressed="${index === state.currentSiteIndex}">
