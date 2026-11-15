@@ -19,3 +19,17 @@
   .menu-open .sidebar { transform: none; }
   .menu-open { overflow: hidden; }
 }
+
+.sidebar .brand {
+  background: none;
+  border-radius: 0;
+  width: 44px;
+  height: 44px;
+}
+
+.brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
