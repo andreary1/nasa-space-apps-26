@@ -1,18 +1,20 @@
 # Fora do deploy na Vercel: dados pesados, pipeline Python e arquivos locais.
+# Caminhos com "/" inicial valem só para a raiz do repositório; sem a barra,
+# "assets/" e "data/" também excluiriam deliverables/demo/assets e js/data.
 # (O requirements.txt fora daqui faz a Vercel tentar rodar o projeto como app Python.)
-data/
-docs/
-src/
-tests/
-assets/
-requirements.txt
-pyproject.toml
-sites.json
-sitios.json
-**/__pycache__/
-scripts/*.py
-iniciar-demo.bat
-iniciar-demo.sh
-.env
-deliverables/presentation/
-deliverables/submission/
+/data/
+/docs/
+/src/
+/tests/
+/assets/
+/requirements.txt
+/pyproject.toml
+/sites.json
+/sitios.json
+__pycache__/
+/scripts/*.py
+/iniciar-demo.bat
+/iniciar-demo.sh
+/.env
+/deliverables/presentation/
+/deliverables/submission/
