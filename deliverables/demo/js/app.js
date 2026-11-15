@@ -1,4 +1,5 @@
 import { SITES_DATA } from './data/sites.js';
+import './components/analysisReveal.js';
 import { MOON_CRATER_REFERENCES } from './data/moon.js';
 import { MARS_DUNE_REFERENCES } from './data/mars.js';
 import { createWorldMap } from './components/worldMap.js';
