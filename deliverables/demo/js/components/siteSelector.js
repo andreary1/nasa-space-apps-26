@@ -18,7 +18,7 @@ export function createSiteSelector(state) {
     }
     const grid = document.getElementById('site-selector');
     const signature = sites.map(({site}) => site.id).join('|');
-    const design = mapDesign ? 'map' : comparisonsDesign ? 'comparisons' : analysisDesign ? 'analysis' : 'default';
+    const design = (mapDesign || comparisonsDesign) ? 'map' : analysisDesign ? 'analysis' : 'default';
     const reuseCards = decoratedDesign && grid.dataset.design === design && grid.dataset.sites === signature;
     if (!reuseCards) grid.innerHTML = sites.map(({site, index}) => `
       <button class="site-option" data-action="selectSite" data-value="${index}" aria-pressed="${index === state.currentSiteIndex}">
