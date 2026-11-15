@@ -17,6 +17,19 @@ from typing import Any
 
 import numpy as np
 
+def site_id_from_path(path: str | Path) -> str:
+    """
+    Infere o id do sítio (como em sitios.json) a partir do nome do raster.
+
+    Convenção: ``<id>_dem.<ext>``; o id pode conter underscores.
+        canion_apertados_dem.tif -> "canion_apertados"
+        jericoacoara_dem.tif     -> "jericoacoara"
+    Sem o sufixo ``_dem``, o nome inteiro (sem extensão) é o id.
+    """
+    stem = Path(path).stem.lower()
+    return stem[:-4] if stem.endswith("_dem") else stem
+
+
 # ---------------------------------------------------------------------------
 # Auditoria de metadados
 # ---------------------------------------------------------------------------

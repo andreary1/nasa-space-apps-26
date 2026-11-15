@@ -27,7 +27,7 @@ from typing import Any, Optional
 
 import numpy as np
 
-from src.processing.shared.raster_io import load_dem, audit_raster
+from src.processing.shared.raster_io import load_dem, audit_raster, site_id_from_path
 from src.processing.shared.morphometrics import extract_morphometrics
 from src.shared.constants import CRATER_FEATURE_WEIGHTS, CRATER_FIELD_ALIASES
 
@@ -144,8 +144,7 @@ class CraterProcessor:
             return mapping
         for ext in ["*.tif", "*.tiff", "*.hgt", "*.npy"]:
             for f in self.raster_dir.rglob(ext):
-                stem = f.stem.lower().split("_")[0]
-                mapping[f] = stem
+                mapping[f] = site_id_from_path(f)
         return mapping
 
     def _load_catalog_crater_sites(self) -> dict[str, dict]:
