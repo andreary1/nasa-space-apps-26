@@ -143,3 +143,18 @@ O pipeline Python não foi alterado nem reexecutado nesta etapa. Na verificaçã
 anterior, ingestão passou; morfometria, matching e pipeline ficaram impedidos por
 ausência de `scipy`/`sklearn` no ambiente. `pytest` também não estava instalado.
 Não houve commit ou push.
+
+## Contexto geográfico
+
+O painel lateral oferece as abas Comparação e Sobre o local. A seleção inicial
+abre o contexto; trocas de localidade preservam a aba escolhida. Setas, Home e
+End permitem navegar pelas abas com teclado.
+
+O catálogo está em `js/data/geographical-context.json`, recuperado da branch
+`feat/geographical-context` com as fontes e climatologias existentes. Este é o
+arquivo servido pelo novo frontend: edite-o para atualizar as fichas. Não execute
+o gerador HTML do frontend antigo sobre esta versão. Campos vazios são ocultos;
+novos sítios sem ficha têm um estado explícito de ausência. Falhas de carregamento
+permitem nova tentativa. Nenhuma API externa é chamada ao abrir o painel.
+
+Verificação: `node tests/integration/context-panel.mjs` (da raiz do repositório).
