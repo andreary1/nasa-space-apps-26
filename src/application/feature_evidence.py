@@ -33,6 +33,53 @@ def identify(data):
         message="Não foi possível identificar limites da feição. DEM válido mede relevo; origem de impacto/eólica exige evidência adicional.", sources=[], limitations=[])
 
 
+def locate_crater(data, dem, affine, crs, topography, identification):
+    """Bounded hypotheses for rounded catalog coordinates; never rank by score.
+
+    Preserve the existing exact-seed extraction. If that fails for a newly
+    sourced region, search up to six independent depressions, validating each
+    with the same rim checks. Distinct valid contours are an ambiguous result.
+    """
+    first,diagnosis=measure_crater(data,dem,affine,crs,topography,identification)
+    if first or identification.get('status')!='source_verified':return first,diagnosis
+    import numpy as np
+    from scipy.ndimage import gaussian_filter,maximum_filter
+    from rasterio.warp import transform
+    diameter=identification.get('reference_diameter_m',0);res=topography['resolution_m']
+    if diameter<=0 or diameter>4000 or diameter<res*10 or not np.isfinite(dem).all():return first,diagnosis
+    radius=diameter/2
+    # Topographic depressions are search hypotheses, not geological classifications.
+    smooth=gaussian_filter(dem.astype(float),max(1,radius/res/4))
+    depression=gaussian_filter(dem.astype(float),max(2,radius/res))-smooth
+    window=max(3,int(radius/res)*2+1)
+    peaks=(depression==maximum_filter(depression,size=window)) & (depression>0)
+    yy,xx=np.indices(dem.shape)
+    xs=affine.c+(xx+.5)*res;ys=affine.f-(yy+.5)*res
+    qx,qy=transform('EPSG:4326',crs,[data['longitude']],[data['latitude']])
+    peaks &= np.hypot(xs-qx[0],ys-qy[0])+radius*2<=data['raio_km']*1000
+    indices=np.flatnonzero(peaks)
+    indices=indices[np.argsort(depression.ravel()[indices])[-6:][::-1]]
+    hypotheses=[];accepted=[]
+    for index in indices:
+        row,col=np.unravel_index(index,dem.shape)
+        lon,lat=transform(crs,'EPSG:4326',[float(xs[row,col])],[float(ys[row,col])])
+        candidate,reason=measure_crater(data,dem,affine,crs,topography,{**identification,'seed':[lat[0],lon[0]]})
+        hypotheses.append(dict(latitude=lat[0],longitude=lon[0],accepted=bool(candidate),message=reason['message']))
+        if not candidate:continue
+        center=candidate['center']
+        if not any(math.hypot((center['latitude']-c['center']['latitude'])*111200,(center['longitude']-c['center']['longitude'])*111200*math.cos(math.radians(center['latitude'])))<diameter*.5 for c,_ in accepted):
+            accepted.append((candidate,reason))
+    if len(accepted)==1:
+        feature,reason=accepted[0]
+        feature['diagnostics']['search_hypotheses']=hypotheses
+        feature['diagnostics']['initial_seed_rejected']=diagnosis['message']
+        return feature,reason
+    if len(accepted)>1:
+        return None,dict(boundary_status='unavailable',message='Mais de uma borda topográfica distinta foi validada na região; identidade geomorfológica ambígua. Selecione/revise a feição.',search_hypotheses=hypotheses)
+    diagnosis['search_hypotheses']=hypotheses
+    return None,diagnosis
+
+
 def measure_crater(data, dem, affine, crs, topography, identification):
     """72 radial rim maxima, circle fit, interior and wall/outer annuli.
 
@@ -51,6 +98,8 @@ def measure_crater(data, dem, affine, crs, topography, identification):
         return None, dict(boundary_status="unavailable", message="Cratera documentada; não foi possível validar a delimitação: " + reason)
     if prior*2 < measurement_resolution*10:
         return blocked("menos de dez pixels no diâmetro.")
+    if prior*2 > 4000:
+        return blocked('diâmetro publicado acima de 4 km; este extrator de crateras simples não valida morfologias complexas/erodidas.')
     sx, sy = transform("EPSG:4326", crs, [identification["seed"][1]], [identification["seed"][0]])
     center = np.array([sx[0],sy[0]])
     theta = np.arange(72)*2*np.pi/72
@@ -124,12 +173,15 @@ def measure_crater(data, dem, affine, crs, topography, identification):
     lons,lats=transform(crs,"EPSG:4326",ringx.tolist(),ringy.tolist())
     ring=list(map(list,zip(lons,lats)));ring.append(ring[0])
     clon,clat=transform(crs,"EPSG:4326",[center[0]],[center[1]])
-    return dict(id="barringer-dem",kind="crater",reviewed=False,
+    cell=identification.get('coordinate_cell')
+    if cell and not (cell[0]<=clon[0]<=cell[2] and cell[1]<=clat[0]<=cell[3]):
+        return blocked('centro medido fora da célula de incerteza das coordenadas publicadas.')
+    return dict(id=identification.get('id','crater')+'-dem',kind="crater",reviewed=False,
         validation=dict(passed=True,method="radial_dem_v1",radials=72,radius_cv=cv),
         source=source,method="radial_dem_v1: 72 máximos radiais; centro ajustado por mínimos quadrados; piso P5 em r<0,6R; parede 0,6–0,95R; entorno 1,5–2R; circularidade do polígono observado. Diâmetro publicado é apenas prior de busca.",
         measurement_resolution_m=measurement_resolution,extent_m=float(max(np.ptp(ringx),np.ptp(ringy))),
         center=dict(latitude=clat[0],longitude=clon[0]),geometry=dict(type="Polygon",coordinates=[ring]),
-        measurements={k:dict(value=v,unit="deg" if "slope" in k else "m" if k.endswith("_m") else "1",source=source) for k,v in values.items()},
+        measurements={k:dict(value=v,unit="deg" if "slope" in k else "m" if k.endswith("_m") else "1",source=source,url=topography['source'].get('url') or None,evidence_type='dem_measurement',verification='measured') for k,v in values.items()},
         diagnostics=dict(rim_radii_m=radii.tolist(),rim_elevations_m=rim.tolist(),floor_p5_m=floor,
             wall_pixels=len(wall),floor_pixels=len(inside),horizontal_uncertainty_at_least_m=measurement_resolution,
             radius_search_m=[float(distances[0]),float(distances[-1])])), dict(boundary_status="measured",message="Cratera de impacto documentada; borda delimitada no DEM, 72 perfis e onze métricas calculados. Medição automática experimental, ainda sem revisão humana.")

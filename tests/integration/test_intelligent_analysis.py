@@ -11,7 +11,7 @@ import rasterio
 from rasterio.transform import from_origin
 from rasterio.warp import transform
 import src.application.intelligent_analysis as service
-from src.application.feature_evidence import identify, measure_crater
+from src.application.feature_evidence import identify, measure_crater, locate_crater
 
 
 class TerrainTests(unittest.TestCase):
@@ -24,7 +24,7 @@ class TerrainTests(unittest.TestCase):
         self.crs = crs
         self.x, self.y = (bounds[0]+bounds[2])/2, (bounds[1]+bounds[3])/2
         self.affine = from_origin(self.x-3000,self.y+3000,10,10)
-        self.env = patch.dict(os.environ, {'ANALYSIS_DEM_PATHS':str(self.file),'ANALYSIS_DEM_PROVIDER':'local','ANALYSIS_RESOLUTION_M':'30','ANALYSIS_FEATURES_FILE':''})
+        self.env = patch.dict(os.environ, {'ANALYSIS_DEM_PATHS':str(self.file),'ANALYSIS_DEM_PROVIDER':'local','ANALYSIS_RESOLUTION_M':'30','ANALYSIS_FEATURES_FILE':'','ANALYSIS_DISCOVERY_ENABLED':'0','ANALYSIS_CATALOG_ENABLED':'0'})
         self.env.start()
         self.cache = patch.object(service,'CACHE',self.folder/'cache')
         self.cache.start()
@@ -106,6 +106,33 @@ class TerrainTests(unittest.TestCase):
             self.assertEqual(service.reviewed_feature(self.input)['id'],'unit-test')
             feature['reviewed']=False;registry.write_text(json.dumps({'features':[feature]}),encoding='utf-8')
             self.assertIsNone(service.reviewed_feature(self.input))
+
+    def test_unknown_crater_offset_seed_search_without_catalog_name(self):
+        # Synthetic numerical bowl centered 700 m away from the requested point.
+        yy,xx=np.indices((600,600));rr=np.hypot((xx+.5)*10-3000,3000-(yy+.5)*10)
+        dem=100-100*np.exp(-(rr/300)**2)+30*np.exp(-((rr-600)/60)**2)
+        lon,lat=transform(self.crs,'EPSG:4326',[self.x+700],[self.y])
+        data={**self.input,'nome':'Synthetic test only','longitude':lon[0],'latitude':lat[0],'raio_km':3}
+        identity={'id':'test-only','status':'source_verified','seed':[lat[0],lon[0]],'reference_diameter_m':1200}
+        topo={'resolution_m':10,'source':{'title':'Numerical test only','inputs':[]}}
+        direct,_=measure_crater(data,dem,self.affine,self.crs,topo,identity)
+        self.assertIsNone(direct)
+        found,reason=locate_crater(data,dem,self.affine,self.crs,topo,identity)
+        self.assertIsNotNone(found,reason['message'])
+        self.assertAlmostEqual(found['measurements']['diameter_m']['value'],1200,delta=30)
+        self.assertGreater(len(found['diagnostics']['search_hypotheses']),0)
+
+    def test_distinct_measured_depressions_are_ambiguous(self):
+        yy,xx=np.indices((600,600));x=(xx+.5)*10-3000;y=3000-(yy+.5)*10
+        dem=np.full((600,600),100.)
+        for cx in [-1000,1000]:
+            rr=np.hypot(x-cx,y)
+            dem+=-100*np.exp(-(rr/150)**2)+30*np.exp(-((rr-300)/30)**2)
+        identity={'id':'synthetic-test-only','status':'source_verified','seed':[self.input['latitude'],self.input['longitude']],'reference_diameter_m':600}
+        topo={'resolution_m':10,'source':{'title':'Synthetic tests only','inputs':[]}}
+        found,reason=locate_crater({**self.input,'raio_km':3},dem,self.affine,self.crs,topo,identity)
+        self.assertIsNone(found)
+        self.assertIn('ambígua',reason['message'])
 
 
 if __name__=='__main__': unittest.main()

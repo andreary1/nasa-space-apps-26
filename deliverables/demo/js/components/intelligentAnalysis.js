@@ -1,4 +1,9 @@
 import { escapeHtml } from "../utils/helpers.js";
+import {
+  loadDiscoveries,
+  saveDiscoveries,
+} from "../services/discoveryStore.js";
+import { scientificSnapshot } from "../services/analysisSnapshot.js";
 
 const labels = {
   elevation_min_m: "Elevação mínima (m)",
@@ -21,7 +26,7 @@ export function createIntelligentAnalysis(onCandidates, onOpenMap) {
     status = document.getElementById("intelligent-status");
   const history = document.getElementById("intelligent-history"),
     resultBox = document.getElementById("intelligent-result");
-  const results = new Map();
+  const results = new Map(loadDiscoveries().map((r) => [r.id, r]));
   let busy = false,
     selected,
     owner;
@@ -67,6 +72,23 @@ export function createIntelligentAnalysis(onCandidates, onOpenMap) {
       explanation,
     } = result;
     resultBox.innerHTML = `<section class="surface intelligent-result-heading"><p class="eyebrow">${result.status === "inconclusiva" ? "Análise inconclusiva" : "Análise concluída"} · resultado experimental</p><h2>${esc(site.nome)}</h2><p>Lat: ${format(site.latitude)}° · Lon: ${format(site.longitude)}° · Raio: ${format(site.raio_km)} km</p><p>${esc(topo.source.title)} · ${format(topo.resolution_m)} m · ${esc(topo.metric_crs)} · ${format(topo.coverage * 100)}% de cobertura DEM</p><p>${pin.eligible ? "Candidato elegível pelos limiares experimentais." : "Sem pin aprovado: " + esc(pin.reasons.join(" "))}</p>${pin.eligible ? '<button class="intelligent-open-map">Ver candidato no mapa</button>' : ""}</section>
+    ${
+      result.discovery
+        ? `<section class="surface intelligent-discovery"><h2>Descoberta geológica</h2><p class="eyebrow">${esc(result.discovery.state)} · ${esc(result.discovery.kind || "Tipo não confirmado")}</p><h3>${esc(result.discovery.name)}</h3><p>${esc(result.discovery.verification_message || "")}</p><p>${result.discovery.coordinates ? `Localização: ${format(result.discovery.coordinates.latitude)}° / ${format(result.discovery.coordinates.longitude)}°` : "Localização da feição ainda não validada."}</p><ul>${(result.discovery.evidence || []).map((s) => `<li>${esc(s.title)} · <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">Fonte independente</a></li>`).join("")}</ul>
+      ${result.discovery.fields ? "<h3>Dados publicados · referências para investigação</h3>" : ""}
+      ${Object.entries(result.discovery.fields || {})
+        .map(
+          ([key, f]) =>
+            `<p>${esc(key)}: ${f.value === null ? "não disponível" : esc(String(f.value))} ${esc(f.unit || "")} · ${esc(f.verification)} · ${esc(f.evidence_type)}</p>`,
+        )
+        .join("")}
+      ${result.discovery_pin?.eligible ? '<button type="button" class="intelligent-open-discovery-map">Ver descoberta no mapa</button>' : ""}
+      <details><summary>Pesquisa Gemini + Google Search · ${esc(result.discovery.status)}</summary><p>${esc(result.discovery.message || "")}</p><p>${esc(result.discovery.model || "")}</p>
+      ${result.discovery.text ? `<div class="intelligent-grounded-text">${esc(result.discovery.text)}</div><ol>${(result.discovery.citations || []).map((c) => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.title)}</a> · alegação descoberta; não é medição</li>`).join("")}</ol>` : ""}
+      ${result.discovery.search_entry_html ? '<iframe class="intelligent-search-suggestions" title="Sugestões de pesquisa do Google" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe>' : ""}
+      </details><p class="data-note">Descoberta documentada, medição e aprovação são estados distintos. ${esc(result.discovery.separation || "")}</p></section>`
+        : ""
+    }
     <div class="intelligent-grid"><section class="surface"><h2>Relevo medido</h2><dl class="intelligent-metrics">${Object.entries(
       topo.metrics,
     )
@@ -144,6 +166,16 @@ export function createIntelligentAnalysis(onCandidates, onOpenMap) {
     resultBox
       .querySelector(".intelligent-open-map")
       ?.addEventListener("click", onOpenMap);
+    resultBox
+      .querySelector(".intelligent-open-discovery-map")
+      ?.addEventListener("click", onOpenMap);
+    const suggestions = resultBox.querySelector(
+      ".intelligent-search-suggestions",
+    );
+    if (suggestions)
+      suggestions.srcdoc =
+        "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; style-src 'unsafe-inline'; img-src https: data:\">" +
+        result.discovery.search_entry_html;
     const download = (value, suffix) => {
       const url = URL.createObjectURL(
         new Blob([JSON.stringify(value, null, 2)], {
@@ -158,7 +190,9 @@ export function createIntelligentAnalysis(onCandidates, onOpenMap) {
     };
     resultBox
       .querySelector(".intelligent-export-diagnostic")
-      ?.addEventListener("click", () => download(result, "json"));
+      ?.addEventListener("click", () =>
+        download(scientificSnapshot(result), "json"),
+      );
     resultBox
       .querySelector(".intelligent-apply-suggestion")
       ?.addEventListener("click", () => {
@@ -227,7 +261,7 @@ export function createIntelligentAnalysis(onCandidates, onOpenMap) {
         method: "POST",
         body: JSON.stringify(input),
       });
-      const deadline = Date.now() + 420000;
+      const deadline = Date.now() + 480000;
       while (Date.now() < deadline) {
         const job = await api(`/api/analyze/${id}`);
         status.textContent = job.message;
@@ -243,28 +277,16 @@ export function createIntelligentAnalysis(onCandidates, onOpenMap) {
         if (job.status === "complete") {
           results.set(job.result.id, job.result);
           showResult(job.result.id);
-          onCandidates(
-            [...results.values()]
-              .filter((r) => r.pin.eligible)
-              .map((r) => ({
-                id: r.id,
-                name: r.localidade.nome,
-                lat: r.feature?.center?.latitude ?? r.localidade.latitude,
-                lon: r.feature?.center?.longitude ?? r.localidade.longitude,
-                type: r.pin.type,
-                score: Math.max(
-                  ...Object.values(r.comparisons)
-                    .filter((c) => c.score !== null)
-                    .map((c) => c.score),
-                ),
-              })),
-          );
+          publishLayers();
+          if (!saveDiscoveries(results.values()))
+            status.textContent =
+              "Resultado preparado. Armazenamento local indisponível; descobertas preservadas nesta aba.";
           return;
         }
         await new Promise((resolve) => setTimeout(resolve, 900)); // Polls real milestones; no simulated progress.
       }
       throw new Error(
-        "A análise continua indisponível após sete minutos. Confira o servidor.",
+        "A análise continua indisponível após oito minutos. Confira o servidor.",
       );
     } catch (caught) {
       error.hidden = false;
@@ -277,6 +299,42 @@ export function createIntelligentAnalysis(onCandidates, onOpenMap) {
       form.removeAttribute("aria-busy");
     }
   });
+  function publishLayers() {
+    const latest = [
+      ...new Map(
+        [...results.values()].map((r) => [
+          r.discovery_pin?.id || r.pin.stable_id || r.id,
+          r,
+        ]),
+      ).values(),
+    ];
+    onCandidates(
+      latest
+        .filter((r) => r.pin.eligible)
+        .map((r) => ({
+          id: r.id,
+          stable_id: r.pin.stable_id || r.id,
+          name: r.localidade.nome,
+          lat: r.feature?.center?.latitude ?? r.localidade.latitude,
+          lon: r.feature?.center?.longitude ?? r.localidade.longitude,
+          type: r.pin.type,
+          score: Math.max(
+            ...Object.values(r.comparisons)
+              .filter((c) => c.score !== null)
+              .map((c) => c.score),
+          ),
+          reference:
+            Object.values(r.comparisons).find(
+              (c) => c.score !== null && c.score >= r.pin.thresholds.score,
+            )?.reference?.name || "",
+        })),
+      latest
+        .filter((r) => r.discovery_pin?.eligible && !r.pin.eligible)
+        .map((r) => ({ ...r.discovery_pin, analysis_id: r.id })),
+    );
+  }
+  renderHistory();
+  publishLayers();
   // Fail-open reveal: only animate elements when they intersect; never hide CSS content.
   const root = document.getElementById("view-intelligent"),
     seen = new Set(),

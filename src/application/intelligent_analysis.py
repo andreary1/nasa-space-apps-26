@@ -293,10 +293,14 @@ def reviewed_feature(data):
 
 def analyze(data, emit=lambda *_: None):
     data = validate(data)
-    from src.application.feature_evidence import identify, measure_crater
+    from src.application.feature_evidence import identify, locate_crater
     identification = identify(data)
+    if os.environ.get('ANALYSIS_CATALOG_ENABLED','1') != '0' and identification.get('kind') is None:
+        from src.application.geological_discovery import discover
+        identification = discover(data, CACHE, emit)
+    emit('feicao_identificada',identification['message'])
     emit("obtendo_dem", "Localizando DEM com cobertura para a região…")
-    needs_grid = identification.get("id") == "barringer"
+    needs_grid = identification.get('kind') == 'crater' and bool(identification.get('seed')) and bool(identification.get('reference_diameter_m'))
     measured = terrain(data, emit, with_grid=needs_grid)
     topography = measured[0] if needs_grid else measured
     emit("dem_obtido", "DEM obtido com sucesso; cobertura calculada sobre a ROI circular.")
@@ -304,10 +308,13 @@ def analyze(data, emit=lambda *_: None):
     emit("verificando_feicao", "Verificando evidências e delimitações geomorfológicas…")
     feature = reviewed_feature(data)
     if feature:
-        identification = {"status": "reviewed", "kind": feature["kind"], "message": "Feição delimitada pelo registro revisado.", "sources": []}
+        identity=feature.get('id') or hashlib.sha256(json.dumps(feature['geometry'],sort_keys=True).encode()).hexdigest()[:20]
+        identification = {"id":'reviewed-'+identity,"status": "reviewed", "kind": feature["kind"], "message": "Feição delimitada pelo registro revisado.", "sources": [{'id':'reviewed-evidence','title':feature['source'],'url':''}], 'verified_location':{'latitude':data['latitude'],'longitude':data['longitude']}}
     elif needs_grid:
-        feature, diagnosis = measure_crater(data, *measured[1:], topography, identification)
+        emit('delimitando_feicao','Delimitando borda no DEM; verificando resolução, contorno, piso, paredes e entorno…')
+        feature, diagnosis = locate_crater(data, *measured[1:], topography, identification)
         identification.update(diagnosis)
+        if feature:emit('metricas_feicao','Onze métricas da feição medidas no DEM, com contorno e perfis disponíveis para inspeção.')
     emit("identificacao", identification["message"])
     return {"localidade": data, "topography": topography, "feature": feature, "identification": identification}
 

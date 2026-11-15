@@ -252,3 +252,13 @@
     transform: none !important;
   }
 }
+
+#view-intelligent .intelligent-grounded-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.65; }
+#view-intelligent .intelligent-search-suggestions { border:0; width:100%; min-height:150px; background:white; border-radius:12px; }
+.map-discovery { cursor:pointer; color:#8b57dd; outline:none; }
+.map-discovery[data-type="dune"] { color:#48a36c; }
+.map-discovery circle { fill:white; stroke:currentColor; stroke-width:2; }
+.map-discovery path { fill:none; stroke:currentColor; stroke-width:2; stroke-dasharray:3 2; }
+.map-discovery rect { fill:#f8f6ff; stroke:currentColor; stroke-width:1.8; stroke-dasharray:4 3; }
+.map-discovery svg { color:currentColor; fill:none; stroke:currentColor; stroke-width:1.8; }
+.map-discovery:hover rect,.map-discovery:focus-visible rect { stroke-width:3; fill:white; }

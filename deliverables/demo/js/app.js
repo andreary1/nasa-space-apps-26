@@ -27,10 +27,10 @@ const charts = createCharts(state);
 const renderSelectors = createSiteSelector(state);
 const aiReport = createAiReport();
 const map = createWorldMap(state, selectSite, candidate => {
-  intelligent.showResult(candidate.id);
+  intelligent.showResult(candidate.analysis_id || candidate.id);
   navigation.show('intelligent');
 });
-const intelligent = createIntelligentAnalysis(candidates => map.setCandidates(candidates), () => navigation.show('map'));
+const intelligent = createIntelligentAnalysis((candidates,discoveries=[]) => {map.setCandidates(candidates);map.setDiscoveries(discoveries);}, () => navigation.show('map'));
 let globe;
 const navigation = createNavigation(state, () => {
   renderSelectors();

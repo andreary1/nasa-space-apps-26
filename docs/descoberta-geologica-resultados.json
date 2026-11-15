@@ -1,0 +1,1914 @@
+[
+  {
+    "id": "wolfe",
+    "input": {
+      "latitude": -19.17167,
+      "longitude": 127.79556,
+      "raio_km": 3,
+      "comparar_com": [
+        "lua"
+      ],
+      "nome": "Cratera de Wolfe Creek"
+    },
+    "discovery_status": "unavailable",
+    "discovery_message": "Pesquisa Gemini/Google indisponível (HTTP 429). Confira suporte do modelo, chave, cota e faturamento. Nenhuma evidência foi criada.",
+    "search_model": "gemini-3.1-flash-lite",
+    "state": "comparison_ready",
+    "identification": {
+      "id": "eid-wolfe-creek--19.2-127.8",
+      "official_name": "Wolfe Creek",
+      "kind": "crater",
+      "status": "source_verified",
+      "seed": [
+        -19.17167,
+        127.79556
+      ],
+      "reference_diameter_m": 875,
+      "source_point": [
+        -19.2,
+        127.8
+      ],
+      "coordinate_cell": [
+        127.75,
+        -19.25,
+        127.85,
+        -19.15
+      ],
+      "message": "Cratera de impacto documentada; borda delimitada no DEM, 72 perfis e onze métricas calculados. Medição automática experimental, ainda sem revisão humana.",
+      "fields": {
+        "name": {
+          "value": "Wolfe Creek",
+          "unit": null,
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "source_verified"
+        },
+        "kind": {
+          "value": "impact_crater",
+          "unit": null,
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "source_verified"
+        },
+        "latitude": {
+          "value": -19.2,
+          "unit": "deg",
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "source_verified"
+        },
+        "longitude": {
+          "value": 127.8,
+          "unit": "deg",
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "source_verified"
+        },
+        "diameter": {
+          "value": 875,
+          "unit": "m",
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "source_verified"
+        },
+        "depth": {
+          "value": null,
+          "unit": "m",
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "insufficient_evidence"
+        },
+        "rim": {
+          "value": null,
+          "unit": "m",
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "insufficient_evidence"
+        },
+        "dune_height": {
+          "value": null,
+          "unit": "m",
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "insufficient_evidence"
+        },
+        "dune_spacing": {
+          "value": null,
+          "unit": "m",
+          "source": "NASA ARES / Earth Impact Database (catálogo histórico)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "evidence_type": "published_catalog",
+          "verification": "insufficient_evidence"
+        }
+      },
+      "source_excerpt": "Wolfe Creek                       Western Australia                   19.2S     127.8E             < 0.3                    0.875",
+      "sources": [
+        {
+          "id": "nasa-eid",
+          "title": "NASA ARES: Earth Impact Database (histórico, coordenadas arredondadas)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "sha256": "62ebe865c02a0339bb8d571bcb62f6e4205a3d5e386fcdfd4f4e71fcf0d9681d",
+          "cache_hit": true,
+          "records_loaded": 181,
+          "page": 4
+        }
+      ],
+      "limitations": [
+        "Coordenadas históricas arredondadas em 0,1° (~5,6 km por eixo). Região de busca não é delimitação.",
+        "O centro solicitado inicia a busca; um contorno só é aceito com validação independente no DEM. Associação ao catálogo ainda requer revisão humana.",
+        "Crateras grandes, soterradas, erodidas ou não circulares podem não ser suportadas pelo extrator radial."
+      ],
+      "acquisition": [],
+      "boundary_status": "measured"
+    },
+    "dem": {
+      "metrics": {
+        "elevation_min_m": 323.30963134765625,
+        "elevation_max_m": 377.7951354980469,
+        "elevation_mean_m": 346.39491417821586,
+        "relief_m": 54.485504150390625,
+        "slope_mean_deg": 0.9015961727214773,
+        "slope_p90_deg": 1.3177669659634845,
+        "roughness_rms_m": 1.144507414215662
+      },
+      "coverage": 1,
+      "resolution_m": 30,
+      "metric_crs": "EPSG:32752",
+      "bounds_wgs84": [
+        127.76683173172398,
+        -19.198961712091506,
+        127.82427894388684,
+        -19.144374345129208
+      ],
+      "valid_pixels": 31428,
+      "slope_valid_pixels": 31428,
+      "slope_distribution": {
+        "bins_deg": [
+          0,
+          5,
+          15,
+          30,
+          45,
+          90
+        ],
+        "counts": [
+          30834,
+          380,
+          206,
+          8,
+          0
+        ]
+      },
+      "source": {
+        "id": "cop30",
+        "title": "Copernicus GLO-30 Public / Sinergise",
+        "url": "https://registry.opendata.aws/copernicus-dem/",
+        "kind": "DSM, EGM2008; inclui vegetação e edificações",
+        "cache_hit": true,
+        "files": [
+          "Copernicus_DSM_COG_10_S20_00_E127_00_DEM_1498e14c4aad31fa7371.tif"
+        ],
+        "inputs": [
+          {
+            "file": "Copernicus_DSM_COG_10_S20_00_E127_00_DEM_1498e14c4aad31fa7371.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          }
+        ]
+      },
+      "method": "ROI circular; reamostragem bilinear em CRS métrico; gradiente central sem preenchimento de NoData; RMS do resíduo de média local 7×7; relevo máximo−mínimo.",
+      "warnings": [
+        "DEM/DSM não identifica crateras de impacto nem campos de dunas."
+      ]
+    },
+    "feature": {
+      "id": "eid-wolfe-creek--19.2-127.8-dem",
+      "kind": "crater",
+      "reviewed": false,
+      "validation": {
+        "passed": true,
+        "method": "radial_dem_v1",
+        "radials": 72,
+        "radius_cv": 0.03434455061514133
+      },
+      "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+      "method": "radial_dem_v1: 72 máximos radiais; centro ajustado por mínimos quadrados; piso P5 em r<0,6R; parede 0,6–0,95R; entorno 1,5–2R; circularidade do polígono observado. Diâmetro publicado é apenas prior de busca.",
+      "measurement_resolution_m": 30.92222222222222,
+      "extent_m": 940.1587463235483,
+      "center": {
+        "latitude": -19.1717643825382,
+        "longitude": 127.79528185380003
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              127.79941227928367,
+              -19.171791441138993
+            ],
+            [
+              127.79939903936729,
+              -19.171449269025814
+            ],
+            [
+              127.79949510176144,
+              -19.171086879007753
+            ],
+            [
+              127.79941692311101,
+              -19.17074052883769
+            ],
+            [
+              127.79917290828634,
+              -19.17044744949851
+            ],
+            [
+              127.79916699092374,
+              -19.170073782489666
+            ],
+            [
+              127.7991211534712,
+              -19.169691502098203
+            ],
+            [
+              127.79891641429722,
+              -19.169381430946903
+            ],
+            [
+              127.79868401508749,
+              -19.1690894955661
+            ],
+            [
+              127.79842572461287,
+              -19.168817917663937
+            ],
+            [
+              127.79814350865486,
+              -19.16856876401046
+            ],
+            [
+              127.7978395150437,
+              -19.16834393071125
+            ],
+            [
+              127.79744389080497,
+              -19.168262036564713
+            ],
+            [
+              127.79717559708953,
+              -19.167973871120456
+            ],
+            [
+              127.79677101875684,
+              -19.167958500491462
+            ],
+            [
+              127.79641627710488,
+              -19.167849654817925
+            ],
+            [
+              127.79605290247555,
+              -19.167770601948906
+            ],
+            [
+              127.79568366018732,
+              -19.167721943472074
+            ],
+            [
+              127.79531234498624,
+              -19.167568516970107
+            ],
+            [
+              127.79491593644576,
+              -19.167446859657797
+            ],
+            [
+              127.794545124766,
+              -19.167627229366733
+            ],
+            [
+              127.79416847004995,
+              -19.167703985994983
+            ],
+            [
+              127.7937524326353,
+              -19.167683964462952
+            ],
+            [
+              127.79344338140872,
+              -19.167949383891585
+            ],
+            [
+              127.79310046548737,
+              -19.16811615764542
+            ],
+            [
+              127.79277415019227,
+              -19.16831069602397
+            ],
+            [
+              127.79246691887181,
+              -19.16853151856062
+            ],
+            [
+              127.79228126654952,
+              -19.16887344415996
+            ],
+            [
+              127.79202752444888,
+              -19.16913294438955
+            ],
+            [
+              127.79179854857195,
+              -19.169412471284385
+            ],
+            [
+              127.79171911002922,
+              -19.16977847677295
+            ],
+            [
+              127.79155051507853,
+              -19.17008108915731
+            ],
+            [
+              127.79141031696489,
+              -19.170396512522107
+            ],
+            [
+              127.79143709916411,
+              -19.170758331756574
+            ],
+            [
+              127.79135944946283,
+              -19.171080570758907
+            ],
+            [
+              127.79131165120245,
+              -19.1714080142469
+            ],
+            [
+              127.79115143528703,
+              -19.17173723105701
+            ],
+            [
+              127.79116465812487,
+              -19.17207940282594
+            ],
+            [
+              127.7912092154227,
+              -19.172419177443263
+            ],
+            [
+              127.79128476826355,
+              -19.172753969007072
+            ],
+            [
+              127.7913907418264,
+              -19.173081229523927
+            ],
+            [
+              127.7913966413368,
+              -19.173454895712258
+            ],
+            [
+              127.7914424613695,
+              -19.173837176963588
+            ],
+            [
+              127.7916471910556,
+              -19.174147255842236
+            ],
+            [
+              127.79176968371765,
+              -19.17452559907607
+            ],
+            [
+              127.79203631412555,
+              -19.174805958727102
+            ],
+            [
+              127.79232764640581,
+              -19.175063170010525
+            ],
+            [
+              127.79264146334015,
+              -19.175295275282078
+            ],
+            [
+              127.79297537654736,
+              -19.175500507970305
+            ],
+            [
+              127.79338801981565,
+              -19.175554868157484
+            ],
+            [
+              127.79369319267694,
+              -19.17582432380607
+            ],
+            [
+              127.79410950205185,
+              -19.17580977051795
+            ],
+            [
+              127.79448502280052,
+              -19.17589146698388
+            ],
+            [
+              127.79488002190064,
+              -19.17580681791608
+            ],
+            [
+              127.79525233993944,
+              -19.17582471356834
+            ],
+            [
+              127.79563633306726,
+              -19.175946805324948
+            ],
+            [
+              127.79601861355451,
+              -19.175901532939463
+            ],
+            [
+              127.79639528650524,
+              -19.17582477355146
+            ],
+            [
+              127.79671562509459,
+              -19.175589432536917
+            ],
+            [
+              127.79700162825542,
+              -19.175332907087054
+            ],
+            [
+              127.79739286835382,
+              -19.17529474332466
+            ],
+            [
+              127.79770865221491,
+              -19.175106481466827
+            ],
+            [
+              127.79791503392501,
+              -19.174788359270085
+            ],
+            [
+              127.79818238179539,
+              -19.174558780236307
+            ],
+            [
+              127.79853628746622,
+              -19.17439576788657
+            ],
+            [
+              127.79876525987983,
+              -19.174116232489563
+            ],
+            [
+              127.79909075504489,
+              -19.173887372585174
+            ],
+            [
+              127.79914212801904,
+              -19.173505728237384
+            ],
+            [
+              127.79928715573196,
+              -19.173179405867913
+            ],
+            [
+              127.79940169984809,
+              -19.172842314502763
+            ],
+            [
+              127.79948488877919,
+              -19.172497019676705
+            ],
+            [
+              127.79939408408899,
+              -19.172133407658936
+            ],
+            [
+              127.79941227928367,
+              -19.171791441138993
+            ]
+          ]
+        ]
+      },
+      "measurements": {
+        "diameter_m": {
+          "value": 906.25,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "depth_m": {
+          "value": 47.610490085217066,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "depth_diameter_ratio": {
+          "value": 0.0525357131974809,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_height_m": {
+          "value": 18.228162839313597,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_height_diameter_ratio": {
+          "value": 0.020113834857173624,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_variation_m": {
+          "value": 3.4240745515909894,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_radius_cv": {
+          "value": 0.03434455061514133,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "mean_wall_slope": {
+          "value": 14.62959730247662,
+          "unit": "deg",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "wall_slope_p90": {
+          "value": 27.1302683415395,
+          "unit": "deg",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "circularity": {
+          "value": 0.9413662536412045,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_coherence": {
+          "value": 1,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        }
+      },
+      "diagnostics": {
+        "rim_radii_m": [
+          434.375,
+          434.375,
+          449.375,
+          449.375,
+          434.375,
+          449.375,
+          464.375,
+          464.375,
+          464.375,
+          464.375,
+          464.375,
+          464.375,
+          449.375,
+          464.375,
+          449.375,
+          449.375,
+          449.375,
+          449.375,
+          464.375,
+          479.375,
+          464.375,
+          464.375,
+          479.375,
+          464.375,
+          464.375,
+          464.375,
+          464.375,
+          449.375,
+          449.375,
+          449.375,
+          434.375,
+          434.375,
+          434.375,
+          419.375,
+          419.375,
+          419.375,
+          434.375,
+          434.375,
+          434.375,
+          434.375,
+          434.375,
+          449.375,
+          464.375,
+          464.375,
+          479.375,
+          479.375,
+          479.375,
+          479.375,
+          479.375,
+          464.375,
+          479.375,
+          464.375,
+          464.375,
+          449.375,
+          449.375,
+          464.375,
+          464.375,
+          464.375,
+          449.375,
+          434.375,
+          449.375,
+          449.375,
+          434.375,
+          434.375,
+          449.375,
+          449.375,
+          464.375,
+          449.375,
+          449.375,
+          449.375,
+          449.375,
+          434.375
+        ],
+        "rim_elevations_m": [
+          370.14876163627184,
+          368.37042400122334,
+          367.222410520408,
+          367.7192211782415,
+          369.54433858730243,
+          371.4715075023037,
+          371.1859884189008,
+          372.72718683677624,
+          372.44672283883256,
+          372.89163718909924,
+          373.6542095159854,
+          373.4000996484178,
+          373.5400473676413,
+          371.03766048360916,
+          371.4007863441135,
+          371.25354840556884,
+          372.06036542372834,
+          371.9668801496153,
+          373.45131980051235,
+          374.32574685949464,
+          374.5206739217761,
+          375.44857465632833,
+          374.4967495375931,
+          374.6315943633995,
+          373.426704242146,
+          373.9383377880524,
+          375.0966821808491,
+          375.1220072297485,
+          374.62979219229595,
+          372.7423919299408,
+          372.54342361377996,
+          370.44789366768265,
+          369.27951724781235,
+          366.0744965531033,
+          363.9818183324081,
+          365.0195043945113,
+          367.37585778318766,
+          369.6504221868005,
+          367.3263690049672,
+          364.6152831147751,
+          365.58498554825064,
+          367.94212983384676,
+          370.4806050825953,
+          372.7798607701826,
+          375.76735371220207,
+          376.97927927655587,
+          376.3377789826992,
+          376.15108887198426,
+          374.52374488446003,
+          373.5747157315559,
+          370.34494796771105,
+          367.92874538824634,
+          367.0747143191269,
+          367.1122177105325,
+          368.1380506449923,
+          365.2314355630083,
+          363.116698948546,
+          363.57118169445425,
+          365.57244232762355,
+          366.5428164105391,
+          367.8604535914577,
+          367.8813464605217,
+          368.53415947640985,
+          368.6335103202453,
+          370.0483850374853,
+          369.872094097159,
+          369.30719917507827,
+          370.72566552801067,
+          371.7910625702271,
+          373.1824319677497,
+          371.6043137330626,
+          371.1295477141687
+        ],
+        "floor_p5_m": 323.4731140136719,
+        "wall_pixels": 383,
+        "floor_pixels": 260,
+        "horizontal_uncertainty_at_least_m": 30.92222222222222,
+        "radius_search_m": [
+          284.375,
+          584.375
+        ]
+      }
+    },
+    "comparisons": {
+      "lua": {
+        "score": 0.4606092924727341,
+        "reference": {
+          "id": "tycho",
+          "name": "Tycho (Cratera com Raios de Ejecta)",
+          "source": "Catálogo planetário herdado"
+        },
+        "coverage": 1,
+        "missing": [],
+        "diagnosis": "below_threshold",
+        "reason": "Score calculado (0.460609), abaixo do limiar 0.8."
+      }
+    },
+    "discovery_pin": {
+      "eligible": true,
+      "id": "discovery:eid-wolfe-creek--19.2-127.8",
+      "name": "Wolfe Creek",
+      "type": "crater",
+      "lat": -19.1717643825382,
+      "lon": 127.79528185380003,
+      "state": "comparison_ready",
+      "sources": [
+        {
+          "id": "nasa-eid",
+          "title": "NASA ARES: Earth Impact Database (histórico, coordenadas arredondadas)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "sha256": "62ebe865c02a0339bb8d571bcb62f6e4205a3d5e386fcdfd4f4e71fcf0d9681d",
+          "cache_hit": true,
+          "records_loaded": 181,
+          "page": 4
+        }
+      ],
+      "reason": "Localização vinculada a registro documentado ou contorno medido; revisão humana pendente."
+    },
+    "candidate_pin": {
+      "eligible": false,
+      "type": "crater",
+      "thresholds": {
+        "score": 0.8,
+        "coverage": 0.8,
+        "experimental": true
+      },
+      "reasons": [
+        "Lua: Score calculado (0.460609), abaixo do limiar 0.8."
+      ],
+      "stable_id": "candidate:eid-wolfe-creek--19.2-127.8"
+    },
+    "explanation_status": "available",
+    "final_scientific_verification_at": "2026-11-15T22:04:30.791Z"
+  },
+  {
+    "id": "barringer",
+    "input": {
+      "latitude": 35.0333,
+      "longitude": -111.0167,
+      "raio_km": 3,
+      "comparar_com": [
+        "lua"
+      ],
+      "nome": "Cratera de Barringer"
+    },
+    "discovery_status": "unavailable",
+    "discovery_message": "Pesquisa Gemini/Google indisponível (HTTP 429). Confira suporte do modelo, chave, cota e faturamento. Nenhuma evidência foi criada. Novas tentativas pausadas por dez minutos.",
+    "search_model": "gemini-3.1-flash-lite",
+    "state": "comparison_ready",
+    "identification": {
+      "id": "barringer",
+      "status": "documented_site",
+      "kind": "crater",
+      "message": "Cratera de impacto documentada; borda delimitada no DEM, 72 perfis e onze métricas calculados. Medição automática experimental, ainda sem revisão humana.",
+      "seed": [
+        35.027,
+        -111.022
+      ],
+      "reference_diameter_m": 1186,
+      "sources": [
+        {
+          "id": "barringer-lpi",
+          "title": "LPI: Barringer, localização arredondada e diâmetro de referência (prior de busca)",
+          "url": "https://www.lpi.usra.edu/science/kring/epo_web/impact_cratering/World_Craters_web/northamericacraters/Barringer.html"
+        }
+      ],
+      "limitations": [
+        "Centro inicial do catálogo local; ajustado à borda altimétrica, nunca ao nome digitado.",
+        "Morfometria exploratória em DSM de 30 m; não substitui levantamento de campo. Incerteza horizontal de pelo menos um pixel."
+      ],
+      "acquisition": [
+        {
+          "title": "NCALM/OpenTopography: levantamento LiDAR Meteor Crater (EPSG:26912)",
+          "url": "https://catalog.data.gov/dataset/meteor-crater-az"
+        }
+      ],
+      "boundary_status": "measured"
+    },
+    "dem": {
+      "metrics": {
+        "elevation_min_m": 1562.3343505859375,
+        "elevation_max_m": 1742.490966796875,
+        "elevation_mean_m": 1675.4491192425755,
+        "relief_m": 180.1566162109375,
+        "slope_mean_deg": 2.2204185440128916,
+        "slope_p90_deg": 3.2606627299198645,
+        "roughness_rms_m": 2.0562792462347983
+      },
+      "coverage": 1,
+      "resolution_m": 30,
+      "metric_crs": "EPSG:32612",
+      "bounds_wgs84": [
+        -111.04960579043573,
+        35.006238789900124,
+        -110.98380521561958,
+        35.06035325869049
+      ],
+      "valid_pixels": 31428,
+      "slope_valid_pixels": 31428,
+      "slope_distribution": {
+        "bins_deg": [
+          0,
+          5,
+          15,
+          30,
+          45,
+          90
+        ],
+        "counts": [
+          29314,
+          1279,
+          443,
+          379,
+          13
+        ]
+      },
+      "source": {
+        "id": "cop30",
+        "title": "Copernicus GLO-30 Public / Sinergise",
+        "url": "https://registry.opendata.aws/copernicus-dem/",
+        "kind": "DSM, EGM2008; inclui vegetação e edificações",
+        "cache_hit": true,
+        "files": [
+          "Copernicus_DSM_COG_10_N35_00_W112_00_DEM_6ec5071d91cdf09c2acd.tif",
+          "Copernicus_DSM_COG_10_N35_00_W111_00_DEM_6ec5071d91cdf09c2acd.tif"
+        ],
+        "inputs": [
+          {
+            "file": "Copernicus_DSM_COG_10_N35_00_W112_00_DEM_6ec5071d91cdf09c2acd.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          },
+          {
+            "file": "Copernicus_DSM_COG_10_N35_00_W111_00_DEM_6ec5071d91cdf09c2acd.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          }
+        ]
+      },
+      "method": "ROI circular; reamostragem bilinear em CRS métrico; gradiente central sem preenchimento de NoData; RMS do resíduo de média local 7×7; relevo máximo−mínimo.",
+      "warnings": [
+        "DEM/DSM não identifica crateras de impacto nem campos de dunas."
+      ]
+    },
+    "feature": {
+      "id": "barringer-dem",
+      "kind": "crater",
+      "reviewed": false,
+      "validation": {
+        "passed": true,
+        "method": "radial_dem_v1",
+        "radials": 72,
+        "radius_cv": 0.04490739623325528
+      },
+      "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+      "method": "radial_dem_v1: 72 máximos radiais; centro ajustado por mínimos quadrados; piso P5 em r<0,6R; parede 0,6–0,95R; entorno 1,5–2R; circularidade do polígono observado. Diâmetro publicado é apenas prior de busca.",
+      "measurement_resolution_m": 30.92222222222222,
+      "extent_m": 1249.0640919626458,
+      "center": {
+        "latitude": 35.027374825253254,
+        "longitude": -111.02273582434314
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.01620828885997,
+              35.027375872631026
+            ],
+            [
+              -111.01623322061992,
+              35.02784384431095
+            ],
+            [
+              -111.01646957631196,
+              35.02828473804354
+            ],
+            [
+              -111.01658981530557,
+              35.0287305187029
+            ],
+            [
+              -111.01660231874348,
+              35.02921226590915
+            ],
+            [
+              -111.01682033296439,
+              35.0296450001877
+            ],
+            [
+              -111.01694097547302,
+              35.030128108091084
+            ],
+            [
+              -111.01725474626465,
+              35.0305330778561
+            ],
+            [
+              -111.0174842844672,
+              35.031000973670515
+            ],
+            [
+              -111.01800473993288,
+              35.0312680092598
+            ],
+            [
+              -111.01822389633458,
+              35.031799640587764
+            ],
+            [
+              -111.01880420940186,
+              35.03199545928576
+            ],
+            [
+              -111.01930876989948,
+              35.03225974246313
+            ],
+            [
+              -111.019908884976,
+              35.03236424725066
+            ],
+            [
+              -111.02044832377797,
+              35.03254792996306
+            ],
+            [
+              -111.02100517512149,
+              35.03269223992358
+            ],
+            [
+              -111.02160372103307,
+              35.03266286759097
+            ],
+            [
+              -111.02218265234225,
+              35.03258915809462
+            ],
+            [
+              -111.02273727378338,
+              35.03260897294517
+            ],
+            [
+              -111.02329188418913,
+              35.032588950253576
+            ],
+            [
+              -111.02381366750735,
+              35.03239604206913
+            ],
+            [
+              -111.02429901666295,
+              35.03216901708093
+            ],
+            [
+              -111.0248010611374,
+              35.032038703735154
+            ],
+            [
+              -111.02535692028935,
+              35.03199546709342
+            ],
+            [
+              -111.02608332400874,
+              35.032141336018654
+            ],
+            [
+              -111.02695307158585,
+              35.03232632065263
+            ],
+            [
+              -111.02735593955438,
+              35.03190154140381
+            ],
+            [
+              -111.02758537523015,
+              35.03136185348053
+            ],
+            [
+              -111.02798937170866,
+              35.030999005369125
+            ],
+            [
+              -111.02848811001097,
+              35.030686125623724
+            ],
+            [
+              -111.02895949859303,
+              35.030328726527586
+            ],
+            [
+              -111.02909973230955,
+              35.029814168142494
+            ],
+            [
+              -111.02933396258459,
+              35.02934864213525
+            ],
+            [
+              -111.02935912568421,
+              35.02883312557454
+            ],
+            [
+              -111.0294884176182,
+              35.02835273632362
+            ],
+            [
+              -111.02940250159695,
+              35.027853156905735
+            ],
+            [
+              -111.02942779477232,
+              35.02737338700442
+            ],
+            [
+              -111.02940215801793,
+              35.026893629409926
+            ],
+            [
+              -111.02900193329845,
+              35.026464588824616
+            ],
+            [
+              -111.02904044759595,
+              35.02598377429071
+            ],
+            [
+              -111.02886905527531,
+              35.02553707416016
+            ],
+            [
+              -111.02865098849213,
+              35.02510436125635
+            ],
+            [
+              -111.02838790746455,
+              35.02468892854232
+            ],
+            [
+              -111.02808181488304,
+              35.02429393742998
+            ],
+            [
+              -111.02773504065402,
+              35.02392239372852
+            ],
+            [
+              -111.02735022415703,
+              35.02357712477774
+            ],
+            [
+              -111.02703595174768,
+              35.02315711843354
+            ],
+            [
+              -111.0265727218188,
+              35.0228648805983
+            ],
+            [
+              -111.02616247116497,
+              35.022489807491375
+            ],
+            [
+              -111.02570132190904,
+              35.02214012767724
+            ],
+            [
+              -111.02507923470702,
+              35.02207455763972
+            ],
+            [
+              -111.02455128399158,
+              35.02179605971032
+            ],
+            [
+              -111.02392480854827,
+              35.02182034414524
+            ],
+            [
+              -111.02330321862195,
+              35.02202573626636
+            ],
+            [
+              -111.02273437527654,
+              35.02214067303787
+            ],
+            [
+              -111.02219420228612,
+              35.02229543697883
+            ],
+            [
+              -111.02165811315966,
+              35.02235359465208
+            ],
+            [
+              -111.02117281469482,
+              35.022580609427344
+            ],
+            [
+              -111.02061455335725,
+              35.02258381364542
+            ],
+            [
+              -111.02004550408998,
+              35.02263154646948
+            ],
+            [
+              -111.01938871339532,
+              35.022608218259776
+            ],
+            [
+              -111.01880209354356,
+              35.0227555338232
+            ],
+            [
+              -111.01822193272177,
+              35.022951529847155
+            ],
+            [
+              -111.01788674438774,
+              35.023387600443364
+            ],
+            [
+              -111.01748274067938,
+              35.02375041538108
+            ],
+            [
+              -111.01698400253143,
+              35.02406325025541
+            ],
+            [
+              -111.01665501154567,
+              35.02448821428694
+            ],
+            [
+              -111.0165213304674,
+              35.02499229112913
+            ],
+            [
+              -111.01613800315592,
+              35.025400648879184
+            ],
+            [
+              -111.01579508555074,
+              35.0258461885103
+            ],
+            [
+              -111.01582145191753,
+              35.02637307162395
+            ],
+            [
+              -111.01590541362373,
+              35.02688436010674
+            ],
+            [
+              -111.01620828885997,
+              35.027375872631026
+            ]
+          ]
+        ]
+      },
+      "measurements": {
+        "diameter_m": {
+          "value": 1218.3999999999999,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "depth_m": {
+          "value": 164.08350927940864,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "depth_diameter_ratio": {
+          "value": 0.13467129783273857,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_height_m": {
+          "value": 36.83803282590645,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_height_diameter_ratio": {
+          "value": 0.03023476101929289,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_variation_m": {
+          "value": 6.601423940769415,
+          "unit": "m",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_radius_cv": {
+          "value": 0.04490739623325528,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "mean_wall_slope": {
+          "value": 29.977631507457343,
+          "unit": "deg",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "wall_slope_p90": {
+          "value": 40.02411502984637,
+          "unit": "deg",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "circularity": {
+          "value": 0.9174163412769752,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        },
+        "rim_coherence": {
+          "value": 1,
+          "unit": "1",
+          "source": "Copernicus GLO-30 Public / Sinergise; radial_dem_v1",
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "evidence_type": "dem_measurement",
+          "verification": "measured"
+        }
+      },
+      "diagnostics": {
+        "rim_radii_m": [
+          595.45,
+          595.45,
+          580.45,
+          580.45,
+          595.45,
+          595.45,
+          610.45,
+          610.45,
+          625.45,
+          610.45,
+          640.45,
+          625.45,
+          625.45,
+          610.45,
+          610.45,
+          610.45,
+          595.45,
+          580.45,
+          580.45,
+          580.45,
+          565.45,
+          550.45,
+          550.45,
+          565.45,
+          610.45,
+          670.45,
+          655.45,
+          625.45,
+          625.45,
+          640.45,
+          655.45,
+          640.45,
+          640.45,
+          625.45,
+          625.45,
+          610.45,
+          610.45,
+          610.45,
+          580.45,
+          595.45,
+          595.45,
+          595.45,
+          595.45,
+          595.45,
+          595.45,
+          595.45,
+          610.45,
+          610.45,
+          625.45,
+          640.45,
+          625.45,
+          640.45,
+          625.45,
+          595.45,
+          580.45,
+          565.45,
+          565.45,
+          550.45,
+          565.45,
+          580.45,
+          610.45,
+          625.45,
+          640.45,
+          625.45,
+          625.45,
+          640.45,
+          640.45,
+          625.45,
+          640.45,
+          655.45,
+          640.45,
+          625.45
+        ],
+        "rim_elevations_m": [
+          1722.929107898607,
+          1718.9861903242559,
+          1719.7362527989653,
+          1720.7599643561134,
+          1722.1185807153927,
+          1723.1716483342516,
+          1722.90017731704,
+          1724.9358122976291,
+          1728.0881990613875,
+          1727.849582640394,
+          1723.715164692119,
+          1724.8893112622793,
+          1727.0082202560359,
+          1726.8145600215312,
+          1728.9804411780801,
+          1724.3507944473379,
+          1720.0689891542638,
+          1716.5007491589095,
+          1714.2269784271418,
+          1715.0588814479038,
+          1717.2114271270502,
+          1715.7351897576311,
+          1715.1849415351035,
+          1718.8609019021526,
+          1718.3926032350855,
+          1715.8950977181955,
+          1715.5047723401551,
+          1720.5752788075806,
+          1725.191702529014,
+          1725.8453179480327,
+          1729.9944500938657,
+          1733.0374108611268,
+          1733.715101824015,
+          1727.8391683486514,
+          1725.339759526708,
+          1727.8105106032215,
+          1728.8310983306528,
+          1729.2412282671014,
+          1730.0540810126029,
+          1729.3588499697653,
+          1731.5137970752796,
+          1736.7051087481889,
+          1740.2385500436371,
+          1741.130474447671,
+          1737.0538781167754,
+          1738.2798277352692,
+          1742.0461389488535,
+          1740.4385454393168,
+          1733.0469133084762,
+          1729.7302290294394,
+          1735.0298068539125,
+          1736.0784347618733,
+          1732.2226247380313,
+          1729.0040452667902,
+          1731.8532841355811,
+          1732.2223113689008,
+          1728.441122692327,
+          1726.5588409867794,
+          1728.1805919268136,
+          1726.1727359702322,
+          1726.7931944648808,
+          1726.2718028646118,
+          1722.7961205883319,
+          1721.9711159112087,
+          1726.7540313113102,
+          1727.3921083274977,
+          1732.2849750528335,
+          1728.2458691169982,
+          1723.365640518452,
+          1728.3189050619294,
+          1728.7380370862566,
+          1726.5673642792563
+        ],
+        "floor_p5_m": 1562.827880859375,
+        "wall_pixels": 699,
+        "floor_pixels": 466,
+        "horizontal_uncertainty_at_least_m": 30.92222222222222,
+        "radius_search_m": [
+          385.45,
+          805.45
+        ]
+      }
+    },
+    "comparisons": {
+      "lua": {
+        "score": 0.48561747862006044,
+        "reference": {
+          "id": "censorinus",
+          "name": "Censorinus (Cratera Simples)",
+          "source": "Catálogo planetário herdado"
+        },
+        "coverage": 1,
+        "missing": [],
+        "diagnosis": "below_threshold",
+        "reason": "Score calculado (0.485617), abaixo do limiar 0.8."
+      }
+    },
+    "discovery_pin": {
+      "eligible": true,
+      "id": "discovery:barringer",
+      "name": "Barringer Meteor Crater",
+      "type": "crater",
+      "lat": 35.027374825253254,
+      "lon": -111.02273582434314,
+      "state": "comparison_ready",
+      "sources": [
+        {
+          "id": "barringer-lpi",
+          "title": "LPI: Barringer, localização arredondada e diâmetro de referência (prior de busca)",
+          "url": "https://www.lpi.usra.edu/science/kring/epo_web/impact_cratering/World_Craters_web/northamericacraters/Barringer.html"
+        }
+      ],
+      "reason": "Localização vinculada a registro documentado ou contorno medido; revisão humana pendente."
+    },
+    "candidate_pin": {
+      "eligible": false,
+      "type": "crater",
+      "thresholds": {
+        "score": 0.8,
+        "coverage": 0.8,
+        "experimental": true
+      },
+      "reasons": [
+        "Lua: Score calculado (0.485617), abaixo do limiar 0.8."
+      ],
+      "stable_id": "candidate:barringer"
+    },
+    "explanation_status": "unavailable",
+    "final_scientific_verification_at": "2026-11-15T22:04:31.672Z"
+  },
+  {
+    "id": "erg-chebbi",
+    "input": {
+      "latitude": 31.1381,
+      "longitude": -3.9761,
+      "raio_km": 5,
+      "comparar_com": [
+        "marte"
+      ],
+      "nome": "Erg Chebbi"
+    },
+    "discovery_status": "unavailable",
+    "discovery_message": "Pesquisa Gemini/Google indisponível (HTTP 429). Confira suporte do modelo, chave, cota e faturamento. Nenhuma evidência foi criada. Novas tentativas pausadas por dez minutos.",
+    "search_model": "gemini-3.1-flash-lite",
+    "state": "geometry_pending",
+    "identification": {
+      "id": "erg_chebbi",
+      "status": "documented_region",
+      "kind": "dune",
+      "message": "Campo de dunas documentado: Erg Chebbi. A caixa da área de estudo não delimita cristas nem exclui afloramentos/planícies; métricas de dunas ainda ausentes.",
+      "sources": [
+        {
+          "id": "erg-study",
+          "title": "Herzog et al. (2019), área de estudo e levantamento laser/GNSS de Erg Chebbi",
+          "url": "https://meetingorganizer.copernicus.org/EGU2019/EGU2019-6950.pdf"
+        },
+        {
+          "id": "erg-nasa",
+          "title": "NASA Earth Observatory: Sandy Sculptures in Morocco’s Erg Chebbi",
+          "url": "https://science.nasa.gov/earth/earth-observatory/sandy-sculptures-in-moroccos-erg-chebbi-153562/"
+        }
+      ],
+      "limitations": [
+        "A resolução de 30 m resolve parte das megadunas, mas não comprova segmentação de cristas/interdunas.",
+        "Azimute único é ambíguo em dunas estrela; P/ET0 exige climatologia, não é medido pelo DEM.",
+        "Levantamento laser/GNSS publicado com resolução de 10 cm cobre uma duna; não é um DEM público automaticamente disponível para toda a ROI."
+      ],
+      "acquisition": [
+        {
+          "title": "Levantamento de alta resolução e métodos",
+          "url": "https://meetingorganizer.copernicus.org/EGU2019/EGU2019-6950.pdf"
+        },
+        {
+          "title": "Estudo de Lala Lallia (2024), dados/métodos e disponibilidade",
+          "url": "https://doi.org/10.1038/s41598-024-53485-3"
+        }
+      ]
+    },
+    "dem": {
+      "metrics": {
+        "elevation_min_m": 697.5127563476562,
+        "elevation_max_m": 902.3938598632812,
+        "elevation_mean_m": 738.1190254638924,
+        "relief_m": 204.881103515625,
+        "slope_mean_deg": 4.28535470401173,
+        "slope_p90_deg": 10.428336019092656,
+        "roughness_rms_m": 2.519314380003574
+      },
+      "coverage": 1,
+      "resolution_m": 30,
+      "metric_crs": "EPSG:32630",
+      "bounds_wgs84": [
+        -4.029029603447783,
+        31.092583878476816,
+        -3.923220024819012,
+        31.1835958599767
+      ],
+      "valid_pixels": 87270,
+      "slope_valid_pixels": 87270,
+      "slope_distribution": {
+        "bins_deg": [
+          0,
+          5,
+          15,
+          30,
+          45,
+          90
+        ],
+        "counts": [
+          63318,
+          19806,
+          4083,
+          63,
+          0
+        ]
+      },
+      "source": {
+        "id": "cop30",
+        "title": "Copernicus GLO-30 Public / Sinergise",
+        "url": "https://registry.opendata.aws/copernicus-dem/",
+        "kind": "DSM, EGM2008; inclui vegetação e edificações",
+        "cache_hit": true,
+        "files": [
+          "Copernicus_DSM_COG_10_N31_00_W005_00_DEM_7a6f75f08e6dcb9c8b3f.tif",
+          "Copernicus_DSM_COG_10_N31_00_W004_00_DEM_7a6f75f08e6dcb9c8b3f.tif"
+        ],
+        "inputs": [
+          {
+            "file": "Copernicus_DSM_COG_10_N31_00_W005_00_DEM_7a6f75f08e6dcb9c8b3f.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          },
+          {
+            "file": "Copernicus_DSM_COG_10_N31_00_W004_00_DEM_7a6f75f08e6dcb9c8b3f.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          }
+        ]
+      },
+      "method": "ROI circular; reamostragem bilinear em CRS métrico; gradiente central sem preenchimento de NoData; RMS do resíduo de média local 7×7; relevo máximo−mínimo.",
+      "warnings": [
+        "DEM/DSM não identifica crateras de impacto nem campos de dunas."
+      ]
+    },
+    "feature": null,
+    "comparisons": {
+      "marte": {
+        "score": null,
+        "reference": null,
+        "coverage": 0,
+        "missing": [
+          "mean_height",
+          "height_p90",
+          "wavelength",
+          "crest_azimuth",
+          "dune_density",
+          "mean_spacing",
+          "aridity_index"
+        ],
+        "diagnosis": "insufficient_data",
+        "reason": "Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score."
+      }
+    },
+    "discovery_pin": {
+      "eligible": true,
+      "id": "discovery:erg_chebbi",
+      "name": "Erg Chebbi",
+      "type": "dune",
+      "lat": 31.1381,
+      "lon": -3.9761,
+      "state": "geometry_pending",
+      "sources": [
+        {
+          "id": "erg-study",
+          "title": "Herzog et al. (2019), área de estudo e levantamento laser/GNSS de Erg Chebbi",
+          "url": "https://meetingorganizer.copernicus.org/EGU2019/EGU2019-6950.pdf"
+        },
+        {
+          "id": "erg-nasa",
+          "title": "NASA Earth Observatory: Sandy Sculptures in Morocco’s Erg Chebbi",
+          "url": "https://science.nasa.gov/earth/earth-observatory/sandy-sculptures-in-moroccos-erg-chebbi-153562/"
+        }
+      ],
+      "reason": "Localização vinculada a registro documentado ou contorno medido; revisão humana pendente."
+    },
+    "candidate_pin": {
+      "eligible": false,
+      "type": null,
+      "thresholds": {
+        "score": 0.8,
+        "coverage": 0.8,
+        "experimental": true
+      },
+      "reasons": [
+        "Marte: Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score."
+      ],
+      "stable_id": "candidate:erg_chebbi"
+    },
+    "explanation_status": "available"
+  },
+  {
+    "id": "aratanha",
+    "input": {
+      "latitude": -3.97,
+      "longitude": -38.63,
+      "raio_km": 5,
+      "comparar_com": [
+        "lua",
+        "marte"
+      ],
+      "nome": "Serra da Aratanha"
+    },
+    "discovery_status": "unavailable",
+    "discovery_message": "Pesquisa Gemini/Google indisponível (HTTP 429). Confira suporte do modelo, chave, cota e faturamento. Nenhuma evidência foi criada. Novas tentativas pausadas por dez minutos.",
+    "search_model": "gemini-3.1-flash-lite",
+    "state": "insufficient_evidence",
+    "identification": {
+      "status": "insufficient_evidence",
+      "kind": null,
+      "message": "Nenhuma feição única confirmada pelas fontes geográficas independentes para esta área.",
+      "sources": [
+        {
+          "id": "nasa-eid",
+          "title": "NASA ARES: Earth Impact Database (histórico, coordenadas arredondadas)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "sha256": "62ebe865c02a0339bb8d571bcb62f6e4205a3d5e386fcdfd4f4e71fcf0d9681d",
+          "cache_hit": true,
+          "records_loaded": 181
+        }
+      ],
+      "limitations": [
+        "Catálogo não é exaustivo nem atualizado em tempo real; ausência não prova inexistência.",
+        "Candidatos geográficos de crateras encontrados: 0.",
+        "Fonte pública UNESCO indisponível nesta rede; não foi presumida descoberta de dunas."
+      ]
+    },
+    "dem": {
+      "metrics": {
+        "elevation_min_m": 39.2207145690918,
+        "elevation_max_m": 775.12451171875,
+        "elevation_mean_m": 236.9433564574363,
+        "relief_m": 735.9037971496582,
+        "slope_mean_deg": 12.704656536502679,
+        "slope_p90_deg": 28.543208498131023,
+        "roughness_rms_m": 5.6012083739576015
+      },
+      "coverage": 1,
+      "resolution_m": 30,
+      "metric_crs": "EPSG:32724",
+      "bounds_wgs84": [
+        -38.675057845901314,
+        -4.015252626861268,
+        -38.584937251692175,
+        -3.924745324051002
+      ],
+      "valid_pixels": 87270,
+      "slope_valid_pixels": 87270,
+      "slope_distribution": {
+        "bins_deg": [
+          0,
+          5,
+          15,
+          30,
+          45,
+          90
+        ],
+        "counts": [
+          33939,
+          18619,
+          28356,
+          6262,
+          94
+        ]
+      },
+      "source": {
+        "id": "cop30",
+        "title": "Copernicus GLO-30 Public / Sinergise",
+        "url": "https://registry.opendata.aws/copernicus-dem/",
+        "kind": "DSM, EGM2008; inclui vegetação e edificações",
+        "cache_hit": true,
+        "files": [
+          "Copernicus_DSM_COG_10_S05_00_W039_00_DEM_a81052098523b47f5b5c.tif",
+          "Copernicus_DSM_COG_10_S04_00_W039_00_DEM_a81052098523b47f5b5c.tif"
+        ],
+        "inputs": [
+          {
+            "file": "Copernicus_DSM_COG_10_S05_00_W039_00_DEM_a81052098523b47f5b5c.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          },
+          {
+            "file": "Copernicus_DSM_COG_10_S04_00_W039_00_DEM_a81052098523b47f5b5c.tif",
+            "crs": "EPSG:4326",
+            "resolution_native": [
+              0.0002777777777777778,
+              0.0002777777777777778
+            ],
+            "resolution_native_approx_m": 30.92222222222222,
+            "nodata": null
+          }
+        ]
+      },
+      "method": "ROI circular; reamostragem bilinear em CRS métrico; gradiente central sem preenchimento de NoData; RMS do resíduo de média local 7×7; relevo máximo−mínimo.",
+      "warnings": [
+        "DEM/DSM não identifica crateras de impacto nem campos de dunas."
+      ]
+    },
+    "feature": null,
+    "comparisons": {
+      "lua": {
+        "score": null,
+        "reference": null,
+        "coverage": 0,
+        "missing": [
+          "diameter_m",
+          "depth_m",
+          "depth_diameter_ratio",
+          "rim_height_m",
+          "rim_height_diameter_ratio",
+          "rim_variation_m",
+          "rim_radius_cv",
+          "mean_wall_slope",
+          "wall_slope_p90",
+          "circularity",
+          "rim_coherence"
+        ],
+        "diagnosis": "insufficient_data",
+        "reason": "Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score."
+      },
+      "marte": {
+        "score": null,
+        "reference": null,
+        "coverage": 0,
+        "missing": [
+          "mean_height",
+          "height_p90",
+          "wavelength",
+          "crest_azimuth",
+          "dune_density",
+          "mean_spacing",
+          "aridity_index"
+        ],
+        "diagnosis": "insufficient_data",
+        "reason": "Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score."
+      }
+    },
+    "discovery_pin": {
+      "eligible": false,
+      "id": "discovery:reviewed",
+      "name": "Serra da Aratanha",
+      "type": null,
+      "lat": null,
+      "lon": null,
+      "state": "insufficient_evidence",
+      "sources": [
+        {
+          "id": "nasa-eid",
+          "title": "NASA ARES: Earth Impact Database (histórico, coordenadas arredondadas)",
+          "url": "https://ares.jsc.nasa.gov/engagement/activities/resources/rocks-soils-and-surfaces/earth-impact-database.pdf",
+          "sha256": "62ebe865c02a0339bb8d571bcb62f6e4205a3d5e386fcdfd4f4e71fcf0d9681d",
+          "cache_hit": true,
+          "records_loaded": 181
+        }
+      ],
+      "reason": "Coordenadas publicadas insuficientemente precisas para localizar a feição; contorno permanece pendente."
+    },
+    "candidate_pin": {
+      "eligible": false,
+      "type": null,
+      "thresholds": {
+        "score": 0.8,
+        "coverage": 0.8,
+        "experimental": true
+      },
+      "reasons": [
+        "Lua: Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score.",
+        "Marte: Falta delimitação com métricas verificáveis da feição. Cobertura do DEM não representa cobertura das métricas do score."
+      ],
+      "stable_id": "candidate:unknown"
+    },
+    "explanation_status": "available"
+  }
+]

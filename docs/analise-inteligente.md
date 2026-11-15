@@ -1,5 +1,10 @@
 # Análise Inteligente de Localidades
 
+A evolução com pesquisa Gemini/Google, descoberta independente de localidades
+novas, duas camadas de pins e persistência científica está documentada em
+[Descoberta geológica — implementação e testes reais](descoberta-geologica.md).
+Esse documento atualiza os limites e o comportamento de histórico descritos abaixo.
+
 Arquivos criados:
 
 - `src/application/intelligent_analysis.py`: aquisição, cache, reprojeção e métricas.
@@ -23,7 +28,8 @@ Arquivos modificados:
 Nova rota `#/intelligent`, integrada ao roteador/sidebar existentes. O servidor
 Node já usado pelos relatórios de IA serve a interface e a API na mesma origem;
 ele inicia um worker Python para ler DEMs e calcular o relevo. Não há FastAPI,
-Docker, banco de dados, build ou segunda integração com Gemini.
+Docker, banco de dados ou etapa de build. A pesquisa Gemini oficial compartilha
+a configuração de credenciais, conforme a documentação de descoberta geológica.
 
 ## Executar no Windows
 
