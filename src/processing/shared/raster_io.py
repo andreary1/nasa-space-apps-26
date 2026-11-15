@@ -10,12 +10,26 @@ Suporta:
 
 from __future__ import annotations
 
+import math
 import os
 import struct
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+
+def site_id_from_path(path: str | Path) -> str:
+    """
+    Infere o id do sítio (como em sitios.json) a partir do nome do raster.
+
+    Convenção: ``<id>_dem.<ext>``; o id pode conter underscores.
+        canion_apertados_dem.tif -> "canion_apertados"
+        jericoacoara_dem.tif     -> "jericoacoara"
+    Sem o sufixo ``_dem``, o nome inteiro (sem extensão) é o id.
+    """
+    stem = Path(path).stem.lower()
+    return stem[:-4] if stem.endswith("_dem") else stem
+
 
 # ---------------------------------------------------------------------------
 # Auditoria de metadados
@@ -38,6 +52,7 @@ def audit_raster(path: str | Path) -> dict[str, Any]:
         with rasterio.open(path) as src:
             data = src.read(1, masked=True)
             valid = data.compressed()
+            valid = valid[np.isfinite(valid)]
             meta = {
                 "file": str(path),
                 "driver": src.driver,
@@ -46,7 +61,7 @@ def audit_raster(path: str | Path) -> dict[str, Any]:
                 "height": src.height,
                 "bands": src.count,
                 "dtype": str(src.dtypes[0]),
-                "resolution_m": _res_to_meters(src.res, src.crs),
+                "resolution_m": _res_to_meters(src.res, src.crs, src.bounds),
                 "bounds": {
                     "left": src.bounds.left,
                     "bottom": src.bounds.bottom,
@@ -69,19 +84,9 @@ def audit_raster(path: str | Path) -> dict[str, Any]:
         return _audit_hgt_fallback(path)
 
 
-def _res_to_meters(res: tuple[float, float], crs) -> dict[str, float]:
+def _res_to_meters(res: tuple[float, float], crs, bounds=None) -> dict[str, float]:
     """Converte resolução para metros (aproximado em graus)."""
-    try:
-        import rasterio.crs
-
-        if crs and crs.is_geographic:
-            # ~111 km por grau de latitude
-            x_m = abs(res[0]) * 111_320
-            y_m = abs(res[1]) * 111_320
-        else:
-            x_m, y_m = abs(res[0]), abs(res[1])
-    except Exception:
-        x_m, y_m = abs(res[0]), abs(res[1])
+    x_m, y_m, _ = resolution_m({'res': res, 'crs': crs, 'bounds': bounds})
     return {"x": round(x_m, 2), "y": round(y_m, 2)}
 
 
@@ -157,7 +162,9 @@ def load_dem(path: str | Path, band: int = 1) -> tuple[np.ndarray, dict]:
 
     if suffix == ".npy":
         arr = np.load(path).astype(np.float32)
-        meta = {"transform": None, "crs": "EPSG:4326", "res": (30.0, 30.0), "nodata": np.nan, "bounds": None}
+        # .npy não tem georreferência: a resolução NÃO é conhecida, só assumida.
+        meta = {"transform": None, "crs": None, "res": (30.0, 30.0), "nodata": np.nan,
+                "bounds": None, "res_assumed": True}
         return arr, meta
 
     # GeoTIFF via rasterio
@@ -176,9 +183,54 @@ def load_dem(path: str | Path, band: int = 1) -> tuple[np.ndarray, dict]:
     return arr, meta
 
 
+def resolution_m(meta: dict, *, assumed_resolution_m: float | None = 30.0) -> tuple[float, float, list[str]]:
+    """
+    Resolução (x, y) em metros e a lista de avisos.
+
+    - GeoTIFF/HGT em graus: converte com o cosseno da latitude do centro
+      (1° de longitude encolhe com a latitude; usar o mesmo valor nos dois eixos
+      distorcia a declividade).
+    - .npy (sem georreferência): usa 30 m e AVISA que é uma suposição.
+    """
+    avisos: list[str] = []
+    res = meta.get("res")
+    if res is None or meta.get("res_assumed"):
+        if assumed_resolution_m is None or not math.isfinite(assumed_resolution_m) or assumed_resolution_m <= 0:
+            raise ValueError('resolução desconhecida: informe explicitamente uma resolução para arquivos sem georreferência')
+        avisos.append(f"resolução assumida em {assumed_resolution_m:g} m (arquivo sem georreferência)")
+        return assumed_resolution_m, assumed_resolution_m, avisos
+
+    rx, ry = abs(float(res[0])), abs(float(res[1]))
+    if not np.isfinite([rx, ry]).all() or min(rx, ry) <= 0:
+        raise ValueError('resolução deve ser positiva e finita')
+    crs = meta.get("crs")
+    if crs is None:
+        raise ValueError('raster sem CRS: unidade de resolução desconhecida')
+    from rasterio.crs import CRS
+    crs = CRS.from_user_input(crs)
+    if crs.is_projected:
+        factor = crs.linear_units_factor[1]
+        return rx * factor, ry * factor, avisos
+    if not crs.is_geographic:
+        raise ValueError('CRS sem unidade horizontal utilizável')
+
+    b = meta.get("bounds")
+    if b is None:
+        raise ValueError("raster em graus sem 'bounds': não dá para converter a resolução para metros")
+    if isinstance(b, dict):
+        lat_c = (b["bottom"] + b["top"]) / 2.0
+    else:
+        lat_c = (b.bottom + b.top) / 2.0
+    if not math.isfinite(lat_c) or not -90 < lat_c < 90:
+        raise ValueError('latitude inválida para conversão de graus em metros')
+    return rx * 111_320.0 * math.cos(math.radians(lat_c)), ry * 110_574.0, avisos
+
+
 def _load_hgt(path: Path) -> tuple[np.ndarray, dict]:
     """Carrega HGT SRTM sem rasterio."""
     size = path.stat().st_size
+    if size not in (2 * 1201**2, 2 * 3601**2):
+        raise ValueError(f'Tamanho HGT inesperado: {size} bytes')
     n = 1201 if size == 2 * 1201 * 1201 else 3601
     arr = np.frombuffer(path.read_bytes(), dtype=">i2").reshape(n, n).astype(np.float32)
     arr[arr == -32768] = np.nan

@@ -1,0 +1,184 @@
+{
+  "erg_chebbi": {
+    "id": "erg_chebbi",
+    "arquivo": "data/earth/dunes/erg_chebbi_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 378,
+    "altura_pixels": 323,
+    "limites": {
+      "south": 31.105084441250447,
+      "north": 31.19491555874955,
+      "west": -4.035482728578742,
+      "east": -3.9305172714212584
+    },
+    "data_download": "2026-11-15T13:10:10",
+    "arquivo_origem": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\erg_chebbi_dem.tif",
+    "integracao": {
+      "branch": "alteracoes-de-pipeline-felipe",
+      "commit": "2438034",
+      "sha256": "06868fbcfe649404fe4d2d460228e970125f77fd72b3cc393266b002be5e37c9"
+    }
+  },
+  "sossusvlei": {
+    "id": "sossusvlei",
+    "arquivo": "data/earth/dunes/sossusvlei_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 356,
+    "altura_pixels": 323,
+    "limites": {
+      "south": -24.77191555874955,
+      "north": -24.68208444125045,
+      "west": 15.29055047140637,
+      "east": 15.38944952859363
+    },
+    "data_download": "2026-11-15T13:10:23",
+    "arquivo_origem": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\sossusvlei_dem.tif",
+    "integracao": {
+      "branch": "alteracoes-de-pipeline-felipe",
+      "commit": "2438034",
+      "sha256": "67ffb0d3f59e38f966ed6da0dea70f68370e9360e1d3f6acb12eeb793133f67b"
+    }
+  },
+  "rub_al_khali": {
+    "id": "rub_al_khali",
+    "arquivo": "data/earth/dunes/rub_al_khali_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 344,
+    "altura_pixels": 323,
+    "limites": {
+      "south": 19.95508444125045,
+      "north": 20.04491555874955,
+      "west": 49.952201860740395,
+      "east": 50.047798139259605
+    },
+    "data_download": "2026-11-15T13:10:37",
+    "arquivo_origem": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\rub_al_khali_dem.tif",
+    "integracao": {
+      "branch": "alteracoes-de-pipeline-felipe",
+      "commit": "2438034",
+      "sha256": "782e707ecb97d5e7f6837836d1e812c153afaa4ccc928a4ec4c3f1b112427ad3"
+    }
+  },
+  "white_sands": {
+    "id": "white_sands",
+    "arquivo": "data/earth/dunes/white_sands_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 385,
+    "altura_pixels": 323,
+    "limites": {
+      "south": 32.73508444125045,
+      "north": 32.82491555874955,
+      "west": -106.37342284534601,
+      "east": -106.26657715465397
+    },
+    "data_download": "2026-11-15T13:10:50",
+    "arquivo_origem": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\dunes\\white_sands_dem.tif",
+    "integracao": {
+      "branch": "alteracoes-de-pipeline-felipe",
+      "commit": "2438034",
+      "sha256": "31327840e3fd3e6e34ebb60561f93e2a9650f5c5c674ecb9b3900bfd190cc316"
+    }
+  },
+  "barringer": {
+    "id": "barringer",
+    "arquivo": "data/earth/craters/barringer_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 237,
+    "altura_pixels": 194,
+    "limites": {
+      "south": 35.00055066475027,
+      "north": 35.054449335249735,
+      "west": -111.05571012773454,
+      "east": -110.98988987226546
+    },
+    "data_download": "2026-11-15T13:11:07",
+    "arquivo_origem": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\barringer_dem.tif",
+    "integracao": {
+      "branch": "alteracoes-de-pipeline-felipe",
+      "commit": "2438034",
+      "sha256": "8f5f3a12e2cbc66c225a94a3862eaaafc17ce16952abf7f60bad1466bd266246"
+    }
+  },
+  "pingualuit": {
+    "id": "pingualuit",
+    "arquivo": "data/earth/craters/pingualuit_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 694,
+    "altura_pixels": 334,
+    "limites": {
+      "south": 61.23164714337046,
+      "north": 61.32435285662954,
+      "west": -73.76345586682154,
+      "east": -73.57054413317846
+    },
+    "data_download": "2026-11-15T13:11:21",
+    "arquivo_origem": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\pingualuit_dem.tif",
+    "integracao": {
+      "branch": "alteracoes-de-pipeline-felipe",
+      "commit": "2438034",
+      "sha256": "943b979bf2989ab5797bfaa7d83142d8a195ad9a32f5d617496980638f3da23f"
+    }
+  },
+  "lonar": {
+    "id": "lonar",
+    "arquivo": "data/earth/craters/lonar_dem.tif",
+    "produto": "COP30",
+    "fonte_elevacao": "OpenTopography",
+    "resolucao_graus": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "crs": "EPSG:4326",
+    "largura_pixels": 206,
+    "altura_pixels": 194,
+    "limites": {
+      "south": 19.949050664750267,
+      "north": 20.00294933524973,
+      "west": 76.47932548563048,
+      "east": 76.53667451436951
+    },
+    "data_download": "2026-11-15T13:11:34",
+    "arquivo_origem": "C:\\Users\\felps\\Desktop\\NASA\\data\\earth\\craters\\lonar_dem.tif",
+    "integracao": {
+      "branch": "alteracoes-de-pipeline-felipe",
+      "commit": "2438034",
+      "sha256": "e5f601a3f0a2263a93ff950e950352947e8b817cc1d69d15f94ec92266f1877c"
+    }
+  }
+}

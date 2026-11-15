@@ -24,4 +24,13 @@ Projeto para comparar dunas marcianas e crateras lunares com localidades terrest
 2. Definir o contrato de dados em `docs/methodology/data-contract.md`.
 3. Implementar a ingestão, o processamento e os critérios de comparação.
 
-Estrutura inicial: ainda não há dados, dependências ou código executável. Os arquivos `.gitkeep` preservam as pastas vazias quando o projeto for adicionado ao Git.
+O pipeline científico executável, seus contratos, testes e limitações estão
+documentados em [Integração do pipeline Felipe](docs/methodology/pipeline-integration-felipe.md).
+Use um Python compatível com as dependências de `requirements.txt` (validação em
+Python 3.12). O frontend em `deliverables/demo/` permanece independente e não é
+recriado pelo pipeline.
+
+```powershell
+python -m pip install -r requirements.txt
+python -m src.application.pipeline --filename matching_report_v2.json
+```

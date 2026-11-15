@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any
 
 from src.matching.engine import MatchResult
+from src.shared.data_quality import finite_json as _non_finite_to_none
 
 log = logging.getLogger(__name__)
 
@@ -43,6 +44,7 @@ class MatchingRanker:
         audit_meta: list[dict] = None,
         earth_features_dunes: list[dict] = None,
         earth_features_craters: list[dict] = None,
+        data_quality: dict[str, Any] = None,
     ) -> dict[str, Any]:
         """
         Gera relatório JSON com:
@@ -56,7 +58,8 @@ class MatchingRanker:
         report = {
             "metadata": {
                 "generated_at": datetime.now(timezone.utc).isoformat(),
-                "pipeline_version": "1.0.0",
+                "pipeline_version": "1.1.0",
+                "integration_sources": {"main": "05a0028", "felipe": "2438034"},
                 "description": (
                     "Cruzamento de análogos terrestres (Nordeste do Brasil) "
                     "com feições planetárias (Dunas de Marte / Crateras da Lua). "
@@ -64,7 +67,9 @@ class MatchingRanker:
                 ),
                 "methodology": {
                     "distance_metric": "Weighted Euclidean Distance + Cosine Similarity",
-                    "physical_scaling": "Bagnold (1941) aeolian scaling with gravity & atm density ratios",
+                    "physical_scaling": "Bagnold (1941): comprimentos de dunas ÷ β e densidade × β² (ver data_quality.notes)",
+                    "missing_data": "atributo ausente é excluído do par (pesos renormalizados); cobertura mínima exigida; nada é preenchido com valor padrão",
+                    "circular_features": "azimute de crista usa a menor diferença angular (período 180°)",
                     "normalization": "MinMaxScaler on combined Earth + Planetary feature space",
                     "similarity_score": "0.6 × exp(-k × WED) + 0.4 × Cosine",
                 },
@@ -78,16 +83,18 @@ class MatchingRanker:
                 "dunes_mars": self._summarize(dune_results, "dune"),
                 "craters_moon": self._summarize(crater_results, "crater"),
             },
+            "data_quality": data_quality or {},
             "global_ranking": self._global_ranking(dune_results + crater_results),
         }
 
-        return report
+        return _non_finite_to_none(report)
 
     def save_report(self, report: dict[str, Any], filename: str = "matching_report.json") -> Path:
         """Persiste o relatório em data/processed/comparisons/."""
         out_path = self.output_dir / filename
         with open(out_path, "w", encoding="utf-8") as fh:
-            json.dump(report, fh, indent=2, ensure_ascii=False)
+            # NaN/Infinity não são JSON válido: viram null (e allow_nan=False garante)
+            json.dump(_non_finite_to_none(report), fh, indent=2, ensure_ascii=False, allow_nan=False)
         log.info(f"Relatório salvo em: {out_path}")
         return out_path
 
@@ -142,11 +149,30 @@ class MatchingRanker:
                 "feature_type": r.feature_type,
                 "best_planetary_ref": r.planetary_ref_id,
                 "similarity_score": round(r.similarity_score, 4),
-                "cosine_similarity": round(r.cosine_similarity, 4),
+                "cosine_similarity": None if r.cosine_similarity is None else round(r.cosine_similarity, 4),
+                "coverage": round(r.coverage, 4),
                 "weighted_euclidean_dist": round(r.weighted_euclidean_dist, 4),
             }
             for i, r in enumerate(ranked)
         ]
+
+    def print_data_quality(self, report: dict[str, Any]) -> None:
+        """Imprime os avisos de qualidade de dados (ausentes, excluídos, sem score)."""
+        dq = report.get("data_quality") or {}
+        print("── QUALIDADE DOS DADOS ──────────────────────────────────────────")
+        for kind in ("dunes", "craters"):
+            for s in dq.get(kind, []):
+                for msg in s["issues"]:
+                    print(f"  [{kind}:{s['site_id']}] {msg}")
+        for ex in dq.get("craters_excluded", []):
+            print(f"  [craters:{ex['site_id']}] EXCLUÍDO — {ex['reason']}")
+        for kind, lst in (dq.get("matches_without_score") or {}).items():
+            for sk in lst:
+                print(f"  [{kind}] sem score: {sk['earth_site_id']} × {sk['planetary_ref_id']} — {sk['reason']}")
+        print("  Notas:")
+        for n in dq.get("notes", []):
+            print(f"   - {n}")
+        print("=" * 70 + "\n")
 
     def print_summary(self, report: dict[str, Any]) -> None:
         """Imprime sumário no console."""

@@ -10,7 +10,9 @@ import logging
 
 from src.matching.engine import MatchingEngine, MatchResult
 from src.processing.craters.crater_processor import CraterFeatureVector
-from src.shared.constants import CRATER_FEATURE_WEIGHTS, MOON_CRATER_REFERENCES
+from src.shared.constants import (
+    CRATER_FEATURE_WEIGHTS, CRATER_GEOMETRIC_FEATURES, MOON_CRATER_REFERENCES,
+)
 
 log = logging.getLogger(__name__)
 
@@ -28,18 +30,21 @@ class CraterMatcher:
         moon_refs: list[dict] = None,
     ):
         weights = feature_weights or CRATER_FEATURE_WEIGHTS
-        self.refs = moon_refs or MOON_CRATER_REFERENCES
+        self.refs = MOON_CRATER_REFERENCES if moon_refs is None else moon_refs
         self.engine = MatchingEngine(
             feature_weights=weights,
             physical_scaling=physical_scaling,
+            geometric_features=CRATER_GEOMETRIC_FEATURES,
         )
+        self.skipped: list[dict] = []
 
     def run(self, earth_sites: list[CraterFeatureVector]) -> list[MatchResult]:
         if not earth_sites:
+            self.skipped = []
             log.warning("CraterMatcher: nenhum sítio terrestre para comparar.")
             return []
 
-        earth_vectors = [(fv.site_id, fv.to_array(CRATER_FEATURE_WEIGHTS)) for fv in earth_sites]
+        earth_vectors = [(fv.site_id, fv.to_array(dict(zip(self.engine.feature_names, self.engine.weights)))) for fv in earth_sites if fv.crater_class != 'no_crater']
 
         results = self.engine.match_many(
             earth_vectors=earth_vectors,
@@ -47,6 +52,7 @@ class CraterMatcher:
             target_body="moon",
             feature_type="crater",
         )
+        self.skipped = self.engine.skipped
 
         log.info(
             f"CraterMatcher: {len(earth_sites)} sítios × {len(self.refs)} refs "

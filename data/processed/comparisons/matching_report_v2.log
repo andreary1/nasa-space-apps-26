@@ -1,0 +1,173 @@
+14:48:46 [INFO] pipeline — Log desta execução: C:\Users\daviv\nasaapp\nasa-space-apps-26\data\processed\comparisons\matching_report_v2.log
+14:48:46 [INFO] pipeline — Raiz do projeto: C:\Users\daviv\nasaapp\nasa-space-apps-26
+14:48:46 [INFO] pipeline — ============================================================
+14:48:46 [INFO] pipeline — ETAPA 1: Auditoria de Rasters
+14:48:46 [INFO] pipeline — ============================================================
+14:48:47 [INFO] rasterio._env — GDAL signalled an error: err_no=4, msg="`C:\\Users\\daviv\\nasaapp\\nasa-space-apps-26\\data\\earth\\craters\\canion_apertados_dem.npy' not recognized as being in a supported file format."
+14:48:47 [INFO] rasterio._env — GDAL signalled an error: err_no=4, msg="`C:\\Users\\daviv\\nasaapp\\nasa-space-apps-26\\data\\earth\\craters\\vale_vulcanico_dem.npy' not recognized as being in a supported file format."
+14:48:47 [INFO] pipeline — ============================================================
+14:48:47 [INFO] pipeline — ETAPA 2: Processamento de Dunas Terrestres
+14:48:47 [INFO] pipeline — ============================================================
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:erg_chebbi] dune_density: INDISPONÍVEL — densidade de segmentos de resíduo positivo não validada como densidade de cristas do catálogo
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:erg_chebbi] aridity_index: INDISPONÍVEL — índice de aridez (P/ET0) exige climatologia (ex.: NASA POWER), não um DEM
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:ibiraba] conflito de catálogo em status: preservada a fonte prioritária; alternativa em C:\Users\daviv\nasaapp\nasa-space-apps-26\data\earth\sites.json
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:jericoacoara] conflito de catálogo em status: preservada a fonte prioritária; alternativa em C:\Users\daviv\nasaapp\nasa-space-apps-26\data\earth\sites.json
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:lencois] conflito de catálogo em status: preservada a fonte prioritária; alternativa em C:\Users\daviv\nasaapp\nasa-space-apps-26\data\earth\sites.json
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:riachao] EXCLUÍDO — Probable dune-detector false positive (first site outside the calibration set to trigger detection). The region is Cerrado, with no known dune field; vegetation texture in the surface model (DSM) mimics dune topography. Verify using imagery.
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:rosado] conflito de catálogo em status: preservada a fonte prioritária; alternativa em C:\Users\daviv\nasaapp\nasa-space-apps-26\data\earth\sites.json
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:rub_al_khali] dune_density: INDISPONÍVEL — densidade de segmentos de resíduo positivo não validada como densidade de cristas do catálogo
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:rub_al_khali] aridity_index: INDISPONÍVEL — índice de aridez (P/ET0) exige climatologia (ex.: NASA POWER), não um DEM
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:sossusvlei] dune_density: INDISPONÍVEL — densidade de segmentos de resíduo positivo não validada como densidade de cristas do catálogo
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:sossusvlei] aridity_index: INDISPONÍVEL — índice de aridez (P/ET0) exige climatologia (ex.: NASA POWER), não um DEM
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:white_sands] dune_density: INDISPONÍVEL — densidade de segmentos de resíduo positivo não validada como densidade de cristas do catálogo
+14:48:49 [WARNING] src.processing.dunes.dune_processor — [dunas:white_sands] aridity_index: INDISPONÍVEL — índice de aridez (P/ET0) exige climatologia (ex.: NASA POWER), não um DEM
+14:48:49 [INFO] src.processing.dunes.dune_processor — DuneProcessor: 8 sítios processados.
+14:48:49 [INFO] pipeline —   Sítios de dunas processados: 8
+14:48:49 [INFO] pipeline —   [erg_chebbi] source=raster  λ=1631.8229510704678  atributos ausentes: ['dune_density', 'aridity_index']
+14:48:49 [INFO] pipeline —   [ibiraba] source=catalogo  λ=345.0  atributos ausentes: nenhum
+14:48:49 [INFO] pipeline —   [jericoacoara] source=catalogo  λ=297.0  atributos ausentes: nenhum
+14:48:49 [INFO] pipeline —   [lencois] source=catalogo  λ=312.0  atributos ausentes: nenhum
+14:48:49 [INFO] pipeline —   [rosado] source=catalogo  λ=335.0  atributos ausentes: nenhum
+14:48:49 [INFO] pipeline —   [rub_al_khali] source=raster  λ=792.3675825036651  atributos ausentes: ['dune_density', 'aridity_index']
+14:48:49 [INFO] pipeline —   [sossusvlei] source=raster  λ=1945.063509298793  atributos ausentes: ['dune_density', 'aridity_index']
+14:48:49 [INFO] pipeline —   [white_sands] source=raster  λ=2349.94816099621  atributos ausentes: ['dune_density', 'aridity_index']
+14:48:49 [INFO] pipeline — ============================================================
+14:48:49 [INFO] pipeline — ETAPA 3: Processamento de Análogos de Crateras
+14:48:49 [INFO] pipeline — ============================================================
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:araguainha] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.028)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:canion_apertados] FORA da comparação — sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.2222222222222222)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:fazenda_tanque] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.778)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:pedra_cariri] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.583)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:pedreira_mdc] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.444)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:pico_cabugi] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.611)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:riachao] anel de borda parcial: confiança baixa na comparação com crateras
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:riachao] diâmetro no limite da faixa de busca do catálogo: pode estar subestimado
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:santa_marta] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.472)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:serra_cangalha] anel de borda parcial: confiança baixa na comparação com crateras
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:serra_cangalha] diâmetro no limite da faixa de busca do catálogo: pode estar subestimado
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:serra_tombador] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.819)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:serra_verde] conflito de catálogo em status: preservada a fonte prioritária; alternativa em C:\Users\daviv\nasaapp\nasa-space-apps-26\data\earth\sites.json
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:vale_vulcanico] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.5694444444444444)
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:vargeao] anel de borda parcial: confiança baixa na comparação com crateras
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:vargeao] diâmetro no limite da faixa de busca do catálogo: pode estar subestimado
+14:48:49 [WARNING] src.processing.craters.crater_processor — [crateras:vista_alegre] FORA da comparação — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.417)
+14:48:49 [INFO] src.processing.craters.crater_processor — CraterProcessor: 7 sítios comparáveis, 10 excluídos.
+14:48:49 [INFO] pipeline —   Sítios análogos de crateras: 7
+14:48:49 [INFO] pipeline —   [barringer] source=raster  classe=crater confiança=alta  ausentes: nenhum
+14:48:49 [INFO] pipeline —   [lonar] source=raster  classe=crater confiança=alta  ausentes: nenhum
+14:48:49 [INFO] pipeline —   [pingualuit] source=raster  classe=crater confiança=alta  ausentes: nenhum
+14:48:49 [INFO] pipeline —   [riachao] source=catalogo  classe=partial_ring confiança=baixa  ausentes: nenhum
+14:48:49 [INFO] pipeline —   [serra_cangalha] source=catalogo  classe=partial_ring confiança=baixa  ausentes: nenhum
+14:48:49 [INFO] pipeline —   [serra_verde] source=catalogo  classe=crater confiança=alta  ausentes: nenhum
+14:48:49 [INFO] pipeline —   [vargeao] source=catalogo  classe=partial_ring confiança=baixa  ausentes: nenhum
+14:48:49 [WARNING] pipeline —   [araguainha] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.028)
+14:48:49 [WARNING] pipeline —   [canion_apertados] EXCLUÍDO da comparação: sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.2222222222222222)
+14:48:49 [WARNING] pipeline —   [fazenda_tanque] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.778)
+14:48:49 [WARNING] pipeline —   [pedra_cariri] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.583)
+14:48:49 [WARNING] pipeline —   [pedreira_mdc] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.444)
+14:48:49 [WARNING] pipeline —   [pico_cabugi] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.611)
+14:48:49 [WARNING] pipeline —   [santa_marta] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.472)
+14:48:49 [WARNING] pipeline —   [serra_tombador] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.819)
+14:48:49 [WARNING] pipeline —   [vale_vulcanico] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.5694444444444444)
+14:48:49 [WARNING] pipeline —   [vista_alegre] EXCLUÍDO da comparação: sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.417)
+14:48:49 [INFO] pipeline — ============================================================
+14:48:49 [INFO] pipeline — ETAPA 4: Matching Dunas (Terra ↔ Marte)
+14:48:49 [INFO] pipeline — ============================================================
+14:48:50 [WARNING] src.matching.engine — referência 'namib_dune_gale': atributos ausentes ['aridity_index']
+14:48:50 [WARNING] src.matching.engine — referência 'bagnold_dunes_gale': atributos ausentes ['aridity_index']
+14:48:50 [WARNING] src.matching.engine — referência 'nili_patera': atributos ausentes ['aridity_index']
+14:48:50 [WARNING] src.matching.engine — referência 'meroe_patera': atributos ausentes ['aridity_index']
+14:48:50 [WARNING] src.matching.engine — referência 'proctor_crater': atributos ausentes ['aridity_index']
+14:48:50 [WARNING] src.matching.engine — referência 'olympia_undae': atributos ausentes ['aridity_index']
+14:48:50 [WARNING] src.matching.engine — referência 'kaiser_crater': atributos ausentes ['aridity_index']
+14:48:50 [WARNING] src.matching.engine — referência 'hellespontus': atributos ausentes ['aridity_index']
+14:48:50 [INFO] src.matching.dunes.dune_matcher — DuneMatcher: 8 sítios × 8 refs = 64 comparações.
+14:48:50 [INFO] pipeline —   erg_chebbi             → proctor_crater            score=0.5946 (rank 1)
+14:48:50 [INFO] pipeline —   erg_chebbi             → olympia_undae             score=0.5733 (rank 2)
+14:48:50 [INFO] pipeline —   erg_chebbi             → kaiser_crater             score=0.5660 (rank 3)
+14:48:50 [INFO] pipeline —   ibiraba                → proctor_crater            score=0.5387 (rank 1)
+14:48:50 [INFO] pipeline —   ibiraba                → kaiser_crater             score=0.5361 (rank 2)
+14:48:50 [INFO] pipeline —   ibiraba                → nili_patera               score=0.4835 (rank 3)
+14:48:50 [INFO] pipeline —   jericoacoara           → proctor_crater            score=0.5348 (rank 1)
+14:48:50 [INFO] pipeline —   jericoacoara           → kaiser_crater             score=0.5229 (rank 2)
+14:48:50 [INFO] pipeline —   jericoacoara           → nili_patera               score=0.5050 (rank 3)
+14:48:50 [INFO] pipeline —   lencois                → proctor_crater            score=0.5620 (rank 1)
+14:48:50 [INFO] pipeline —   lencois                → kaiser_crater             score=0.5500 (rank 2)
+14:48:50 [INFO] pipeline —   lencois                → nili_patera               score=0.5241 (rank 3)
+14:48:50 [INFO] pipeline —   rosado                 → proctor_crater            score=0.5453 (rank 1)
+14:48:50 [INFO] pipeline —   rosado                 → kaiser_crater             score=0.5337 (rank 2)
+14:48:50 [INFO] pipeline —   rosado                 → nili_patera               score=0.5117 (rank 3)
+14:48:50 [INFO] pipeline —   rub_al_khali           → olympia_undae             score=0.6793 (rank 1)
+14:48:50 [INFO] pipeline —   rub_al_khali           → proctor_crater            score=0.6499 (rank 2)
+14:48:50 [INFO] pipeline —   rub_al_khali           → kaiser_crater             score=0.6237 (rank 3)
+14:48:50 [INFO] pipeline —   sossusvlei             → proctor_crater            score=0.5562 (rank 1)
+14:48:50 [INFO] pipeline —   sossusvlei             → olympia_undae             score=0.5369 (rank 2)
+14:48:50 [INFO] pipeline —   sossusvlei             → kaiser_crater             score=0.5345 (rank 3)
+14:48:50 [INFO] pipeline —   white_sands            → proctor_crater            score=0.3964 (rank 1)
+14:48:50 [INFO] pipeline —   white_sands            → olympia_undae             score=0.3776 (rank 2)
+14:48:50 [INFO] pipeline —   white_sands            → hellespontus              score=0.3613 (rank 3)
+14:48:50 [INFO] pipeline — ============================================================
+14:48:50 [INFO] pipeline — ETAPA 5: Matching Crateras (Terra ↔ Lua)
+14:48:50 [INFO] pipeline — ============================================================
+14:48:50 [INFO] src.matching.craters.crater_matcher — CraterMatcher: 7 sítios × 12 refs = 84 comparações.
+14:48:50 [INFO] pipeline —   barringer              → bessel                    score=0.8711 (rank 1)
+14:48:50 [INFO] pipeline —   barringer              → censorinus                score=0.8337 (rank 2)
+14:48:50 [INFO] pipeline —   barringer              → alfraganus                score=0.7614 (rank 3)
+14:48:50 [INFO] pipeline —   lonar                  → bessel                    score=0.7132 (rank 1)
+14:48:50 [INFO] pipeline —   lonar                  → de_gerlache               score=0.6498 (rank 2)
+14:48:50 [INFO] pipeline —   lonar                  → censorinus                score=0.6429 (rank 3)
+14:48:50 [INFO] pipeline —   pingualuit             → bessel                    score=0.6812 (rank 1)
+14:48:50 [INFO] pipeline —   pingualuit             → de_gerlache               score=0.6254 (rank 2)
+14:48:50 [INFO] pipeline —   pingualuit             → aristarchus               score=0.6150 (rank 3)
+14:48:50 [INFO] pipeline —   riachao                → faustini                  score=0.5307 (rank 1)
+14:48:50 [INFO] pipeline —   riachao                → de_gerlache               score=0.5208 (rank 2)
+14:48:50 [INFO] pipeline —   riachao                → shoemaker                 score=0.5024 (rank 3)
+14:48:50 [INFO] pipeline —   serra_cangalha         → faustini                  score=0.6050 (rank 1)
+14:48:50 [INFO] pipeline —   serra_cangalha         → de_gerlache               score=0.5994 (rank 2)
+14:48:50 [INFO] pipeline —   serra_cangalha         → copernicus                score=0.5969 (rank 3)
+14:48:50 [INFO] pipeline —   serra_verde            → de_gerlache               score=0.5487 (rank 1)
+14:48:50 [INFO] pipeline —   serra_verde            → faustini                  score=0.5430 (rank 2)
+14:48:50 [INFO] pipeline —   serra_verde            → bessel                    score=0.5395 (rank 3)
+14:48:50 [INFO] pipeline —   vargeao                → de_gerlache               score=0.6541 (rank 1)
+14:48:50 [INFO] pipeline —   vargeao                → bessel                    score=0.6489 (rank 2)
+14:48:50 [INFO] pipeline —   vargeao                → aristarchus               score=0.6362 (rank 3)
+14:48:50 [INFO] pipeline — ============================================================
+14:48:50 [INFO] pipeline — ETAPA 6: Geração do Relatório JSON
+14:48:50 [INFO] pipeline — ============================================================
+14:48:50 [INFO] src.matching.ranking.ranker — Relatório salvo em: C:\Users\daviv\nasaapp\nasa-space-apps-26\data\processed\comparisons\matching_report_v2.json
+14:48:50 [INFO] pipeline —   Relatório salvo: C:\Users\daviv\nasaapp\nasa-space-apps-26\data\processed\comparisons\matching_report_v2.json
+14:48:50 [INFO] pipeline — ============================================================
+14:48:50 [INFO] pipeline — RESUMO DA QUALIDADE DOS DADOS
+14:48:50 [INFO] pipeline — ============================================================
+14:48:50 [INFO] pipeline —   [dunes:erg_chebbi] origem=raster  ausentes=['dune_density', 'aridity_index']  avisos=2
+14:48:50 [INFO] pipeline —   [dunes:ibiraba] origem=catalogo  ausentes=nenhum  avisos=1
+14:48:50 [INFO] pipeline —   [dunes:jericoacoara] origem=catalogo  ausentes=nenhum  avisos=1
+14:48:50 [INFO] pipeline —   [dunes:lencois] origem=catalogo  ausentes=nenhum  avisos=1
+14:48:50 [INFO] pipeline —   [dunes:rosado] origem=catalogo  ausentes=nenhum  avisos=1
+14:48:50 [INFO] pipeline —   [dunes:rub_al_khali] origem=raster  ausentes=['dune_density', 'aridity_index']  avisos=2
+14:48:50 [INFO] pipeline —   [dunes:sossusvlei] origem=raster  ausentes=['dune_density', 'aridity_index']  avisos=2
+14:48:50 [INFO] pipeline —   [dunes:white_sands] origem=raster  ausentes=['dune_density', 'aridity_index']  avisos=2
+14:48:50 [INFO] pipeline —   [craters:barringer] origem=raster  ausentes=nenhum  avisos=0
+14:48:50 [INFO] pipeline —   [craters:lonar] origem=raster  ausentes=nenhum  avisos=0
+14:48:50 [INFO] pipeline —   [craters:pingualuit] origem=raster  ausentes=nenhum  avisos=0
+14:48:50 [INFO] pipeline —   [craters:riachao] origem=catalogo  ausentes=nenhum  avisos=2
+14:48:50 [INFO] pipeline —   [craters:serra_cangalha] origem=catalogo  ausentes=nenhum  avisos=2
+14:48:50 [INFO] pipeline —   [craters:serra_verde] origem=catalogo  ausentes=nenhum  avisos=1
+14:48:50 [INFO] pipeline —   [craters:vargeao] origem=catalogo  ausentes=nenhum  avisos=2
+14:48:50 [WARNING] pipeline —   [craters:araguainha] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.028)
+14:48:50 [WARNING] pipeline —   [craters:canion_apertados] EXCLUÍDO — sem cratera detectada (medido no raster: class=no_crater, rim_coherence=0.2222222222222222)
+14:48:50 [WARNING] pipeline —   [craters:fazenda_tanque] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.778)
+14:48:50 [WARNING] pipeline —   [craters:pedra_cariri] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.583)
+14:48:50 [WARNING] pipeline —   [craters:pedreira_mdc] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.444)
+14:48:50 [WARNING] pipeline —   [craters:pico_cabugi] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.611)
+14:48:50 [WARNING] pipeline —   [craters:santa_marta] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.472)
+14:48:50 [WARNING] pipeline —   [craters:serra_tombador] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.819)
+14:48:50 [WARNING] pipeline —   [craters:vale_vulcanico] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.5694444444444444)
+14:48:50 [WARNING] pipeline —   [craters:vista_alegre] EXCLUÍDO — sem cratera detectada (catálogo: class=no_crater, rim_coherence=0.417)
+14:48:50 [INFO] pipeline —   NOTA: Atributos de origem 'catalogo' foram calculados fora deste repositório (o script gerador não está nele) e não são reproduzíveis aqui.
+14:48:50 [INFO] pipeline —   NOTA: O índice de aridez (P/ET0) não é calculável de um DEM: vem sempre do catálogo (NASA POWER) e, se ausente, o atributo fica indisponível.
+14:48:50 [INFO] pipeline —   NOTA: Referências de Marte preservam aridity_index = 0.0 como convenção no catálogo, mas o atributo não entra no score (P/ET0 não é definido para Marte).
+14:48:50 [INFO] pipeline —   NOTA: Métricas de dunas calculadas de raster (método novo) foram validadas apenas com DEM sintético; densidade de regiões de resíduo positivo é apenas diagnóstica, não substitui densidade de cristas de catálogo com unidade comprovada.
+14:48:50 [INFO] pipeline —   NOTA: Crateras: a normalização das declividades pela gravidade lunar NÃO está implementada (o contrato não define a fórmula); a geometria é preservada.
+14:48:50 [INFO] pipeline —   NOTA: Escalonamento de Bagnold aplicado a Marte com β = 4.82 (comprimentos ÷ β; densidade × β²). O contrato cita β ≈ 2,82, mas a fórmula do próprio contrato com as constantes do projeto resulta em ≈ 4,82.
+14:48:50 [INFO] pipeline —   NOTA: O fator beta é uma hipótese operacional herdada, sem calibração empírica local; não é tratado como lei universal de tamanho de dunas.

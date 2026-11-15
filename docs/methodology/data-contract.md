@@ -50,3 +50,25 @@ Para cruzar dados da Terra com Marte, o algoritmo compensa a menor gravidade mar
 $$\beta = \sqrt{\frac{g_{\text{Marte}}}{g_{\text{Terra}}}} \cdot \sqrt{\frac{\rho_{\text{atm, Terra}}}{\rho_{\text{atm, Marte}}}} \approx 2.82$$
 
 Para crateras na Lua, as feições geométricas são preservadas enquanto a inclinação de estabilidade é normalizada pelo ângulo de repouso gravitacional lunar ($0.165g$).
+
+### Errata operacional — integração seletiva Felipe
+
+O valor `2.82` na aproximação acima é inconsistente com as constantes do código:
+`sqrt((3.721 / 9.807) / (0.020 / 1.225)) = 4.820752041935113`. O backend preserva
+essa expressão, sem ajustar constantes para forçar 2,82. É uma hipótese herdada,
+sem calibração empírica local, e pode ser desativada por `--no-scaling`.
+Comprimentos marcianos são divididos por β; densidades areais compatíveis são
+multiplicadas por β². Nenhuma correção de declividade lunar foi implementada:
+o texto anterior é uma intenção metodológica, mas não fornece uma fórmula.
+
+Ausências não equivalem a zero. Só atributos válidos dos dois lados entram no
+par, com pesos renormalizados e cobertura mínima de 60% do peso total original.
+Azimutes de cristas usam distância circular axial de período 180°. Aridez marciana
+igual a zero é uma convenção preservada no catálogo bruto, excluída do score.
+`densidade_dunas` exige definição/unidade comprovada de cristas/km² antes de ser
+mapeada; tipo e padrão de distribuição são categóricos e não entram no vetor.
+
+Essas regras se aplicam ao pipeline Python. A interface e seus serviços JS foram
+preservados sem alterações nesta tarefa. Detalhes, fórmulas, proveniência,
+diferenças numéricas e limitações em
+[pipeline-integration-felipe.md](pipeline-integration-felipe.md).

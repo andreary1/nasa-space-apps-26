@@ -78,7 +78,7 @@ DUNE_FIELD_ALIASES = {
     "comprimento_onda": "wavelength",
     "orientacao_azimute": "crest_azimuth",
     "sentido_vento_provavel": "probable_wind_direction",
-    "densidade_dunas": "dune_density",
+    "densidade_dunas": "dune_density",  # somente com definição/unidade de cristas por km² comprovada
     "espacamento_medio": "mean_spacing",
     "indice_aridez": "aridity_index",
 }
@@ -115,6 +115,32 @@ CRATER_FIELD_ALIASES = {
     "circularidade": "circularity",
     "coerencia_borda": "rim_coherence",
 }
+
+# ---------------------------------------------------------------------------
+# Regras de comparação (qualidade de dados e escalonamento físico)
+# ---------------------------------------------------------------------------
+
+# Fração mínima do peso total das features que precisa estar disponível, tanto
+# no sítio terrestre quanto na referência, para um score ser calculado.
+# Abaixo disso o par NÃO é pontuado (e o motivo vai para o relatório).
+MIN_FEATURE_COVERAGE = 0.6
+
+# Dunas: escalonamento de Bagnold (contrato, seção 3).
+#  - comprimentos (m) dividem por β;  - densidade por km² multiplica por β².
+DUNE_GEOMETRIC_FEATURES = ("mean_height", "height_p90", "wavelength", "mean_spacing")
+DUNE_AREAL_DENSITY_FEATURES = ("dune_density",)
+
+# Grandezas circulares: nome -> período em graus. A diferença é a menor volta
+# (170° e 5° estão a 15° de distância, não a 165°). Azimute de crista é axial (0–180).
+DUNE_CIRCULAR_FEATURES = {"crest_azimuth": 180.0}
+
+# Crateras: o contrato preserva a geometria (sem escalonamento de comprimentos).
+# A normalização das declividades pela gravidade lunar NÃO está implementada:
+# o contrato não define a fórmula.
+CRATER_GEOMETRIC_FEATURES: tuple = ()
+
+# Classificação de crateras medidas no raster (nós medimos; ver morphometrics).
+CRATER_CLASS_MIN_COHERENCE = {"crater": 0.75, "partial_ring": 0.5}
 
 # ---------------------------------------------------------------------------
 # Referências marcianas — Campos de Dunas (Marte)
@@ -246,6 +272,16 @@ MARS_DUNE_REFERENCES = [
 # ---------------------------------------------------------------------------
 # Referências lunares — 9 Alvos Oficiais (LOLA RDR / SLDEM2015)
 # ---------------------------------------------------------------------------
+# Keep the historical zero for catalog compatibility, but never use that
+# convention as an Earth/Mars P/ET0 measurement in the matching vector.
+for _reference in MARS_DUNE_REFERENCES:
+    _reference["non_comparable_features"] = ["aridity_index"]
+    _reference["feature_provenance"] = {
+        key: ("convencao:hiperaridez marciana; P/ET0 não definido" if key == "aridity_index"
+              else f"catalogo:{_reference['source']}")
+        for key in DUNE_FEATURE_WEIGHTS
+    }
+
 MOON_CRATER_REFERENCES = [
     {
         "id": "shackleton",
@@ -452,3 +488,9 @@ MOON_CRATER_REFERENCES = [
         "gravity_ratio": MOON["gravity_ratio"],
     },
 ]
+
+for _reference in MOON_CRATER_REFERENCES:
+    _reference['feature_provenance'] = {
+        key: f"catalogo:{_reference['source']}" if _reference.get(key) is not None else 'ausente'
+        for key in CRATER_FEATURE_WEIGHTS
+    }

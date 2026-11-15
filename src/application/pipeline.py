@@ -24,6 +24,7 @@ Fluxo completo
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import sys
 from pathlib import Path
@@ -39,7 +40,68 @@ logging.basicConfig(
 log = logging.getLogger("pipeline")
 
 
-def run_pipeline(
+def build_data_quality(
+    dune_fvs, crater_fvs, crater_excluded, dune_skipped, crater_skipped, physical_scaling,
+) -> dict:
+    """Tudo que o leitor do relatório precisa saber sobre dados ausentes ou suspeitos."""
+    import math
+    from src.shared.constants import (
+        CRATER_FEATURE_WEIGHTS, DUNE_FEATURE_WEIGHTS, MARS, MIN_FEATURE_COVERAGE,
+        MARS_DUNE_REFERENCES, MOON_CRATER_REFERENCES,
+    )
+
+    def block(fvs, weights):
+        return [
+            {
+                "site_id": fv.site_id,
+                "source": fv.source,
+                "provenance": fv.provenance,
+                "features_missing": fv.missing(weights),
+                "issues": fv.issues,
+                **({"crater_class": fv.crater_class, "confidence": fv.confidence}
+                   if hasattr(fv, "crater_class") else {}),
+            }
+            for fv in fvs
+        ]
+
+    beta = math.sqrt(MARS["gravity_ratio"]) / math.sqrt(MARS["atm_density_ratio"])
+    notes = [
+        "Atributos de origem 'catalogo' foram calculados fora deste repositório "
+        "(o script gerador não está nele) e não são reproduzíveis aqui.",
+        "O índice de aridez (P/ET0) não é calculável de um DEM: vem sempre do catálogo "
+        "(NASA POWER) e, se ausente, o atributo fica indisponível.",
+        "Referências de Marte preservam aridity_index = 0.0 como convenção no catálogo, "
+        "mas o atributo não entra no score (P/ET0 não é definido para Marte).",
+        "Métricas de dunas calculadas de raster (método novo) foram validadas apenas com "
+        "DEM sintético; densidade de regiões de resíduo positivo é apenas diagnóstica, "
+        "não substitui densidade de cristas de catálogo com unidade comprovada.",
+        "Crateras: a normalização das declividades pela gravidade lunar NÃO está "
+        "implementada (o contrato não define a fórmula); a geometria é preservada.",
+    ]
+    if physical_scaling:
+        notes.append(
+            f"Escalonamento de Bagnold aplicado a Marte com β = {beta:.2f} "
+            "(comprimentos ÷ β; densidade × β²). O contrato cita β ≈ 2,82, mas a fórmula "
+            "do próprio contrato com as constantes do projeto resulta em ≈ 4,82."
+        )
+    else:
+        notes.append("Escalonamento físico DESLIGADO (--no-scaling).")
+
+    return {
+        "dunes": block(dune_fvs, DUNE_FEATURE_WEIGHTS),
+        "craters": block(crater_fvs, CRATER_FEATURE_WEIGHTS),
+        "craters_excluded": crater_excluded,
+        "matches_without_score": {"dunes": dune_skipped, "craters": crater_skipped},
+        "parameters": {"min_coverage": MIN_FEATURE_COVERAGE, "physical_scaling": physical_scaling,
+                       "beta": beta if physical_scaling else None,
+                       "gravity_ratio": MARS['gravity_ratio'], "atm_density_ratio": MARS['atm_density_ratio'],
+                       "beta_formula": "sqrt(gravity_ratio)/sqrt(atm_density_ratio)"},
+        "reference_features": {"mars": MARS_DUNE_REFERENCES, "moon": MOON_CRATER_REFERENCES},
+        "notes": notes,
+    }
+
+
+def _run_pipeline(
     root: str | Path = ".",
     output_dir: str | Path = "data/processed/comparisons",
     report_filename: str = "matching_report.json",
@@ -76,11 +138,13 @@ def run_pipeline(
 
     dune_proc = DuneProcessor(
         raster_dir=root / "data" / "earth" / "dunes",
-        sitios_json=root / "sitios.json",
+        sitios_json=[root / "sitios.json", root / "data" / "earth" / "sites.json"],
     )
+    # sitios.json manda; o sites.json completa o que faltar (ex.: as crateras de
+    # impacto e o bloco "craters" com as métricas de cada sítio).
     crater_proc = CraterProcessor(
         raster_dir=root / "data" / "earth" / "craters",
-        sitios_json=root / "sitios.json",
+        sitios_json=[root / "sitios.json", root / "data" / "earth" / "sites.json"],
     )
 
     audit_dunes = dune_proc.audit_rasters()
@@ -104,6 +168,23 @@ def run_pipeline(
     if not all_audit:
         log.warning("  Nenhum raster encontrado. Usando apenas sitios.json.")
 
+    # Carry acquisition provenance all the way to the scientific report.
+    manifest_path = root / 'data' / 'earth' / 'manifesto_opentopography.json'
+    manifest = {}
+    if manifest_path.exists():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+            if not isinstance(manifest, dict):
+                raise ValueError('manifesto deve ser um objeto por site_id')
+        except (ValueError, OSError) as error:
+            all_audit.append({'file': str(manifest_path), 'error': str(error)})
+            manifest = {}
+    from src.processing.shared.raster_io import site_id_from_path
+    for item in all_audit:
+        source = manifest.get(site_id_from_path(item.get('file', '')))
+        if source:
+            item['ingestion'] = source
+
     # ------------------------------------------------------------------
     # ETAPA 2: Processamento de Dunas
     # ------------------------------------------------------------------
@@ -114,11 +195,10 @@ def run_pipeline(
     dune_fvs = dune_proc.process_all()
     log.info(f"  Sítios de dunas processados: {len(dune_fvs)}")
     for fv in dune_fvs:
+        faltam = fv.missing()
         log.info(
-            f"  [{fv.site_id}] slope_mean={fv.slope_mean_deg:.2f}°  "
-            f"tri={fv.tri}  λ={fv.wavelength_m}m  source={fv.source}"
-            if fv.slope_mean_deg is not None
-            else f"  [{fv.site_id}] source={fv.source} (sem DEM)"
+            f"  [{fv.site_id}] source={fv.source}  λ={fv.wavelength}  "
+            f"atributos ausentes: {faltam if faltam else 'nenhum'}"
         )
 
     # ------------------------------------------------------------------
@@ -129,9 +209,19 @@ def run_pipeline(
     log.info("=" * 60)
 
     crater_fvs = crater_proc.process_all()
+    for feature in dune_fvs + crater_fvs:
+        source = manifest.get(feature.site_id)
+        if source and feature.extra.get('raster_file'):
+            feature.extra['ingestion'] = source
     log.info(f"  Sítios análogos de crateras: {len(crater_fvs)}")
     for fv in crater_fvs:
-        log.info(f"  [{fv.site_id}] source={fv.source}")
+        faltam = fv.missing()
+        log.info(
+            f"  [{fv.site_id}] source={fv.source}  classe={fv.crater_class} "
+            f"confiança={fv.confidence}  ausentes: {faltam if faltam else 'nenhum'}"
+        )
+    for ex in crater_proc.excluded:
+        log.warning(f"  [{ex['site_id']}] EXCLUÍDO da comparação: {ex['reason']}")
 
     # ------------------------------------------------------------------
     # ETAPA 4: Matching Dunas ↔ Marte
@@ -181,12 +271,19 @@ def run_pipeline(
     from src.matching.ranking.ranker import MatchingRanker
     ranker = MatchingRanker(output_dir=root / output_dir)
 
+    data_quality = build_data_quality(
+        dune_fvs, crater_fvs, crater_proc.excluded,
+        dune_matcher.skipped, crater_matcher.skipped, physical_scaling,
+    )
+    data_quality['dunes_excluded'] = dune_proc.excluded
+    data_quality['notes'].append('O fator beta é uma hipótese operacional herdada, sem calibração empírica local; não é tratado como lei universal de tamanho de dunas.')
     report = ranker.generate_report(
         dune_results=dune_results,
         crater_results=crater_results,
         audit_meta=all_audit,
         earth_features_dunes=[fv.to_dict() for fv in dune_fvs],
         earth_features_craters=[fv.to_dict() for fv in crater_fvs],
+        data_quality=data_quality,
     )
 
     out_path = ranker.save_report(report, filename=report_filename)
@@ -194,8 +291,60 @@ def run_pipeline(
 
     if verbose:
         ranker.print_summary(report)
+        ranker.print_data_quality(report)
 
     return report
+
+
+def run_pipeline(
+    root: str | Path = ".",
+    output_dir: str | Path = "data/processed/comparisons",
+    report_filename: str = "matching_report.json",
+    physical_scaling: bool = True,
+    verbose: bool = True,
+    log_file: str | Path | None = "auto",
+) -> dict:
+    """
+    Executa o pipeline e grava um arquivo de log ao lado do relatório.
+
+    log_file: "auto" (padrão) = <output_dir>/<nome do relatório>.log;
+              caminho = esse arquivo; None = não grava log em arquivo.
+    O log tem tudo que o logging emitiu (avisos de dados ausentes, sítios
+    excluídos, pares sem score) e um resumo da qualidade dos dados no fim.
+    """
+    handler = None
+    if log_file is not None:
+        if log_file == "auto":
+            log_file = Path(root).resolve() / output_dir / (Path(report_filename).stem + ".log")
+        log_file = Path(log_file)
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        handler = logging.FileHandler(log_file, mode="w", encoding="utf-8")
+        handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s — %(message)s", "%H:%M:%S"))
+        logging.getLogger().addHandler(handler)
+        log.info(f"Log desta execução: {log_file}")
+
+    try:
+        report = _run_pipeline(root, output_dir, report_filename, physical_scaling, verbose)
+        dq = report.get("data_quality") or {}
+        log.info("=" * 60)
+        log.info("RESUMO DA QUALIDADE DOS DADOS")
+        log.info("=" * 60)
+        for kind in ("dunes", "craters"):
+            for site in dq.get(kind, []):
+                faltam = site["features_missing"]
+                log.info(f"  [{kind}:{site['site_id']}] origem={site['source']}  ausentes={faltam if faltam else 'nenhum'}  avisos={len(site['issues'])}")
+        for ex in dq.get("craters_excluded", []):
+            log.warning(f"  [craters:{ex['site_id']}] EXCLUÍDO — {ex['reason']}")
+        for kind, lst in (dq.get("matches_without_score") or {}).items():
+            for sk in lst:
+                log.warning(f"  [{kind}] sem score: {sk['earth_site_id']} × {sk['planetary_ref_id']} — {sk['reason']}")
+        for note in dq.get("notes", []):
+            log.info(f"  NOTA: {note}")
+        return report
+    finally:
+        if handler is not None:
+            logging.getLogger().removeHandler(handler)
+            handler.close()
 
 
 # ---------------------------------------------------------------------------
@@ -222,6 +371,11 @@ if __name__ == "__main__":
         help="Nome do arquivo de relatório (default: matching_report.json)",
     )
     parser.add_argument(
+        "--log",
+        default="auto",
+        help="Arquivo de log (default: <output>/<filename>.log; 'none' desativa)",
+    )
+    parser.add_argument(
         "--no-scaling",
         action="store_true",
         help="Desativa normalização física de Bagnold",
@@ -234,6 +388,7 @@ if __name__ == "__main__":
         report_filename=args.filename,
         physical_scaling=not args.no_scaling,
         verbose=True,
+        log_file=None if args.log == "none" else args.log,
     )
 
     n_dune = len(report["results"]["dunes_mars"]["site_summaries"])

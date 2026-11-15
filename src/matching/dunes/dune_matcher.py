@@ -11,7 +11,10 @@ from typing import Any
 
 from src.matching.engine import MatchingEngine, MatchResult
 from src.processing.dunes.dune_processor import DuneFeatureVector
-from src.shared.constants import DUNE_FEATURE_WEIGHTS, MARS_DUNE_REFERENCES
+from src.shared.constants import (
+    DUNE_AREAL_DENSITY_FEATURES, DUNE_CIRCULAR_FEATURES, DUNE_FEATURE_WEIGHTS,
+    DUNE_GEOMETRIC_FEATURES, MARS_DUNE_REFERENCES,
+)
 
 log = logging.getLogger(__name__)
 
@@ -29,11 +32,15 @@ class DuneMatcher:
         mars_refs: list[dict] = None,
     ):
         weights = feature_weights or DUNE_FEATURE_WEIGHTS
-        self.refs = mars_refs or MARS_DUNE_REFERENCES
+        self.refs = MARS_DUNE_REFERENCES if mars_refs is None else mars_refs
         self.engine = MatchingEngine(
             feature_weights=weights,
             physical_scaling=physical_scaling,
+            geometric_features=tuple(name for name in DUNE_GEOMETRIC_FEATURES if name in weights),
+            areal_features=tuple(name for name in DUNE_AREAL_DENSITY_FEATURES if name in weights),
+            circular_features={name: period for name, period in DUNE_CIRCULAR_FEATURES.items() if name in weights},
         )
+        self.skipped: list[dict] = []
 
     def run(self, earth_sites: list[DuneFeatureVector]) -> list[MatchResult]:
         """
@@ -43,15 +50,14 @@ class DuneMatcher:
         Retorna lista de MatchResult ordenada por site_id e rank.
         """
         if not earth_sites:
+            self.skipped = []
             log.warning("DuneMatcher: nenhum sítio terrestre para comparar.")
             return []
-
-        feature_names = list(DUNE_FEATURE_WEIGHTS.keys())
 
         # Monta vetores terrestres
         earth_vectors = []
         for fv in earth_sites:
-            vec = fv.to_array(DUNE_FEATURE_WEIGHTS)
+            vec = fv.to_array(dict(zip(self.engine.feature_names, self.engine.weights)))
             earth_vectors.append((fv.site_id, vec))
 
         # Fit + matching
@@ -61,6 +67,7 @@ class DuneMatcher:
             target_body="mars",
             feature_type="dune",
         )
+        self.skipped = self.engine.skipped
 
         log.info(
             f"DuneMatcher: {len(earth_sites)} sítios × {len(self.refs)} refs "

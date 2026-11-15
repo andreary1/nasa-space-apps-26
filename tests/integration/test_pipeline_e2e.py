@@ -217,4 +217,4 @@ def run_all_tests():
 
 
 if __name__ == "__main__":
-    run_all_tests()
+    raise SystemExit(0 if len(run_all_tests()) == 4 else 1)
