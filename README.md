@@ -159,18 +159,3 @@ Import the repository in Vercel with the root directory as is (Framework Preset:
 Environment Variables, add `AI_API_KEY` (and optionally `AI_PROVIDER`, `AI_MODEL`). Reports
 generated online are not saved; commit `deliverables/demo/js/data/ai-reports.json` after
 running `npm run reports` locally so every visitor sees them.
-
-## Known limitations and next steps
-
-- The demo computes scores in the browser from its own catalog. It does not yet load the Python
-  pipeline report.
-- In the current pipeline report, every crater site gets the same score with no matched lunar
-  reference. This needs investigation before pipeline results are used.
-- Planetary references are fixed values in code. The downloaded Mars and Moon DTMs are not yet
-  processed by the pipeline.
-- ASTER and EMIT data are downloaded but not used yet.
-- Part of the site catalog uses generic data that will be replaced by complete measurements.
-  After updating, regenerate the AI reports with `--force`.
-- Profiles in the charts are parametric schematics, not measured DEM cross-sections.
-- Public hosting (for example Vercel or Netlify with a serverless function for the AI reports)
-  is planned so the demo can be used without running anything locally.
