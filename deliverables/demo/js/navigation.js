@@ -18,7 +18,7 @@ export function createNavigation(state, onChange) {
     }
     views.forEach(element => { element.hidden = element !== view; });
     workspace.classList.toggle('content-mode', page !== 'globe');
-    document.title = `${PAGES[page]} · Planetary Analog Finder`;
+    document.title = `${PAGES[page]} · GeoEcos`;
     document.querySelectorAll('[data-page]').forEach(button => {
       const active = button.dataset.page === page;
       button.classList.toggle('active', active);
