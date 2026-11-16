@@ -9,11 +9,11 @@ let config;
 try {
   config = providerConfig();
 } catch (error) {
-  console.log(`✗ Configuração: ${error.message}`);
+  console.log(`✗ Configuration: ${error.message}`);
   process.exit(1);
 }
-console.log(`Provedor: ${config.name}\nEndpoint: ${config.baseUrl}\nModelo: ${config.model}\nChave: ${config.apiKey.length} caracteres, começa com "${config.apiKey.slice(0, 4)}…"`);
-if (/\s/.test(config.apiKey)) console.log('⚠ A chave contém espaços. Confira o .env.');
+console.log(`Provider: ${config.name}\nEndpoint: ${config.baseUrl}\nModel: ${config.model}\nKey: ${config.apiKey.length} characters, starts with "${config.apiKey.slice(0, 4)}…"`);
+if (/\s/.test(config.apiKey)) console.log('⚠ The key contains spaces. Check .env.');
 
 async function timed(label, run) {
   const started = Date.now();
@@ -23,7 +23,7 @@ async function timed(label, run) {
     return true;
   } catch (error) {
     const cause = error.cause?.code || error.cause?.message;
-    const reason = error.name === 'TimeoutError' ? 'sem resposta no tempo limite' : `${error.message}${cause ? ` (${cause})` : ''}`;
+    const reason = error.name === 'TimeoutError' ? 'no response within the timeout' : `${error.message}${cause ? ` (${cause})` : ''}`;
     console.log(`✗ ${label} (${((Date.now() - started) / 1000).toFixed(1)}s): ${reason}`);
     return false;
   }
@@ -31,7 +31,7 @@ async function timed(label, run) {
 
 const headers = { 'Content-Type': 'application/json', Authorization: `Bearer ${config.apiKey}` };
 
-console.log('\n1. Lista de modelos (testa rede e chave)');
+console.log('\n1. Model list (tests network and key)');
 let modelIds = [];
 const listed = await timed('GET /models', async () => {
   const response = await fetch(`${config.baseUrl}/models`, { headers, signal: AbortSignal.timeout(20000) });
@@ -42,13 +42,13 @@ const listed = await timed('GET /models', async () => {
 });
 if (listed && modelIds.length) {
   const found = modelIds.includes(config.model.replace(/^models\//, ''));
-  console.log(found ? `✓ Modelo "${config.model}" disponível` : `⚠ Modelo "${config.model}" não aparece na lista`);
+  console.log(found ? `✓ Model "${config.model}" available` : `⚠ Model "${config.model}" is not listed`);
   const flash = modelIds.filter(id => /flash/i.test(id) && !/image|tts|audio|live|embedding/i.test(id)).slice(0, 8);
-  if (flash.length) console.log(`  Modelos "flash" disponíveis: ${flash.join(', ')}`);
+  if (flash.length) console.log(`  Available "flash" models: ${flash.join(', ')}`);
 }
 
 async function chat(reasoning) {
-  const body = { model: config.model, messages: [{ role: 'user', content: 'Responda apenas com a palavra: ok' }], max_tokens: 50 };
+  const body = { model: config.model, messages: [{ role: 'user', content: 'Reply with only the word: ok' }], max_tokens: 50 };
   if (reasoning) body.reasoning_effort = reasoning;
   const response = await fetch(`${config.baseUrl}/chat/completions`, { method: 'POST', headers, body: JSON.stringify(body), signal: AbortSignal.timeout(45000) });
   const text = await response.text();
@@ -56,8 +56,8 @@ async function chat(reasoning) {
   return JSON.stringify(JSON.parse(text).choices?.[0]?.message?.content ?? '').slice(0, 60);
 }
 
-console.log('\n2. Resposta curta');
-if (config.reasoning) await timed(`com reasoning_effort=${config.reasoning}`, () => chat(config.reasoning));
-await timed('sem reasoning_effort', () => chat(''));
+console.log('\n2. Short response');
+if (config.reasoning) await timed(`with reasoning_effort=${config.reasoning}`, () => chat(config.reasoning));
+await timed('without reasoning_effort', () => chat(''));
 
-console.log('\nSe algo falhou, cole esta saída na conversa.');
+console.log('\nIf anything failed, paste this output into the chat.');

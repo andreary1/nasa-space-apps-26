@@ -59,7 +59,7 @@ function fillPreset(key) {
     document.getElementById("d-indice_aridez").value = p.metrics.aridity_index;
   }
 
-  showToast(`Preset "${p.name}" carregado com sucesso!`);
+  showToast(`Preset "${p.name}" loaded successfully!`);
 }
 
 function addNewSiteFromForm() {
@@ -69,7 +69,7 @@ function addNewSiteFromForm() {
   const lon = parseFloat(document.getElementById("input-lon").value);
 
   if (!name || !Number.isFinite(lat) || !Number.isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) {
-    showToast("Preencha Nome, Latitude e Longitude da localidade.", "error");
+    showToast("Enter the site\'s name, latitude and longitude.", "error");
     return;
   }
 
@@ -103,25 +103,25 @@ function addNewSiteFromForm() {
   }
 
   if (Object.values(metrics).some(value => !Number.isFinite(value) || value < 0) || (state.activeFormType === 'crater' && metrics.diameter_m <= 0)) {
-    showToast('Preencha todas as métricas com valores válidos; zero é permitido, exceto no diâmetro.', 'error');
+    showToast('Enter valid values for all metrics; zero is allowed except for diameter.', 'error');
     return;
   }
   const newSite = {
     id: `${id}_${Date.now()}`,
     name: name,
     uf: uf,
-    category: state.activeFormType === "crater" ? "Cratera de Impacto" : "Campo de Dunas",
+    category: state.activeFormType === "crater" ? "Impact Crater" : "Dune Field",
     type: state.activeFormType,
     body: state.activeFormType === "crater" ? "moon" : "mars",
     lat: lat,
     lon: lon,
     metrics: metrics,
     similarities: [
-      "Dados informados pelo usuário; sem validação independente."
+      "User-provided data; no independent validation."
     ],
     differences: [
-      "Intemperismo superficial terrestre ativo.",
-      "Ambiente deposicional condicionado pela atmosfera local."
+      "Active terrestrial surface weathering.",
+      "Depositional environment shaped by the local atmosphere."
     ]
   };
 
@@ -129,16 +129,16 @@ function addNewSiteFromForm() {
   state.currentSiteIndex = 0;
 
   onCatalogChange();
-  showToast(`Localidade "${name}" adicionada ao catálogo mundial!`);
+  showToast(`Site "${name}" added to the world catalog!`);
 }
 
 function exportCurrentSiteJson() {
   const site = SITES_DATA[state.currentSiteIndex];
   const jsonStr = JSON.stringify(site, null, 2);
   Promise.resolve().then(() => navigator.clipboard.writeText(jsonStr)).then(() => {
-    showToast("JSON do sítio copiado para a área de transferência!");
+    showToast("Site JSON copied to the clipboard!");
   }).catch(() => {
-    prompt("Copie o JSON do sítio:", jsonStr);
+    prompt("Copy the site JSON:", jsonStr);
   });
 }
 return {setFormType, autoCalcCraterRatios, fillPreset, addNewSiteFromForm, exportCurrentSiteJson};

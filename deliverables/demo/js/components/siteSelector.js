@@ -6,7 +6,7 @@ export function createSiteSelector(state) {
     const sites = SITES_DATA.map((site, index) => ({site, index}))
       .filter(({site}) => state.activePage !== 'analysis' || site.type === state.analysisType);
     document.getElementById('catalog-title').textContent = state.activePage === 'analysis'
-      ? `${state.analysisType === 'dune' ? 'Dunas' : 'Crateras'} (${sites.length})` : `Localidades terrestres (${sites.length})`;
+      ? `${state.analysisType === 'dune' ? 'Dunes' : 'Craters'} (${sites.length})` : `Terrestrial sites (${sites.length})`;
     const mapDesign = state.activePage === 'map';
     const comparisonsDesign = state.activePage === 'comparisons';
     const analysisDesign = state.activePage === 'analysis';
@@ -22,7 +22,7 @@ export function createSiteSelector(state) {
     const reuseCards = decoratedDesign && grid.dataset.design === design && grid.dataset.sites === signature;
     if (!reuseCards) grid.innerHTML = sites.map(({site, index}) => `
       <button class="site-option" data-action="selectSite" data-value="${index}" aria-pressed="${index === state.currentSiteIndex}">
-      ${decoratedDesign ? `<svg class="catalog-site-icon" data-type="${site.type}" aria-hidden="true"><use href="#i-${site.type === 'dune' ? 'dune' : 'crater'}"/></svg><span class="catalog-site-copy"><span>${site.type === 'dune' ? 'Duna' : 'Cratera'} · ${escapeHtml(site.uf)}</span><strong>${escapeHtml(site.name)}</strong></span>` : `<span>${site.type === 'dune' ? 'Duna' : 'Cratera'} · ${escapeHtml(site.uf)}</span>${escapeHtml(site.name)}`}</button>`).join('');
+      ${decoratedDesign ? `<svg class="catalog-site-icon" data-type="${site.type}" aria-hidden="true"><use href="#i-${site.type === 'dune' ? 'dune' : 'crater'}"/></svg><span class="catalog-site-copy"><span>${site.type === 'dune' ? 'Dune' : 'Crater'} · ${escapeHtml(site.uf)}</span><strong>${escapeHtml(site.name)}</strong></span>` : `<span>${site.type === 'dune' ? 'Dune' : 'Crater'} · ${escapeHtml(site.uf)}</span>${escapeHtml(site.name)}`}</button>`).join('');
     grid.dataset.design = design;
     grid.dataset.sites = signature;
     if (reuseCards) grid.querySelectorAll('button').forEach(button => {

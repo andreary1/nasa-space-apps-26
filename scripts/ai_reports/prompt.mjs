@@ -3,60 +3,61 @@
 
 import { PARAM_LABELS } from '../../deliverables/demo/js/data/constants.js';
 
-export const PROMPT_VERSION = '0.1.0';
+export const PROMPT_VERSION = '0.2.0-en';
 
 // Tipos de uso que a NASA realmente faz com análogos terrestres.
 // A IA só pode escolher entre estes, para não inventar programas.
 export const SUGGESTION_TYPES = {
-  treinamento_astronautas: 'Treinamento de astronautas em geologia de campo',
-  teste_rovers_robotica: 'Teste de rovers, robótica e navegação autônoma',
-  calibracao_instrumentos: 'Calibração e validação de instrumentos orbitais',
-  estudo_processos: 'Estudo de processos geológicos (eólicos, impacto, erosão)',
-  validacao_algoritmos: 'Validação de algoritmos de detecção e morfometria',
-  educacao_divulgacao: 'Educação e divulgação científica',
+  treinamento_astronautas: 'Astronaut training in field geology',
+  teste_rovers_robotica: 'Rover, robotics and autonomous navigation testing',
+  calibracao_instrumentos: 'Calibration and validation of orbital instruments',
+  estudo_processos: 'Study of geological processes (aeolian, impact, erosion)',
+  validacao_algoritmos: 'Validation of detection and morphometry algorithms',
+  educacao_divulgacao: 'Education and science outreach',
 };
 
 export const CONFIDENCE_LEVELS = ['baixa', 'media', 'alta'];
 
-export const SYSTEM_PROMPT = `Você é um geólogo planetário que analisa análogos terrestres para a NASA.
-Recebe dados morfométricos de uma localidade na Terra e a comparação dela com feições de Marte (dunas) ou da Lua (crateras).
+export const SYSTEM_PROMPT = `You are a planetary geologist analyzing terrestrial analogs for NASA.
+You receive morphometric data for an Earth site and comparisons with Martian dunes or lunar craters.
 
-REGRAS OBRIGATÓRIAS
-1. Use somente os dados recebidos. Não invente medidas, datas, idades, minerais, estudos ou missões.
-2. Toda semelhança e diferença deve citar no campo "metricas" as chaves das métricas que a sustentam (ex.: "wavelength").
-   Use apenas chaves presentes em "metricas_comparadas". Se a afirmação não vier de uma métrica, deixe a lista vazia e diga isso no texto.
-3. As "notas_catalogo" foram escritas pela equipe e ainda não foram verificadas: trate-as como hipóteses, nunca como fatos.
-4. Em dunas, as métricas de escala (altura média, comprimento de onda, espaçamento) da referência marciana já vêm multiplicadas pelo fator de Bagnold (2,82). Compare com o valor "referencia_escalada".
-5. Sugestões para a NASA: escolha "tipo" apenas entre: ${Object.keys(SUGGESTION_TYPES).join(', ')}.
-   Justifique cada sugestão com os dados. Não afirme que a NASA já atua no local.
-6. Seja honesto sobre limitações (clima, vegetação, umidade, escala, idade, dados ausentes).
-7. Escreva em português do Brasil, frases claras e curtas, sem exageros.
+MANDATORY RULES
+1. Use only the supplied data. Do not invent measurements, dates, ages, minerals, studies or missions.
+2. Every similarity and difference must cite the supporting metric keys in "metricas" (e.g. "wavelength").
+   Use only keys present in "metricas_comparadas". If a claim is not supported by a metric, leave the list empty and say so in the text.
+3. The team-written "notas_catalogo" have not been verified: treat them as hypotheses, never as facts.
+4. For dunes, the Martian reference's dimensional metrics (mean height, wavelength, spacing) are already multiplied by the Bagnold factor (2.82). Compare against "referencia_escalada".
+5. For NASA suggestions, select "tipo" only from: ${Object.keys(SUGGESTION_TYPES).join(', ')}.
+   Justify every suggestion using the data. Do not claim NASA already operates at the site.
+6. Be honest about limitations (climate, vegetation, moisture, scale, age, missing data).
+7. Write ALL human-readable text in English, using clear, short sentences without exaggeration. Preserve proper names exactly as provided.
+8. Keep the JSON field names and enum values below unchanged; they are internal API identifiers, not display text.
 
-Responda APENAS com um objeto JSON neste formato:
+Respond ONLY with a JSON object in this format:
 {
-  "resumo": "2 a 3 frases sobre o local e o seu valor como análogo",
-  "analogo_principal": { "interpretacao": "o que o score e as métricas dizem sobre a semelhança com a melhor referência" },
-  "semelhancas": [ { "titulo": "...", "explicacao": "...", "metricas": ["chave"] } ],
-  "diferencas": [ { "titulo": "...", "explicacao": "...", "metricas": ["chave"], "impacto": "baixo|medio|alto" } ],
-  "sugestoes_nasa": [ { "tipo": "um dos tipos permitidos", "titulo": "...", "descricao": "o que poderia ser feito", "justificativa": "por que este local, com base nos dados" } ],
+  "resumo": "2 to 3 sentences about the site and its value as an analog",
+  "analogo_principal": { "interpretacao": "what the score and metrics indicate about similarity to the best reference" },
+  "semelhancas": [ { "titulo": "...", "explicacao": "...", "metricas": ["metric_key"] } ],
+  "diferencas": [ { "titulo": "...", "explicacao": "...", "metricas": ["metric_key"], "impacto": "baixo|medio|alto" } ],
+  "sugestoes_nasa": [ { "tipo": "one of the allowed types", "titulo": "...", "descricao": "what could be done", "justificativa": "why this site, based on the data" } ],
   "limitacoes": ["..."],
   "confianca": { "nivel": "baixa|media|alta", "motivo": "..." }
 }
-Use de 2 a 4 itens em semelhanças, diferenças e sugestões.`;
+Use 2 to 4 items for similarities, differences and suggestions.`;
 
 const round = value => (typeof value === 'number' && Number.isFinite(value) ? Number(value.toFixed(4)) : null);
 
 // Monta o objeto de entrada a partir do mesmo modelo de comparação usado pela demo.
 export function buildPayload(model, context) {
   const { site, matches, rows } = model;
-  const body = site.type === 'crater' ? 'Lua' : 'Marte';
+  const body = site.type === 'crater' ? 'Moon' : 'Mars';
   return {
     localidade: {
       id: site.id,
       nome: site.name,
       regiao: site.uf,
       categoria: site.category,
-      tipo_feicao: site.type === 'crater' ? 'cratera' : 'duna',
+      tipo_feicao: site.type === 'crater' ? 'crater' : 'dune',
       corpo_comparado: body,
       coordenadas: { lat: site.lat, lon: site.lon },
     },
@@ -66,7 +67,7 @@ export function buildPayload(model, context) {
     outras_referencias: matches.slice(1, 4).map(match => ({
       nome: match.target.name, score_percent: round(match.score * 100),
     })),
-    metodo_score: 'Score 0-100%: 60% distância euclidiana ponderada (exp(-2,2·WED)) + 40% similaridade de cosseno, normalização par a par pelo máximo.',
+    metodo_score: 'Score 0–100%: 60% weighted Euclidean distance (exp(-2.2·WED)) + 40% cosine similarity, normalized per pair by its maximum.',
     metricas_comparadas: rows.map(row => ({
       chave: row.key,
       rotulo: PARAM_LABELS[row.key] || row.key,
@@ -85,7 +86,7 @@ export function buildPayload(model, context) {
       status_revisao: context.review_status ?? null,
     } : null,
     notas_catalogo: {
-      aviso: 'Texto da equipe, não verificado.',
+      aviso: 'Team-written text, unverified.',
       semelhancas: site.similarities ?? [],
       diferencas: site.differences ?? [],
     },
@@ -95,7 +96,7 @@ export function buildPayload(model, context) {
 export function buildMessages(payload) {
   return [
     { role: 'system', content: SYSTEM_PROMPT },
-    { role: 'user', content: `Analise esta localidade:\n${JSON.stringify(payload, null, 2)}` },
+    { role: 'user', content: `Analyze this site:\n${JSON.stringify(payload, null, 2)}` },
   ];
 }
 
@@ -129,7 +130,7 @@ export function validateReport(raw, payload) {
   };
 
   if (!report.resumo || !report.semelhancas.length || !report.sugestoes_nasa.length) {
-    throw new Error('Resposta incompleta: faltou resumo, semelhanças ou sugestões válidas.');
+    throw new Error('Incomplete response: missing summary, similarities or valid suggestions.');
   }
   return report;
 }
@@ -138,12 +139,12 @@ export function validateReport(raw, payload) {
 export function mockReport(payload) {
   const first = payload.metricas_comparadas[0];
   return {
-    resumo: `[EXEMPLO] Texto de demonstração para ${payload.localidade.nome}. Rode o gerador com a chave de API para obter a análise real.`,
-    analogo_principal: { interpretacao: '[EXEMPLO] Interpretação do score aparecerá aqui.' },
-    semelhancas: [{ titulo: '[EXEMPLO] Semelhança', explicacao: 'Explicação baseada nas métricas.', metricas: first ? [first.chave] : [] }],
-    diferencas: [{ titulo: '[EXEMPLO] Diferença', explicacao: 'Explicação baseada nas métricas.', metricas: [], impacto: 'medio' }],
-    sugestoes_nasa: [{ tipo: 'estudo_processos', titulo: '[EXEMPLO] Sugestão', descricao: 'O que poderia ser feito.', justificativa: 'Por que este local.' }],
-    limitacoes: ['[EXEMPLO] Limitações aparecerão aqui.'],
-    confianca: { nivel: 'baixa', motivo: 'Relatório de exemplo, sem análise real.' },
+    resumo: `[EXAMPLE] Demonstration text for ${payload.localidade.nome}. Run the generator with an API key for a real analysis.`,
+    analogo_principal: { interpretacao: '[EXAMPLE] Score interpretation will appear here.' },
+    semelhancas: [{ titulo: '[EXAMPLE] Similarity', explicacao: 'Explanation based on the metrics.', metricas: first ? [first.chave] : [] }],
+    diferencas: [{ titulo: '[EXAMPLE] Difference', explicacao: 'Explanation based on the metrics.', metricas: [], impacto: 'medio' }],
+    sugestoes_nasa: [{ tipo: 'estudo_processos', titulo: '[EXAMPLE] Suggestion', descricao: 'O que poderia ser feito.', justificativa: 'Por que este local.' }],
+    limitacoes: ['[EXAMPLE] Limitations will appear here.'],
+    confianca: { nivel: 'baixa', motivo: 'Example report without real analysis.' },
   };
 }

@@ -2,7 +2,7 @@ import { COMPARISON_DEMO } from '../data/comparisonDemo.js';
 
 const value = (number) =>
   typeof number === 'number' && Number.isFinite(number)
-    ? number.toLocaleString('pt-BR', { maximumFractionDigits: 3 })
+    ? number.toLocaleString('en-US', { maximumFractionDigits: 3 })
     : '—';
 const km = (number) =>
   typeof number === 'number' && Number.isFinite(number)
@@ -22,67 +22,67 @@ export function compactTable(location, target) {
   const rows =
     target === 'lunar'
       ? [
-          ['Diâmetro (km)', km(earth.diameter_m), km(reference.diameter_m)],
-          ['Profundidade (km)', km(earth.depth_m), km(reference.depth_m)],
+          ['Diameter (km)', km(earth.diameter_m), km(reference.diameter_m)],
+          ['Depth (km)', km(earth.depth_m), km(reference.depth_m)],
           [
-            'Bordas',
+            'Rims',
             description(earth.bordas?.descricao),
             description(reference.bordas?.descricao),
           ],
           [
-            'Declividade (°)',
+            'Slope (°)',
             value(earth.mean_wall_slope),
             value(reference.mean_wall_slope),
           ],
           [
-            'Estrutura interna',
+            'Internal structure',
             description(earth.estrutura_interna?.join('; ')),
             description(reference.estrutura_interna?.join('; ')),
           ],
         ]
       : [
           [
-            'Tipo de duna',
+            'Dune type',
             description(earth.tipo_duna || data.earthDescription),
             description(reference.tipo_duna),
           ],
           [
-            'Altura média (m)',
+            'Mean height (m)',
             value(earth.mean_height),
             value(reference.mean_height),
           ],
           [
-            'Comprimento de onda (m)',
+            'Wavelength (m)',
             value(earth.wavelength),
             value(reference.wavelength),
           ],
           [
-            'Orientação / azimute (°)',
+            'Orientation / azimuth (°)',
             value(earth.crest_azimuth),
             value(reference.crest_azimuth),
           ],
           [
-            'Densidade de dunas (cristas/km²)',
+            'Dune density (ridges/km²)',
             value(earth.dune_density),
             value(reference.dune_density),
           ],
           [
-            'Espaçamento médio (m)',
+            'Mean spacing (m)',
             value(earth.mean_spacing),
             value(reference.mean_spacing),
           ],
           [
-            'Padrão de distribuição',
+            'Distribution pattern',
             description(earth.padrao_distribuicao),
             description(reference.padrao_distribuicao),
           ],
           [
-            'Índice de aridez',
+            'Aridity index',
             value(earth.aridity_index),
             value(reference.aridity_index),
           ],
         ];
-  return { rows, reference: reference.name || 'Não disponível', demo: false };
+  return { rows, reference: reference.name || 'Unavailable', demo: false };
 }
 
 export class CompactComparison {
@@ -117,22 +117,22 @@ export class CompactComparison {
   }
 
   render(target) {
-    const name = target === 'lunar' ? 'Lua' : 'Marte';
+    const name = target === 'lunar' ? 'Moon' : 'Mars';
     const model = compactTable(this.location, target);
     document.getElementById('compact-target-name').textContent = name;
     const tbody = document.getElementById('metrics');
     document.getElementById('compact-reference').textContent = model
-      ? `${model.demo ? 'Referência ilustrativa' : 'Referência do catálogo'}: ${model.reference}`
-      : `Sem dados comparáveis para esta localidade e ${name}.`;
+      ? `${model.demo ? 'Illustrative reference' : 'Catalog reference'}: ${model.reference}`
+      : `No comparable data for this site and ${name}.`;
     document.getElementById('compact-data-note').textContent = model?.demo
-      ? 'Dados demonstrativos · sem validação científica. Independentes dos scores do painel direito.'
-      : 'Catálogo herdado · campos ausentes indicados por —. Sem novas medições.';
+      ? 'Demonstration data · not scientifically validated. Independent of the scores in the right panel.'
+      : 'Legacy catalog · missing fields shown as —. No new measurements.';
     if (!model) {
       const tr = document.createElement('tr'),
         td = document.createElement('td');
       td.colSpan = 3;
       td.className = 'compact-empty';
-      td.textContent = `Não existem dados comparáveis para esta combinação. Selecione ${target === 'lunar' ? 'Marte para métricas de dunas' : 'Lua para métricas de crateras'}.`;
+      td.textContent = `No comparable data for this combination. Select ${target === 'lunar' ? 'Mars for dune metrics' : 'Moon for crater metrics'}.`;
       tr.append(td);
       tbody.replaceChildren(tr);
       return;

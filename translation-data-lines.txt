@@ -1,0 +1,154 @@
+2|Coastal scrub and mangroves are among the park's ecosystems.
+3|Vila de Jericoacoara, in the municipality of Jijoca de Jericoacoara (CE).
+4|Local project catalog (information not yet reviewed)
+5|NASA POWER — climatology and original data
+6|TCU — Description of Parque Nacional de Jericoacoara
+7|Park and village context; does not establish land cover at the selected pixel
+13|Gridded regional climatology; not a point measurement or forecast.
+14|Coastal landscape with mobile dunes, interdune lagoons and rocky shores.
+17|Cerrado, influenced by Caatinga and Amazônia, according to ICMBio.
+18|Coastal scrub and mangroves within the park's ecosystem mosaic.
+19|Barreirinhas and Santo Amaro do Maranhão are gateway towns to the park.
+20|ICMBio — Treks in national parks
+22|Dune field with interdune lagoons formed during the rainy season.
+25|Porto do Mangue and Areia Branca (RN), municipalities within the protected area.
+26|Governo do RN — Decree establishing APA Dunas do Rosado
+27|Protected area territory
+30|Caatinga (regional biome of the study area).
+31|Ibiraba village, municipality of Barra (BA), in the São Francisco valley.
+33|Study area in the Ibiraba dunes; not a survey at the registered point
+36|Merzouga, in eastern Marrocos, is a reference location for Erg Chebbi.
+37|Official Marrocos tourism — Errachidia–Midelt–Merzouga
+38|Merzouga tourism region
+42|Regional context of the Namibe sand sea
+43|Regional system of ancient semiconsolidated dunes overlain by more recent active dunes.
+48|Flora adapted to gypsum soils, including Abronia angustifolia on dunes and Centaurium calycosum in interdune areas.
+50|White Sands dune field
+52|Flora documented in the park, not a site inventory
+53|Gypsum sand dunes in the Tularosa basin; the mineral is dissolved, recrystallized and reworked into grains.
+56|Currais Novos (RN); access to the geosite is about 10 km from the town center, according to SGB.
+57|SGB — Cânion dos Apertados geosite
+58|Canyon in the quartzites of Formação Equador, cut by Rio Picuí.
+63|SGB — Geological publication about Pico do Cabugi
+64|Geological formation
+65|Volcanic center with a basaltic central portion.
+68|Nova Olinda and Santana do Cariri (CE), municipalities in the production region.
+69|CETEM — Geological aspects of Bacia do Araripe
+70|Pedra Cariri production region
+71|Laminated limestone from Bacia do Araripe, used as facing stone.
+76|Regional context; specific outcrop unconfirmed
+77|Sedimentary terrain region used by SGB for geological training.
+80|Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica
+81|Structures identified in the article
+82|Impact-origin structure identified in the geological literature.
+93|Unicamp — Research documentation on impact structures
+94|Santa Marta structure
+95|Impact structure in Piauí, studied by Unicamp researchers.
+99|Barringer crater
+100|Impact crater in Arizona, also known as Meteor Crater.
+104|Geological structure
+105|Dome representing part of a larger meteorite impact structure.
+109|Chicxulub structure
+110|Impact structure largely submerged near the Yucatán peninsula.
+114|Park and crater
+115|Lake-filled meteorite crater on the Ungava plateau, Nunavik.
+119|Lonar crater
+120|Impact crater formed in basaltic rocks.
+121|Lençóis Maranhenses is a barchanoid dune field with a morphological pattern relevant to aeolian comparisons with Mars. The site obtained a moderate similarity score of 58.85% relative to Namib dune in Gale Crater. Despite geometric similarities in ridge orientation, the environment has high humidity and rainfall contrasting with Martian conditions.
+122|The score of 58.85% indicates moderate morphological similarity to Namib dune. Ridge azimuth closely matches the Martian feature, but there are substantial differences in scaled mean height and aridity.
+123|Preferred ridge orientation
+124|The ridge azimuth of the terrestrial dunes is 161°, very close to the 170° recorded in the Martian reference, showing similar alignment under unidirectional winds.
+125|Spatial ridge density
+126|Density at Lençóis Maranhenses is 6.58 ridges/km², close to the 8.5 ridges/km² observed in the Martian analog.
+127|Scaled wavelength
+128|The terrestrial wavelength of 312 m remains within a comparable order of magnitude to the reference's 239.7 m after applying the Bagnold scaling factor.
+129|Aridity index and hydrology
+130|The recorded terrestrial aridity index is 0.764, while the Martian dune value is 0, reflecting the complete absence of liquid water in the planetary analog.
+131|Mean height under Bagnold scaling
+132|Mean height at Lençóis Maranhenses is 6.3 m, 55.32% below the scaled Martian reference of 14.1 m.
+133|Mean dune spacing
+134|Mean spacing at the site is 367 m, exceeding the scaled Martian reference (253.8 m) by 44.6%.
+135|Validation of ridge extraction algorithms
+136|Test remote-sensing tools for aeolian ridge azimuth and density using orbital imagery.
+137|The field has a well-defined azimuth of 161° and density of 6.58/km², suitable for calibrating automated barchanoid pattern recognition metrics.
+138|Sediment transport studies in periodic ridges
+139|Monitor Eulerian propagation dynamics and spacing under local mean winds of 2.42 m/s.
+140|The site has regular wavelength (312 m) and spacing (367 m), allowing field-controlled studies of dune self-organization physics.
+141|Humid tropical climate with daily precipitation of 3.83 mm/day and relative humidity of 78.89%, absent on Mars.
+142|Vegetation cover (coastal scrub and mangroves in the local mosaic) affects aeolian sediment dynamics.
+143|Large discrepancy in scaled mean height (-55.32%) relative to the Gale reference.
+144|Catalog notes contain hypotheses not verified by the team, with review pending.
+145|Azimuth and density metrics provide a solid geometric basis, but major climatic differences and unverified data reduce overall confidence.
+146|Jericoacoara has an active barchan dune field serving as a morphometric analog for Martian dunes. The site supports studies of aeolian processes under steady winds, despite climatic and gravitational differences.
+147|The score of 55.6% indicates moderate similarity to Namib Dune in Gale Crater, with significant convergence in wavelength and azimuth after applying the Bagnold scaling factor.
+148|Ridge Alignment
+149|Ridge azimuth in Jericoacoara is very close to that observed in the Martian reference, suggesting a consistent unidirectional wind regime.
+150|Wavelength Scale
+151|After applying the Bagnold factor, dune wavelength shows a meaningful correspondence with the features in Gale Crater.
+152|Mean Dune Height
+153|Terrestrial dunes have significantly lower mean height than the scaled reference, due to differences in gravity and deposition dynamics.
+154|Ridge Density
+155|Ridge density per km² is lower in Jericoacoara, indicating wider feature spacing than in the Martian dune field.
+156|Aridity Index
+157|The terrestrial environment is significantly wetter, changing sediment cohesion compared with the hyperarid environment of Mars.
+158|Aeolian migration dynamics
+159|Monitor barchan dune migration to understand sediment transport rates under steady winds.
+160|Similar azimuth and wavelength make the site ideal for validating aeolian transport models.
+161|Automated dune mapping
+162|Use high-resolution images of Jericoacoara to train ridge detection and spacing measurement algorithms.
+163|The morphological clarity of local barchans provides a robust training dataset for identifying similar features on Mars.
+164|High humidity and coastal vegetation, absent on Mars.
+165|Different mineral composition (quartz versus basalt).
+166|Influence of Earth's gravity (1g) on dune height.
+167|Although the morphometric data are precise, environmental conditions (moisture and biology) differ drastically from the Martian environment.
+168|Chicxulub crater is a significant geological analog for studying complex lunar craters, despite its almost nonexistent surface expression. The site offers a unique opportunity to investigate gravitational collapse processes in large-scale craters.
+169|The low similarity score (33.76%) reflects the disparity between Cabeus's preserved morphology and Chicxulub's burial and erosion, indicating that comparison is limited by topographic preservation.
+170|Feature circularity
+171|The crater's overall shape retains circularity close to the lunar reference, suggesting comparable initial impact geometry.
+172|Rim coherence
+173|The rim structure has a level of coherence that, although lower, still allows recognition as a complex crater.
+174|Depth-to-diameter ratio
+175|Chicxulub is much shallower relative to its diameter than Cabeus because of post-impact sediment infilling.
+176|Wall slope
+177|Chicxulub's walls are significantly gentler than the lunar crater's, as a result of terrestrial erosion and burial.
+178|Rim height
+179|Rim height relative to diameter is drastically lower on Earth, indicating loss of original relief.
+180|Crater burial analysis
+181|Use Chicxulub geophysical data to model how ancient lunar craters may be modified by infilling processes.
+182|Differences in depth and slope metrics help explain crater evolution under burial.
+183|Remote detection algorithms
+184|Test crater detection algorithms on gravity data to identify buried features.
+185|Chicxulub's low surface visibility is an ideal challenge for validating detection algorithms in complex lunar terrain.
+186|The crater is buried beneath nearly 1 km of sediment, making direct topographic comparison with the Moon poorly representative.
+187|A marine environment and karst processes (cenotes) alter the original morphology differently from lunar processes.
+188|The tropical climate and high humidity have no equivalent in the Moon's vacuum and arid conditions.
+189|Differences in depth and slope metrics, combined with geological burial, reduce the precision of direct comparison with exposed lunar craters.
+190|Pedra Cariri has depression morphology with inner slopes comparable to complex lunar craters. Although its absolute size is much smaller than Copernicus crater, its internal geometry offers a useful analog for slope-process studies.
+191|The score of 47.4% indicates moderate similarity, supported mainly by similar mean wall slopes despite a significant difference in linear dimensions.
+192|The mean wall inclination is very close to that observed in complex lunar craters.
+193|Rim geometry
+194|Rim coherence and feature circularity have values close to lunar patterns.
+195|Aspect ratio
+196|The depth-to-diameter ratio is compatible with lunar crater morphology.
+197|Dimensional scale
+198|Pedra Cariri's diameter and depth are drastically smaller than those of Copernicus crater.
+199|Rim height relative to diameter is disproportionately greater at Pedra Cariri.
+200|Slope erosion analysis
+201|Study degradation of the depression walls to model erosion processes on lunar slopes.
+202|Similar mean slopes allow degradation processes to be observed at terrestrial scales.
+203|Feature detection algorithm testing
+204|Use local topography to train crater recognition algorithms for remote-sensing data.
+205|Circularity and rim coherence are metrics that allow fine-tuning of detection models.
+206|Pedra Cariri has a sedimentary origin, whereas Copernicus has an impact origin, changing material properties and stratigraphy.
+207|The tropical climate and active rainfall cause water erosion absent on the Moon.
+208|The difference in absolute scale limits direct extrapolation of large-impact processes.
+209|Slope metrics are consistent, but the difference in scale and geological origin requires caution when extrapolating.
+210|Wikimedia Commons, selected on 2026-11-15. When displaying, credit the author and license with a link to the source page.
+211|Ground photograph
+212|Satellite image
+213|Aerial image
+214|Shaded relief
+223|Geossítio Ponte de Pedra (Nova Olinda), in Geopark Araripe; not the quarry itself.
+226|James Stuby, based on USGS/Landsat imagery
+227|USGS/NASA Landsat; cropped by Szczureq
+230|Shaded relief: the crater is buried and not visible in a regular photograph.

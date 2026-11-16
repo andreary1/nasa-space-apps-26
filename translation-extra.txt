@@ -1,0 +1,92 @@
+Terrestres|Terrestrial
+Lunares|Lunar
+Marcianas|Martian
+Preparando o planeta…|Preparing the planet…
+Explore o planeta|Explore the planet
+Localidade selecionada|Selected site
+Sobre o local|About the site
+Sobre os dados|About the data
+Localidades georreferenciadas · WGS84 / EPSG:4326.|Georeferenced sites · WGS84 / EPSG:4326.
+Mundo|World
+Nordeste|Northeast
+Localidades terrestres|Terrestrial sites
+Selecionar localidade|Select a site
+Barras|Bars
+Alvo|Target
+Peso|Weight
+Cadastrar localidade|Register a site
+Cratera|Crater
+Duna|Dune
+Graus Decimais|Decimal Degrees
+profundidade_m (Piso à Borda)|Depth (floor to rim, m)
+altura_borda_m (Borda ao Entorno)|Rim height (above surroundings, m)
+declividade_parede_media (°)|Mean wall slope (°)
+declividade_parede_p90 (°)|Wall slope P90 (°)
+circularidade (4πA/P²)|Circularity (4πA/P²)
+altura_media (m)|Mean height (m)
+altura_p90 (m)|Height P90 (m)
+comprimento_onda λ (m)|Wavelength λ (m)
+orientacao_azimute (°)|Crest azimuth (°)
+densidade_dunas (cristas/km²)|Dune density (ridges/km²)
+espacamento_medio (m)|Mean spacing (m)
+>indice_aridez<|>Aridity index<
+Cadastrar e comparar|Register and compare
+Auto calculado|Calculated automatically
+Ex: |E.g.: 
+Profundidade (m)|Depth (m)
+Profundidade (km)|Depth (km)
+Profundidade: |Depth: 
+Esquema paramétrico: Terra e alvo planetário|Parametric diagram: Earth and planetary target
+Radar de métricas normalizadas|Radar of normalized metrics
+Bordas|Rims
+Elevadas|Raised
+Declividade (°)|Slope (°)
+Estrutura interna|Internal structure
+Piso definido|Defined floor
+Barcana|Barchan
+Agrupado|Clustered
+Modelo: |Model: 
+Gerando…|Generating…
+O que a NASA poderia fazer aqui|What NASA could do here
+Impacto |Impact 
+Consultar fonte|View source
+Carregando contexto…|Loading context…
+Tentar novamente|Try again
+Clima · NASA POWER|Climate · NASA POWER
+Geologia|Geology
+Bioma|Biome
+Fontes consultadas|Sources
+Coordenadas|Coordinates
+Tipo|Type
+Idade aproximada|Approximate age
+Selecionada: |Selected: 
+no enquadramento|in view
+"localidade"|"site"
+"localidades"|"sites"
+Altura Borda (m)|Rim height (m)
+CV Raio Borda|Rim radius CV
+Declividade P90 (°)|Slope P90 (°)
+Circularidade|Circularity
+Altura P90 (m)|Height P90 (m)
+Comprimento Onda λ (m)|Wavelength λ (m)
+Azimute Crista (°)|Crest azimuth (°)
+Densidade Cristas (/km²)|Ridge density (/km²)
+Megadunas Lineares e Barcanoides|Linear and Barchanoid Megadunes
+Cratera Circular em Escudo Cristalino|Circular Crater in Crystalline Shield
+Intemperismo superficial terrestre ativo.|Active terrestrial surface weathering.
+Ambiente deposicional condicionado pela atmosfera local.|Depositional environment shaped by the local atmosphere.
+S = 0,60·e^(−2,2·WED) + 0,40·cos(θ)|S = 0.60·e^(−2.2·WED) + 0.40·cos(θ)
+0,00|0.00
+Explore localidades terrestres e comparações morfométricas com feições da Moon e de Mars.|Explore terrestrial sites and morphometric comparisons with features on the Moon and Mars.
+Corpo muito grande.|Request body too large.
+Proibido|Forbidden
+AI desativada|AI disabled
+IA desativada|AI disabled
+Localidade inválida ou fora do catálogo.|Invalid site or site not found in the catalog.
+A resposta não contém JSON.|The response contains no JSON.
+Defina AI_MODEL no .env para este provedor.|Set AI_MODEL in .env for this provider.
+AI_API_KEY não definida. Copie .env.example para .env e coloque sua chave.|AI_API_KEY is not set. Copy .env.example to .env and enter your key.
+sem detalhes|no details
+Tempo total de geração excedido. Tente novamente mais tarde.|Total generation time exceeded. Try again later.
+Tempo total de geração excedido.|Total generation time exceeded.
+Resposta sem conteúdo.|Empty response.

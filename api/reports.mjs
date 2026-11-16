@@ -33,7 +33,7 @@ export default async function handler(req, res) {
 
   const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
   const site = resolveSite(body.site);
-  if (!site) return res.status(400).json({ error: 'Localidade inválida ou fora do catálogo.' });
+  if (!site) return res.status(400).json({ error: 'Invalid site or site not found in the catalog.' });
 
   const hit = cache.get(site.id);
   if (hit && Date.now() - hit.at < CACHE_MS && JSON.stringify(hit.metrics) === JSON.stringify(site.metrics)) {
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
   try {
     const entry = await generateEntry(site, config, { log: console.warn });
     cache.set(site.id, { at: Date.now(), metrics: site.metrics, entry });
-    console.log(`✓ ${site.id} com ${entry.model} em ${entry.seconds.toFixed(1)}s`);
+    console.log(`✓ ${site.id} with ${entry.model} in ${entry.seconds.toFixed(1)}s`);
     return res.status(200).json({ id: site.id, persisted: false, hosted: true, entry });
   } catch (error) {
     console.error(`✗ ${site.id}: ${error.message}`);

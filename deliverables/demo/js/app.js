@@ -43,7 +43,7 @@ function updateSelectionViews() {
   aiReport.render(buildComparison(site));
   const compatible = site.type === state.analysisType;
   document.getElementById('analysis-empty').hidden = compatible;
-  document.getElementById('analysis-empty').textContent = `Selecione ${state.analysisType === 'dune' ? 'uma duna' : 'uma cratera'} no catálogo para iniciar a análise. A seleção atual foi preservada.`;
+  document.getElementById('analysis-empty').textContent = `Select ${state.analysisType === 'dune' ? 'a dune' : 'a crater'} in the catalog to start the analysis. The current selection has been preserved.`;
   document.getElementById('analysis-results').hidden = !compatible;
 }
 
@@ -68,7 +68,7 @@ function setMapFilter(filter) {
 function updateCounts() {
   const counts = {earth: SITES_DATA.length, moon: MOON_CRATER_REFERENCES.length, mars: MARS_DUNE_REFERENCES.length};
   document.querySelectorAll('[data-count]').forEach(element => { element.textContent = counts[element.dataset.count]; });
-  for (const [type, label] of [['all', 'Todos'], ['dune', 'Dunas'], ['crater', 'Crateras']]) {
+  for (const [type, label] of [['all', 'All'], ['dune', 'Dunes'], ['crater', 'Craters']]) {
     const count = SITES_DATA.filter(site => type === 'all' || site.type === type).length;
     document.getElementById(`filter-${type}`).textContent = `${label} (${count})`;
   }
@@ -115,6 +115,6 @@ try {
     if (index !== state.currentSiteIndex || !state.hasSelection) selectSite(index, true);
   }, panels, () => { state.hasSelection = false; });
 } catch (error) {
-  showToast('Não foi possível inicializar a interface.', 'error');
+  showToast('Could not initialize the interface.', 'error');
   console.error(error);
 }

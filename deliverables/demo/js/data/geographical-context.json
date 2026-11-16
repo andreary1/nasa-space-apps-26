@@ -2,31 +2,31 @@
   "version": 1,
   "sites": {
     "jericoacoara": {
-      "summary": "Jericoacoara é uma localidade cadastrada na região de CE, Brasil. No catálogo do projeto, está classificada como campo de dunas barcanas.",
+      "summary": "Jericoacoara is a registered site in CE, Brasil. The project catalog classifies it as barchan dune field.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 27.66 C · Precipitação média diária: 2.77 mm/day · Umidade relativa a 2 m: 73.75 % · Vento a 2 m: 2.95 m/s",
+      "climate": "Temperature at 2 m: 27.66 C · Mean daily precipitation: 2.77 mm/day · Relative humidity at 2 m: 73.75 % · Wind at 2 m: 2.95 m/s",
       "biome": null,
-      "vegetation": "Restinga e manguezais entre os ecossistemas do parque.",
-      "nearby_locality": "Vila de Jericoacoara, município de Jijoca de Jericoacoara (CE).",
+      "vegetation": "Coastal scrub and mangroves are among the park's ecosystems.",
+      "nearby_locality": "Vila de Jericoacoara, in the municipality of Jijoca de Jericoacoara (CE).",
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-2.825&longitude=-40.490&format=JSON"
         },
         {
-          "title": "TCU — Caracterização do Parque Nacional de Jericoacoara",
+          "title": "TCU — Description of Parque Nacional de Jericoacoara",
           "url": "https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2534/2022/Plen%25C3%25A1rio",
           "fields": [
             "vegetation",
             "geology",
             "nearby_locality"
           ],
-          "scope": "Parque e vila; não determina a cobertura do pixel selecionado",
+          "scope": "Park and village context; does not establish land cover at the selected pixel",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -122,52 +122,52 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Paisagem costeira com dunas móveis, lagoas interdunares e costão rochoso.",
+      "geology": "Coastal landscape with mobile dunes, interdune lagoons and rocky shores.",
       "field_sources": {
         "vegetation": {
-          "title": "TCU — Caracterização do Parque Nacional de Jericoacoara",
+          "title": "TCU — Description of Parque Nacional de Jericoacoara",
           "url": "https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2534/2022/Plen%25C3%25A1rio",
-          "scope": "Parque e vila; não determina a cobertura do pixel selecionado",
+          "scope": "Park and village context; does not establish land cover at the selected pixel",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "geology": {
-          "title": "TCU — Caracterização do Parque Nacional de Jericoacoara",
+          "title": "TCU — Description of Parque Nacional de Jericoacoara",
           "url": "https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2534/2022/Plen%25C3%25A1rio",
-          "scope": "Parque e vila; não determina a cobertura do pixel selecionado",
+          "scope": "Park and village context; does not establish land cover at the selected pixel",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "nearby_locality": {
-          "title": "TCU — Caracterização do Parque Nacional de Jericoacoara",
+          "title": "TCU — Description of Parque Nacional de Jericoacoara",
           "url": "https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2534/2022/Plen%25C3%25A1rio",
-          "scope": "Parque e vila; não determina a cobertura do pixel selecionado",
+          "scope": "Park and village context; does not establish land cover at the selected pixel",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "lencois": {
-      "summary": "Lençóis Maranhenses é uma localidade cadastrada na região de MA, Brasil. No catálogo do projeto, está classificada como campo de dunas barcanoides.",
+      "summary": "Lençóis Maranhenses is a registered site in MA, Brasil. The project catalog classifies it as barchanoid dune field.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 27.28 C · Precipitação média diária: 3.83 mm/day · Umidade relativa a 2 m: 78.89 % · Vento a 2 m: 2.42 m/s",
-      "biome": "Cerrado, com influência da Caatinga e da Amazônia, segundo o ICMBio.",
-      "vegetation": "Restinga e manguezais no mosaico de ecossistemas do parque.",
-      "nearby_locality": "Barreirinhas e Santo Amaro do Maranhão são cidades de acesso ao parque.",
+      "climate": "Temperature at 2 m: 27.28 C · Mean daily precipitation: 3.83 mm/day · Relative humidity at 2 m: 78.89 % · Wind at 2 m: 2.42 m/s",
+      "biome": "Cerrado, influenced by Caatinga and Amazônia, according to ICMBio.",
+      "vegetation": "Coastal scrub and mangroves within the park's ecosystem mosaic.",
+      "nearby_locality": "Barreirinhas and Santo Amaro do Maranhão are gateway towns to the park.",
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-2.600&longitude=-43.000&format=JSON"
         },
         {
-          "title": "ICMBio — Travessias nos parques nacionais",
+          "title": "ICMBio — Treks in national parks",
           "url": "https://www.gov.br/icmbio/pt-br/centrais-de-conteudo/travessias-uma-aventura-pelos-parques-nacionais-do-brasil-pdf",
           "fields": [
             "biome",
@@ -271,33 +271,33 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Campo de dunas com lagoas interdunares formadas no período chuvoso.",
+      "geology": "Dune field with interdune lagoons formed during the rainy season.",
       "field_sources": {
         "biome": {
-          "title": "ICMBio — Travessias nos parques nacionais",
+          "title": "ICMBio — Treks in national parks",
           "url": "https://www.gov.br/icmbio/pt-br/centrais-de-conteudo/travessias-uma-aventura-pelos-parques-nacionais-do-brasil-pdf",
           "scope": "Parque Nacional dos Lençóis Maranhenses",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "vegetation": {
-          "title": "ICMBio — Travessias nos parques nacionais",
+          "title": "ICMBio — Treks in national parks",
           "url": "https://www.gov.br/icmbio/pt-br/centrais-de-conteudo/travessias-uma-aventura-pelos-parques-nacionais-do-brasil-pdf",
           "scope": "Parque Nacional dos Lençóis Maranhenses",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "geology": {
-          "title": "ICMBio — Travessias nos parques nacionais",
+          "title": "ICMBio — Treks in national parks",
           "url": "https://www.gov.br/icmbio/pt-br/centrais-de-conteudo/travessias-uma-aventura-pelos-parques-nacionais-do-brasil-pdf",
           "scope": "Parque Nacional dos Lençóis Maranhenses",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "nearby_locality": {
-          "title": "ICMBio — Travessias nos parques nacionais",
+          "title": "ICMBio — Treks in national parks",
           "url": "https://www.gov.br/icmbio/pt-br/centrais-de-conteudo/travessias-uma-aventura-pelos-parques-nacionais-do-brasil-pdf",
           "scope": "Parque Nacional dos Lençóis Maranhenses",
           "accessed_on": "2026-11-15",
@@ -306,29 +306,29 @@
       }
     },
     "rosado": {
-      "summary": "Dunas do Rosado é uma localidade cadastrada na região de RN, Brasil. No catálogo do projeto, está classificada como campo de dunas transversais.",
+      "summary": "Dunas do Rosado is a registered site in RN, Brasil. The project catalog classifies it as transverse dune field.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 27.69 C · Precipitação média diária: 1.72 mm/day · Umidade relativa a 2 m: 71.03 % · Vento a 2 m: 5.11 m/s",
+      "climate": "Temperature at 2 m: 27.69 C · Mean daily precipitation: 1.72 mm/day · Relative humidity at 2 m: 71.03 % · Wind at 2 m: 5.11 m/s",
       "biome": null,
       "vegetation": null,
-      "nearby_locality": "Porto do Mangue e Areia Branca (RN), municípios abrangidos pela APA.",
+      "nearby_locality": "Porto do Mangue and Areia Branca (RN), municipalities within the protected area.",
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-5.030&longitude=-36.845&format=JSON"
         },
         {
-          "title": "Governo do RN — Decreto de criação da APA Dunas do Rosado",
+          "title": "Governo do RN — Decree establishing APA Dunas do Rosado",
           "url": "https://www.diariooficial.rn.gov.br/dei/dorn3/documentos/00000001/20180223/600556.htm",
           "fields": [
             "nearby_locality"
           ],
-          "scope": "Território da APA",
+          "scope": "Protected area territory",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -424,33 +424,33 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
       "field_sources": {
         "nearby_locality": {
-          "title": "Governo do RN — Decreto de criação da APA Dunas do Rosado",
+          "title": "Governo do RN — Decree establishing APA Dunas do Rosado",
           "url": "https://www.diariooficial.rn.gov.br/dei/dorn3/documentos/00000001/20180223/600556.htm",
-          "scope": "Território da APA",
+          "scope": "Protected area territory",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "ibiraba": {
-      "summary": "Dunas de Ibiraba (S. Francisco) é uma localidade cadastrada na região de BA, Brasil. No catálogo do projeto, está classificada como campo de dunas fósseis.",
+      "summary": "Dunas de Ibiraba (S. Francisco) is a registered site in BA, Brasil. The project catalog classifies it as fossil dune field.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 27.32 C · Precipitação média diária: 1.56 mm/day · Umidade relativa a 2 m: 57.45 % · Vento a 2 m: 2.67 m/s",
-      "biome": "Caatinga (domínio regional da área estudada).",
+      "climate": "Temperature at 2 m: 27.32 C · Mean daily precipitation: 1.56 mm/day · Relative humidity at 2 m: 57.45 % · Wind at 2 m: 2.67 m/s",
+      "biome": "Caatinga (regional biome of the study area).",
       "vegetation": null,
-      "nearby_locality": "Povoado de Ibiraba, município de Barra (BA), no vale do São Francisco.",
+      "nearby_locality": "Ibiraba village, municipality of Barra (BA), in the São Francisco valley.",
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-10.710&longitude=-42.800&format=JSON"
         },
         {
@@ -460,7 +460,7 @@
             "biome",
             "nearby_locality"
           ],
-          "scope": "Área de estudo nas dunas de Ibiraba; não é levantamento no ponto cadastrado",
+          "scope": "Study area in the Ibiraba dunes; not a survey at the registered point",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -556,49 +556,49 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
       "field_sources": {
         "biome": {
           "title": "Rocha et al. — Plant species and habitat structure in a sand dune field",
           "url": "https://www.scielo.br/j/rbb/a/nVVc6KRxS9rfRSPBkG6mMLp/?format=html&ilang=pt_BR",
-          "scope": "Área de estudo nas dunas de Ibiraba; não é levantamento no ponto cadastrado",
+          "scope": "Study area in the Ibiraba dunes; not a survey at the registered point",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "nearby_locality": {
           "title": "Rocha et al. — Plant species and habitat structure in a sand dune field",
           "url": "https://www.scielo.br/j/rbb/a/nVVc6KRxS9rfRSPBkG6mMLp/?format=html&ilang=pt_BR",
-          "scope": "Área de estudo nas dunas de Ibiraba; não é levantamento no ponto cadastrado",
+          "scope": "Study area in the Ibiraba dunes; not a survey at the registered point",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "erg_chebbi": {
-      "summary": "Erg Chebbi (Saara) é uma localidade cadastrada na região de Marrocos. No catálogo do projeto, está classificada como mega-erg de dunas estrela.",
+      "summary": "Erg Chebbi (Saara) is a registered site in Marrocos. The project catalog classifies it as star dune mega-erg.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 21.11 C · Precipitação média diária: 0.23 mm/day · Umidade relativa a 2 m: 32.97 % · Vento a 2 m: 2.99 m/s",
+      "climate": "Temperature at 2 m: 21.11 C · Mean daily precipitation: 0.23 mm/day · Relative humidity at 2 m: 32.97 % · Wind at 2 m: 2.99 m/s",
       "biome": null,
       "vegetation": null,
-      "nearby_locality": "Merzouga, no leste de Marrocos, é uma localidade de referência para Erg Chebbi.",
+      "nearby_locality": "Merzouga, in eastern Marrocos, is a reference location for Erg Chebbi.",
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=31.150&longitude=-3.983&format=JSON"
         },
         {
-          "title": "Turismo oficial de Marrocos — Errachidia–Midelt–Merzouga",
+          "title": "Official Marrocos tourism — Errachidia–Midelt–Merzouga",
           "url": "https://www.visitmorocco.com/en/travel/errachidia-midelt-merzouga",
           "fields": [
             "nearby_locality"
           ],
-          "scope": "Região turística de Merzouga",
+          "scope": "Merzouga tourism region",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -694,33 +694,33 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
       "field_sources": {
         "nearby_locality": {
-          "title": "Turismo oficial de Marrocos — Errachidia–Midelt–Merzouga",
+          "title": "Official Marrocos tourism — Errachidia–Midelt–Merzouga",
           "url": "https://www.visitmorocco.com/en/travel/errachidia-midelt-merzouga",
-          "scope": "Região turística de Merzouga",
+          "scope": "Merzouga tourism region",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "sossusvlei": {
-      "summary": "Sossusvlei (Deserto do Namibe) é uma localidade cadastrada na região de Namíbia. No catálogo do projeto, está classificada como megadunas lineares e barcanoides.",
+      "summary": "Sossusvlei (Deserto do Namibe) is a registered site in Namíbia. The project catalog classifies it as linear and barchanoid megadunes.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 22.42 C · Precipitação média diária: 0.22 mm/day · Umidade relativa a 2 m: 30.27 % · Vento a 2 m: 3.02 m/s",
+      "climate": "Temperature at 2 m: 22.42 C · Mean daily precipitation: 0.22 mm/day · Relative humidity at 2 m: 30.27 % · Wind at 2 m: 3.02 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-24.727&longitude=15.340&format=JSON"
         },
         {
@@ -729,7 +729,7 @@
           "fields": [
             "geology"
           ],
-          "scope": "Contexto regional do mar de areia do Namibe",
+          "scope": "Regional context of the Namibe sand sea",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -825,34 +825,34 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Sistema regional com dunas antigas semiconsolidadas recobertas por dunas ativas mais recentes.",
+      "geology": "Regional system of ancient semiconsolidated dunes overlain by more recent active dunes.",
       "field_sources": {
         "geology": {
           "title": "UNESCO — Namib Sand Sea",
           "url": "https://whc.unesco.org/en/list/1430/",
-          "scope": "Contexto regional do mar de areia do Namibe",
+          "scope": "Regional context of the Namibe sand sea",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "rub_al_khali": {
-      "summary": "Rub' al Khali (Quarto Vazio) é uma localidade cadastrada na região de Arábia Saudita. No catálogo do projeto, está classificada como mar contínuo de areia (erg global).",
+      "summary": "Rub' al Khali (Quarto Vazio) is a registered site in Arábia Saudita. The project catalog classifies it as continuous sand sea (global erg).",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 29.10 C · Precipitação média diária: 0.03 mm/day · Umidade relativa a 2 m: 23.85 % · Vento a 2 m: 2.85 m/s",
+      "climate": "Temperature at 2 m: 29.10 C · Mean daily precipitation: 0.03 mm/day · Relative humidity at 2 m: 23.85 % · Wind at 2 m: 2.85 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=20.000&longitude=50.000&format=JSON"
         }
       ],
@@ -948,24 +948,24 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       }
     },
     "white_sands": {
-      "summary": "White Sands é uma localidade cadastrada na região de Novo México, EUA. No catálogo do projeto, está classificada como campo de dunas de gesso ativo.",
+      "summary": "White Sands is a registered site in Novo México, EUA. The project catalog classifies it as active gypsum dune field.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 16.33 C · Precipitação média diária: 0.75 mm/day · Umidade relativa a 2 m: 39.66 % · Vento a 2 m: 2.24 m/s",
+      "climate": "Temperature at 2 m: 16.33 C · Mean daily precipitation: 0.75 mm/day · Relative humidity at 2 m: 39.66 % · Wind at 2 m: 2.24 m/s",
       "biome": null,
-      "vegetation": "Flora adaptada aos solos gipsíferos, incluindo Abronia angustifolia nas dunas e Centaurium calycosum em áreas interdunares.",
+      "vegetation": "Flora adapted to gypsum soils, including Abronia angustifolia on dunes and Centaurium calycosum in interdune areas.",
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=32.780&longitude=-106.320&format=JSON"
         },
         {
@@ -974,7 +974,7 @@
           "fields": [
             "geology"
           ],
-          "scope": "Campo de dunas de White Sands",
+          "scope": "White Sands dune field",
           "accessed_on": "2026-11-15"
         },
         {
@@ -983,7 +983,7 @@
           "fields": [
             "vegetation"
           ],
-          "scope": "Flora documentada no parque, não inventário do ponto",
+          "scope": "Flora documented in the park, not a site inventory",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -1079,45 +1079,45 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Dunas de areia de gipsita na bacia de Tularosa; o mineral é dissolvido, recristalizado e retrabalhado em grãos.",
+      "geology": "Gypsum sand dunes in the Tularosa basin; the mineral is dissolved, recrystallized and reworked into grains.",
       "field_sources": {
         "geology": {
           "title": "NPS — Gypsum",
           "url": "https://www.nps.gov/whsa/learn/gypsum.htm",
-          "scope": "Campo de dunas de White Sands",
+          "scope": "White Sands dune field",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "vegetation": {
           "title": "NPS — Wildflowers",
           "url": "https://www.nps.gov/whsa/learn/nature/wildflowers.htm?fullweb=1",
-          "scope": "Flora documentada no parque, não inventário do ponto",
+          "scope": "Flora documented in the park, not a site inventory",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "canion_apertados": {
-      "summary": "Cânion dos Apertados (Currais Novos) é uma localidade cadastrada na região de RN, Brasil. No catálogo do projeto, está classificada como garganta e afloramento íngreme.",
+      "summary": "Cânion dos Apertados (Currais Novos) is a registered site in RN, Brasil. The project catalog classifies it as gorge and steep outcrop.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 24.81 C · Precipitação média diária: 2.14 mm/day · Umidade relativa a 2 m: 72.32 % · Vento a 2 m: 4.27 m/s",
+      "climate": "Temperature at 2 m: 24.81 C · Mean daily precipitation: 2.14 mm/day · Relative humidity at 2 m: 72.32 % · Wind at 2 m: 4.27 m/s",
       "biome": null,
       "vegetation": null,
-      "nearby_locality": "Currais Novos (RN); o acesso ao geossítio fica a cerca de 10 km do centro, segundo o SGB.",
+      "nearby_locality": "Currais Novos (RN); access to the geosite is about 10 km from the town center, according to SGB.",
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-6.342&longitude=-36.502&format=JSON"
         },
         {
-          "title": "SGB — Geossítio Cânion dos Apertados",
+          "title": "SGB — Cânion dos Apertados geosite",
           "url": "https://www.sgb.gov.br/geossit/geossitios/ver/1917",
           "fields": [
             "geology",
@@ -1219,19 +1219,19 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Cânion em quartzitos da Formação Equador, cortado pelo rio Picuí.",
+      "geology": "Canyon in the quartzites of Formação Equador, cut by Rio Picuí.",
       "field_sources": {
         "geology": {
-          "title": "SGB — Geossítio Cânion dos Apertados",
+          "title": "SGB — Cânion dos Apertados geosite",
           "url": "https://www.sgb.gov.br/geossit/geossitios/ver/1917",
           "scope": "Geossítio",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "nearby_locality": {
-          "title": "SGB — Geossítio Cânion dos Apertados",
+          "title": "SGB — Cânion dos Apertados geosite",
           "url": "https://www.sgb.gov.br/geossit/geossitios/ver/1917",
           "scope": "Geossítio",
           "accessed_on": "2026-11-15",
@@ -1240,20 +1240,20 @@
       }
     },
     "vale_vulcanico": {
-      "summary": "Vale Vulcânico (Cerro Corá) é uma localidade cadastrada na região de RN, Brasil. No catálogo do projeto, está classificada como estrutura vulcânica circular.",
+      "summary": "Vale Vulcânico (Cerro Corá) is a registered site in RN, Brasil. The project catalog classifies it as circular volcanic structure.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 25.75 C · Precipitação média diária: 2.19 mm/day · Umidade relativa a 2 m: 71.47 % · Vento a 2 m: 4.19 m/s",
+      "climate": "Temperature at 2 m: 25.75 C · Mean daily precipitation: 2.19 mm/day · Relative humidity at 2 m: 71.47 % · Wind at 2 m: 4.19 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-6.081&longitude=-36.403&format=JSON"
         }
       ],
@@ -1349,33 +1349,33 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       }
     },
     "pico_cabugi": {
-      "summary": "Pico do Cabugi é uma localidade cadastrada na região de RN, Brasil. No catálogo do projeto, está classificada como plug vulcânico cônico.",
+      "summary": "Pico do Cabugi is a registered site in RN, Brasil. The project catalog classifies it as conical volcanic plug.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 26.90 C · Precipitação média diária: 2.07 mm/day · Umidade relativa a 2 m: 70.79 % · Vento a 2 m: 4.28 m/s",
+      "climate": "Temperature at 2 m: 26.90 C · Mean daily precipitation: 2.07 mm/day · Relative humidity at 2 m: 70.79 % · Wind at 2 m: 4.28 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-5.710&longitude=-36.320&format=JSON"
         },
         {
-          "title": "SGB — Publicação geológica sobre o Pico do Cabugi",
+          "title": "SGB — Geological publication about Pico do Cabugi",
           "url": "https://rigeo.sgb.gov.br/server/api/core/bitstreams/3cae8829-1eb8-49e1-b67e-16986e6c3743/content",
           "fields": [
             "geology"
           ],
-          "scope": "Formação geológica",
+          "scope": "Geological formation",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -1471,44 +1471,44 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Centro vulcânico com porção central composta por basalto.",
+      "geology": "Volcanic center with a basaltic central portion.",
       "field_sources": {
         "geology": {
-          "title": "SGB — Publicação geológica sobre o Pico do Cabugi",
+          "title": "SGB — Geological publication about Pico do Cabugi",
           "url": "https://rigeo.sgb.gov.br/server/api/core/bitstreams/3cae8829-1eb8-49e1-b67e-16986e6c3743/content",
-          "scope": "Formação geológica",
+          "scope": "Geological formation",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "pedra_cariri": {
-      "summary": "Pedra Cariri (Geopark Araripe) é uma localidade cadastrada na região de CE, Brasil. No catálogo do projeto, está classificada como depressão e afloramento estrutural.",
+      "summary": "Pedra Cariri (Geopark Araripe) is a registered site in CE, Brasil. The project catalog classifies it as structural depression and outcrop.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 26.01 C · Precipitação média diária: 2.06 mm/day · Umidade relativa a 2 m: 61.49 % · Vento a 2 m: 2.93 m/s",
+      "climate": "Temperature at 2 m: 26.01 C · Mean daily precipitation: 2.06 mm/day · Relative humidity at 2 m: 61.49 % · Wind at 2 m: 2.93 m/s",
       "biome": null,
       "vegetation": null,
-      "nearby_locality": "Nova Olinda e Santana do Cariri (CE), municípios da região produtora.",
+      "nearby_locality": "Nova Olinda and Santana do Cariri (CE), municipalities in the production region.",
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-7.090&longitude=-39.700&format=JSON"
         },
         {
-          "title": "CETEM — Aspectos geológicos da Bacia do Araripe",
+          "title": "CETEM — Geological aspects of Bacia do Araripe",
           "url": "https://www.cetem.gov.br/antigo/images/congressos/2005/CAC00020006.pdf",
           "fields": [
             "geology",
             "nearby_locality"
           ],
-          "scope": "Região produtora da Pedra Cariri",
+          "scope": "Pedra Cariri production region",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -1604,41 +1604,41 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Calcário laminado da Bacia do Araripe, utilizado como pedra de revestimento.",
+      "geology": "Laminated limestone from Bacia do Araripe, used as facing stone.",
       "field_sources": {
         "geology": {
-          "title": "CETEM — Aspectos geológicos da Bacia do Araripe",
+          "title": "CETEM — Geological aspects of Bacia do Araripe",
           "url": "https://www.cetem.gov.br/antigo/images/congressos/2005/CAC00020006.pdf",
-          "scope": "Região produtora da Pedra Cariri",
+          "scope": "Pedra Cariri production region",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "nearby_locality": {
-          "title": "CETEM — Aspectos geológicos da Bacia do Araripe",
+          "title": "CETEM — Geological aspects of Bacia do Araripe",
           "url": "https://www.cetem.gov.br/antigo/images/congressos/2005/CAC00020006.pdf",
-          "scope": "Região produtora da Pedra Cariri",
+          "scope": "Pedra Cariri production region",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "morro_chapeu": {
-      "summary": "Morro do Chapéu (Tanque / Pedreira) é uma localidade cadastrada na região de BA, Brasil. No catálogo do projeto, está classificada como platô sedimentar circular.",
+      "summary": "Morro do Chapéu (Tanque / Pedreira) is a registered site in BA, Brasil. The project catalog classifies it as circular sedimentary plateau.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 23.12 C · Precipitação média diária: 1.67 mm/day · Umidade relativa a 2 m: 65.84 % · Vento a 2 m: 2.47 m/s",
+      "climate": "Temperature at 2 m: 23.12 C · Mean daily precipitation: 1.67 mm/day · Relative humidity at 2 m: 65.84 % · Wind at 2 m: 2.47 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": "Morro do Chapéu (BA).",
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-11.550&longitude=-41.200&format=JSON"
         },
         {
@@ -1648,7 +1648,7 @@
             "geology",
             "nearby_locality"
           ],
-          "scope": "Contexto regional; afloramento específico não confirmado",
+          "scope": "Regional context; specific outcrop unconfirmed",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -1744,50 +1744,50 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Região de terrenos sedimentares utilizada pelo SGB para treinamento geológico.",
+      "geology": "Sedimentary terrain region used by SGB for geological training.",
       "field_sources": {
         "geology": {
           "title": "SGB — CIEG Morro do Chapéu",
           "url": "https://www.sgb.gov.br/cieg-morro-do-chapeu-sureg-ba",
-          "scope": "Contexto regional; afloramento específico não confirmado",
+          "scope": "Regional context; specific outcrop unconfirmed",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         },
         "nearby_locality": {
           "title": "SGB — CIEG Morro do Chapéu",
           "url": "https://www.sgb.gov.br/cieg-morro-do-chapeu-sureg-ba",
-          "scope": "Contexto regional; afloramento específico não confirmado",
+          "scope": "Regional context; specific outcrop unconfirmed",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "serra_cangalha": {
-      "summary": "Serra da Cangalha é uma localidade cadastrada na região de TO/MA, Brasil. No catálogo do projeto, está classificada como cratera de impacto complexa.",
+      "summary": "Serra da Cangalha is a registered site in TO/MA, Brasil. The project catalog classifies it as complex impact crater.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 27.27 C · Precipitação média diária: 3.63 mm/day · Umidade relativa a 2 m: 63.26 % · Vento a 2 m: 2.00 m/s",
+      "climate": "Temperature at 2 m: 27.27 C · Mean daily precipitation: 3.63 mm/day · Relative humidity at 2 m: 63.26 % · Wind at 2 m: 2.00 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-8.083&longitude=-46.867&format=JSON"
         },
         {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
           "fields": [
             "geology"
           ],
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -1883,43 +1883,43 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Estrutura de origem por impacto identificada na literatura geológica.",
+      "geology": "Impact-origin structure identified in the geological literature.",
       "field_sources": {
         "geology": {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "riachao": {
-      "summary": "Anel de Riachão é uma localidade cadastrada na região de MA, Brasil. No catálogo do projeto, está classificada como cratera de impacto simples.",
+      "summary": "Anel de Riachão is a registered site in MA, Brasil. The project catalog classifies it as simple impact crater.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 27.18 C · Precipitação média diária: 3.64 mm/day · Umidade relativa a 2 m: 64.54 % · Vento a 2 m: 2.00 m/s",
+      "climate": "Temperature at 2 m: 27.18 C · Mean daily precipitation: 3.64 mm/day · Relative humidity at 2 m: 64.54 % · Wind at 2 m: 2.00 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-7.717&longitude=-46.650&format=JSON"
         },
         {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
           "fields": [
             "geology"
           ],
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -2015,43 +2015,43 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Estrutura de origem por impacto identificada na literatura geológica.",
+      "geology": "Impact-origin structure identified in the geological literature.",
       "field_sources": {
         "geology": {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "araguainha": {
-      "summary": "Domo de Araguainha é uma localidade cadastrada na região de GO/MT, Brasil. No catálogo do projeto, está classificada como cratera de impacto multianelar.",
+      "summary": "Domo de Araguainha is a registered site in GO/MT, Brasil. The project catalog classifies it as multi-ring impact crater.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 23.69 C · Precipitação média diária: 3.73 mm/day · Umidade relativa a 2 m: 69.65 % · Vento a 2 m: 1.78 m/s",
+      "climate": "Temperature at 2 m: 23.69 C · Mean daily precipitation: 3.73 mm/day · Relative humidity at 2 m: 69.65 % · Wind at 2 m: 1.78 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-16.783&longitude=-52.983&format=JSON"
         },
         {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
           "fields": [
             "geology"
           ],
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -2147,43 +2147,43 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Estrutura de origem por impacto identificada na literatura geológica.",
+      "geology": "Impact-origin structure identified in the geological literature.",
       "field_sources": {
         "geology": {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "vargeao": {
-      "summary": "Domo de Vargeão é uma localidade cadastrada na região de SC, Brasil. No catálogo do projeto, está classificada como cratera de impacto em basalto.",
+      "summary": "Domo de Vargeão is a registered site in SC, Brasil. The project catalog classifies it as impact crater in basalt.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 17.59 C · Precipitação média diária: 4.78 mm/day · Umidade relativa a 2 m: 80.88 % · Vento a 2 m: 0.90 m/s",
+      "climate": "Temperature at 2 m: 17.59 C · Mean daily precipitation: 4.78 mm/day · Relative humidity at 2 m: 80.88 % · Wind at 2 m: 0.90 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-26.833&longitude=-52.117&format=JSON"
         },
         {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
           "fields": [
             "geology"
           ],
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -2279,43 +2279,43 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Estrutura de origem por impacto identificada na literatura geológica.",
+      "geology": "Impact-origin structure identified in the geological literature.",
       "field_sources": {
         "geology": {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "vista_alegre": {
-      "summary": "Cratera de Vista Alegre é uma localidade cadastrada na região de PR, Brasil. No catálogo do projeto, está classificada como cratera de impacto circular.",
+      "summary": "Cratera de Vista Alegre is a registered site in PR, Brasil. The project catalog classifies it as circular impact crater.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 18.97 C · Precipitação média diária: 4.62 mm/day · Umidade relativa a 2 m: 80.49 % · Vento a 2 m: 0.10 m/s",
+      "climate": "Temperature at 2 m: 18.97 C · Mean daily precipitation: 4.62 mm/day · Relative humidity at 2 m: 80.49 % · Wind at 2 m: 0.10 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-25.950&longitude=-52.683&format=JSON"
         },
         {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
           "fields": [
             "geology"
           ],
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -2411,43 +2411,43 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Estrutura de origem por impacto identificada na literatura geológica.",
+      "geology": "Impact-origin structure identified in the geological literature.",
       "field_sources": {
         "geology": {
-          "title": "Estudo geofísico do Domo de Vargeão — Revista Brasileira de Geofísica",
+          "title": "Geophysical study of Domo de Vargeão — Revista Brasileira de Geofísica",
           "url": "https://www.scielo.br/j/rbg/a/7JVQ8Xy3nx5jYYnNr3Prbhh/",
-          "scope": "Estruturas identificadas no artigo",
+          "scope": "Structures identified in the article",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "santa_marta": {
-      "summary": "Cratera de Santa Marta é uma localidade cadastrada na região de PI, Brasil. No catálogo do projeto, está classificada como cratera com pico central.",
+      "summary": "Cratera de Santa Marta is a registered site in PI, Brasil. The project catalog classifies it as central-peak crater.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 27.13 C · Precipitação média diária: 2.39 mm/day · Umidade relativa a 2 m: 56.49 % · Vento a 2 m: 2.28 m/s",
+      "climate": "Temperature at 2 m: 27.13 C · Mean daily precipitation: 2.39 mm/day · Relative humidity at 2 m: 56.49 % · Wind at 2 m: 2.28 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-10.167&longitude=-45.250&format=JSON"
         },
         {
-          "title": "Unicamp — Documentação de pesquisa em estruturas de impacto",
+          "title": "Unicamp — Research documentation on impact structures",
           "url": "https://ige.unicamp.br/sites/portal8.ige.unicamp.br.portal/files/congregacao/2023-04/Documentos_Principal_Mar_2023.pdf",
           "fields": [
             "geology"
           ],
-          "scope": "Estrutura Santa Marta",
+          "scope": "Santa Marta structure",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -2543,34 +2543,34 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Estrutura de impacto no Piauí, estudada por pesquisadores da Unicamp.",
+      "geology": "Impact structure in Piauí, studied by Unicamp researchers.",
       "field_sources": {
         "geology": {
-          "title": "Unicamp — Documentação de pesquisa em estruturas de impacto",
+          "title": "Unicamp — Research documentation on impact structures",
           "url": "https://ige.unicamp.br/sites/portal8.ige.unicamp.br.portal/files/congregacao/2023-04/Documentos_Principal_Mar_2023.pdf",
-          "scope": "Estrutura Santa Marta",
+          "scope": "Santa Marta structure",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "barringer": {
-      "summary": "Barringer Meteor Crater é uma localidade cadastrada na região de Arizona, EUA. No catálogo do projeto, está classificada como cratera de impacto simples canônica.",
+      "summary": "Barringer Meteor Crater is a registered site in Arizona, EUA. The project catalog classifies it as canonical simple impact crater.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 11.36 C · Precipitação média diária: 1.14 mm/day · Umidade relativa a 2 m: 47.71 % · Vento a 2 m: 2.35 m/s",
+      "climate": "Temperature at 2 m: 11.36 C · Mean daily precipitation: 1.14 mm/day · Relative humidity at 2 m: 47.71 % · Wind at 2 m: 2.35 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=35.027&longitude=-111.022&format=JSON"
         },
         {
@@ -2579,7 +2579,7 @@
           "fields": [
             "geology"
           ],
-          "scope": "Cratera Barringer",
+          "scope": "Barringer crater",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -2675,34 +2675,34 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Cratera de impacto no Arizona, também conhecida como Meteor Crater.",
+      "geology": "Impact crater in Arizona, also known as Meteor Crater.",
       "field_sources": {
         "geology": {
           "title": "NASA — Meteor Crater, Arizona",
           "url": "https://science.nasa.gov/resource/meteor-crater-arizona-usa/",
-          "scope": "Cratera Barringer",
+          "scope": "Barringer crater",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "vredefort": {
-      "summary": "Vredefort Dome é uma localidade cadastrada na região de África do Sul. No catálogo do projeto, está classificada como maior estrutura de impacto da terra.",
+      "summary": "Vredefort Dome is a registered site in África do Sul. The project catalog classifies it as earth's largest impact structure.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 17.62 C · Precipitação média diária: 1.47 mm/day · Umidade relativa a 2 m: 51.91 % · Vento a 2 m: 2.40 m/s",
+      "climate": "Temperature at 2 m: 17.62 C · Mean daily precipitation: 1.47 mm/day · Relative humidity at 2 m: 51.91 % · Wind at 2 m: 2.40 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=-27.000&longitude=27.500&format=JSON"
         },
         {
@@ -2711,7 +2711,7 @@
           "fields": [
             "geology"
           ],
-          "scope": "Estrutura geológica",
+          "scope": "Geological structure",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -2807,34 +2807,34 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Domo que representa parte de uma estrutura maior de impacto meteorítico.",
+      "geology": "Dome representing part of a larger meteorite impact structure.",
       "field_sources": {
         "geology": {
           "title": "UNESCO — Vredefort Dome",
           "url": "https://whc.unesco.org/en/list/1162/",
-          "scope": "Estrutura geológica",
+          "scope": "Geological structure",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "chicxulub": {
-      "summary": "Chicxulub Crater é uma localidade cadastrada na região de Yucatán, México. No catálogo do projeto, está classificada como cratera com anel de picos (k-pg).",
+      "summary": "Chicxulub Crater is a registered site in Yucatán, México. The project catalog classifies it as peak-ring crater (k-pg).",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 26.15 C · Precipitação média diária: 1.94 mm/day · Umidade relativa a 2 m: 78.52 % · Vento a 2 m: 3.97 m/s",
+      "climate": "Temperature at 2 m: 26.15 C · Mean daily precipitation: 1.94 mm/day · Relative humidity at 2 m: 78.52 % · Wind at 2 m: 3.97 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=21.400&longitude=-89.517&format=JSON"
         },
         {
@@ -2843,7 +2843,7 @@
           "fields": [
             "geology"
           ],
-          "scope": "Estrutura de Chicxulub",
+          "scope": "Chicxulub structure",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -2939,34 +2939,34 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Estrutura de impacto com grande parte submersa junto à península de Yucatán.",
+      "geology": "Impact structure largely submerged near the Yucatán peninsula.",
       "field_sources": {
         "geology": {
           "title": "NASA — Asteroid Day and Impact Craters",
           "url": "https://www.nasa.gov/solar-system/asteroid-day-and-impact-craters/",
-          "scope": "Estrutura de Chicxulub",
+          "scope": "Chicxulub structure",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "pingualuit": {
-      "summary": "Pingualuit Crater é uma localidade cadastrada na região de Quebec, Canadá. No catálogo do projeto, está classificada como cratera circular em escudo cristalino.",
+      "summary": "Pingualuit Crater is a registered site in Quebec, Canadá. The project catalog classifies it as circular crater in crystalline shield.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: -9.69 C · Precipitação média diária: 1.75 mm/day · Umidade relativa a 2 m: 94.38 % · Vento a 2 m: 4.16 m/s",
+      "climate": "Temperature at 2 m: -9.69 C · Mean daily precipitation: 1.75 mm/day · Relative humidity at 2 m: 94.38 % · Wind at 2 m: 4.16 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=61.278&longitude=-73.667&format=JSON"
         },
         {
@@ -2975,7 +2975,7 @@
           "fields": [
             "geology"
           ],
-          "scope": "Parque e cratera",
+          "scope": "Park and crater",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -3071,34 +3071,34 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Cratera meteorítica preenchida por um lago, no planalto de Ungava, Nunavik.",
+      "geology": "Lake-filled meteorite crater on the Ungava plateau, Nunavik.",
       "field_sources": {
         "geology": {
           "title": "Nunavik Parks — Pingualuit",
           "url": "https://www.nunavikparks.ca/en/parks/pingualuit/",
-          "scope": "Parque e cratera",
+          "scope": "Park and crater",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }
       }
     },
     "lonar": {
-      "summary": "Lonar Crater é uma localidade cadastrada na região de Maharashtra, Índia. No catálogo do projeto, está classificada como cratera de impacto em basalto.",
+      "summary": "Lonar Crater is a registered site in Maharashtra, Índia. The project catalog classifies it as impact crater in basalt.",
       "review_status": "pending",
-      "climate": "Temperatura a 2 m: 25.96 C · Precipitação média diária: 2.31 mm/day · Umidade relativa a 2 m: 53.19 % · Vento a 2 m: 2.55 m/s",
+      "climate": "Temperature at 2 m: 25.96 C · Mean daily precipitation: 2.31 mm/day · Relative humidity at 2 m: 53.19 % · Wind at 2 m: 2.55 m/s",
       "biome": null,
       "vegetation": null,
       "nearby_locality": null,
       "sources": [
         {
-          "title": "Catálogo local do projeto (informação ainda não revisada)",
+          "title": "Local project catalog (information not yet reviewed)",
           "url": null
         },
         {
           "provider": "NASA POWER",
-          "title": "NASA POWER — climatologia e dados originais",
+          "title": "NASA POWER — climatology and original data",
           "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M%2CPRECTOTCORR%2CRH2M%2CWS2M&community=AG&latitude=19.976&longitude=76.508&format=JSON"
         },
         {
@@ -3107,7 +3107,7 @@
           "fields": [
             "geology"
           ],
-          "scope": "Cratera Lonar",
+          "scope": "Lonar crater",
           "accessed_on": "2026-11-15"
         }
       ],
@@ -3203,14 +3203,14 @@
             }
           }
         },
-        "scope": "Climatologia regional em grade; não é medição pontual nem previsão."
+        "scope": "Gridded regional climatology; not a point measurement or forecast."
       },
-      "geology": "Cratera de impacto formada em rochas basálticas.",
+      "geology": "Impact crater formed in basaltic rocks.",
       "field_sources": {
         "geology": {
           "title": "USGS — Lonar Lake, India: An impact crater in basalt",
           "url": "https://pubs.usgs.gov/publication/70010158",
-          "scope": "Cratera Lonar",
+          "scope": "Lonar crater",
           "accessed_on": "2026-11-15",
           "verification": "source_checked"
         }

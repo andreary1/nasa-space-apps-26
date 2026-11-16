@@ -1,6 +1,6 @@
 export const PAGES = {
-  overview: 'Visão geral', globe: 'Exploração do globo', map: 'Mapa mundial',
-  comparisons: 'Comparações', analysis: 'Dunas e crateras', reports: 'Relatórios',
+  overview: 'Overview', globe: 'Globe exploration', map: 'World map',
+  comparisons: 'Comparisons', analysis: 'Dunes and craters', reports: 'Reports',
 };
 const SHARED = {catalog: 'catalog-section', comparison: 'comparison-card-section', charts: 'general-comparisons-section'};
 

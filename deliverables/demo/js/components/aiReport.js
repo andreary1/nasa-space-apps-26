@@ -1,5 +1,5 @@
 // Mostra, na página Relatórios, a análise gerada por IA para a localidade selecionada.
-// Os relatórios salvos ficam em js/data/ai-reports.json. O botão "Gerar relatório"
+// Os relatórios salvos ficam em js/data/ai-reports.json. O botão "Generate report"
 // chama o servidor local (scripts/ai_reports/server.mjs), que guarda a chave de API:
 // nenhuma chave fica no navegador.
 import { PARAM_LABELS } from '../data/constants.js';
@@ -8,14 +8,14 @@ const reportsUrl = new URL('../data/ai-reports.json', import.meta.url);
 const SERVER_COMMAND = 'node scripts/ai_reports/server.mjs';
 
 const SUGGESTION_LABELS = {
-  treinamento_astronautas: 'Treinamento de astronautas',
-  teste_rovers_robotica: 'Rovers e robótica',
-  calibracao_instrumentos: 'Calibração de instrumentos',
-  estudo_processos: 'Estudo de processos',
-  validacao_algoritmos: 'Validação de algoritmos',
-  educacao_divulgacao: 'Educação e divulgação',
+  treinamento_astronautas: 'Astronaut training',
+  teste_rovers_robotica: 'Rovers and robotics',
+  calibracao_instrumentos: 'Instrument calibration',
+  estudo_processos: 'Process studies',
+  validacao_algoritmos: 'Algorithm validation',
+  educacao_divulgacao: 'Education and outreach',
 };
-const LEVEL_LABELS = { baixa: 'Baixa', media: 'Média', alta: 'Alta', baixo: 'Baixo', medio: 'Médio', alto: 'Alto' };
+const LEVEL_LABELS = { baixa: 'Low', media: 'Medium', alta: 'High', baixo: 'Low', medio: 'Medium', alto: 'High' };
 
 function el(tag, options = {}, children = []) {
   const element = document.createElement(tag);
@@ -41,7 +41,7 @@ function itemList(items, renderExtra) {
 
 function formatDate(iso) {
   const date = new Date(iso);
-  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' });
 }
 
 function isStale(entry, model) {
@@ -79,23 +79,23 @@ export function createAiReport() {
     const busy = generating?.id === currentModel.site.id;
     const button = el('button', {
       className: 'primary-button ai-generate',
-      text: busy ? 'Gerando…' : entry ? 'Gerar novamente' : 'Gerar relatório',
+      text: busy ? 'Generating…' : entry ? 'Regenerate' : 'Generate report',
     });
     button.disabled = busy || !status.configured;
     button.addEventListener('click', generate);
     const note = !status.ok
-      ? `Para gerar pela página, abra a demo com: ${SERVER_COMMAND}`
-      : !status.configured ? 'Servidor sem chave de API. Confira o arquivo .env e reinicie o servidor.'
-      : busy ? 'Consultando a IA. Pode levar até 1 minuto.'
-      : status.hosted ? `Modelo: ${status.model} · relatórios novos valem só nesta aba`
-      : `Modelo: ${status.model}`;
+      ? `To generate a report on this page, start the demo with: ${SERVER_COMMAND}`
+      : !status.configured ? 'The server has no API key. Check the .env file and restart the server.'
+      : busy ? 'Consulting AI. This may take up to 1 minute.'
+      : status.hosted ? `Model: ${status.model} · new reports are available only in this tab`
+      : `Model: ${status.model}`;
     const elapsed = el('span', { className: 'ai-elapsed' });
     if (busy) elapsed.dataset.started = generating.started;
     return el('div', { className: 'ai-actions' }, [button, el('span', { className: 'ai-action-note', text: note }), elapsed]);
   }
 
   function renderEmpty(site) {
-    return [el('p', { text: `Ainda não há análise de IA para ${site.name}.` })];
+    return [el('p', { text: `No AI analysis is available for ${site.name} yet.` })];
   }
 
   function renderReport(entry, model) {
@@ -103,14 +103,14 @@ export function createAiReport() {
     const best = model.best;
     const confidence = report.confianca?.nivel || 'baixa';
     const parts = [el('div', { className: 'ai-meta' }, [
-      el('span', { className: `ai-badge ai-confidence-${confidence}`, text: `Confiança ${LEVEL_LABELS[confidence] || confidence}` }),
+      el('span', { className: `ai-badge ai-confidence-${confidence}`, text: `Confidence: ${LEVEL_LABELS[confidence] || confidence}` }),
       best ? el('span', { className: 'ai-badge', text: `${best.target.name} · ${(best.score * 100).toFixed(1)}%` }) : null,
       el('span', { className: 'ai-meta-text', text: `${entry.model} · ${formatDate(entry.generated_at)}` }),
     ])];
 
-    if (entry.mock) parts.push(el('p', { className: 'ai-warning', text: 'Relatório de exemplo, sem análise real. Gere novamente com a chave de API.' }));
-    if (isStale(entry, model)) parts.push(el('p', { className: 'ai-warning', text: 'Os dados desta localidade mudaram depois que a análise foi gerada. Gere novamente para atualizar.' }));
-    if (sessionEntries.has(model.site.id)) parts.push(el('p', { className: 'ai-warning', text: 'Localidade cadastrada nesta sessão: o relatório não foi salvo em arquivo.' }));
+    if (entry.mock) parts.push(el('p', { className: 'ai-warning', text: 'Example report without real analysis. Regenerate using an API key.' }));
+    if (isStale(entry, model)) parts.push(el('p', { className: 'ai-warning', text: 'This site\'s data has changed since the analysis was generated. Regenerate to update it.' }));
+    if (sessionEntries.has(model.site.id)) parts.push(el('p', { className: 'ai-warning', text: 'Site registered in this session: the report was not saved to a file.' }));
 
     parts.push(
       el('div', { className: 'ai-summary' }, [
@@ -118,11 +118,11 @@ export function createAiReport() {
         report.analogo_principal?.interpretacao ? el('p', { className: 'ai-interpretation', text: report.analogo_principal.interpretacao }) : null,
       ]),
       el('div', { className: 'ai-columns' }, [
-        el('section', {}, [el('h3', { text: 'Semelhanças' }), itemList(report.semelhancas || [])]),
-        el('section', {}, [el('h3', { text: 'Diferenças' }), itemList(report.diferencas || [], item =>
-          el('span', { className: `ai-impact ai-impact-${item.impacto}`, text: `Impacto ${LEVEL_LABELS[item.impacto] || item.impacto}` }))]),
+        el('section', {}, [el('h3', { text: 'Similarities' }), itemList(report.semelhancas || [])]),
+        el('section', {}, [el('h3', { text: 'Differences' }), itemList(report.diferencas || [], item =>
+          el('span', { className: `ai-impact ai-impact-${item.impacto}`, text: `Impact ${LEVEL_LABELS[item.impacto] || item.impacto}` }))]),
       ]),
-      el('h3', { text: 'O que a NASA poderia fazer aqui' }),
+      el('h3', { text: 'What NASA could do here' }),
       el('div', { className: 'ai-suggestions' }, (report.sugestoes_nasa || []).map(item => el('article', { className: 'ai-suggestion' }, [
         el('span', { className: 'ai-chip ai-chip-type', text: SUGGESTION_LABELS[item.tipo] || item.tipo }),
         el('strong', { text: item.titulo }),
@@ -131,10 +131,10 @@ export function createAiReport() {
       ]))),
     );
     if (report.limitacoes?.length) {
-      parts.push(el('h3', { text: 'Limitações' }), el('ul', { className: 'ai-limitations' }, report.limitacoes.map(text => el('li', { text }))));
+      parts.push(el('h3', { text: 'Limitations' }), el('ul', { className: 'ai-limitations' }, report.limitacoes.map(text => el('li', { text }))));
     }
-    if (report.confianca?.motivo) parts.push(el('p', { className: 'data-note', text: `Confiança: ${report.confianca.motivo}` }));
-    parts.push(el('p', { className: 'data-note', text: 'Texto gerado por IA a partir das métricas do catálogo. Revise antes de citar.' }));
+    if (report.confianca?.motivo) parts.push(el('p', { className: 'data-note', text: `Confidence: ${report.confianca.motivo}` }));
+    parts.push(el('p', { className: 'data-note', text: 'AI-generated text based on catalog metrics. Review before citing.' }));
     return parts;
   }
 
@@ -146,7 +146,7 @@ export function createAiReport() {
   async function render(model) {
     currentModel = model;
     const token = request = Symbol();
-    container.replaceChildren(el('p', { text: 'Carregando análise…' }));
+    container.replaceChildren(el('p', { text: 'Loading analysis…' }));
     const status = await checkServer();
     if (token !== request) return;
     try {
@@ -156,7 +156,7 @@ export function createAiReport() {
     } catch (error) {
       if (token !== request) return;
       console.error(error);
-      show(sessionEntries.get(model.site.id), status, [el('p', { className: 'ai-warning', text: 'Não foi possível carregar as análises salvas.' })]);
+      show(sessionEntries.get(model.site.id), status, [el('p', { className: 'ai-warning', text: 'Could not load saved analyses.' })]);
     }
   }
 
@@ -192,7 +192,7 @@ export function createAiReport() {
         sessionEntries.set(site.id, body.entry);
       }
     } catch (failure) {
-      error = failure.name === "TimeoutError" ? new Error("O servidor excedeu o tempo de espera. Verifique o terminal e tente novamente.") : failure;
+      error = failure.name === "TimeoutError" ? new Error("The server timed out. Check the terminal and try again.") : failure;
       console.error(failure);
     } finally {
       clearInterval(generating.timer);
@@ -203,7 +203,7 @@ export function createAiReport() {
     await render(currentModel);
     if (error) {
       container.insertBefore(
-        el('p', { className: 'ai-warning', text: `Não foi possível gerar: ${error.message}` }),
+        el('p', { className: 'ai-warning', text: `Could not generate report: ${error.message}` }),
         container.children[1] || null,
       );
     }

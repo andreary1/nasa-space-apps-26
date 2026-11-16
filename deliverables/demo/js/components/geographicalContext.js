@@ -9,7 +9,7 @@ function node(tag, text, className) {
 
 function sourceLink(source) {
   if (!source?.url || !/^https?:\/\//i.test(source.url)) return null;
-  const link = node('a', source.title || 'Consultar fonte');
+  const link = node('a', source.title || 'View source');
   link.href = source.url;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
@@ -47,7 +47,7 @@ export class GeographicalContext {
 
   async prepare(location) {
     const request = this.request = Symbol();
-    this.container.replaceChildren(node('p', 'Carregando contexto…'));
+    this.container.replaceChildren(node('p', 'Loading context…'));
     try {
       this.catalog ||= fetch(catalogUrl).then(response => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -58,21 +58,21 @@ export class GeographicalContext {
       this.render(catalog.sites[location.id], location);
     } catch {
       if (request !== this.request) return;
-      const retry = node('button', 'Tentar novamente');
+      const retry = node('button', 'Try again');
       retry.type = 'button';
       retry.addEventListener('click', () => this.prepare(location));
-      this.container.replaceChildren(node('p', 'Não foi possível carregar o contexto.'), retry);
+      this.container.replaceChildren(node('p', 'Could not load context.'), retry);
     }
   }
 
   render(context, location) {
     this.container.replaceChildren(node('p', location.region, 'context-region'));
     if (!context) {
-      this.container.append(node('p', 'Ainda não há contexto cadastrado para esta localidade.'));
+      this.container.append(node('p', 'No context has been registered for this site yet.'));
       return;
     }
     if (context.summary) this.container.append(node('p', context.summary, 'context-summary'));
-    for (const [key, label] of [['climate', 'Clima · NASA POWER'], ['geology', 'Geologia'], ['biome', 'Bioma'], ['vegetation', 'Vegetação'], ['nearby_locality', 'Localidades de referência']]) {
+    for (const [key, label] of [['climate', 'Climate · NASA POWER'], ['geology', 'Geology'], ['biome', 'Biome'], ['vegetation', 'Vegetation'], ['nearby_locality', 'Nearby locations']]) {
       if (typeof context[key] !== 'string' || !context[key].trim()) continue;
       const section = document.createElement('section');
       section.className = 'context-fact';
@@ -89,14 +89,14 @@ export class GeographicalContext {
     }
     const sources = document.createElement('details');
     sources.className = 'context-sources';
-    sources.append(node('summary', 'Fontes consultadas'));
+    sources.append(node('summary', 'Sources'));
     for (const source of context.sources || []) {
       const link = sourceLink(source);
       if (link) sources.append(link);
     }
     if (sources.children.length > 1) this.container.append(sources);
     if (context.review_status !== 'reviewed') {
-      this.container.append(node('p', 'Ficha pendente de revisão editorial.', 'context-note'));
+      this.container.append(node('p', 'Entry awaiting editorial review.', 'context-note'));
     }
   }
 }

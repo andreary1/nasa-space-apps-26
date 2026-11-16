@@ -34,13 +34,13 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
-    console.log('Opções: --site <id>  --force  --dry-run  --mock. Configuração em .env (veja .env.example).');
+    console.log('Options: --site <id>  --force  --dry-run  --mock. Configuration in .env (see .env.example).');
     return;
   }
   await loadEnv();
 
   const sites = args.site ? SITES_DATA.filter(site => site.id === args.site) : SITES_DATA;
-  if (!sites.length) throw new Error(`Localidade "${args.site}" não encontrada em sites.js.`);
+  if (!sites.length) throw new Error(`Site "${args.site}" not found in sites.js.`);
 
   const config = args.mock ? null : providerConfig({ requireKey: !args.dryRun });
   const existing = (await readReports()).reports;
@@ -51,7 +51,7 @@ async function main() {
   for (const [index, site] of sites.entries()) {
     const label = `[${index + 1}/${sites.length}] ${site.id}`;
     if (existing[site.id] && !existing[site.id].mock && !args.force && !args.mock && !args.dryRun) {
-      console.log(`${label}: já existe, pulando (use --force para refazer)`);
+      console.log(`${label}: already exists, skipping (use --force to regenerate)`);
       continue;
     }
     if (args.dryRun) {
@@ -60,7 +60,7 @@ async function main() {
       continue;
     }
     try {
-      console.log(`${label}: ${args.mock ? 'gerando exemplo' : `consultando ${config.name}/${config.model}`}…`);
+      console.log(`${label}: ${args.mock ? 'generating example' : `querying ${config.name}/${config.model}`}…`);
       const entry = await generateEntry(site, config, { mock: args.mock });
       await saveEntry(site.id, entry);
       done += 1;
@@ -72,7 +72,7 @@ async function main() {
     }
   }
 
-  if (!args.dryRun) console.log(`\nConcluído: ${done} gerado(s), ${failed} falha(s). Arquivo: ${path.relative(ROOT, OUTPUT)}`);
+  if (!args.dryRun) console.log(`\nCompleted: ${done} generated, ${failed} failed. File: ${path.relative(ROOT, OUTPUT)}`);
   if (failed) process.exitCode = 1;
 }
 

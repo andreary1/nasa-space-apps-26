@@ -33,7 +33,7 @@ function select(location) {
   globe.select(location.id);
   onSelect(location.id);
   status.textContent = location.name;
-  hint.textContent = 'Esc para retomar a exploração';
+  hint.textContent = 'Esc to resume exploration';
   ensureFrame();
 }
 
@@ -50,8 +50,8 @@ function clearSelection() {
   globe.select(null);
   panels.hide();
   onClear();
-  status.textContent = 'Explore o planeta';
-  hint.textContent = 'Arraste para girar · Selecione um pin';
+  status.textContent = 'Explore the planet';
+  hint.textContent = 'Drag to rotate · Select a pin';
   if (focusedInPanel) {
     if (pin && !pin.hidden) pin.focus({ preventScroll: true });
     else container.focus({ preventScroll: true });
@@ -236,12 +236,12 @@ try {
   );
   observer.observe(section);
   ensureFrame();
-  globe.load().then(() => { loading.hidden = true; }).catch(error => { loading.textContent = 'Falha ao carregar as texturas do planeta.'; loading.setAttribute('role', 'alert'); console.error(error); });
+  globe.load().then(() => { loading.hidden = true; }).catch(error => { loading.textContent = 'Could not load planet textures.'; loading.setAttribute('role', 'alert'); console.error(error); });
 } catch (error) {
   loading.textContent =
-    'Não foi possível carregar o globo 3D. Verifique o suporte a WebGL 2 e abra a demo pelo servidor HTTP.';
+    'Could not load the 3D globe. Check WebGL 2 support and open the demo through the HTTP server.';
   loading.setAttribute('role', 'alert');
-  console.error('Falha ao iniciar o globo:', error);
+  console.error('Could not initialize the globe:', error);
 }
 
 window.addEventListener(

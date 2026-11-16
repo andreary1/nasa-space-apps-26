@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "source": "Wikimedia Commons, seleção de 2026-11-15. Ao exibir, cite autor e licença com link para a página de origem.",
+  "source": "Wikimedia Commons, selected on 2026-11-15. When displaying, credit the author and license with a link to the source page.",
   "kinds": {
-    "foto": "Foto em solo",
-    "satelite": "Imagem de satélite",
-    "aerea": "Imagem aérea",
-    "relevo": "Relevo sombreado"
+    "foto": "Ground photograph",
+    "satelite": "Satellite image",
+    "aerea": "Aerial image",
+    "relevo": "Shaded relief"
   },
   "missing": [
     "ibiraba",
@@ -122,7 +122,7 @@
       "kind": "foto",
       "width": 640,
       "height": 640,
-      "note": "Geossítio Ponte de Pedra (Nova Olinda), no Geopark Araripe; não é a pedreira em si."
+      "note": "Geossítio Ponte de Pedra (Nova Olinda), in Geopark Araripe; not the quarry itself."
     },
     "serra_cangalha": {
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Serra_da_Cangalha_Crater.jpg/960px-Serra_da_Cangalha_Crater.jpg",
@@ -140,7 +140,7 @@
       "source_page": "https://commons.wikimedia.org/wiki/File:Riach%C3%A3o_Ring_LC08_L1TP_221065_20170606_20170616_01_T1.jpg",
       "license": "Public domain",
       "license_url": null,
-      "author": "James Stuby, a partir de imagem USGS/Landsat",
+      "author": "James Stuby, based on USGS/Landsat imagery",
       "kind": "satelite",
       "width": 960,
       "height": 960,
@@ -162,7 +162,7 @@
       "source_page": "https://commons.wikimedia.org/wiki/File:Vargeao_Dome_-_Landsat_OLI_222.jpg",
       "license": "Public domain",
       "license_url": null,
-      "author": "USGS/NASA Landsat; recorte de Szczureq",
+      "author": "USGS/NASA Landsat; cropped by Szczureq",
       "kind": "satelite",
       "width": 960,
       "height": 960,
@@ -173,7 +173,7 @@
       "source_page": "https://commons.wikimedia.org/wiki/File:Vista_Alegre_crater_LC08_L1TP_223078_20170722_20170728_01_T1.jpg",
       "license": "Public domain",
       "license_url": null,
-      "author": "James Stuby, a partir de imagem USGS/Landsat",
+      "author": "James Stuby, based on USGS/Landsat imagery",
       "kind": "satelite",
       "width": 960,
       "height": 960,
@@ -210,7 +210,7 @@
       "kind": "relevo",
       "width": 960,
       "height": 1073,
-      "note": "Relevo sombreado: a cratera está soterrada e não aparece em foto comum."
+      "note": "Shaded relief: the crater is buried and not visible in a regular photograph."
     },
     "pingualuit": {
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Pingualuit_Crater_-_panoramio.jpg/960px-Pingualuit_Crater_-_panoramio.jpg",

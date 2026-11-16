@@ -1,0 +1,1384 @@
+{
+  "Análogos Planetários · Planetary Analog Finder": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Ir para o conteúdo": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Visão geral": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\navigation.js"
+  ],
+  "Exploração do globo": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\navigation.js"
+  ],
+  "Mapa mundial": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\navigation.js"
+  ],
+  "Comparações": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\navigation.js"
+  ],
+  "Dunas e crateras": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\navigation.js"
+  ],
+  "Relatórios": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\navigation.js"
+  ],
+  "Análogos Planetários": [
+    "deliverables\\demo\\index.html"
+  ],
+  "\n                  Comparação de dunas e crateras da Terra": [
+    "deliverables\\demo\\index.html"
+  ],
+  "\n                  com feições de Marte e da Lua.\n                ": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Análogos": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html"
+  ],
+  "Referências": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html"
+  ],
+  "Todos": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\app.js"
+  ],
+  "Dunas": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\app.js"
+  ],
+  "Crateras": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\app.js"
+  ],
+  "Arraste para girar · Selecione um pin": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\components\\globeController.js"
+  ],
+  "Comparação de Características": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Lua": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Marte": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Métrica": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html"
+  ],
+  "Terra": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html"
+  ],
+  "Dados demonstrativos · sem validação científica": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Todas as métricas e gráficos →": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Comparação": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Detalhes do Local": [
+    "deliverables\\demo\\index.html"
+  ],
+  "\n                  Índices calculados; não são probabilidades.\n                ": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Análogos terrestres, referências planetárias e métricas disponíveis.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Localidade em análise": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Selecione um pin no globo ou uma localidade no catálogo. A seleção e os filtros acompanham a navegação.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Catálogo e parâmetros herdados da main. Registros ilustrativos e presets não constituem medições validadas. As referências disponíveis são crateras lunares e dunas marcianas; combinações sem referência não recebem índices.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "O motor usa distância euclidiana ponderada, cosseno e escalonamento de Bagnold para dunas, com os pesos e coeficientes originais.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Brasil / América do Sul": [
+    "deliverables\\demo\\index.html"
+  ],
+  "● Dunas → Marte": [
+    "deliverables\\demo\\index.html"
+  ],
+  "● Crateras → Lua": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Arraste para navegar · + / − para zoom · Ctrl + rolagem aproxima no cursor · Clique nos grupos para explorar": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Terra ↔ Lua para crateras · Terra ↔ Marte para dunas.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Semelhanças": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Diferenças": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Análise morfométrica": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Perfil": [
+    "deliverables\\demo\\index.html"
+  ],
+  "● Terra": [
+    "deliverables\\demo\\index.html"
+  ],
+  "● Alvo planetário": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Esquema paramétrico das métricas; não é um corte medido de DEM.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Diferença": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Métricas dimensionais de dunas indicadas com β são escalonadas por 2,82 para comparação. Ausência de dados não equivale a zero.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Referências mais próximas": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Como o índice é calculado": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Normalização por máximo de cada par e β = 2,82 nos parâmetros dimensionais de dunas definidos no contrato.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Consulte a morfometria de cada tipo sem alterar a seleção ao entrar nesta página.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Análises das localidades e cadastro de novos pontos.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Análise com IA": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Informe as métricas necessárias. Nenhuma medição será preenchida com valores inventados.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Presets herdados, sem validação independente:": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Análogo ilustrativo de Shackleton": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Nome da localidade": [
+    "deliverables\\demo\\index.html"
+  ],
+  "País / UF": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Métricas de crateras": [
+    "deliverables\\demo\\index.html"
+  ],
+  "diametro_m (Diâmetro)": [
+    "deliverables\\demo\\index.html"
+  ],
+  "razao_dD (Profundidade / Diâmetro)": [
+    "deliverables\\demo\\index.html"
+  ],
+  "razao_borda_D (Borda / Diâmetro)": [
+    "deliverables\\demo\\index.html"
+  ],
+  "borda_variacao_m (Variação da Borda)": [
+    "deliverables\\demo\\index.html"
+  ],
+  "borda_raio_cv (CV Raio da Borda)": [
+    "deliverables\\demo\\index.html"
+  ],
+  "coerencia_borda (Fração 72 rad)": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Métricas de dunas": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Abrir navegação": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Fechar navegação": [
+    "deliverables\\demo\\index.html",
+    "deliverables\\demo\\index.html"
+  ],
+  "Navegação principal": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Páginas": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Filtrar localidades do globo": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Arraste para girar o globo ou use as setas do teclado. Selecione uma localidade para comparar.": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Referência da comparação": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Características da localidade terrestre e referência planetária": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Fechar seleção e retomar exploração (Esc)": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Informações da localidade": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Região do mapa": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Tipo de localidade": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Mapa interativo de localidades terrestres": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Zoom do mapa": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Tipo de gráfico": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Tipo de análise": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Tipo de cadastro": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Ex: Cratera de Colônia": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Ex: Brasil / CE, EUA / AZ": [
+    "deliverables\\demo\\index.html"
+  ],
+  "Selecione ${state.analysisType === 'dune' ? 'uma duna' : 'uma cratera'} no catálogo para iniciar a análise. A seleção atual foi preservada.": [
+    "deliverables\\demo\\js\\app.js"
+  ],
+  "Não foi possível inicializar a interface.": [
+    "deliverables\\demo\\js\\app.js"
+  ],
+  "Treinamento de astronautas": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Rovers e robótica": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Calibração de instrumentos": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Estudo de processos": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Validação de algoritmos": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Educação e divulgação": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Baixa": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Média": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Alta": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Baixo": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Médio": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Alto": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Gerar novamente": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Gerar relatório": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Para gerar pela página, abra a demo com: ${SERVER_COMMAND}": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Servidor sem chave de API. Confira o arquivo .env e reinicie o servidor.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Consultando a IA. Pode levar até 1 minuto.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Modelo: ${status.model} · relatórios novos valem só nesta aba": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Ainda não há análise de IA para ${site.name}.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Confiança ${LEVEL_LABELS[confidence] || confidence}": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Relatório de exemplo, sem análise real. Gere novamente com a chave de API.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Os dados desta localidade mudaram depois que a análise foi gerada. Gere novamente para atualizar.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Localidade cadastrada nesta sessão: o relatório não foi salvo em arquivo.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Limitações": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Confiança: ${report.confianca.motivo}": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Texto gerado por IA a partir das métricas do catálogo. Revise antes de citar.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Carregando análise…": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Não foi possível carregar as análises salvas.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "O servidor excedeu o tempo de espera. Verifique o terminal e tente novamente.": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "Não foi possível gerar: ${error.message}": [
+    "deliverables\\demo\\js\\components\\aiReport.js"
+  ],
+  "\n      <svg viewBox=\"0 0 680 175\" role=\"img\" aria-label=\"Esquema paramétrico: Terra e alvo planetário\">\n      <path d=\"M40 45H640M40 135H640\" stroke=\"#dce3f3\" stroke-dasharray=\"3 3\"/>\n      <path d=\"${paths[1]}\" stroke=\"#a58ae4\" stroke-width=\"2\" stroke-dasharray=\"5 3\"/>\n      <path d=\"${paths[0]}\" stroke=\"#86b69a\" stroke-width=\"2.5\"/></svg>": [
+    "deliverables\\demo\\js\\components\\charts.js"
+  ],
+  "<p class=\"data-note\">Dados insuficientes para o perfil comparativo.</p>": [
+    "deliverables\\demo\\js\\components\\charts.js"
+  ],
+  "Diâmetro: ${formatMetric(site.metrics.diameter_m)} m": [
+    "deliverables\\demo\\js\\components\\charts.js"
+  ],
+  "Altura média: ${formatMetric(site.metrics.mean_height)} m": [
+    "deliverables\\demo\\js\\components\\charts.js"
+  ],
+  "Comprimento de onda: ${formatMetric(site.metrics.wavelength)} m": [
+    "deliverables\\demo\\js\\components\\charts.js"
+  ],
+  "<p class=\"data-note\">Dados insuficientes para o radar comparativo.</p>": [
+    "deliverables\\demo\\js\\components\\charts.js"
+  ],
+  "<svg viewBox=\"0 0 400 230\" role=\"img\" aria-label=\"Radar de métricas normalizadas\">${rings}${axes}<polygon points=\"${points(target)}\" fill=\"#a58ae433\" stroke=\"#a58ae4\" stroke-width=\"1.8\" stroke-dasharray=\"3 2\"/><polygon points=\"${points(earth)}\" fill=\"#86b69a33\" stroke=\"#86b69a\" stroke-width=\"2.2\"/></svg>": [
+    "deliverables\\demo\\js\\components\\charts.js"
+  ],
+  "Diâmetro (km)": [
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Tipo de duna": [
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Altura média (m)": [
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Comprimento de onda (m)": [
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Orientação / azimute (°)": [
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Densidade de dunas (cristas/km²)": [
+    "deliverables\\demo\\js\\components\\compactComparison.js"
+  ],
+  "Espaçamento médio (m)": [
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Padrão de distribuição": [
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Índice de aridez": [
+    "deliverables\\demo\\js\\components\\compactComparison.js",
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Não disponível": [
+    "deliverables\\demo\\js\\components\\compactComparison.js"
+  ],
+  "${model.demo ? 'Referência ilustrativa' : 'Referência do catálogo'}: ${model.reference}": [
+    "deliverables\\demo\\js\\components\\compactComparison.js"
+  ],
+  "Sem dados comparáveis para esta localidade e ${name}.": [
+    "deliverables\\demo\\js\\components\\compactComparison.js"
+  ],
+  "Dados demonstrativos · sem validação científica. Independentes dos scores do painel direito.": [
+    "deliverables\\demo\\js\\components\\compactComparison.js"
+  ],
+  "Catálogo herdado · campos ausentes indicados por —. Sem novas medições.": [
+    "deliverables\\demo\\js\\components\\compactComparison.js"
+  ],
+  "Não existem dados comparáveis para esta combinação. Selecione ${target === 'lunar' ? 'Marte para métricas de dunas' : 'Lua para métricas de crateras'}.": [
+    "deliverables\\demo\\js\\components\\compactComparison.js"
+  ],
+  "Terra ↔ Marte": [
+    "deliverables\\demo\\js\\components\\comparison.js"
+  ],
+  "Terra ↔ Lua": [
+    "deliverables\\demo\\js\\components\\comparison.js"
+  ],
+  "${site.name} ↔ ${best?.target.name || 'Sem referência comparável'}": [
+    "deliverables\\demo\\js\\components\\comparison.js"
+  ],
+  "Índice indisponível": [
+    "deliverables\\demo\\js\\components\\comparison.js"
+  ],
+  "Há métricas ausentes. A comparação exige todos os parâmetros ponderados; valores ausentes não são tratados como zero.": [
+    "deliverables\\demo\\js\\components\\comparison.js"
+  ],
+  "Informação não disponível no catálogo.": [
+    "deliverables\\demo\\js\\components\\comparison.js"
+  ],
+  "${model.rows.length} métricas · ${site.type === 'dune' ? 'Dunas' : 'Crateras'}": [
+    "deliverables\\demo\\js\\components\\comparison.js"
+  ],
+  "<p>Sem resultados com os dados disponíveis.</p>": [
+    "deliverables\\demo\\js\\components\\comparison.js"
+  ],
+  "Não foi possível carregar o contexto.": [
+    "deliverables\\demo\\js\\components\\geographicalContext.js"
+  ],
+  "Ainda não há contexto cadastrado para esta localidade.": [
+    "deliverables\\demo\\js\\components\\geographicalContext.js"
+  ],
+  "Vegetação": [
+    "deliverables\\demo\\js\\components\\geographicalContext.js"
+  ],
+  "Localidades de referência": [
+    "deliverables\\demo\\js\\components\\geographicalContext.js"
+  ],
+  "Ficha pendente de revisão editorial.": [
+    "deliverables\\demo\\js\\components\\geographicalContext.js"
+  ],
+  "Esc para retomar a exploração": [
+    "deliverables\\demo\\js\\components\\globeController.js"
+  ],
+  "Falha ao carregar as texturas do planeta.": [
+    "deliverables\\demo\\js\\components\\globeController.js"
+  ],
+  "Não foi possível carregar o globo 3D. Verifique o suporte a WebGL 2 e abra a demo pelo servidor HTTP.": [
+    "deliverables\\demo\\js\\components\\globeController.js"
+  ],
+  "Textura indisponível: ${file}": [
+    "deliverables\\demo\\js\\components\\mapTexture.js"
+  ],
+  "Local: ${location.name} (Terra)": [
+    "deliverables\\demo\\js\\components\\panels.js"
+  ],
+  "${location.shortName} × Referências": [
+    "deliverables\\demo\\js\\components\\panels.js"
+  ],
+  "Localização": [
+    "deliverables\\demo\\js\\components\\panels.js"
+  ],
+  "Sem referência": [
+    "deliverables\\demo\\js\\components\\panels.js"
+  ],
+  "${this.location.name} selecionada. Comparações demonstrativas disponíveis. Pressione Escape para retomar a exploração.": [
+    "deliverables\\demo\\js\\components\\panels.js"
+  ],
+  "Seleção fechada. Exploração do planeta retomada.": [
+    "deliverables\\demo\\js\\components\\panels.js"
+  ],
+  "Preset \"${p.name}\" carregado com sucesso!": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "Preencha Nome, Latitude e Longitude da localidade.": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "Preencha todas as métricas com valores válidos; zero é permitido, exceto no diâmetro.": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "Cratera de Impacto": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "Campo de Dunas": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "Dados informados pelo usuário; sem validação independente.": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "Localidade \"${name}\" adicionada ao catálogo mundial!": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "JSON do sítio copiado para a área de transferência!": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "Copie o JSON do sítio:": [
+    "deliverables\\demo\\js\\components\\siteForm.js"
+  ],
+  "${state.analysisType === 'dune' ? 'Dunas' : 'Crateras'} (${sites.length})": [
+    "deliverables\\demo\\js\\components\\siteSelector.js"
+  ],
+  "${members.length} localidades próximas": [
+    "deliverables\\demo\\js\\components\\worldMap.js"
+  ],
+  " : \"\"}Clique ou pressione Enter para aproximar e explorar os pontos.": [
+    "deliverables\\demo\\js\\components\\worldMap.js"
+  ],
+  "Aproximar grupo de ${members.length} localidades${selected ? \", contém a localidade selecionada\" : \"\"}": [
+    "deliverables\\demo\\js\\components\\worldMap.js"
+  ],
+  "Carregando textura cartográfica…": [
+    "deliverables\\demo\\js\\components\\worldMap.js"
+  ],
+  "Textura indisponível. Os pontos continuam acessíveis. ": [
+    "deliverables\\demo\\js\\components\\worldMap.js"
+  ],
+  "Piso com elevação": [
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Região de dunas marcianas (exemplo)": [
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Densidade de dunas": [
+    "deliverables\\demo\\js\\data\\comparisonDemo.js"
+  ],
+  "Diâmetro (m)": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Razão d/D": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Razão Borda/D": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Variação Borda (m)": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Declividade Média (°)": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Coerência Borda": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Altura Média (m)": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Espaçamento Médio (m)": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Índice de Aridez": [
+    "deliverables\\demo\\js\\data\\constants.js"
+  ],
+  "Hellespontus (Dunas Barcanoides)": [
+    "deliverables\\demo\\js\\data\\mars.js"
+  ],
+  "Tycho (Cratera com Raios de Ejecta)": [
+    "deliverables\\demo\\js\\data\\moon.js"
+  ],
+  "Cratera de Santa Marta": [
+    "deliverables\\demo\\js\\data\\presets.js",
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Brasil / PI": [
+    "deliverables\\demo\\js\\data\\presets.js"
+  ],
+  "Namíbia": [
+    "deliverables\\demo\\js\\data\\presets.js",
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Análogo Polar Shackleton": [
+    "deliverables\\demo\\js\\data\\presets.js"
+  ],
+  "Brasil / RN": [
+    "deliverables\\demo\\js\\data\\presets.js"
+  ],
+  "CE, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js",
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Campo de Dunas Barcanas": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Morfologia clássica de dunas barcanas em crescente com face de deslizamento nítida (slip face).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Comprimento de onda médio (297m) converge perfeitamente para as dunas de Gale (~100m) aplicando a escala de Bagnold β ≈ 2.82×.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Migração ativa induzida por regime eólico unidirecional constante (ventos alísios).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Gravidade terrestre (1.0g) limita a altura das dunas a ~10m, enquanto em Marte (0.38g) atingem mais de 25m.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Presença de lagoas interdunares e umidade freática, inexistentes na superfície atual de Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Areia quartzosa limpa com alta reflexão solar vs grãos basálticos escuros ricos em piroxênio/olivinass em Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Lençóis Maranhenses": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "MA, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js",
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Campo de Dunas Barcanoides": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Padrão regular de cristas contínuas barcanoides transversais semelhante a Nili Patera.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Densidade espacial de cristas de ~6.5/km², alta periodicidade geométrica.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Razão de aspecto crista/espaçamento altamente convergente após escalonamento gravitacional.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Regime hidrológico com precipitação pluviométrica sazonal superior a 1500mm/ano.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Estabilização pontual por biofilmes e vegetação de restinga nas margens do campo.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Atmosfera terrestre densa (1013 mbar) com transporte saliente muito mais contínuo que em Marte (6 mbar).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Dunas do Rosado": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "RN, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js",
+    "deliverables\\demo\\js\\data\\sites.js",
+    "deliverables\\demo\\js\\data\\sites.js",
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Campo de Dunas Transversais": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Coloração avermelhada/rosada marcante decorrente de recobrimento por óxidos de ferro (hematita/goethita), idêntica ao espectro de areias marcianas.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Azimute de cristas coerente (167°) com cristas transversais de Gale Crater.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Baixo índice de umidade e alta mobilidade eólica em semiárido costeiro.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Matriz mineralógica de quartzo recoberto por argilas ferruginosas vs areia máfica basáltica marciana.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Ventos costeiros de brisa marítima diária vs tempestades planetárias sazonais de poeira em Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Camada limite atmosférica mais espessa na Terra.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Dunas de Ibiraba (S. Francisco)": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "BA, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js",
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Campo de Dunas Fósseis": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Dunas paleoeólicas com cristas degradadas, análogas aos campos de dunas fósseis e litificados em crateras antigas de Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Índice de aridez baixo (0.237), em pleno sertão semiárido da Caatinga.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Espaçamento amplo entre cristas de quase 500m.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cobertura esparsa de vegetação xerofítica (Caatinga) que retém o avanço ativo da areia.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Interação fluvial antiga com o paleocanal do Rio São Francisco.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Ausência de gelo sazonal de CO2 que atua nas dunas marcianas de altas latitudes.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Mega-Erg de Dunas Estrela": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Hiperaridez extrema e altura monumental (até 45m), compatível com as megadunas de Proctor e Kaiser em Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Ausência quase total de vegetação e substrato rochoso desértico circundante.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Rupturas de crista multidirecionais associadas a ventos sazonais variáveis.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Pressão atmosférica terrestre sustenta saltamento contínuo em velocidades de vento moderadas (15 km/h) vs >80 km/h necessários em Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Temperatura superficial diurna atinge +45°C vs temperaturas médias negativas marcianas (-60°C).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Sossusvlei (Deserto do Namibe)": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Uma das maiores altitudes de dunas da Terra, convergente com as megadunas basálticas de Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Intensa oxidação ferrosa com coloração vermelho-tijolo profunda idêntica ao regolito marciano.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Superfície plana interdunar de sal e argila (vlei) semelhante aos leitos evaporíticos de Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Nevoeiro costeiro matinal frequente (neblina de advecção do Atlântico).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Idade geológica extremamente antiga com estabilização estrutural profunda.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Gravidade 1.0g impede a formação de ondulações de vento de escala métrica (TARs).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Arábia Saudita": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Mar Contínuo de Areia (Erg Global)": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Maior mar de areia contínuo da Terra, melhor análogo para Olympia Undae (o mar circumpolar de Marte).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Uniformidade estatística e periodicidade geométrica de alta coerência espacial.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Condições hiperáridas sem interferência biogênica superficial.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Em Olympia Undae (Marte), as dunas interagem sazonalmente com calotas de gelo seco (dióxido de carbono).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Ventos terrestres contínuos monçônicos vs tempestades de poeira globais em Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Inexistência de sublimação criogênica no deserto arábico.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Novo México, EUA": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Campo de Dunas de Gesso Ativo": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Composição mineralógica rara de gesso hidratado (sulfato de cálcio), idêntica aos depósitos de sulfatos descobertos pelo rover Opportunity e OMEGA em Marte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Morfometria de dunas barcanas ativas que migram sobre leito evaporítico plano.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Análogo preferencial da NASA para calibração de espectrometria mineral de sulfatos.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Presença de água líquida freática a menos de 1 metro de profundidade que cimenta a base das dunas.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Albedo óptico extremamente alto (branco puro) contrastando com as dunas escuras basálticas marcianas.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Ciclos de dissolução e recristalização por orvalho diário.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cânion dos Apertados (Currais Novos)": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Garganta e Afloramento Íngreme": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Declividade de parede acentuada (P90 = 28.4°), muito próxima da inclinação das paredes internas de Censorinus e Shackleton.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Afloramentos rochosos graníticos e quartzíticos expostos com fraturamento em bloco.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Perfil topográfico transversal em 'V' íngreme análogo a bordas de crateras jovens.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Origem erosiva fluvial (escavado pelo Rio Picuí) e não impacto meteorítico hiperveloz.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Morfologia longitudinal alongada e não circular.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Intensa fragmentação mecânica associada ao clima semiárido terrestre.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Vale Vulcânico (Cerro Corá)": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Estrutura Vulcânica Circular": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Geometria semicircular bem definida com soerguimento perimetral de borda.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Declividade de parede alta (31° no P90) análoga a crateras de transição simples-complexa.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Litologia basáltica correlacionada aos basaltos dos mares lunares (Mare Serenitatis).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Gênese magmática vulcanotectônica terciária (Formação Macau) e não colisão cinética de asteroides.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Inexistência de brechas de impacto (impactitos) ou minerais de choque (stishovita/coesita).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Erosão diferencial intempérica pronunciada.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Pico do Cabugi": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Plug Vulcânico Cônico": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Declividade extrema (P90 = 38.2°), compatível com as paredes mais íngremes da cratera Shackleton (36-41°).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Geometria circular cônica com contraste topográfico agudo em relação ao terreno circundante.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Constituído por álcali-basaltos de afinidade mantle-derived semelhantes ao regolito lunar.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Topografia positiva (elevação em relevo residual) vs cratera de impacto que é uma depressão escavada.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Depósito de talus de encosta terrestre com deslizamento gravitacional ativo.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Estrutura de conduto vulcânico desmantelado pela erosão.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Depressão e Afloramento Estrutural": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Presença de escarpamentos íngremes com quebra de declive súbita típica de bordas de colapso.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Razão de aspecto e circularidade aproximada correlata a crateras lunares erodidas.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Sedimentologia estratificada comparável a camadas de ejeção em crateras da Lua.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Origem sedimentar lacustre e marinha em bacia do rifte cretáceo do Araripe.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Riquíssimo conteúdo fóssil fóssil terrestre (ictiofauna e pterossauros), ausente no espaço.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Erosão laminar por águas superficiais.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Morro do Chapéu (Tanque / Pedreira)": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Platô Sedimentar Circular": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Estrutura circular de grande diâmetro com piso interno aplainado e bordas tabulares.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Morfometria de diâmetro (4.8 km) análoga a crateras de transição como Censorinus.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Afloramentos quartzíticos de alta dureza resistentes à intempérie.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Relevo do tipo mesa/inselberg residual cárstico e sedimentar da Chapada Diamantina.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Inexistência de cones de estilhaçamento (shatter cones) ou feições de choque.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Idade proterozoica de sedimentação sem choque meteórico comprovado.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Serra da Cangalha": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "TO/MA, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de Impacto Complexa": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de impacto meteorítico comprovada com soerguimento central (central peak) e anel interno idêntico a crateras complexas lunares como Tycho e Copernicus.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Presença confirmada de cones de estilhaçamento (shatter cones) e quartzo com deformação planar (PDFs).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Alta circularidade (0.942) preservada na estrutura estrutural subterrânea.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Bordas erodidas por centenas de milhões de anos de chuvas tropicais na Bacia do Parnaíba.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Profundidade original significativamente assoreada por sedimentos cenozóicos.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Revestimento por cobertura vegetal de Cerrado.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Anel de Riachão": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de Impacto Simples": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Estrutura de impacto comprovada de morfologia circular quase perfeita (circularidade = 0.955).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Diâmetro de 4.1 km perfeitamente comparável a crateras lunares simples como Censorinus (4.13 km).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Brechas de impacto e arenitos deformados expostos na crista.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Piso preenchido por sedimentos coluviais e aluviais com perda da bacia profunda original.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Ausência de raios de ejecta brilhantes externos (destruídos pela erosão eólica/hídrica na Terra).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Menor contraste de elevação em relação ao terreno circundante.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Domo de Araguainha": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "GO/MT, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de Impacto Multianelar": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Maior estrutura de impacto da América do Sul (41.3 km), análogo de crateras de grande porte e bacias de impacto lunares como Aristarchus e Cabeus.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Núcleo central soerguido granítico com feições extremas de metamorfismo de choque (impact melts).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Padrão multianelar concêntrico com falhas normais periféricas idêntico ao colapso de bacias lunares.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Idade de ~254 milhões de anos com histórico severo de intemperismo químico úmido.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "A profundidade topográfica atual é modesta (~160m) devido ao arrasamento erosivo regional.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Domo de Vargeão": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "SC, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de Impacto em Basalto": [
+    "deliverables\\demo\\js\\data\\sites.js",
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Impacto em derrames basálticos da Formação Serra Geral, análogo direto para impactos nos mares basálticos da Lua (Mare Serenitatis/Imbrium).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Estrutura complexa com anel de colapso circular bem preservado no relevo de Santa Catarina.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Presença de pseudotaquilitos e vidro de impacto (impact glass).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Clima subtropical úmido com densa Mata Atlântica e solos agrícolas sobrepostos.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Fracionamento em espinha de peixe decorrente de juntas de resfriamento do basalto terrestre.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Erosão de encosta vigorosa.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de Vista Alegre": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "PR, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de Impacto Circular": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Outra estrutura de impacto formada diretamente em alvo basáltico, com alta circularidade (0.945).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Declividade de parede média de ~15°, consistente com crateras lunares de médio porte.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Bordas elevadas distintas que se destacam na topografia do planalto paranaense.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Assoreamento sedimentar no interior da depressão circular.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Rápida meteorização química dos minerais de ferro-magnésio basálticos no clima quente e úmido.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Drenagem radial centrípeta interna inexistente na Lua.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "PI, Brasil": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera com Pico Central": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de impacto complexa com pico central soerguido e terraços evidentes na geologia do Piauí.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Diâmetro de ~10 km perfeitamente análogo à transição morfométrica lunar simples-complexa.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Brechas de impacto e deformação por ondas de choque atestadas em laboratório.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Borda oriental fortemente erodida com perda da continuidade circular perimetral (coerência de 0.472).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Sedimentação interior pós-impacto que nivelou parte da calha anular.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Vegetação do Cerrado e solos latossólicos sobre o anel.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera de Impacto Simples Canônica": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "O análogo de impacto simples mais perfeito do planeta Terra. Morfometria em tigela (bowl-shaped) praticamente idêntica a Censorinus e Shackleton.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Razão profundidade/diâmetro (0.143) de alta fidelidade com crateras lunares jovens não colapsadas.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Bordas afiadas elevadas 45m acima da planície do deserto do Colorado com manto de ejeção invertido preservado.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Formada pelo impacto de um meteorito metálico ferro-níquel há apenas 50.000 anos (extremamente recente em termos geológicos).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Atmosfera terrestre desacelerou e vaporizou parte do bólido original antes do solo.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Fundo plano gerado por sedimentação lacustre durante o Pleistoceno tardio.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "África do Sul": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Maior Estrutura de Impacto da Terra": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Melhor análogo terrestre para bacias de impacto multianelares gigantes da Lua (como Mare Orientale e Imbrium Basin).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Exibe soerguimento crustal colossal com granitos do manto superior expostos no domo central.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Geração de megabrechas e fundidos por impacto em escala quilométrica.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Idade superior a 2 bilhões de anos (Paleoproterozoico), com quilômetros de relevo superficial removidos por erosão tectônica global.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "A topografia de borda externa desapareceu quase por completo, restando apenas a cicatriz estrutural profunda (raiz do impacto).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Deformações tectônicas continentais posteriores sobrepostas.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Yucatán, México": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera com Anel de Picos (K-Pg)": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Análogo principal de crateras lunares complexas com anel de picos (peak ring) como Schrödinger Basin.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Energia cinética equivalente ao evento de extinção massiva dos dinossauros (K-Pg há 66 Ma).": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Morfologia de colapso gravitacional dinâmico de alta energia identificada em imageamento geofísico sísmico 3D.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Cratera completamente soterrada por quase 1 km de rochas carbonáticas pós-impacto e pelo Golfo do México.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Expressão topográfica superficial invisível a olho nu, detectável apenas por anéis de cenotes (dolinas cársticas) e gravimetria.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Impacto ocorrido em plataforma marinha rasa com geração de megatsunamis.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Quebec, Canadá": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Circularidade quase perfeita (0.988) com borda proeminente elevada 160m sobre a tundra ártica canadense.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Paredes íngremes de até 36.5° em granito sólido, idênticas à inclinação de crateras simples da Lua.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Preservação excepcional devido à resistência do escudo cristalino pré-cambriano.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Abrigou lagos glaciais e atualmente contém um dos lagos de água doce mais puros e profundos (267m) da Terra.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Passou por ciclos de glaciações continentais que limparam os depósitos externos de ejecta.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Maharashtra, Índia": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Uma das únicas crateras de impacto simples da Terra preservada diretamente nos basaltos dos Trapps do Decã, tornando-se o melhor análogo mineralógico para os mares basálticos da Lua.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Minerais de choque preservados: plagioclásio transformado em maskelyneíte idêntico às amostras das missões Apollo.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Perfil em tigela com borda contínua preservada e declividade de parede de até 34°.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Fundo ocupado por um lago salino alcalino hipersalino com ecossistema de extremófilos.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Intemperismo subtropical com alteração de basaltos para esmectitas e cloritas na Terra.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Idade pleistocênica recente com erosão hídrica em curso nas paredes.": [
+    "deliverables\\demo\\js\\data\\sites.js"
+  ],
+  "Não informada no catálogo": [
+    "deliverables\\demo\\js\\utils\\formatters.js"
+  ],
+  "Localidade inválida ou fora do catálogo.": [
+    "api\\reports.mjs"
+  ],
+  "✓ ${site.id} com ${entry.model} em ${entry.seconds.toFixed(1)}s": [
+    "api\\reports.mjs"
+  ],
+  "),\n    model: process.env.AI_MODEL || preset.model,\n    apiKey: process.env.AI_API_KEY,\n    // \"low\" deixa o Gemini bem mais rápido; vazio = padrão do modelo.\n    reasoning: process.env.AI_REASONING_EFFORT ?? preset.reasoning,\n    timeoutMs: Number(process.env.AI_TIMEOUT_MS || 30000),\n  };\n  config.totalTimeoutMs = Number(process.env.AI_TOTAL_TIMEOUT_MS || 70000);\n  for (const key of [": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  "]) {\n    if (!Number.isSafeInteger(config[key]) || config[key] <= 0 || config[key] > 70000) {\n      throw new Error(`${key} deve ser um inteiro entre 1 e 70000 ms.`);\n    }\n  }\n  // Modelos reserva, usados quando o principal está sobrecarregado (HTTP 503/429).\n  const fallbacks = process.env.AI_FALLBACK_MODELS !== undefined\n    ? process.env.AI_FALLBACK_MODELS.split(": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  ");\n  }\n  return config;\n}\n\nconst sleep = ms => new Promise(resolve => setTimeout(resolve, ms));\n\n// Extrai JSON mesmo que o modelo devolva dentro de ```json ... ```.\nexport function parseJsonContent(content) {\n  const cleaned = String(content).trim().replace(/^```(?:json)?\\s*/i, ": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  ", Authorization: `Bearer ${config.apiKey}` },\n    body: JSON.stringify(body),\n    signal: AbortSignal.any([AbortSignal.timeout(config.timeoutMs), config.signal]),\n  });\n  const text = await response.text();\n  return { response, text };\n}\n\n// Converte erros de rede/tempo em mensagens claras (sem alterar o erro original,\n// cujo \"message\" pode ser somente leitura).\nexport function describeError(error, config) {\n  if (error?.name === ": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  ") {\n    return Object.assign(new Error(`a IA não respondeu em ${config.timeoutMs / 1000}s (rode o diagnóstico: node scripts/ai_reports/check.mjs)`), { fatal: true, fallback: true });\n  }\n  if (error instanceof TypeError && /fetch failed/i.test(error.message)) {\n    const cause = error.cause?.code || error.cause?.message || ": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  ";\n    return Object.assign(new Error(`falha de conexão com ${config.baseUrl} (${cause})`), { retry: true });\n  }\n  return error instanceof Error ? error : new Error(String(error));\n}\n\nasync function callOneModel(config, model, messages, { attempts, log }) {\n  let lastError;\n  let useReasoning = true;\n  for (let attempt = 1; attempt <= attempts; attempt += 1) {\n    if (config.signal.aborted) throw new Error(\"Tempo total de geração excedido.\");\n    const started = Date.now();\n    try {\n      const { response, text } = await request(config, model, messages, useReasoning);\n      // Alguns modelos não aceitam reasoning_effort: tenta de novo sem ele.\n      if (response.status === 400 && useReasoning && /reasoning/i.test(text)) {\n        useReasoning = false;\n        throw Object.assign(new Error(": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  "), { quick: true });\n      }\n      if (response.status === 429 || response.status >= 500) {\n        throw Object.assign(new Error(`HTTP ${response.status}: ${summarize(text)}`), { retry: true, overloaded: true });\n      }\n      if (response.status === 404) throw Object.assign(new Error(`Modelo ${model} indisponível (HTTP 404).`), { fatal: true, fallback: true });\n      if (!response.ok) throw Object.assign(new Error(`HTTP ${response.status}: ${summarize(text)}`), { fatal: true });\n      const content = JSON.parse(text)?.choices?.[0]?.message?.content;\n      if (!content) throw new Error(": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  ");\n      return { data: parseJsonContent(content), seconds: (Date.now() - started) / 1000, model };\n    } catch (caught) {\n      const error = describeError(caught, config);\n      lastError = error;\n      if (config.signal.aborted) throw new Error(\"Tempo total de geração excedido. Tente novamente mais tarde.\");\n      if (error.fatal || attempt >= attempts) break;\n      const wait = error.quick ? 0 : error.retry ? 5000 * attempt : 2000;\n      log(`   ${model}: tentativa ${attempt} falhou (${error.message.split(": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  ");\n      await sleep(Math.min(wait, Math.max(0, config.deadline - Date.now())));\n    }\n  }\n  throw lastError;\n}\n\n// Extrai a mensagem útil de um erro JSON da API.\nfunction summarize(text) {\n  try {\n    const body = JSON.parse(text);\n    const error = Array.isArray(body) ? body[0]?.error : body.error;\n    if (error?.message) return error.message.slice(0, 300);\n  } catch { /* não é JSON */ }\n  return String(text).slice(0, 300);\n}\n\n// Tenta o modelo principal e, se estiver sobrecarregado, os modelos reserva.\nexport async function callModel(config, messages, { attempts = 2, log = console.warn } = {}) {\n  const started = Date.now();\n  const total = config.totalTimeoutMs || 70000;\n  config = { ...config, signal: AbortSignal.timeout(total), deadline: started + total };\n  const models = config.models?.length ? config.models : [config.model];\n  let lastError;\n  for (const [index, model] of models.entries()) {\n    try {\n      const result = await callOneModel(config, model, messages, { attempts, log });\n      return {...result, seconds: (Date.now() - started) / 1000};\n    } catch (error) {\n      lastError = error;\n      const next = models[index + 1];\n      if (config.signal.aborted || (!error.overloaded && !error.fallback) || !next) break;\n      log(": [
+    "scripts\\ai_reports\\ai_client.mjs"
+  ],
+  "✗ Configuração: ${error.message}": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "Provedor: ${config.name}\\nEndpoint: ${config.baseUrl}\\nModelo: ${config.model}\\nChave: ${config.apiKey.length} caracteres, começa com \"${config.apiKey.slice(0, 4)}…\"": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "⚠ A chave contém espaços. Confira o .env.": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "sem resposta no tempo limite": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "\\n1. Lista de modelos (testa rede e chave)": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "✓ Modelo \"${config.model}\" disponível": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "⚠ Modelo \"${config.model}\" não aparece na lista": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "  Modelos \"flash\" disponíveis: ${flash.join(', ')}": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "Responda apenas com a palavra: ok": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "com reasoning_effort=${config.reasoning}": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "sem reasoning_effort": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "\\nSe algo falhou, cole esta saída na conversa.": [
+    "scripts\\ai_reports\\check.mjs"
+  ],
+  "Opções: --site <id>  --force  --dry-run  --mock. Configuração em .env (veja .env.example).": [
+    "scripts\\ai_reports\\generate_reports.mjs"
+  ],
+  "Localidade \"${args.site}\" não encontrada em sites.js.": [
+    "scripts\\ai_reports\\generate_reports.mjs"
+  ],
+  "${label}: já existe, pulando (use --force para refazer)": [
+    "scripts\\ai_reports\\generate_reports.mjs"
+  ],
+  "\\nConcluído: ${done} gerado(s), ${failed} falha(s). Arquivo: ${path.relative(ROOT, OUTPUT)}": [
+    "scripts\\ai_reports\\generate_reports.mjs"
+  ],
+  "Treinamento de astronautas em geologia de campo": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Teste de rovers, robótica e navegação autônoma": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Calibração e validação de instrumentos orbitais": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Estudo de processos geológicos (eólicos, impacto, erosão)": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Validação de algoritmos de detecção e morfometria": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Educação e divulgação científica": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Você é um geólogo planetário que analisa análogos terrestres para a NASA.\nRecebe dados morfométricos de uma localidade na Terra e a comparação dela com feições de Marte (dunas) ou da Lua (crateras).\n\nREGRAS OBRIGATÓRIAS\n1. Use somente os dados recebidos. Não invente medidas, datas, idades, minerais, estudos ou missões.\n2. Toda semelhança e diferença deve citar no campo \"metricas\" as chaves das métricas que a sustentam (ex.: \"wavelength\").\n   Use apenas chaves presentes em \"metricas_comparadas\". Se a afirmação não vier de uma métrica, deixe a lista vazia e diga isso no texto.\n3. As \"notas_catalogo\" foram escritas pela equipe e ainda não foram verificadas: trate-as como hipóteses, nunca como fatos.\n4. Em dunas, as métricas de escala (altura média, comprimento de onda, espaçamento) da referência marciana já vêm multiplicadas pelo fator de Bagnold (2,82). Compare com o valor \"referencia_escalada\".\n5. Sugestões para a NASA: escolha \"tipo\" apenas entre: ${Object.keys(SUGGESTION_TYPES).join(', ')}.\n   Justifique cada sugestão com os dados. Não afirme que a NASA já atua no local.\n6. Seja honesto sobre limitações (clima, vegetação, umidade, escala, idade, dados ausentes).\n7. Escreva em português do Brasil, frases claras e curtas, sem exageros.\n\nResponda APENAS com um objeto JSON neste formato:\n{\n  \"resumo\": \"2 a 3 frases sobre o local e o seu valor como análogo\",\n  \"analogo_principal\": { \"interpretacao\": \"o que o score e as métricas dizem sobre a semelhança com a melhor referência\" },\n  \"semelhancas\": [ { \"titulo\": \"...\", \"explicacao\": \"...\", \"metricas\": [\"chave\"] } ],\n  \"diferencas\": [ { \"titulo\": \"...\", \"explicacao\": \"...\", \"metricas\": [\"chave\"], \"impacto\": \"baixo|medio|alto\" } ],\n  \"sugestoes_nasa\": [ { \"tipo\": \"um dos tipos permitidos\", \"titulo\": \"...\", \"descricao\": \"o que poderia ser feito\", \"justificativa\": \"por que este local, com base nos dados\" } ],\n  \"limitacoes\": [\"...\"],\n  \"confianca\": { \"nivel\": \"baixa|media|alta\", \"motivo\": \"...\" }\n}\nUse de 2 a 4 itens em semelhanças, diferenças e sugestões.": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Score 0-100%: 60% distância euclidiana ponderada (exp(-2,2·WED)) + 40% similaridade de cosseno, normalização par a par pelo máximo.": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Texto da equipe, não verificado.": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Resposta incompleta: faltou resumo, semelhanças ou sugestões válidas.": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "[EXEMPLO] Texto de demonstração para ${payload.localidade.nome}. Rode o gerador com a chave de API para obter a análise real.": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "[EXEMPLO] Interpretação do score aparecerá aqui.": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "[EXEMPLO] Semelhança": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Explicação baseada nas métricas.": [
+    "scripts\\ai_reports\\prompt.mjs",
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "[EXEMPLO] Diferença": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "[EXEMPLO] Sugestão": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "[EXEMPLO] Limitações aparecerão aqui.": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "Relatório de exemplo, sem análise real.": [
+    "scripts\\ai_reports\\prompt.mjs"
+  ],
+  "JSON inválido.": [
+    "scripts\\ai_reports\\server.mjs"
+  ],
+  "Localidade inválida.": [
+    "scripts\\ai_reports\\server.mjs"
+  ],
+  "✓ ${site.id} com ${entry.model} em ${entry.seconds.toFixed(1)}s${persist ? '' : ' (não salvo: cadastro da sessão)'}": [
+    "scripts\\ai_reports\\server.mjs"
+  ],
+  "Não encontrado": [
+    "scripts\\ai_reports\\server.mjs"
+  ],
+  "Rota não encontrada.": [
+    "scripts\\ai_reports\\server.mjs"
+  ],
+  "A porta ${PORT} já está em uso — a demo provavelmente já está aberta em outra janela.": [
+    "scripts\\ai_reports\\server.mjs"
+  ]
+}

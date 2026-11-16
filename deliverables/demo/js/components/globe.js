@@ -207,7 +207,7 @@ export class Globe {
     credit.textContent = [photo.author, photo.license].filter(Boolean).join(' · ');
     holder.append(image, credit);
     button.dataset.hasPhoto = 'true';
-    button.setAttribute('aria-label', `Selecionar ${location.name}. Foto: ${credit.textContent}`);
+    button.setAttribute('aria-label', `Select ${location.name}. Photo: ${credit.textContent}`);
     image.src = photo.image;
   }
 

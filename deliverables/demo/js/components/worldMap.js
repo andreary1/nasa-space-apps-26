@@ -32,7 +32,7 @@ export function createWorldMap(state, onSelect) {
     document.getElementById("map-zoom-out").disabled = view.w >= 960;
     document.getElementById("map-zoom-in").disabled = view.w <= 960 / 2048;
     document.getElementById("map-zoom-level").textContent =
-      `${(960 / view.w).toLocaleString("pt-BR", { maximumFractionDigits: 1 })}×`;
+      `${(960 / view.w).toLocaleString("en-US", { maximumFractionDigits: 1 })}×`;
     hidePinTooltip();
     renderMapPins();
   };
@@ -44,11 +44,11 @@ export function createWorldMap(state, onSelect) {
     document.getElementById("tooltip-title").textContent =
       members.length === 1
         ? `${site.name} (${site.uf})`
-        : `${members.length} localidades próximas`;
+        : `${members.length} nearby sites`;
     document.getElementById("tooltip-sub").textContent =
       members.length === 1
-        ? `${site.type === "dune" ? "Duna" : "Cratera"} · Lat: ${site.lat.toFixed(3)}° | Lon: ${site.lon.toFixed(3)}°`
-        : `${selected ? `Selecionada: ${SITES_DATA[selected.index].name}. ` : ""}Clique ou pressione Enter para aproximar e explorar os pontos.`;
+        ? `${site.type === "dune" ? "Dune" : "Crater"} · Lat: ${site.lat.toFixed(3)}° | Lon: ${site.lon.toFixed(3)}°`
+        : `${selected ? `Selected: ${SITES_DATA[selected.index].name}. ` : ""}Click or press Enter to zoom in and explore the sites.`;
     tooltip.hidden = false;
     const box = svg.getBoundingClientRect(),
       anchor = element.getBoundingClientRect();
@@ -117,7 +117,7 @@ export function createWorldMap(state, onSelect) {
       pin.setAttribute(
         "aria-label",
         members.length > 1
-          ? `Aproximar grupo de ${members.length} localidades${selected ? ", contém a localidade selecionada" : ""}`
+          ? `Zoom into a cluster of ${members.length} sites${selected ? ", includes the selected site" : ""}`
           : `Selecionar ${SITES_DATA[members[0].index].name}`,
       );
       // Keep the geographic dot fixed; place the badge below it near the top edge.
@@ -157,13 +157,13 @@ export function createWorldMap(state, onSelect) {
         .find((pin) => pin.dataset.members === focusKey)
         ?.focus({ preventScroll: true });
     document.getElementById("map-visible-count").textContent =
-      `${points.length} ${points.length === 1 ? "localidade" : "localidades"} no enquadramento`;
+      `${points.length} ${points.length === 1 ? "site" : "sites"} in view`;
   }
   async function renderBaseMap() {
     if (loaded || loading || !svg.getBoundingClientRect().width) return;
     loading = true;
     status.hidden = false;
-    status.textContent = "Carregando textura cartográfica…";
+    status.textContent = "Loading map texture…";
     try {
       image.setAttribute("href", await mapTexture());
       loaded = true;
@@ -171,9 +171,9 @@ export function createWorldMap(state, onSelect) {
       svg.dataset.textureReady = "true";
     } catch (error) {
       status.textContent =
-        "Textura indisponível. Os pontos continuam acessíveis. ";
+        "Texture unavailable. Sites remain accessible. ";
       const retry = document.createElement("button");
-      retry.textContent = "Tentar novamente";
+      retry.textContent = "Try again";
       retry.addEventListener("click", () => renderBaseMap(), { once: true });
       status.append(retry);
     } finally {

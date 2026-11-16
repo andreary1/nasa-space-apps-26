@@ -43,12 +43,12 @@ function readBody(req, limit = 200_000) {
     const chunks = [];
     req.on('data', chunk => {
       size += chunk.length;
-      if (size > limit) { reject(Object.assign(new Error('Corpo muito grande.'), { status: 413 })); req.destroy(); }
+      if (size > limit) { reject(Object.assign(new Error('Request body too large.'), { status: 413 })); req.destroy(); }
       else chunks.push(chunk);
     });
     req.on('end', () => {
       try { resolve(JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}')); }
-      catch { reject(Object.assign(new Error('JSON inválido.'), { status: 400 })); }
+      catch { reject(Object.assign(new Error('Invalid JSON.'), { status: 400 })); }
     });
     req.on('error', reject);
   });
@@ -61,7 +61,7 @@ function resolveSite(input) {
   if (catalog) return { site: catalog, persist: true };
   const valid = input && typeof input.id === 'string' && typeof input.name === 'string'
     && ['dune', 'crater'].includes(input.type) && input.metrics && typeof input.metrics === 'object';
-  if (!valid) throw Object.assign(new Error('Localidade inválida.'), { status: 400 });
+  if (!valid) throw Object.assign(new Error('Invalid site.'), { status: 400 });
   return { site: input, persist: false };
 }
 
@@ -73,10 +73,10 @@ async function handleGenerate(req, res) {
   const { site, persist } = resolveSite((await readBody(req)).site);
   // Dois cliques seguidos na mesma localidade aproveitam a mesma geração.
   if (!inFlight.has(site.id)) {
-    console.log(`→ gerando ${site.id} (${config.name}/${config.model})…`);
+    console.log(`→ generating ${site.id} (${config.name}/${config.model})…`);
     inFlight.set(site.id, generateEntry(site, config).then(async entry => {
       if (persist) await saveEntry(site.id, entry);
-      console.log(`✓ ${site.id} com ${entry.model} em ${entry.seconds.toFixed(1)}s${persist ? '' : ' (não salvo: cadastro da sessão)'}`);
+      console.log(`✓ ${site.id} with ${entry.model} in ${entry.seconds.toFixed(1)}s${persist ? '' : ' (not saved: session registration)'}`);
       return entry;
     }).finally(() => inFlight.delete(site.id)));
   }
@@ -95,13 +95,13 @@ async function serveStatic(req, res) {
   if (pathname.endsWith('/')) pathname += 'index.html';
   const file = path.resolve(DEMO_DIR, `.${pathname}`);
   const blocked = !file.startsWith(DEMO_DIR + path.sep) || pathname.split('/').some(part => part.startsWith('.'));
-  if (blocked) { res.writeHead(403); return res.end('Proibido'); }
+  if (blocked) { res.writeHead(403); return res.end('Forbidden'); }
   try {
     if (!(await stat(file)).isFile()) throw new Error();
     res.writeHead(200, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-cache' });
     res.end(await readFile(file));
   } catch {
-    res.writeHead(404); res.end('Não encontrado');
+    res.writeHead(404); res.end('Not found');
   }
 }
 
@@ -114,7 +114,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { ok: true, configured, provider: process.env.AI_PROVIDER || 'gemini', model });
     }
     if (req.url === '/api/reports' && req.method === 'POST') return await handleGenerate(req, res);
-    if (req.url.startsWith('/api/')) return sendJson(res, 404, { error: 'Rota não encontrada.' });
+    if (req.url.startsWith('/api/')) return sendJson(res, 404, { error: 'Route not found.' });
     if (req.method !== 'GET' && req.method !== 'HEAD') { res.writeHead(405); return res.end(); }
     return await serveStatic(req, res);
   } catch (error) {
@@ -130,15 +130,15 @@ function openBrowser() {
     : process.platform === 'darwin' ? ['open', [URL_DEMO]] : ['xdg-open', [URL_DEMO]];
   try {
     const child = spawn(command, args, { stdio: 'ignore', detached: true });
-    child.on('error', () => console.log(`Abra manualmente: ${URL_DEMO}`));
+    child.on('error', () => console.log(`Open manually: ${URL_DEMO}`));
     child.unref();
   }
-  catch { console.log(`Abra manualmente: ${URL_DEMO}`); }
+  catch { console.log(`Open manually: ${URL_DEMO}`); }
 }
 
 server.on('error', error => {
   if (error.code === 'EADDRINUSE') {
-    console.log(`A porta ${PORT} já está em uso — a demo provavelmente já está aberta em outra janela.`);
+    console.log(`Port ${PORT} is already in use — the demo may already be open in another window.`);
     if (shouldOpen) openBrowser();
     process.exit(0);
   }
@@ -147,8 +147,8 @@ server.on('error', error => {
 
 server.listen(PORT, '127.0.0.1', () => {
   let status;
-  try { const config = providerConfig(); status = `IA: ${config.name}/${config.model}`; }
-  catch (error) { status = `IA desativada — ${error.message}`; }
-  console.log(`Demo em ${URL_DEMO}\n${status}\nPara parar, feche esta janela ou use Ctrl+C.`);
+  try { const config = providerConfig(); status = `AI: ${config.name}/${config.model}`; }
+  catch (error) { status = `AI disabled — ${error.message}`; }
+  console.log(`Demo at ${URL_DEMO}\n${status}\nTo stop, close this window or press Ctrl+C.`);
   if (shouldOpen) openBrowser();
 });

@@ -7,12 +7,12 @@ export function createCharts(state) {
     const {site, best, rows} = model;
     const paths = profilePaths(site, best?.target);
     document.getElementById('svg-container').innerHTML = paths ? `
-      <svg viewBox="0 0 680 175" role="img" aria-label="Esquema paramétrico: Terra e alvo planetário">
+      <svg viewBox="0 0 680 175" role="img" aria-label="Parametric diagram: Earth and planetary target">
       <path d="M40 45H640M40 135H640" stroke="#dce3f3" stroke-dasharray="3 3"/>
       <path d="${paths[1]}" stroke="#a58ae4" stroke-width="2" stroke-dasharray="5 3"/>
-      <path d="${paths[0]}" stroke="#86b69a" stroke-width="2.5"/></svg>` : '<p class="data-note">Dados insuficientes para o perfil comparativo.</p>';
-    document.getElementById('topo-left-label').textContent = site.type === 'crater' ? `Diâmetro: ${formatMetric(site.metrics.diameter_m)} m` : `Altura média: ${formatMetric(site.metrics.mean_height)} m`;
-    document.getElementById('topo-center-label').textContent = site.type === 'crater' ? `Profundidade: ${formatMetric(site.metrics.depth_m)} m` : `Comprimento de onda: ${formatMetric(site.metrics.wavelength)} m`;
+      <path d="${paths[0]}" stroke="#86b69a" stroke-width="2.5"/></svg>` : '<p class="data-note">Insufficient data for the comparison profile.</p>';
+    document.getElementById('topo-left-label').textContent = site.type === 'crater' ? `Diameter: ${formatMetric(site.metrics.diameter_m)} m` : `Mean height: ${formatMetric(site.metrics.mean_height)} m`;
+    document.getElementById('topo-center-label').textContent = site.type === 'crater' ? `Depth: ${formatMetric(site.metrics.depth_m)} m` : `Wavelength: ${formatMetric(site.metrics.wavelength)} m`;
     document.getElementById('topo-right-label').textContent = site.type === 'crater' ? `Declividade P90: ${formatMetric(site.metrics.wall_slope_p90)}°` : `Azimute: ${formatMetric(site.metrics.crest_azimuth)}°`;
     document.getElementById('feature-bars-container').innerHTML = rows.map(row => `
       <div class="feature-bar"><div><span>${escapeHtml(row.label)}</span><span>${formatMetric(row.earth)} / ${formatMetric(row.comparable)}</span></div>
@@ -28,8 +28,8 @@ export function createCharts(state) {
       return `<text x="${x}" y="${y}" fill="#68739b" font-size="8" text-anchor="middle">${escapeHtml(row.label.split(' ')[0].slice(0, 8))}</text>`;
     }).join('');
     document.getElementById('radar-svg-container').innerHTML = earth.includes(null) || target.includes(null)
-      ? '<p class="data-note">Dados insuficientes para o radar comparativo.</p>'
-      : `<svg viewBox="0 0 400 230" role="img" aria-label="Radar de métricas normalizadas">${rings}${axes}<polygon points="${points(target)}" fill="#a58ae433" stroke="#a58ae4" stroke-width="1.8" stroke-dasharray="3 2"/><polygon points="${points(earth)}" fill="#86b69a33" stroke="#86b69a" stroke-width="2.2"/></svg>`;
+      ? '<p class="data-note">Insufficient data for the comparison radar.</p>'
+      : `<svg viewBox="0 0 400 230" role="img" aria-label="Radar of normalized metrics">${rings}${axes}<polygon points="${points(target)}" fill="#a58ae433" stroke="#a58ae4" stroke-width="1.8" stroke-dasharray="3 2"/><polygon points="${points(earth)}" fill="#86b69a33" stroke="#86b69a" stroke-width="2.2"/></svg>`;
   }
 
   function setStudioTab(tab) {

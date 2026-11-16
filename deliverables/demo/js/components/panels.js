@@ -2,12 +2,12 @@ import { GeographicalContext } from './geographicalContext.js';
 import { CompactComparison } from './compactComparison.js';
 
 const formatScore = (value) =>
-  value.toLocaleString('pt-BR', {
+  value.toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 const coordinate = (value, positive, negative) =>
-  `${Math.abs(value).toLocaleString('pt-BR', { maximumFractionDigits: 4 })}° ${value >= 0 ? positive : negative}`;
+  `${Math.abs(value).toLocaleString('en-US', { maximumFractionDigits: 4 })}° ${value >= 0 ? positive : negative}`;
 
 export class Panels {
   constructor(reducedMotion) {
@@ -31,23 +31,23 @@ export class Panels {
     this.context.prepare(location);
     this.started = null;
     document.getElementById('comparison-location').textContent =
-      `Local: ${location.name} (Terra)`;
+      `Site: ${location.name} (Earth)`;
     document.getElementById('similarity-subtitle').textContent =
-      `${location.shortName} × Referências`;
+      `${location.shortName} × References`;
     this.compact.prepare(location);
     const details = [
-      ['pin', 'Localização', location.region],
+      ['pin', 'Location', location.region],
       [
         'target',
-        'Coordenadas',
-        `${coordinate(location.lat, 'N', 'S')}, ${coordinate(location.lon, 'L', 'O')}`,
+        'Coordinates',
+        `${coordinate(location.lat, 'N', 'S')}, ${coordinate(location.lon, 'E', 'W')}`,
       ],
       [
         location.category === 'crater' ? 'crater' : 'dune',
-        'Tipo',
+        'Type',
         location.type,
       ],
-      ['calendar', 'Idade aproximada', location.age],
+      ['calendar', 'Approximate age', location.age],
     ];
     document.getElementById('location-details').replaceChildren(
       ...details.map(([icon, label, value]) => {
@@ -67,9 +67,9 @@ export class Panels {
       document.getElementById(`${key}-reference`).textContent = location
         .references[key]
         ? `(${location.references[key].name})`
-        : 'Sem referência';
+        : 'No reference';
       this.scoreElements[index].value.textContent = location.references[key]
-        ? '0,00'
+        ? '0.00'
         : '—';
       this.scoreElements[index].arc.style.strokeDashoffset = '1';
     });
@@ -85,7 +85,7 @@ export class Panels {
       element.classList.add('is-visible');
     });
     document.getElementById('selection-announcement').textContent =
-      `${this.location.name} selecionada. Comparações demonstrativas disponíveis. Pressione Escape para retomar a exploração.`;
+      `${this.location.name} selected. Demonstration comparisons available. Press Escape to resume exploration.`;
   }
 
   hide() {
@@ -98,7 +98,7 @@ export class Panels {
       element.classList.remove('is-visible');
     });
     document.getElementById('selection-announcement').textContent =
-      'Seleção fechada. Exploração do planeta retomada.';
+      'Selection closed. Planet exploration resumed.';
   }
 
   update(now) {

@@ -30,7 +30,7 @@ export function providerConfig({ requireKey = true } = {}) {
   const name = (process.env.AI_PROVIDER || 'gemini').toLowerCase();
   const preset = PROVIDERS[name] || {};
   if (!PROVIDERS[name] && !process.env.AI_BASE_URL) {
-    throw new Error(`AI_PROVIDER "${name}" desconhecido. Use ${Object.keys(PROVIDERS).join(', ')} ou defina AI_BASE_URL.`);
+    throw new Error(`Unknown AI_PROVIDER "${name}". Use ${Object.keys(PROVIDERS).join(', ')} or set AI_BASE_URL.`);
   }
   const config = {
     name,
@@ -44,7 +44,7 @@ export function providerConfig({ requireKey = true } = {}) {
   config.totalTimeoutMs = Number(process.env.AI_TOTAL_TIMEOUT_MS || 70000);
   for (const key of ['timeoutMs', 'totalTimeoutMs']) {
     if (!Number.isSafeInteger(config[key]) || config[key] <= 0 || config[key] > 70000) {
-      throw new Error(`${key} deve ser um inteiro entre 1 e 70000 ms.`);
+      throw new Error(`${key} must be an integer between 1 and 70000 ms.`);
     }
   }
   // Modelos reserva, usados quando o principal está sobrecarregado (HTTP 503/429).
@@ -52,9 +52,9 @@ export function providerConfig({ requireKey = true } = {}) {
     ? process.env.AI_FALLBACK_MODELS.split(',').map(item => item.trim()).filter(Boolean)
     : preset.fallbacks || [];
   config.models = [...new Set([config.model, ...fallbacks].filter(Boolean))];
-  if (!config.model) throw new Error('Defina AI_MODEL no .env para este provedor.');
+  if (!config.model) throw new Error('Set AI_MODEL in .env for this provider.');
   if (requireKey && (!config.apiKey || config.apiKey === 'coloque_sua_chave_aqui')) {
-    throw new Error('AI_API_KEY não definida. Copie .env.example para .env e coloque sua chave.');
+    throw new Error('AI_API_KEY is not set. Copy .env.example to .env and enter your key.');
   }
   return config;
 }
@@ -66,7 +66,7 @@ export function parseJsonContent(content) {
   const cleaned = String(content).trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
   const start = cleaned.indexOf('{');
   const end = cleaned.lastIndexOf('}');
-  if (start < 0 || end < start) throw new Error('A resposta não contém JSON.');
+  if (start < 0 || end < start) throw new Error('The response contains no JSON.');
   return JSON.parse(cleaned.slice(start, end + 1));
 }
 
@@ -87,11 +87,11 @@ async function request(config, model, messages, useReasoning) {
 // cujo "message" pode ser somente leitura).
 export function describeError(error, config) {
   if (error?.name === 'TimeoutError' || error?.name === 'AbortError') {
-    return Object.assign(new Error(`a IA não respondeu em ${config.timeoutMs / 1000}s (rode o diagnóstico: node scripts/ai_reports/check.mjs)`), { fatal: true, fallback: true });
+    return Object.assign(new Error(`AI did not respond within ${config.timeoutMs / 1000}s (run diagnostics: node scripts/ai_reports/check.mjs)`), { fatal: true, fallback: true });
   }
   if (error instanceof TypeError && /fetch failed/i.test(error.message)) {
-    const cause = error.cause?.code || error.cause?.message || 'sem detalhes';
-    return Object.assign(new Error(`falha de conexão com ${config.baseUrl} (${cause})`), { retry: true });
+    const cause = error.cause?.code || error.cause?.message || 'no details';
+    return Object.assign(new Error(`connection to ${config.baseUrl} failed (${cause})`), { retry: true });
   }
   return error instanceof Error ? error : new Error(String(error));
 }
@@ -100,30 +100,30 @@ async function callOneModel(config, model, messages, { attempts, log }) {
   let lastError;
   let useReasoning = true;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
-    if (config.signal.aborted) throw new Error("Tempo total de geração excedido.");
+    if (config.signal.aborted) throw new Error("Total generation time exceeded.");
     const started = Date.now();
     try {
       const { response, text } = await request(config, model, messages, useReasoning);
       // Alguns modelos não aceitam reasoning_effort: tenta de novo sem ele.
       if (response.status === 400 && useReasoning && /reasoning/i.test(text)) {
         useReasoning = false;
-        throw Object.assign(new Error('modelo não aceita reasoning_effort'), { quick: true });
+        throw Object.assign(new Error('model does not support reasoning_effort'), { quick: true });
       }
       if (response.status === 429 || response.status >= 500) {
         throw Object.assign(new Error(`HTTP ${response.status}: ${summarize(text)}`), { retry: true, overloaded: true });
       }
-      if (response.status === 404) throw Object.assign(new Error(`Modelo ${model} indisponível (HTTP 404).`), { fatal: true, fallback: true });
+      if (response.status === 404) throw Object.assign(new Error(`Model ${model} unavailable (HTTP 404).`), { fatal: true, fallback: true });
       if (!response.ok) throw Object.assign(new Error(`HTTP ${response.status}: ${summarize(text)}`), { fatal: true });
       const content = JSON.parse(text)?.choices?.[0]?.message?.content;
-      if (!content) throw new Error('Resposta sem conteúdo.');
+      if (!content) throw new Error('Empty response.');
       return { data: parseJsonContent(content), seconds: (Date.now() - started) / 1000, model };
     } catch (caught) {
       const error = describeError(caught, config);
       lastError = error;
-      if (config.signal.aborted) throw new Error("Tempo total de geração excedido. Tente novamente mais tarde.");
+      if (config.signal.aborted) throw new Error("Total generation time exceeded. Try again later.");
       if (error.fatal || attempt >= attempts) break;
       const wait = error.quick ? 0 : error.retry ? 5000 * attempt : 2000;
-      log(`   ${model}: tentativa ${attempt} falhou (${error.message.split('\n')[0]})${wait ? `. Nova tentativa em ${wait / 1000}s…` : ''}`);
+      log(`   ${model}: attempt ${attempt} failed (${error.message.split('\n')[0]})${wait ? `. Retrying in ${wait / 1000}s…` : ''}`);
       await sleep(Math.min(wait, Math.max(0, config.deadline - Date.now())));
     }
   }
@@ -155,7 +155,7 @@ export async function callModel(config, messages, { attempts = 2, log = console.
       lastError = error;
       const next = models[index + 1];
       if (config.signal.aborted || (!error.overloaded && !error.fallback) || !next) break;
-      log(`   ${model} indisponível; tentando ${next}…`);
+      log(`   ${model} unavailable; trying ${next}…`);
     }
   }
   throw lastError;

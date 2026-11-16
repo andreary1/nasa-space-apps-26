@@ -19,7 +19,12 @@ vm.runInContext(original.slice(0, original.indexOf('// Spotlight cursor tracking
 assert.equal(SITES_DATA.length, context.sites.length);
 let pairs = 0;
 for (const [i, site] of SITES_DATA.entries()) {
-  assert.equal(JSON.stringify(site), JSON.stringify(context.sites[i]));
+  // Display copy is translated; identity, geography and scientific values stay unchanged.
+  for (const key of ['id', 'name', 'uf', 'type', 'body', 'lat', 'lon', 'metrics']) {
+    assert.equal(JSON.stringify(site[key]), JSON.stringify(context.sites[i][key]), `${site.id}: ${key}`);
+  }
+  assert.equal(site.similarities.length, context.sites[i].similarities.length);
+  assert.equal(site.differences.length, context.sites[i].differences.length);
   for (const target of site.type === 'crater' ? MOON_CRATER_REFERENCES : MARS_DUNE_REFERENCES) {
     const before = context.originalMatch(site.metrics, target, site.type);
     const after = calculateMatch(site.metrics, target, site.type);
@@ -27,12 +32,15 @@ for (const [i, site] of SITES_DATA.entries()) {
     pairs++;
   }
 }
-console.log(`PASS: ${SITES_DATA.length} unchanged records; ${pairs} matches equal original scores, WED and cosine.`);
+console.log(`PASS: ${SITES_DATA.length} records with unchanged scientific data; ${pairs} matches equal original scores, WED and cosine.`);
 
 // Preserve all references and their annotations, not just terrestrial records.
 vm.runInContext('this.moon = MOON_CRATER_REFERENCES; this.mars = MARS_DUNE_REFERENCES; this.presets = PRESETS;', context);
-assert.equal(JSON.stringify(MOON_CRATER_REFERENCES), JSON.stringify(context.moon));
-assert.equal(JSON.stringify(MARS_DUNE_REFERENCES), JSON.stringify(context.mars));
+for (const [translated, original] of [[MOON_CRATER_REFERENCES, context.moon], [MARS_DUNE_REFERENCES, context.mars]]) {
+  const numerical = entries => Array.from(entries, ({name, ...data}) => data);
+  assert.equal(JSON.stringify(numerical(translated)), JSON.stringify(numerical(original)));
+  translated.forEach((entry, i) => assert.equal(entry.name.split(' (')[0], original[i].name.split(' (')[0]));
+}
 assert.equal(JSON.stringify(PRESETS), JSON.stringify(context.presets));
 for (const site of SITES_DATA) {
   const model = buildComparison(site);
@@ -76,8 +84,8 @@ for (const site of SITES_DATA) {
 const barringer = panelLocation(buildComparison(SITES_DATA.find(site => site.id === 'barringer')));
 const lencois = panelLocation(buildComparison(SITES_DATA.find(site => site.id === 'lencois')));
 assert.equal(compactTable(barringer, 'lunar').demo, true);
-assert.deepEqual(compactTable(barringer, 'lunar').rows[2], ['Bordas', 'Elevadas', 'Elevadas']);
-assert.deepEqual(compactTable(lencois, 'martian').rows[4], ['Densidade de dunas', '—', '—']);
+assert.deepEqual(compactTable(barringer, 'lunar').rows[2], ['Rims', 'Raised', 'Raised']);
+assert.deepEqual(compactTable(lencois, 'martian').rows[4], ['Dune density', '—', '—']);
 assert.equal(compactTable(lencois, 'martian').rows[1][1], '45');
 assert.equal(lencois.comparison.earth.mean_height, 6.3, 'UI fixtures must not overwrite catalog metrics');
 const missing = panelLocation(buildComparison(incomplete));

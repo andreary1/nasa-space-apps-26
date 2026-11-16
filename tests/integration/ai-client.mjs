@@ -12,5 +12,5 @@ calls=[];globalThis.fetch=async()=>{calls.push(1);return new Response('{}',{stat
 await assert.rejects(callModel(config,[],{log:()=>{}}),/401/);assert.equal(calls.length,1);
 globalThis.fetch=(url,{signal})=>new Promise((resolve,reject)=>{signal.addEventListener('abort',()=>reject(signal.reason));});
 const keepAlive=setInterval(()=>{},1000);
-try{await assert.rejects(callModel({...config,timeoutMs:1000,totalTimeoutMs:15},[],{log:()=>{}}),/Tempo total/)}finally{clearInterval(keepAlive)}
+try{await assert.rejects(callModel({...config,timeoutMs:1000,totalTimeoutMs:15},[],{log:()=>{}}),/Total generation time/)}finally{clearInterval(keepAlive)}
 console.log('PASS: timeout and 404 fallback; auth fails immediately; total deadline enforced');

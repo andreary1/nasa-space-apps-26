@@ -15,7 +15,7 @@ async function createTexture() {
     new Promise((resolve, reject) => {
       const image = new Image();
       image.onload = () => resolve(image);
-      image.onerror = () => reject(new Error(`Textura indisponível: ${file}`));
+      image.onerror = () => reject(new Error(`Texture unavailable: ${file}`));
       image.src = `assets/${file}`;
     });
   const [day, normal, water, clouds] = await Promise.all([

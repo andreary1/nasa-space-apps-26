@@ -1,0 +1,385 @@
+0|Planetary Analogs · Planetary Analog Finder
+1|Skip to content
+2|Overview
+3|Globe exploration
+4|World map
+5|Comparisons
+6|Dunes and craters
+7|Reports
+8|Planetary Analogs
+9|Comparison of Earth's dunes and craters
+10|with features on Mars and the Moon.
+11|Analogs
+12|References
+13|All
+14|Dunes
+15|Craters
+16|Drag to rotate · Select a pin
+17|Feature Comparison
+18|Moon
+19|Mars
+20|Metric
+21|Earth
+22|Demonstration data · not scientifically validated
+23|All metrics and charts →
+24|Comparison
+25|Site Details
+26|Calculated indices; not probabilities.
+27|Terrestrial analogs, planetary references and available metrics.
+28|Selected site
+29|Select a pin on the globe or a site in the catalog. Selection and filters are preserved across pages.
+30|Catalog and parameters inherited from main. Illustrative records and presets are not validated measurements. Available references are lunar craters and Martian dunes; combinations without a reference receive no score.
+31|The engine uses weighted Euclidean distance, cosine similarity and Bagnold scaling for dunes, with the original weights and coefficients.
+32|Brasil / South America
+33|● Dunes → Mars
+34|● Craters → Moon
+35|Drag to pan · + / − to zoom · Ctrl + scroll to zoom at the cursor · Click clusters to explore
+36|Earth ↔ Moon for craters · Earth ↔ Mars for dunes.
+37|Similarities
+38|Differences
+39|Morphometric analysis
+40|Profile
+41|● Earth
+42|● Planetary target
+43|Parametric diagram based on metrics; not a measured DEM cross-section.
+44|Difference
+45|Dimensional dune metrics marked with β are scaled by 2.82 for comparison. Missing data is not zero.
+46|Closest references
+47|How the index is calculated
+48|Normalization by the maximum of each pair and β = 2.82 for the dimensional dune parameters defined in the data contract.
+49|Explore each feature type's morphometry without changing the selection when opening this page.
+50|Site analyses and registration of new locations.
+51|AI Analysis
+52|Enter the required metrics. No measurement will be filled with invented values.
+53|Legacy presets, without independent validation:
+54|Illustrative Shackleton analog
+55|Site name
+56|Country / State
+57|Crater metrics
+58|Diameter (m)
+59|Depth / Diameter ratio
+60|Rim height / Diameter ratio
+61|Rim variation (m)
+62|Rim radius CV
+63|Rim coherence (72 radial directions)
+64|Dune metrics
+65|Open navigation
+66|Close navigation
+67|Main navigation
+68|Pages
+69|Filter globe sites
+70|Drag to rotate the globe or use the arrow keys. Select a site to compare.
+71|Comparison reference
+72|Terrestrial site and planetary reference features
+73|Close selection and resume exploration (Esc)
+74|Site information
+75|Map region
+76|Site type
+77|Interactive map of terrestrial sites
+78|Map zoom
+79|Chart type
+80|Analysis type
+81|Registration type
+82|E.g.: Cratera de Colônia
+83|E.g.: Brasil / CE, USA / AZ
+84|Select ${state.analysisType === 'dune' ? 'a dune' : 'a crater'} in the catalog to start the analysis. The current selection has been preserved.
+85|Could not initialize the interface.
+86|Astronaut training
+87|Rovers and robotics
+88|Instrument calibration
+89|Process studies
+90|Algorithm validation
+91|Education and outreach
+92|Low
+93|Medium
+94|High
+95|Low
+96|Medium
+97|High
+98|Regenerate
+99|Generate report
+100|To generate a report on this page, start the demo with: ${SERVER_COMMAND}
+101|The server has no API key. Check the .env file and restart the server.
+102|Consulting AI. This may take up to 1 minute.
+103|Model: ${status.model} · new reports are available only in this tab
+104|No AI analysis is available for ${site.name} yet.
+105|Confidence: ${LEVEL_LABELS[confidence] || confidence}
+106|Example report without real analysis. Regenerate using an API key.
+107|This site's data has changed since the analysis was generated. Regenerate to update it.
+108|Site registered in this session: the report was not saved to a file.
+109|Limitations
+110|Confidence: ${report.confianca.motivo}
+111|AI-generated text based on catalog metrics. Review before citing.
+112|Loading analysis…
+113|Could not load saved analyses.
+114|The server timed out. Check the terminal and try again.
+115|Could not generate report: ${error.message}
+117|<p class="data-note">Insufficient data for the comparison profile.</p>
+118|Diameter: ${formatMetric(site.metrics.diameter_m)} m
+119|Mean height: ${formatMetric(site.metrics.mean_height)} m
+120|Wavelength: ${formatMetric(site.metrics.wavelength)} m
+121|<p class="data-note">Insufficient data for the comparison radar.</p>
+123|Diameter (km)
+124|Dune type
+125|Mean height (m)
+126|Wavelength (m)
+127|Orientation / azimuth (°)
+128|Dune density (ridges/km²)
+129|Mean spacing (m)
+130|Distribution pattern
+131|Aridity index
+132|Unavailable
+133|${model.demo ? 'Illustrative reference' : 'Catalog reference'}: ${model.reference}
+134|No comparable data for this site and ${name}.
+135|Demonstration data · not scientifically validated. Independent of the scores in the right panel.
+136|Legacy catalog · missing fields shown as —. No new measurements.
+137|No comparable data for this combination. Select ${target === 'lunar' ? 'Mars for dune metrics' : 'Moon for crater metrics'}.
+138|Earth ↔ Mars
+139|Earth ↔ Moon
+140|${site.name} ↔ ${best?.target.name || 'No comparable reference'}
+141|Index unavailable
+142|Some metrics are missing. Comparison requires all weighted parameters; missing values are not treated as zero.
+143|Information not available in the catalog.
+144|${model.rows.length} metrics · ${site.type === 'dune' ? 'Dunes' : 'Craters'}
+145|<p>No results with the available data.</p>
+146|Could not load context.
+147|No context has been registered for this site yet.
+148|Vegetation
+149|Nearby locations
+150|Entry awaiting editorial review.
+151|Esc to resume exploration
+152|Could not load planet textures.
+153|Could not load the 3D globe. Check WebGL 2 support and open the demo through the HTTP server.
+154|Texture unavailable: ${file}
+155|Site: ${location.name} (Earth)
+156|${location.shortName} × References
+157|Location
+158|No reference
+159|${this.location.name} selected. Demonstration comparisons available. Press Escape to resume exploration.
+160|Selection closed. Planet exploration resumed.
+161|Preset "${p.name}" loaded successfully!
+162|Enter the site's name, latitude and longitude.
+163|Enter valid values for all metrics; zero is allowed except for diameter.
+164|Impact Crater
+165|Dune Field
+166|User-provided data; no independent validation.
+167|Site "${name}" added to the world catalog!
+168|Site JSON copied to the clipboard!
+169|Copy the site JSON:
+170|${state.analysisType === 'dune' ? 'Dunes' : 'Craters'} (${sites.length})
+171|${members.length} nearby sites
+172| : ""}Click or press Enter to zoom in and explore the sites.
+173|Zoom into a cluster of ${members.length} sites${selected ? ", includes the selected site" : ""}
+174|Loading map texture…
+175|Texture unavailable. Sites remain accessible. 
+176|Uplifted floor
+177|Martian dune region (example)
+178|Dune density
+179|Diameter (m)
+180|d/D ratio
+181|Rim/D ratio
+182|Rim variation (m)
+183|Mean slope (°)
+184|Rim coherence
+185|Mean height (m)
+186|Mean spacing (m)
+187|Aridity index
+193|Shackleton Polar Analog
+196|Barchan Dune Field
+197|Classic crescent-shaped barchan dune morphology with a distinct slip face.
+198|Mean wavelength (297 m) closely matches Gale dunes (~100 m) when applying Bagnold scaling β ≈ 2.82×.
+199|Active migration driven by a steady unidirectional wind regime (trade winds).
+200|Earth's gravity (1.0g) limits dune height to ~10 m, whereas on Mars (0.38g) dunes exceed 25 m.
+201|Interdune lagoons and groundwater moisture are present, unlike on the present-day surface of Mars.
+202|Clean quartz sand with high solar reflectance versus dark basaltic grains rich in pyroxene/olivine on Mars.
+205|Barchanoid Dune Field
+206|Regular pattern of continuous transverse barchanoid ridges similar to Nili Patera.
+207|Spatial ridge density of ~6.5/km² with high geometric periodicity.
+208|Strongly convergent ridge/spacing aspect ratio after gravitational scaling.
+209|Hydrological regime with seasonal precipitation exceeding 1500 mm/year.
+210|Localized stabilization by biofilms and coastal vegetation along the field margins.
+211|Earth's dense atmosphere (1013 mbar) supports much more continuous sand transport than Mars (6 mbar).
+214|Transverse Dune Field
+215|Distinctive reddish/pink coloration from iron oxide coatings (hematite/goethite), identical to the spectrum of Martian sands.
+216|Consistent ridge azimuth (167°) matching transverse ridges in Gale Crater.
+217|Low moisture index and high aeolian mobility in a coastal semiarid environment.
+218|Quartz coated with iron-rich clays versus Martian mafic basaltic sand.
+219|Daily coastal sea breezes versus seasonal planetary dust storms on Mars.
+220|Thicker atmospheric boundary layer on Earth.
+223|Fossil Dune Field
+224|Paleo-aeolian dunes with degraded ridges, analogous to fossil and lithified dune fields in ancient Martian craters.
+225|Low aridity index (0.237), within the semiarid Caatinga interior.
+226|Wide ridge spacing of nearly 500 m.
+227|Sparse xerophytic vegetation (Caatinga) restrains active sand migration.
+228|Ancient fluvial interaction with the paleochannel of Rio São Francisco.
+229|No seasonal CO2 ice, which affects high-latitude Martian dunes.
+230|Star Dune Mega-Erg
+231|Extreme hyperaridity and monumental height (up to 45 m), compatible with Proctor and Kaiser megadunes on Mars.
+232|Almost no vegetation and a surrounding desert bedrock substrate.
+233|Multidirectional ridge breaks associated with variable seasonal winds.
+234|Earth's atmospheric pressure sustains continuous saltation at moderate wind speeds (15 km/h), versus >80 km/h required on Mars.
+235|Daytime surface temperatures reach +45°C, versus average subzero Martian temperatures (-60°C).
+237|Among Earth's tallest dunes, comparable to basaltic megadunes on Mars.
+238|Intense iron oxidation with a deep brick-red color identical to Martian regolith.
+239|Flat interdune salt and clay surfaces (vlei) similar to Martian evaporite beds.
+240|Frequent morning coastal fog (Atlantic advection fog).
+241|Extremely old geological age with deep structural stabilization.
+242|Gravity of 1.0g prevents the formation of meter-scale wind ripples (TARs).
+244|Continuous Sand Sea (Global Erg)
+245|Earth's largest continuous sand sea, the closest analog for Olympia Undae (the Martian circumpolar sand sea).
+246|Statistical uniformity and geometric periodicity with high spatial coherence.
+247|Hyperarid conditions without surface biogenic interference.
+248|In Olympia Undae (Mars), dunes interact seasonally with dry-ice caps (carbon dioxide).
+249|Continuous terrestrial monsoon winds versus global dust storms on Mars.
+250|No cryogenic sublimation in the Arabian desert.
+252|Active Gypsum Dune Field
+253|Rare mineral composition of hydrated gypsum (calcium sulfate), identical to sulfate deposits discovered by the Opportunity rover and OMEGA on Mars.
+254|Morphometry of active barchan dunes migrating across a flat evaporite bed.
+255|Preferred NASA analog for sulfate mineral spectroscopy calibration.
+256|Liquid groundwater less than 1 meter deep cements the base of the dunes.
+257|Extremely high optical albedo (pure white), contrasting with dark basaltic Martian dunes.
+258|Dissolution and recrystallization cycles driven by daily dew.
+260|Gorge and Steep Outcrop
+261|Steep wall slope (P90 = 28.4°), very close to the inner wall slopes of Censorinus and Shackleton.
+262|Exposed granitic and quartzitic outcrops with block fracturing.
+263|Steep V-shaped topographic cross-section analogous to young crater rims.
+264|Fluvial erosional origin (carved by Rio Picuí), rather than hypervelocity meteorite impact.
+265|Elongated longitudinal rather than circular morphology.
+266|Intense mechanical fragmentation associated with Earth's semiarid climate.
+268|Circular Volcanic Structure
+269|Well-defined semicircular geometry with perimeter rim uplift.
+270|High wall slope (31° at P90), analogous to simple-to-complex transitional craters.
+271|Basaltic lithology related to lunar mare basalts (Mare Serenitatis).
+272|Tertiary volcanic-tectonic magmatic origin (Formação Macau), rather than kinetic asteroid collision.
+273|No impact breccias (impactites) or shock minerals (stishovite/coesite).
+274|Pronounced differential weathering erosion.
+276|Conical Volcanic Plug
+277|Extreme slope (P90 = 38.2°), compatible with the steepest walls of Shackleton crater (36–41°).
+278|Circular conical geometry with a sharp topographic contrast against the surrounding terrain.
+279|Composed of mantle-derived alkali basalts similar to lunar regolith.
+280|Positive topography (residual relief), versus an impact crater's excavated depression.
+281|Terrestrial slope talus deposits with active gravitational sliding.
+282|Volcanic conduit structure exposed by erosion.
+283|Structural Depression and Outcrop
+284|Steep escarpments with abrupt slope breaks typical of collapse rims.
+285|Approximate aspect ratio and circularity comparable to eroded lunar craters.
+286|Layered sedimentology comparable to ejecta layers in lunar craters.
+287|Lacustrine and marine sedimentary origin in the Cretaceous Araripe rift basin.
+288|Extremely rich terrestrial fossil content (fish fauna and pterosaurs), absent in space.
+289|Sheet erosion by surface water.
+291|Circular Sedimentary Plateau
+292|Large-diameter circular structure with a flattened inner floor and tabular rims.
+293|Diameter morphometry (4.8 km) analogous to transitional craters such as Censorinus.
+294|Highly resistant quartzitic outcrops.
+295|Residual karstic and sedimentary mesa/inselberg relief in Chapada Diamantina.
+296|No shatter cones or shock features.
+297|Proterozoic sedimentation age without confirmed meteoritic shock.
+300|Complex Impact Crater
+301|Confirmed meteorite impact crater with a central peak and inner ring identical to complex lunar craters such as Tycho and Copernicus.
+302|Confirmed shatter cones and quartz with planar deformation features (PDFs).
+303|High circularity (0.942) preserved in the subsurface structure.
+304|Rims eroded by hundreds of millions of years of tropical rainfall in Bacia do Parnaíba.
+305|Original depth substantially filled by Cenozoic sediments.
+306|Covered by Cerrado vegetation.
+308|Simple Impact Crater
+309|Confirmed impact structure with nearly perfect circular morphology (circularity = 0.955).
+310|Diameter of 4.1 km directly comparable to simple lunar craters such as Censorinus (4.13 km).
+311|Impact breccias and deformed sandstones exposed along the ridge.
+312|Floor filled by colluvial and alluvial sediments, with loss of the original deep basin.
+313|No bright external ejecta rays (destroyed by wind/water erosion on Earth).
+314|Lower elevation contrast relative to the surrounding terrain.
+317|Multi-ring Impact Crater
+318|South America's largest impact structure (41.3 km), an analog for large lunar craters and impact basins such as Aristarchus and Cabeus.
+319|Uplifted granitic central core with extreme shock metamorphism features (impact melts).
+320|Concentric multi-ring pattern with peripheral normal faults identical to lunar basin collapse.
+321|Age of ~254 million years with a long history of humid chemical weathering.
+322|Current topographic depth is modest (~160 m) due to regional erosional leveling.
+325|Impact Crater in Basalt
+326|Impact into basalt flows of Formação Serra Geral, a direct analog for impacts in the Moon's basaltic maria (Mare Serenitatis/Imbrium).
+327|Complex structure with a circular collapse ring well preserved in the terrain of Santa Catarina.
+328|Presence of pseudotachylites and impact glass.
+329|Humid subtropical climate with dense Mata Atlântica and overlying agricultural soils.
+330|Herringbone fracturing caused by cooling joints in terrestrial basalt.
+331|Vigorous slope erosion.
+334|Circular Impact Crater
+335|Another impact structure formed directly in a basaltic target, with high circularity (0.945).
+336|Mean wall slope of ~15°, consistent with medium-sized lunar craters.
+337|Distinct elevated rims stand out in the topography of the Paraná plateau.
+338|Sediment infilling within the circular depression.
+339|Rapid chemical weathering of basaltic iron-magnesium minerals in a warm, humid climate.
+340|Internal centripetal radial drainage, absent on the Moon.
+342|Central-Peak Crater
+343|Complex impact crater with an uplifted central peak and terraces evident in the geology of Piauí.
+344|Diameter of ~10 km directly analogous to the lunar simple-to-complex morphometric transition.
+345|Impact breccias and shock-wave deformation confirmed in the laboratory.
+346|Strongly eroded eastern rim with loss of circular perimeter continuity (coherence of 0.472).
+347|Post-impact interior sedimentation leveled part of the annular trough.
+348|Cerrado vegetation and latosol soils over the ring.
+349|Canonical Simple Impact Crater
+350|Earth's most complete simple-impact analog. Bowl-shaped morphometry nearly identical to Censorinus and Shackleton.
+351|Depth/diameter ratio (0.143) closely matching young, uncollapsed lunar craters.
+352|Sharp rims elevated 45 m above the Colorado desert plain, with a preserved inverted ejecta blanket.
+353|Formed by an iron-nickel meteorite impact only 50,000 years ago (extremely recent geologically).
+354|Earth's atmosphere slowed and vaporized part of the original bolide before it reached the ground.
+355|Flat floor formed by lacustrine sedimentation during the late Pleistocene.
+357|Earth's Largest Impact Structure
+358|The best terrestrial analog for giant multi-ring lunar impact basins (such as Mare Orientale and Imbrium Basin).
+359|Colossal crustal uplift with upper-mantle granites exposed in the central dome.
+360|Kilometer-scale generation of megabreccias and impact melts.
+361|Over 2 billion years old (Paleoproterozoic), with kilometers of surface relief removed by global tectonic erosion.
+362|Outer rim topography has almost completely disappeared, leaving only the deep structural scar (impact root).
+363|Superimposed later continental tectonic deformation.
+365|Peak-Ring Crater (K-Pg)
+366|Main analog for complex lunar peak-ring craters such as Schrödinger Basin.
+367|Kinetic energy corresponding to the dinosaur mass-extinction event (K-Pg, 66 Ma ago).
+368|High-energy dynamic gravitational collapse morphology identified through 3D seismic geophysical imaging.
+369|Crater completely buried beneath almost 1 km of post-impact carbonate rocks and Golfo do México.
+370|Surface topographic expression invisible to the naked eye, detectable only through cenote rings (karst sinkholes) and gravimetry.
+371|Impact occurred on a shallow marine shelf, generating megatsunamis.
+373|Nearly perfect circularity (0.988), with a prominent rim rising 160 m above the Canadian Arctic tundra.
+374|Steep walls of up to 36.5° in solid granite, identical to simple lunar crater slopes.
+375|Exceptional preservation due to the resistance of the Precambrian crystalline shield.
+376|Hosted glacial lakes and now contains one of Earth's purest and deepest freshwater lakes (267 m).
+377|Underwent continental glaciation cycles that removed external ejecta deposits.
+379|One of Earth's few simple impact craters preserved directly in the basalts of Trapps do Decã, making it the closest mineralogical analog for the Moon's basaltic maria.
+380|Preserved shock minerals: plagioclase transformed into maskelynite, identical to Apollo mission samples.
+381|Bowl-shaped profile with a preserved continuous rim and wall slopes up to 34°.
+382|Floor occupied by a hypersaline alkaline lake with an extremophile ecosystem.
+383|Subtropical weathering alters basalts into smectites and chlorites on Earth.
+384|Recent Pleistocene age with ongoing water erosion on the walls.
+385|Not provided in the catalog
+386|Invalid site or site not found in the catalog.
+397|✗ Configuration: ${error.message}
+399|⚠ The key contains spaces. Check .env.
+400|no response within the timeout
+402|✓ Model "${config.model}" available
+403|⚠ Model "${config.model}" is not listed
+404|  Available "flash" models: ${flash.join(', ')}
+405|Reply with only the word: ok
+406|with reasoning_effort=${config.reasoning}
+407|without reasoning_effort
+409|Options: --site <id>  --force  --dry-run  --mock. Configuration in .env (see .env.example).
+410|Site "${args.site}" not found in sites.js.
+411|${label}: already exists, skipping (use --force to regenerate)
+413|Astronaut training in field geology
+414|Rover, robotics and autonomous navigation testing
+415|Calibration and validation of orbital instruments
+416|Study of geological processes (aeolian, impact, erosion)
+417|Validation of detection and morphometry algorithms
+418|Education and science outreach
+420|Score 0–100%: 60% weighted Euclidean distance (exp(-2.2·WED)) + 40% cosine similarity, normalized per pair by its maximum.
+421|Team-written text, unverified.
+422|Incomplete response: missing summary, similarities or valid suggestions.
+423|[EXAMPLE] Demonstration text for ${payload.localidade.nome}. Run the generator with an API key for a real analysis.
+424|[EXAMPLE] Score interpretation will appear here.
+425|[EXAMPLE] Similarity
+426|Explanation based on the metrics.
+427|[EXAMPLE] Difference
+428|[EXAMPLE] Suggestion
+429|[EXAMPLE] Limitations will appear here.
+430|Example report without real analysis.
+431|Invalid JSON.
+432|Invalid site.
+434|Not found
+435|Route not found.
+436|Port ${PORT} is already in use — the demo may already be open in another window.
