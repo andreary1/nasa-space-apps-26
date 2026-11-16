@@ -1,5 +1,6 @@
 ﻿import { SITES_DATA } from "../data/sites.js";
 import { mapTexture } from "./mapTexture.js";
+import { englishText, stateLabel } from "../services/analysisLanguage.js";
 import {
   WORLD,
   REGIONS,
@@ -10,7 +11,9 @@ import {
   clusterPoints,
 } from "../services/mapGeometry.js";
 
-export function createWorldMap(state, onSelect) {
+export function createWorldMap(state, onSelect, onCandidateSelect = () => {}) {
+  let candidates = [];
+  let discoveries = [];
   const svg = document.getElementById("world-map-svg");
   const layer = document.getElementById("map-pins-layer");
   const tooltip = document.getElementById("map-pin-tooltip");
@@ -158,6 +161,54 @@ export function createWorldMap(state, onSelect) {
         ?.focus({ preventScroll: true });
     document.getElementById("map-visible-count").textContent =
       `${points.length} ${points.length === 1 ? "site" : "sites"} in view`;
+    renderCandidates();
+  }
+  function renderCandidates() {
+    const candidateLayer = document.getElementById('map-candidates-layer');
+    const discoveryLayer = document.getElementById('map-discoveries-layer');
+    candidateLayer.replaceChildren();
+    discoveryLayer.replaceChildren();
+    document.getElementById('map-candidate-count').textContent = `${candidates.length} experimental candidates`;
+    document.getElementById('map-discovery-count').textContent = `${discoveries.length} ${discoveries.length===1?'discovery':'discoveries'} — comparison pending`;
+    const bounds = REGIONS[state.currentViewMode];
+    for (const candidate of [...discoveries,...candidates]) {
+      const isDiscovery=discoveries.includes(candidate);
+      if (state.currentMapFilter !== 'all' && candidate.type !== state.currentMapFilter) continue;
+      if (candidate.lon < bounds[0] || candidate.lon > bounds[2] || candidate.lat < bounds[1] || candidate.lat > bounds[3]) continue;
+      const pos = project(candidate.lon, candidate.lat);
+      if (pos.x < view.x || pos.x > view.x+view.w || pos.y < view.y || pos.y > view.y+view.h) continue;
+      const pin = document.createElementNS('http://www.w3.org/2000/svg','g');
+      pin.classList.add(isDiscovery?'map-discovery':'map-candidate');pin.dataset.type=candidate.type;
+      pin.setAttribute('transform',`translate(${pos.x} ${pos.y}) scale(${pixelScale()})`);
+      pin.setAttribute('tabindex','0');pin.setAttribute('role','button');
+      const label=isDiscovery?`Discovery — comparison pending: ${candidate.name}. Scientific source: ${englishText(candidate.sources?.[0]?.title || 'Documented record')}. Status: ${stateLabel(candidate.state)}. View analysis.`: `Experimental candidate: ${candidate.name} · ${(candidate.score*100).toFixed(1)}% · ${candidate.reference || ''}. View analysis.`;
+      pin.setAttribute('aria-label',label);
+      // A lower badge distinguishes candidates without moving their geographic anchor.
+      pin.innerHTML='<title></title><circle r="5"/><path d="M0 6V16"/><rect x="-17" y="16" width="34" height="34" rx="10"/><svg x="-12" y="21" width="24" height="24" aria-hidden="true"><use/></svg>';
+      pin.querySelector('title').textContent=label;
+      pin.querySelector('use').setAttribute('href',`#i-${candidate.type}`);
+      const showExtra=()=>{
+        document.getElementById('tooltip-title').textContent=candidate.name;
+        document.getElementById('tooltip-sub').textContent=label;
+        tooltip.hidden=false;
+        const box=svg.getBoundingClientRect(),anchor=pin.getBoundingClientRect();
+        tooltip.style.left=`${Math.max(8,Math.min(box.width-tooltip.offsetWidth-8,anchor.x-box.x+anchor.width+10))}px`;
+        tooltip.style.top=`${Math.max(8,Math.min(box.height-tooltip.offsetHeight-8,anchor.y-box.y-10))}px`;
+      };
+      pin.addEventListener('mouseenter',showExtra);pin.addEventListener('focus',showExtra);
+      pin.addEventListener('mouseleave',hidePinTooltip);pin.addEventListener('blur',hidePinTooltip);
+      pin.addEventListener('click',()=>onCandidateSelect(candidate));
+      pin.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){event.preventDefault();event.stopPropagation();onCandidateSelect(candidate);}});
+      (isDiscovery?discoveryLayer:candidateLayer).append(pin);
+    }
+  }
+  function setCandidates(next) {
+    candidates=[...new Map(next.filter(c=>typeof c.id==='string' && ['dune','crater'].includes(c.type) && [c.lat,c.lon,c.score].every(Number.isFinite) && Math.abs(c.lat)<=90 && Math.abs(c.lon)<=180 && c.score>=0 && c.score<=1).map(c=>[c.stable_id || c.id,c])).values()];
+    renderCandidates();
+  }
+  function setDiscoveries(next) {
+    discoveries=[...new Map(next.filter(c=>c.eligible===true && typeof c.id==='string' && ['dune','crater'].includes(c.type) && [c.lat,c.lon].every(Number.isFinite) && Math.abs(c.lat)<=90 && Math.abs(c.lon)<=180 && c.sources?.length).map(c=>[c.id,c])).values()];
+    renderCandidates();
   }
   async function renderBaseMap() {
     if (loaded || loading || !svg.getBoundingClientRect().width) return;
@@ -254,7 +305,7 @@ export function createWorldMap(state, onSelect) {
     { passive: false },
   );
   svg.addEventListener("pointerdown", (event) => {
-    if (event.button !== 0 || event.target.closest(".map-pin")) return;
+    if (event.button !== 0 || event.target.closest(".map-pin,.map-candidate,.map-discovery")) return;
     drag = {
       id: event.pointerId,
       x: event.clientX,
@@ -324,6 +375,8 @@ export function createWorldMap(state, onSelect) {
     cancelAnimationFrame(frame);
   });
   return {
+    setCandidates,
+    setDiscoveries,
     renderBaseMap,
     renderMapPins,
     handleMapHover,

@@ -25,7 +25,7 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     assert.equal(await page.locator('#comparison').getAttribute('aria-hidden'), 'true');
     for (const [width, height] of [[1366, 768], [1600, 900], [1920, 1080]]) {
       await page.setViewportSize({width, height});
-      await page.waitForTimeout(150);
+      await page.waitForFunction(() => document.querySelector('.dashboard').getBoundingClientRect().height === innerHeight);
       assert.deepEqual(await page.locator('.dashboard').boundingBox(), {x:0,y:0,width,height});
       assert.equal((await page.locator('.sidebar').boundingBox()).x,0);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false);
@@ -53,13 +53,13 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     assert.equal(await page.locator('#compact-table thead th').count(), 3);
     assert.equal(await page.locator('[data-comparison-target="lunar"]').getAttribute('aria-pressed'), 'true');
     assert.deepEqual(await page.locator('#metrics tr').evaluateAll(rows => rows.map(row => [...row.cells].map(cell => cell.textContent))), [
-      ['Diâmetro (km)', '1,186', '21,0'], ['Profundidade (km)', '0,170', '4,10'],
-      ['Bordas', 'Elevadas', 'Elevadas'], ['Declividade (°)', '34,1', '28,6'],
-      ['Estrutura interna', 'Piso definido', 'Piso com elevação'],
+      ['Diameter (km)', '1.186', '21.0'], ['Depth (km)', '0.170', '4.10'],
+      ['Rims', 'Raised', 'Raised'], ['Slope (°)', '34.1', '28.6'],
+      ['Internal structure', 'Defined floor', 'Uplifted floor'],
     ]);
     const lunarScore = await page.locator('#lunar-score').textContent();
-    await page.locator('[data-comparison-target="martian"]').click();
-    assert.equal(await page.locator('.compact-empty').count(), 1);
+    assert.equal(await page.locator('[data-comparison-target="martian"]').isHidden(), true);
+    assert.equal(await page.locator('#metrics tr').count(), 5);
     assert.equal(await page.locator('#lunar-score').textContent(), lunarScore);
     await page.locator('[data-comparison-target="lunar"]').click();
     const selected = await page.locator('#pair-title').textContent();
@@ -86,23 +86,21 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     const regionPins = await page.locator('#map-pins-layer g').count();
     assert.ok(regionPins < 24);
     await page.locator('#filter-dune').click();
-    await goTo('settings');
-    assert.match(await page.locator('#view-settings').innerText(), /indisponível/i);
+    await goTo('overview');
     await page.goBack();
     await page.waitForFunction(() => !document.getElementById('view-map').hidden);
     assert.equal(await page.locator('#btn-view-ne').getAttribute('aria-pressed'), 'true');
     assert.equal(await page.locator('#filter-dune').getAttribute('aria-pressed'), 'true');
     await page.locator('#btn-view-mundo').click();
     assert.equal(await page.locator('#map-pins-layer > g').evaluateAll(pins => pins.reduce((count, pin) => count + pin.dataset.members.split(',').length, 0)), 8);
-    await page.locator('#site-selector button').filter({hasText: 'Duna'}).first().click();
+    await page.locator('#site-selector button').first().click();
     await goTo('globe');
     assert.ok(await canvas.evaluate(element => element === document.querySelector('#globe canvas')));
     await page.waitForSelector('#similarity.is-visible');
     assert.equal(await page.locator('#lunar-score').innerText(), '—');
     assert.notEqual(await page.locator('#martian-score').innerText(), '—');
-    assert.equal(await page.locator('[data-comparison-target="lunar"]').getAttribute('aria-pressed'), 'true');
-    assert.equal(await page.locator('.compact-empty').count(), 1);
-    await page.locator('[data-comparison-target="martian"]').click();
+    assert.equal(await page.locator('[data-comparison-target="martian"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('[data-comparison-target="lunar"]').isHidden(), true);
     assert.equal(await page.locator('#metrics tr').count(), 8);
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('#comparison').getAttribute('aria-hidden'), 'true');
@@ -124,18 +122,22 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     await page.locator('[data-action="addNewSiteFromForm"]').click();
     assert.equal(await page.locator('#pins button').count(), 25);
     await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
-    await page.locator('[data-action="exportCurrentSiteJson"]').click();
+    // Main no longer exposes an export button; its existing service remains available.
+    await page.evaluate(async () => {
+      const {createSiteForm} = await import('./js/components/siteForm.js');
+      createSiteForm({currentSiteIndex: 0}, () => {}).exportCurrentSiteJson();
+    });
     await page.waitForTimeout(100);
     assert.equal(await page.evaluate(async () => JSON.parse(await navigator.clipboard.readText()).metrics.rim_height_m), 0);
     await page.setViewportSize({width: 390, height: 844});
     await page.locator('#menu-toggle').click();
     assert.ok(await page.locator('#workspace').evaluate(element => element.inert));
-    await page.locator('.sidebar nav [data-page="settings"]').focus();
+    await page.locator('.sidebar nav [data-page]').last().focus();
     await page.keyboard.press('Tab');
     assert.ok(await page.locator('.sidebar .brand').evaluate(element => element === document.activeElement));
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'), 'false');
-    for (const name of ['overview', 'globe', 'map', 'comparisons', 'analysis', 'reports', 'settings']) {
+    for (const name of ['overview', 'globe', 'map', 'comparisons', 'analysis', 'reports', 'intelligent']) {
       await goTo(name);
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${name}: mobile overflow`);
     }

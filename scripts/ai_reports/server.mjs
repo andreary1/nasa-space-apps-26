@@ -19,6 +19,7 @@ import path from 'node:path';
 import { SITES_DATA } from '../../deliverables/demo/js/data/sites.js';
 import { ROOT, loadEnv, providerConfig } from './ai_client.mjs';
 import { saveEntry, generateEntry } from './reports_store.mjs';
+import { handleAnalysis } from './intelligent_analysis.mjs';
 
 const DEMO_DIR = path.join(ROOT, 'deliverables/demo');
 const PORT = Number(process.env.PORT || 8000);
@@ -114,6 +115,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { ok: true, configured, provider: process.env.AI_PROVIDER || 'gemini', model });
     }
     if (req.url === '/api/reports' && req.method === 'POST') return await handleGenerate(req, res);
+    if (await handleAnalysis(req, res, {readBody, sendJson})) return;
     if (req.url.startsWith('/api/')) return sendJson(res, 404, { error: 'Route not found.' });
     if (req.method !== 'GET' && req.method !== 'HEAD') { res.writeHead(405); return res.end(); }
     return await serveStatic(req, res);

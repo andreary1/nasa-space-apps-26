@@ -1,3 +1,5 @@
+Local intelligent analysis: run `iniciar-analise-inteligente.bat` with the scientific Python environment. See [setup](../../docs/analise-inteligente.md) and [geological discovery](../../docs/descoberta-geologica.md). The new analysis API requires the local Node/Python server; existing Vercel reports remain unchanged.
+
 # Planetary Analog Finder — exploração e comparação
 
 Execute `python -m http.server 8000` na raiz e abra

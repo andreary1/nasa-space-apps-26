@@ -1,4 +1,5 @@
 export const PAGES = {
+  intelligent: 'Intelligent Analysis',
   overview: 'Overview', globe: 'Globe exploration', map: 'World map',
   comparisons: 'Comparisons', analysis: 'Dunes and craters', reports: 'Reports',
 };

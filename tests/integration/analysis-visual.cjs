@@ -179,7 +179,6 @@ const appearance = (page) =>
       "map",
       "reports",
       "overview",
-      "settings",
       "globe",
     ]) {
       for (const page of [baseline, current]) await go(page, name);
