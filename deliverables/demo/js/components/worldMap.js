@@ -118,7 +118,7 @@ export function createWorldMap(state, onSelect) {
         "aria-label",
         members.length > 1
           ? `Zoom into a cluster of ${members.length} sites${selected ? ", includes the selected site" : ""}`
-          : `Selecionar ${SITES_DATA[members[0].index].name}`,
+          : `Select ${SITES_DATA[members[0].index].name}`,
       );
       // Keep the geographic dot fixed; place the badge below it near the top edge.
       const badgeY = pos.y - view.y < 78 * scale ? 24 : -66;

@@ -266,14 +266,14 @@ const appearance = (page) =>
       "cards must be staggered",
     );
     assert.equal(
-      initial.some((r) => r.key === "surface:Análise morfométrica"),
+      initial.some((r) => r.key === "surface:Morphometric analysis"),
       false,
     );
     await motion
       .locator("#general-comparisons-section")
       .scrollIntoViewIfNeeded();
     await motion.waitForFunction(() =>
-      window.reveals.some((r) => r.key === "surface:Análise morfométrica"),
+      window.reveals.some((r) => r.key === "surface:Morphometric analysis"),
     );
     await motion.waitForTimeout(850);
     const count = await motion.evaluate(() => window.reveals.length);

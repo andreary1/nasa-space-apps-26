@@ -82,7 +82,7 @@ export class Globe {
       button.dataset.category = location.category;
       button.dataset.tone = location.tone || '';
       button.dataset.location = location.id;
-      button.setAttribute('aria-label', `Selecionar ${location.name}`);
+      button.setAttribute('aria-label', `Select ${location.name}`);
       button.setAttribute('aria-pressed', 'false');
       button.innerHTML = `<span class="pin-badge"><svg aria-hidden="true"><use href="#i-${location.category === 'crater' ? 'crater' : 'dune'}"/></svg></span><span class="pin-photo" aria-hidden="true"></span><span class="pin-stem"></span><span class="pin-dot"></span><span class="pin-tooltip"></span>`;
       button.querySelector('.pin-tooltip').textContent = location.name;
